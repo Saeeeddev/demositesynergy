@@ -51,7 +51,7 @@ const DataToDecision = () => {
               <div className="DataToDecision-section__image-placeholder">
                <img 
                  src="src/assets/desiion.png" 
-                 alt="An abstract representation of data" 
+                 alt="Solar, grid, infrastructure" 
                />
               </div>
             </div>
@@ -67,7 +67,7 @@ const DataToDecision = () => {
                   </p>
                 </div>
                   <div className="DataToDecision-section__image-placeholder DataToDecision-section__image-placeholder--small">
-                    <img src="src/assets/sdffag.avif" alt="File structure diagram"/>
+                    <img src="src/assets/sdfsf.png" alt="set weights choose factors"/>
                   </div>
             </div>
             <div className="DataToDecision-section__right-bottom-box ">
@@ -78,7 +78,7 @@ const DataToDecision = () => {
                   </p>
                 </div>
                   <div className="DataToDecision-section__image-placeholder DataToDecision-section__image-placeholder--medium">
-                     <img src="src/assets/sdds.avif" alt="Binary code with 100% Private badge" />
+                     <img src="src/assets/sdds.avif" alt="Every score is backed by trusted data." />
                   </div>
             </div>
           </div>

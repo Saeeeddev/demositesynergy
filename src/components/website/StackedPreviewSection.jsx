@@ -26,11 +26,11 @@ const StackedPreviewSection = () => {
       <div className="flex items-center justify-between w-full max-w-6xl px-8">
         
         <div className="w-1/3 text-left">
-          <h2 className="mb-4 text-5xl font-bold font-display text-text-dark">
-            Site Selection, Reimagined.
+          <h2 className="mb-4 text-4xl font-bold font-display text-text-dark">
+         Smarter Site Selection.
           </h2>
           <p className="text-lg text-primary-dark">
-            Harness powerful data analytics to find, evaluate, and secure the most profitable sites with confidence.
+            Optimize solar sites, cut complexity, and secure profitable locations.
           </p>
         </div>
 
