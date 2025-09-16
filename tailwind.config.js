@@ -47,66 +47,14 @@ module.exports = {
         'mpu-blue': '#4361ee', // PaybackData color
         'irr-blue-light': '#5DADE2', // financialSummaryData color
 
-        // PotentialAssessmentR.css
-        'loss-high-red': '#e74c3c',
-        'loss-medium-orange': '#f39c12',
-        'loss-low-green': '#27ae60',
-        'tech-card-icon-blue': '#0077cc',
-        
-        // Additional colors from PotentialAssessmentR.css for summary components
-        'summary-bg': '#f7f9fc',
-        'summary-text': '#2c3e50',
-        'summary-text-secondary': '#7f8c8d',
-        'summary-border': '#ecf0f1',
-        'summary-success': '#27ae60',
-        'chart-bar-blue': '#3498db',
-        'positive-flow-bg': 'rgba(46, 204, 113, 0.1)',
-        'negative-flow-bg': 'rgba(231, 76, 60, 0.1)',
-        'positive-flow-text': '#27ae60',
-        'negative-flow-text': '#e74c3c',
+      
 
         // ResultsDisplay.css & AssApp.css
         'highlight-blue-strong': '#4f46e5',   // --highlight-blue from AssApp
         'highlight-green-strong': '#4ade80', // --highlight-green from AssApp
         'button-action-blue': '#5270a8', // results-action-btn, btn
         
-        // Technical components specific colors
-        'tech-header-bg': 'linear-gradient(to right, #f8f9fa, #ffffff)',
-        'tech-border': '#e0e0e0',
-        'tech-border-light': '#eaeaea',
-        'tech-border-lighter': '#f0f0f0',
-        'tech-border-lightest': '#f8f8f8',
-        'tech-card-bg': '#ffffff',
-        'tech-card-shadow': '0 2px 6px rgba(0, 0, 0, 0.08)',
-        'tech-card-shadow-hover': '0 4px 12px rgba(0, 0, 0, 0.12)',
-        'tech-icon-bg': '#0077cc',
-        'tech-icon-shadow': '0 2px 5px rgba(0, 119, 204, 0.2)',
-        'tech-loss-icon-bg': '#f39c12',
-        'tech-loss-icon-shadow': '0 2px 5px rgba(243, 156, 18, 0.2)',
-        'tech-label': '#666666',
-        'tech-value': '#333333',
-        'tech-value-highlight': '#0077cc',
-        'tech-value-excellent': '#28a745',
-        'tech-note-bg': '#f8f9fa',
-        'tech-note-icon': '#3498db',
-        'tech-note-text': '#666666',
-        'tech-map-bg': '#f5f7fa',
-        'tech-map-grid': 'rgba(173, 216, 230, 0.4)',
-        'tech-map-overlay': 'rgba(255, 255, 255, 0.7)',
-        'tech-map-overlay-border': '#e0e0e0',
-        'tech-map-icon': '#5270a8',
-        'tech-button-primary': '#5270a8',
-        'tech-button-secondary': '#f8f9fa',
-        'tech-button-success': '#27ae60',
         
-        // Risk assessment specific colors
-        'risk-bg': '#f7f9fc',
-        'risk-text': '#2c3e50',
-        'risk-text-secondary': '#34495e',
-        'risk-border': '#ecf0f1',
-        'risk-high': '#e74c3c',
-        'risk-medium': '#f39c12',
-        'risk-low': '#27ae60',
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'],
@@ -136,6 +84,8 @@ module.exports = {
         // Add more as you identify them
       },
       boxShadow: {
+        'custom-lg': '0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)', 
+        'card': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)', // Your existing card shadow
         // Extracted from your CSS variables and common uses
         'card': 'var(--card-shadow, 0 8px 30px rgba(0, 0, 0, 0.05))',
         'surface': 'var(--surface-shadow, 0 4px 12px rgba(176, 163, 212, 0.15))',
@@ -170,8 +120,15 @@ module.exports = {
       animation: {
         'gradientShift': 'gradientShift 15s ease infinite', // from SiteSelectionR.css
         'pulse': 'pulse 2s infinite', // from map.css & SiteSelectionR.css
+         'scroll-slow': 'scroll 80s linear infinite',
+        'scroll-normal': 'scroll 50s linear infinite',
+        'scroll-fast': 'scroll 30s linear infinite',
       },
       keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
         gradientShift: {
           '0%, 100%': { 'background-position': '0% 50%' },
           '50%': { 'background-position': '100% 50%' },

@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoLoop from './LogoLoop';
+import LogoLoop from './utils/LogoLoop';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 import '../../style/CompanyLogos.css';
 

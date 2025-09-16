@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../style/Hero.css';
-import LiquidChrome from './LiquidChrome';
+import LiquidChrome from './utils/LiquidChrome';
 
 function Hero() {
   return (

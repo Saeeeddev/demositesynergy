@@ -6,6 +6,9 @@ import EmptySection from '../website/SuitabilityLayer';
 import DemoVideoSection from '../website/DemoVideoSection';
 import CtaSection from '../website/CtaSection';
 import DataToDecision from '../website/DataToDecision';
+import StackedPreviewSection from '../website/StackedPreviewSection';
+
+
 
 
 function Home() {
@@ -18,6 +21,7 @@ function Home() {
       <EmptySection />
       <DemoVideoSection />
       <DataToDecision />
+      <StackedPreviewSection />
       <CtaSection />
 
     </main>
