@@ -1,35 +1,36 @@
-import React, { useRef, useEffect } from 'react'; // <-- Import useRef and useEffect
+import React, { useRef, useEffect } from 'react';
 import '../../style/DataToDecision.css';
 
 const DataToDecision = () => {
-  // Create a ref to attach to the DOM element
-  const glowBoxRef = useRef(null);
+  // Create three refs, one for each box that needs the glow effect
+  const glowBoxRef1 = useRef(null);
+  const glowBoxRef2 = useRef(null);
+  const glowBoxRef3 = useRef(null);
 
-  // This useEffect hook will add the mousemove event listener
   useEffect(() => {
-    const container = glowBoxRef.current;
-    if (!container) return;
+    // Put all the refs into an array to easily loop over them
+    const containers = [glowBoxRef1.current, glowBoxRef2.current, glowBoxRef3.current];
 
-    const handleMouseMove = (e) => {
-      // Get the position of the container
-      const rect = container.getBoundingClientRect();
+    containers.forEach(container => {
+      if (!container) return;
 
-      // Calculate the mouse position relative to the container
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const handleMouseMove = (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-      // Update the CSS variables to move the glow
-      container.style.setProperty('--x', `${x}px`);
-      container.style.setProperty('--y', `${y}px`);
-    };
+        container.style.setProperty('--x', `${x}px`);
+        container.style.setProperty('--y', `${y}px`);
+      };
 
-    container.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mousemove', handleMouseMove);
 
-    // Cleanup function to remove the listener when the component is unmounted
-    return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []); // <-- Empty array means this effect runs only once on mount
+      // Cleanup function for each container
+      return () => {
+        container.removeEventListener('mousemove', handleMouseMove);
+      };
+    });
+  }, []); // Empty array ensures this effect runs only once on mount
 
   return (
     <div className="DataToDecision-section__container">
@@ -39,8 +40,8 @@ const DataToDecision = () => {
         </h2>
         
         <div className="DataToDecision-section__main-box">
-          {/* Add the ref to the div you want the effect on */}
-          <div className="DataToDecision-section__left-box" ref={glowBoxRef}> 
+          {/* Box 1: Add the first ref and the new common CSS class */}
+          <div className="DataToDecision-section__left-box glow-effect-box" ref={glowBoxRef1}> 
             <div className="DataToDecision-section__left-top-box">
               <h3 className="DataToDecision-section__left-top-box__header">Smarter decisions</h3>
               <p className="DataToDecision-section__left-top-box__text">
@@ -57,9 +58,9 @@ const DataToDecision = () => {
             </div>
           </div>
 
-          {/* The rest of your component remains the same */}
           <div className="DataToDecision-section__right-box">
-            <div className="DataToDecision-section__right-top-box DataToDecision-section__right-panel">
+            {/* Box 2: Add the second ref and the new common CSS class */}
+            <div className="DataToDecision-section__right-top-box glow-effect-box" ref={glowBoxRef2}>
                 <div className="DataToDecision-box__text-content">
                   <h3 className="DataToDecision-box__header">Your criteria</h3>
                   <p className="DataToDecision-box__paragraph">
@@ -70,7 +71,8 @@ const DataToDecision = () => {
                     <img src="src/assets/sdfsf.png" alt="set weights choose factors"/>
                   </div>
             </div>
-            <div className="DataToDecision-section__right-bottom-box ">
+            {/* Box 3: Add the third ref and the new common CSS class */}
+            <div className="DataToDecision-section__right-bottom-box glow-effect-box" ref={glowBoxRef3}>
                 <div className="DataToDecision-box__text-content">
                   <h3 className="DataToDecision-box__header">Transparent by default</h3>
                   <p className="DataToDecision-box__paragraph">
@@ -78,7 +80,7 @@ const DataToDecision = () => {
                   </p>
                 </div>
                   <div className="DataToDecision-section__image-placeholder DataToDecision-section__image-placeholder--medium">
-                     <img src="src/assets/sdds.avif" alt="Every score is backed by trusted data." />
+                     <img src="src/assets/transparentTrust.png" alt="Every score is backed by trusted data." />
                   </div>
             </div>
           </div>
