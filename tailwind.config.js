@@ -86,6 +86,7 @@ module.exports = {
       boxShadow: {
         'custom-lg': '0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)', 
         'card': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)', // Your existing card shadow
+        'demo-video': '0 8px 32px 0 rgba(30, 32, 37, 0.18), 0 1.5px 4px 0 rgba(30, 32, 37, 0.08)',
         // Extracted from your CSS variables and common uses
         'card': 'var(--card-shadow, 0 8px 30px rgba(0, 0, 0, 0.05))',
         'surface': 'var(--surface-shadow, 0 4px 12px rgba(176, 163, 212, 0.15))',
@@ -120,9 +121,10 @@ module.exports = {
       animation: {
         'gradientShift': 'gradientShift 15s ease infinite', // from SiteSelectionR.css
         'pulse': 'pulse 2s infinite', // from map.css & SiteSelectionR.css
-         'scroll-slow': 'scroll 80s linear infinite',
+        'scroll-slow': 'scroll 80s linear infinite',
         'scroll-normal': 'scroll 50s linear infinite',
         'scroll-fast': 'scroll 30s linear infinite',
+        'gradient-animation': 'gradient-animation 8s ease-in-out infinite',
       },
       keyframes: {
         scroll: {
@@ -132,6 +134,11 @@ module.exports = {
         gradientShift: {
           '0%, 100%': { 'background-position': '0% 50%' },
           '50%': { 'background-position': '100% 50%' },
+        },
+        'gradient-animation': {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' }
         },
         pulse: { // Using the one from map.css as it's more generic
           '0%, 100%': { 'box-shadow': '0 0 0 0 rgba(255, 255, 255, 0.4)' },

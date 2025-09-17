@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../style/Footer.css";const Footer = () => {
+
+const Footer = () => {
   const footerData = [
     {
       title: 'APP',
@@ -25,28 +26,36 @@ import "../../style/Footer.css";const Footer = () => {
   ];
 
   return (
-    <div className="Footer-section__container">
-      <div className="Footer-section__content">
-        <div className="Footer-section__top-box">
-          <div className="Footer-section__left-section">
-            <div className="Footer-section__logo-box">
-              {/* Logo placeholder */}
-              <div className="Footer__logo-image"><img src="/src/assets/sitesynergy_logo_colored.png" alt="" /></div>
+    <div className="bg-white py-8 sm:py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-4 mb-8 md:mb-10">
+          <div className="flex-shrink-0">
+            <div className="flex justify-center md:justify-start">
+              <img 
+                className="h-12 sm:h-10 w-auto" 
+                src="/src/assets/sitesynergy_logo_colored.png" 
+                alt="SiteSynergy" 
+              />
             </div>
           </div>
-          <div className="Footer-section__right-section">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 sm:gap-12 md:gap-8 lg:gap-12">
             {footerData.map((section, index) => (
-              <div key={index} className="Footer-section__quick-links-box">
-                <h3 className="Footer-section__quick-links-header">{section.title}</h3>
-                <ul className="Footer-section__quick-links-list">
+              <div key={index} className="min-w-[120px]">
+                <h3 className="text-gray-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+                  {section.title}
+                </h3>
+                <ul className="list-none p-0">
                   {section.links.map((link, linkIndex) => (
-                    <li key={linkIndex} className="Footer-section__quick-links-item">
+                    <li 
+                      key={linkIndex} 
+                      className="text-gray-500 text-xs sm:text-sm mb-2 cursor-pointer hover:text-gray-700 transition-colors duration-200"
+                    >
                       {link === 'Security' ? (
-                        <Link to="/security">{link}</Link>
-                      ) : link === 'Privacy Policy' ? (
-                        <Link to="/privacy">{link}</Link>
+                        <Link to="/security" className="text-inherit no-underline">{link}</Link>
                       ) : link === 'Terms & Conditions' ? (
-                        <Link to="/terms">{link}</Link>
+                        <Link to="/terms" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Privacy Policy' ? (
+                        <Link to="/privacy" className="text-inherit no-underline">{link}</Link>
                       ) : (
                         link
                       )}
@@ -57,9 +66,9 @@ import "../../style/Footer.css";const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="Footer-section__bottom-box">
-          <div className="Footer-section__copyright-box">
-            <span className="Footer-section__copyright-text">
+        <div className="border-t border-gray-200 pt-4 sm:pt-5 text-center">
+          <div>
+            <span className="text-gray-500 text-xs sm:text-sm">
               © 2025 SiteSynergy Technologies. All rights reserved.
             </span>
           </div>
