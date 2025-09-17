@@ -1,7 +1,6 @@
-import React from 'react';
-import '../../style/Footer.css';
-
-const Footer = () => {
+import React from "react";
+import { Link } from "react-router-dom";
+import "../../style/Footer.css";const Footer = () => {
   const footerData = [
     {
       title: 'APP',
@@ -42,7 +41,13 @@ const Footer = () => {
                 <ul className="Footer-section__quick-links-list">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex} className="Footer-section__quick-links-item">
-                      {link}
+                      {link === 'Security' ? (
+                        <Link to="/security">{link}</Link>
+                      ) : link === 'Privacy Policy' ? (
+                        <Link to="/privacy">{link}</Link>
+                      ) : (
+                        link
+                      )}
                     </li>
                   ))}
                 </ul>
