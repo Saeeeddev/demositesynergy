@@ -31,7 +31,7 @@ const LegalFooter = () => {
         <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-4 mb-8 md:mb-10">
           <div className="flex-shrink-0">
             <div className="flex justify-center md:justify-start">
-              <img className="h-8 sm:h-10 w-auto" src="/src/assets/sitesynergy_logo_colored.png" alt="SiteSynergy" />
+              <img className="h-12 sm:h-10 w-auto" src="/src/assets/sitesynergy_logo_colored.png" alt="SiteSynergy" />
             </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 sm:gap-12 md:gap-8 lg:gap-12">
@@ -43,6 +43,10 @@ const LegalFooter = () => {
                     <li key={linkIndex} className="text-gray-500 text-xs sm:text-sm mb-2 cursor-pointer hover:text-gray-700 transition-colors duration-200">
                       {link === 'Security' ? (
                         <Link to="/security" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Terms & Conditions' ? (
+                        <Link to="/terms" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Privacy Policy' ? (
+                        <Link to="/privacy" className="text-inherit no-underline">{link}</Link>
                       ) : (
                         link
                       )}

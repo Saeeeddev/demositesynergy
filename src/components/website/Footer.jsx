@@ -45,6 +45,8 @@ import "../../style/Footer.css";const Footer = () => {
                         <Link to="/security">{link}</Link>
                       ) : link === 'Privacy Policy' ? (
                         <Link to="/privacy">{link}</Link>
+                      ) : link === 'Terms & Conditions' ? (
+                        <Link to="/terms">{link}</Link>
                       ) : (
                         link
                       )}
