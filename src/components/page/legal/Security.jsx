@@ -16,7 +16,7 @@ const Security = () => {
         <div className="w-full max-w-3xl mt-8 sm:mt-12 md:mt-16 flex flex-col items-center justify-center">
           <div className="w-full text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-black leading-tight">
-              Security — Sitesynergy
+              Security
             </h1>
           </div>
           <div className="w-full text-center">

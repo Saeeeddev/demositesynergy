@@ -14,6 +14,10 @@ module.exports = {
         'primary-dark': 'var(--primary-blue, #6D7F9F)',
         secondary: 'var(--secondary-green, #8FDCB8)',
         'secondary-dark': 'var(--secondary-yellow, #F0D16D)',
+        'tech-icon': '#4865a1',
+        'hero-bg': '#1a1a1a',
+        'hero-text': '#f5f7fd',
+        'hero-subtext': '#bec4cc',
         // Extracted from your global.css and other CSS files
         'primary-blue': 'var(--primary-blue, #6D7F9F)',
         'primary-light-blue': 'var(--primary-light-blue, #A8C6E8)',
@@ -87,6 +91,8 @@ module.exports = {
         'custom-lg': '0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)', 
         'card': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)', // Your existing card shadow
         'demo-video': '0 8px 32px 0 rgba(30, 32, 37, 0.18), 0 1.5px 4px 0 rgba(30, 32, 37, 0.08)',
+        'hero-video': '0 8px 32px 0 rgba(30, 32, 37, 0.18), 0 1.5px 4px 0 rgba(30, 32, 37, 0.08)',
+        'window-control': '0 1px 2px rgba(30,32,37,0.10)',
         // Extracted from your CSS variables and common uses
         'card': 'var(--card-shadow, 0 8px 30px rgba(0, 0, 0, 0.05))',
         'surface': 'var(--surface-shadow, 0 4px 12px rgba(176, 163, 212, 0.15))',
