@@ -194,3 +194,210 @@
 .SuitabilityLayer-box__view-link:hover {
   color: #1d4ed8;
 }
+
+/* TABLET RESPONSIVE STYLES (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .SuitabilityLayer-section__container {
+    width: 100%;
+    max-width: 768px;
+    padding: 80px 40px;
+  }
+
+  .SuitabilityLayer-section__header {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -1.2px;
+  }
+
+  .SuitabilityLayer-section__main-box {
+    width: 100%;
+    margin-top: 60px;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .SuitabilityLayer-section__inner-box {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    min-height: 450px;
+    padding: 30px;
+  }
+
+  .SuitabilityLayer-box__top-content {
+    width: 100%;
+    height: auto;
+  }
+
+  .SuitabilityLayer-box__bottom-content {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  .SuitabilityLayer-box__image-placeholder img {
+    margin-top: 140px;
+  }
+}
+
+/* MOBILE RESPONSIVE STYLES (up to 767px) */
+@media (max-width: 767px) {
+  .SuitabilityLayer-section__container {
+    width: 100%;
+    padding: 80px 20px;
+  }
+
+  .SuitabilityLayer-section__header {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -1px;
+  }
+
+  .SuitabilityLayer-section__main-box {
+    width: 100%;
+    margin-top: 40px;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .SuitabilityLayer-section__inner-box {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .SuitabilityLayer-box__top-content {
+    width: 100%;
+    height: auto;
+  }
+
+  .SuitabilityLayer-box__header {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+
+  .SuitabilityLayer-box__paragraph {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .SuitabilityLayer-box__bottom-content {
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  .SuitabilityLayer-box__bottom-top-box {
+    padding: 0 5px;
+  }
+
+  .SuitabilityLayer-box__bottom-top-box svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .SuitabilityLayer-box__image-placeholder img {
+    margin-top: 120px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .SuitabilityLayer-box__bottom-lines-svg-container {
+    height: 120px;
+  }
+
+  .SuitabilityLayer-box__decision-bubble {
+    font-size: 13px;
+    line-height: 16px;
+    padding: 10px 14px;
+    max-width: 240px;
+    margin-bottom: 10px;
+  }
+
+  .SuitabilityLayer-box__explanation-card {
+    padding: 14px;
+  }
+
+  .SuitabilityLayer-box__explanation-details {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .SuitabilityLayer-box__site-label {
+    font-size: 11px;
+  }
+
+  .SuitabilityLayer-box__score-text {
+    font-size: 12px;
+  }
+
+  .SuitabilityLayer-box__view-link {
+    font-size: 12px;
+  }
+}
+
+/* SMALL MOBILE RESPONSIVE STYLES (up to 480px) */
+@media (max-width: 480px) {
+  .SuitabilityLayer-section__container {
+    padding: 80px 16px;
+  }
+
+  .SuitabilityLayer-section__header {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .SuitabilityLayer-section__inner-box {
+    padding: 20px;
+    min-height: 360px;
+    border-radius: 20px;
+  }
+
+  .SuitabilityLayer-box__header {
+    font-size: 17px;
+    line-height: 21px;
+  }
+
+  .SuitabilityLayer-box__paragraph {
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .SuitabilityLayer-box__bottom-content {
+    margin-top: 50px;
+  }
+
+  .SuitabilityLayer-box__bottom-top-box svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .SuitabilityLayer-box__image-placeholder img {
+    margin-top: 100px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .SuitabilityLayer-box__bottom-lines-svg-container {
+    height: 100px;
+  }
+
+  .SuitabilityLayer-box__decision-bubble {
+    font-size: 12px;
+    line-height: 15px;
+    padding: 8px 12px;
+    max-width: 200px;
+  }
+
+  .SuitabilityLayer-box__explanation-card {
+    padding: 12px;
+  }
+
+  .SuitabilityLayer-box__explanation-details {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}

@@ -8,7 +8,11 @@ function DemoVideoSection() {
           Results That Drive Confident Decisions
         </h1>
         
-        <div className="w-[98%] lg:w-[1035px] min-h-[400px] lg:h-[705px] px-4 sm:px-8 md:px-12 lg:px-[75px] py-6 sm:py-8 md:py-10 lg:py-[45px] mb-8 lg:mb-[42px] box-border">
+        {/*
+          FIX: Removed min-h-[400px] and reduced responsive vertical padding (py-*)
+          to eliminate the large gap on mobile and tablet.
+        */}
+        <div className="w-[98%] lg:w-[1035px] lg:h-[705px] px-4 sm:px-8 md:px-12 lg:px-[75px] py-6 lg:py-[45px] mb-8 lg:mb-[15px] box-border">
           <div className="w-full h-full shadow-demo-video p-1 border border-[#e5e7eb] bg-[#fafafa] rounded-2xl lg:rounded-[32px] box-border">
             <div className="w-full h-full rounded-2xl lg:rounded-[32px] border border-[#e5e7eb] overflow-hidden">
               <video 
