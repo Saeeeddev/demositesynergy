@@ -197,3 +197,104 @@
   width: 407px;
   height: 304px;
 }
+
+/* --- START: Responsive Styles --- */
+
+/* Tablet Styles */
+@media (max-width: 1200px) {
+  .DataToDecision-section__container {
+    width: 100%;
+    padding: 60px 40px 0 40px;
+    height: auto; /* Allow height to adjust based on content */
+  }
+
+  .DataToDecision-section__main-box {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* Allow height to adjust */
+    gap: 30px; /* Adjust gap for vertical stacking */
+  }
+
+  .DataToDecision-section__left-box,
+  .DataToDecision-section__right-box {
+    width: 100%;
+    max-width: 540px; /* Maintain a max-width for readability on wider tablets */
+  }
+
+  .DataToDecision-section__right-box {
+    max-width: 460px; /* Maintain consistency */
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .DataToDecision-section__container {
+    padding: 40px 20px 0 20px;
+  }
+
+  .DataToDecision-section__header {
+    font-size: 36px; /* Reduce header font size */
+    line-height: 42px;
+    margin-bottom: 40px;
+  }
+
+  .DataToDecision-section__main-box {
+    gap: 20px; /* Reduce gap on mobile */
+  }
+
+  .DataToDecision-section__left-box {
+    padding: 30px; /* Reduce padding inside the box */
+    height: auto;
+  }
+  
+  .DataToDecision-section__left-top-box {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+  }
+
+  .DataToDecision-section__left-image-box {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Make images inside responsive */
+  .DataToDecision-section__left-image-box img,
+  .DataToDecision-section__image-placeholder img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .DataToDecision-section__right-top-box,
+  .DataToDecision-section__right-bottom-box {
+    width: 100%;
+    height: auto;
+    flex-direction: column-reverse; /* Stack image below text */
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    gap: 20px;
+  }
+  
+  .DataToDecision-box__text-content {
+      width: 100%;
+      height: auto;
+      align-items: center;
+  }
+
+  .DataToDecision-section__image-placeholder--small,
+  .DataToDecision-section__image-placeholder--medium {
+    width: 100%;
+    height: auto;
+    max-width: 252px; /* Give a max-width to not look too large */
+  }
+  
+  .DataToDecision-section__left-image-box .DataToDecision-section__image-placeholder {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* --- END: Responsive Styles --- */
