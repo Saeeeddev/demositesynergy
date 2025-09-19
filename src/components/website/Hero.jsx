@@ -20,7 +20,7 @@ function Hero() {
         <p className="text-base sm:text-lg lg:text-[17px] leading-relaxed lg:leading-[22.9px] text-hero-subtext max-w-[90%] sm:max-w-[600px]">
           AI-driven analysis of location, solar potential, costs, and risks — empowering you to make faster, smarter, and more profitable site decisions.
         </p>
-        <button className="mt-5 w-[140px] h-[38px] py-3 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
+        <button className="mt-4 w-[140px] h-[38px] py-2 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
           Get Started
         </button>
       </div>

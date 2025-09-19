@@ -1,15 +1,15 @@
 // src/components/Security.jsx
 
 import React from 'react';
-import LegalHeader from './LegalHeader';
-import LegalFooter from './LegalFooter';
+import Header from '../../website/Header';
+import Footer from '../../website/Footer';
 
 
 
 const Security = () => {
   return (
     <div className="min-h-screen font-sans bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
-      <LegalHeader />
+      <Header useColoredLogo={true} />
        <main className="w-full flex justify-center pt-16">
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Top Box for Title */}
@@ -105,7 +105,7 @@ const Security = () => {
         </div>
       </div>
     </main>
-      <LegalFooter />
+      <Footer />
     </div>
   );
 };

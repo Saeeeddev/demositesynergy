@@ -157,4 +157,4 @@ module.exports = {
     // You can add Tailwind plugins here if needed, e.g., @tailwindcss/forms, @tailwindcss/typography
     // require('@tailwindcss/forms'),
   ],
-};
+}

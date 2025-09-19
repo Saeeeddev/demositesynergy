@@ -26,16 +26,18 @@ const Footer = () => {
   ];
 
   return (
-    <div className="bg-white py-8 sm:py-10">
+    <div className="bg-transparent py-8 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-4 mb-8 md:mb-10">
           <div className="flex-shrink-0">
             <div className="flex justify-center md:justify-start">
-              <img 
-                className="h-12 sm:h-10 w-auto" 
-                src="/src/assets/sitesynergy_logo_colored.png" 
-                alt="SiteSynergy" 
-              />
+              <Link to="/">
+                <img 
+                  className="h-12 sm:h-10 w-auto" 
+                  src="/src/assets/sitesynergy_logo_colored.png" 
+                  alt="SiteSynergy" 
+                />
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 sm:gap-12 md:gap-8 lg:gap-12">
