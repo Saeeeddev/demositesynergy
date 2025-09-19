@@ -161,8 +161,12 @@ const About = () => {
               
               {/* Team Member 1 */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-gray-400 rounded-full"></div>
+                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+                  <img 
+                    src="" 
+                    alt="Amir Naseri profile" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="font-semibold text-gray-900 text-lg">Amir Naseri</h3>
                 <p className="text-gray-600 text-sm">CEO & Co-Founder (geography)</p>
@@ -170,8 +174,12 @@ const About = () => {
               
               {/* Team Member 2 */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-gray-400 rounded-full"></div>
+                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+                  <img 
+                    src="" 
+                    alt="Saeed Dolati profile" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="font-semibold text-gray-900 text-lg">Saeed Dolati</h3>
                 <p className="text-gray-600 text-sm">CPO & Co-Founder (Computer Engineering)</p>
@@ -179,8 +187,12 @@ const About = () => {
               
               {/* Team Member 3 */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-gray-400 rounded-full"></div>
+                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+                  <img 
+                    src="" 
+                    alt="Reza Dolati profile" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="font-semibold text-gray-900 text-lg">Reza Dolati</h3>
                 <p className="text-gray-600 text-sm">CTO & Founding Engineer (Electrical Engineering)</p>
@@ -195,10 +207,12 @@ const About = () => {
               
               {/* App Icon */}
               <div className="mb-8">
-                <div className="w-24 h-24 bg-white rounded-2xl shadow-lg mx-auto flex items-center justify-center border border-gray-200">
-                  <div className="w-16 h-16 bg-gray-900 rounded-xl flex items-center justify-center">
-                    <div className="w-8 h-8 bg-white rounded-sm"></div>
-                  </div>
+                <div className="w-24 h-24 rounded-2xl shadow-2xl shadow-gray-400/30 mx-auto flex items-center justify-center border border-gray-200 p-2">
+                  <img 
+                    src="/src/assets/sy_icon_transparent_background.png" 
+                    alt="SiteSynergy App Icon" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
               
