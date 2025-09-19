@@ -1,0 +1,196 @@
+.SuitabilityLayer-section__container {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 80px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.SuitabilityLayer-section__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SuitabilityLayer-section__header {
+  color: black;
+  font-size: 47px;
+  line-height: 51px;
+  letter-spacing: -1.7px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.SuitabilityLayer-section__main-box {
+  background-color: white;
+  width: 1040px;
+  /* height: 800px; /* Adjusted to fit content */
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 45px;
+}
+
+.SuitabilityLayer-section__inner-box {
+  width: 500px;
+  height: 500px;
+  background-color: #f9f9f9;
+  border-radius: 32px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.SuitabilityLayer-box__top-content {
+  width: 420px;
+  height: 101px;
+}
+
+.SuitabilityLayer-box__header {
+  color: black;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+}
+
+.SuitabilityLayer-box__paragraph {
+  color: gray;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0 0 10px 0;
+}
+
+/* --- UPDATED & NEW STYLES --- */
+
+.SuitabilityLayer-box__bottom-content {
+  width: 416px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Anchor for the lines */
+}
+
+.SuitabilityLayer-box__bottom-top-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 10px; /* Adds a bit of space from the edges */
+}
+
+.SuitabilityLayer-box__image-placeholder img {
+  margin-top: 160px;
+  width: 45px;
+  height: 45px;   /* or height: auto; */
+  display: block;
+}
+
+/* Container for the animated lines */
+.SuitabilityLayer-box__bottom-lines-svg-container {
+  position: absolute;
+  top: 25px; /* Position below the top icons */
+  left: 0;
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+}
+
+/* Gray background line */
+.SuitabilityLayer-box__bottom-line-base {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 1.5;
+}
+
+/* Blue animated line */
+.SuitabilityLayer-box__bottom-line-flow {
+  fill: none;
+  stroke: #2563eb;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 30 220; /* A 30px visible dash followed by a 220px gap */
+  animation: flow-animation 3s linear infinite;
+}
+
+/* Animation to move the blue dash along the path */
+@keyframes flow-animation {
+  from {
+    stroke-dashoffset: 250;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/* Additional styles for the right box content - matches left box design */
+
+.SuitabilityLayer-box__decision-bubble {
+  background-color: #4f6a8f;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border-bottom-right-radius: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  max-width: 280px;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-bottom: 12px;
+}
+
+.SuitabilityLayer-box__explanation-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.SuitabilityLayer-box__explanation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.SuitabilityLayer-box__site-label {
+  background-color: #2563eb;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.SuitabilityLayer-box__score-text {
+  color: #10b981;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.SuitabilityLayer-box__explanation-details {
+  color: #374151;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.SuitabilityLayer-box__view-link {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding-top: 8px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.SuitabilityLayer-box__view-link:hover {
+  color: #1d4ed8;
+}

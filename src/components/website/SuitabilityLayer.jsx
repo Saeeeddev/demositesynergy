@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../style/CustomStyle.css';
+import '../../style/SuitabilityLayer.css';
 import syIcon from '../../assets/sy_icon_transparent_background.png';
 
 
@@ -69,25 +69,25 @@ const linePaths = [
 ];
 
   return (
-    <div className="w-suitability-container mx-auto bg-white p-20 box-border font-sans suitability-container">
-      <div className="w-full h-full flex flex-col items-center">
-        <h1 className="text-suitability-header text-black font-bold tracking-[-1.7px] text-center">
+    <div className="SuitabilityLayer-section__container">
+      <div className="SuitabilityLayer-section__content">
+        <h1 className="SuitabilityLayer-section__header">
           It starts with data—
           <br />
           at the site level
         </h1>
-        <div className="w-suitability-box mt-20 p-0 flex justify-center items-start gap-[45px] suitability-main-box">
-          <div className="w-suitability-inner h-[500px] bg-[#f9f9f9] rounded-[32px] p-10 box-border suitability-inner-box">
-            <div className="w-suitability-content h-[101px]">
-              <h2 className="text-suitability-subheader text-black font-semibold tracking-[-0.2px] mb-5">
+        <div className="SuitabilityLayer-section__main-box">
+          <div className="SuitabilityLayer-section__inner-box">
+            <div className="SuitabilityLayer-box__top-content">
+              <h2 className="SuitabilityLayer-box__header">
                 We layer every factor that matters
               </h2>
-              <p className="text-suitability-paragraph text-gray-500 mb-2.5">
+              <p className="SuitabilityLayer-box__paragraph">
                 Automatically combines key site factors—land, solar, grid, environment, and more—for a complete view.
               </p>
             </div>
-            <div className="w-[416px] mt-[100px] flex flex-col items-center relative">
-              <div className="w-full flex justify-between px-2.5">
+            <div className="SuitabilityLayer-box__bottom-content">
+              <div className="SuitabilityLayer-box__bottom-top-box">
                   <SolarIcon />
                   <TerrainIcon />
                   <GridIcon />
@@ -95,55 +95,53 @@ const linePaths = [
                   <EnvironmentIcon />
                   <LocationIcon />
               </div>
-              <div className="suitability-lines-container">
+              <div className="SuitabilityLayer-box__bottom-lines-svg-container">
                 <svg viewBox="0 0 416 150" preserveAspectRatio="none">
                   {linePaths.map((path, index) => (
                     <g key={index}>
-                      <path d={path} className="suitability-line-base" />
-                      <path d={path} className="suitability-line-flow" style={{ animationDelay: `${index * 0.3}s` }} />
+                      <path d={path} className="SuitabilityLayer-box__bottom-line-base" />
+                      <path d={path} className="SuitabilityLayer-box__bottom-line-flow" style={{ animationDelay: `${index * 0.3}s` }} />
                     </g>
                   ))}
                 </svg>
               </div>
-              <div className="mt-40">
-                  <img src={syIcon} alt="SY icon" className="w-[45px] h-[45px] block" />
+              <div className="SuitabilityLayer-box__image-placeholder">
+                  <img src={syIcon} alt="SY icon" />
               </div>
             </div>
           </div>
           {/* Right Side – Recommendation Insight */}
-          <div className="w-suitability-inner h-[500px] bg-[#f9f9f9] rounded-[32px] p-10 box-border suitability-inner-box">
-            <div className="w-suitability-content h-[101px]">
-              <h2 className="text-suitability-subheader text-black font-semibold tracking-[-0.2px] mb-5">
-                Decisions you can trust
-              </h2>
-              <p className="text-suitability-paragraph text-gray-500 mb-2.5">
-                Every recommendation comes with clear reasoning. Understand exactly why each site ranks where it does.
-              </p>
-            </div>
+                  <div className="SuitabilityLayer-section__inner-box">
+   
+<div className="SuitabilityLayer-box__top-content">
+  <h2 className="SuitabilityLayer-box__header">
+    Decisions you can trust
+  </h2>
+  <p className="SuitabilityLayer-box__paragraph">
+    Every recommendation comes with clear reasoning. Understand exactly why each site ranks where it does.
+  </p>
+</div>
 
-            <div className="w-[416px] mt-[100px] flex flex-col">
-              <div className="bg-suitability-bubble text-white py-3 px-4 rounded-2xl rounded-br-sm text-sm leading-[18px] font-medium max-w-[280px] self-end mb-3">
-                Why is this site ranked #1 in the region?
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                <div className="flex justify-between items-center mb-2.5">
-                  <span className="bg-suitability-link text-white py-0.5 px-2 rounded-xl text-xs font-semibold">
-                    Site A-47
-                  </span>
-                  <span className="text-suitability-score text-sm font-semibold">
-                    scored 94/100
-                  </span>
-                </div>
-                <div className="text-gray-700 text-sm leading-5 mb-3">
-                  Grid proximity (0.2mi) and optimal solar conditions drove the high ranking.
-                </div>
-                <div className="text-suitability-link text-sm font-semibold cursor-pointer pt-2 border-t border-gray-100 hover:text-suitability-link-hover">
-                  📊 Full analysis
-                </div>
-              </div>
-            </div>
-          </div>
+<div className="SuitabilityLayer-box__bottom-content">
+  <div className="SuitabilityLayer-box__decision-bubble">
+    Why is this site ranked #1 in the region?
+  </div>
+  
+  <div className="SuitabilityLayer-box__explanation-card">
+    <div className="SuitabilityLayer-box__explanation-header">
+      <span className="SuitabilityLayer-box__site-label">Site A-47</span>
+      <span className="SuitabilityLayer-box__score-text">scored 94/100</span>
+    </div>
+    <div className="SuitabilityLayer-box__explanation-details">
+      Grid proximity (0.2mi) and optimal solar conditions drove the high ranking.
+    </div>
+    <div className="SuitabilityLayer-box__view-link">
+      📊 Full analysis
+    </div>
+  </div>
+</div>
+                  </div>
+
         </div>
       </div>
     </div>
