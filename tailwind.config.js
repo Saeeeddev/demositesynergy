@@ -15,6 +15,14 @@ module.exports = {
         secondary: 'var(--secondary-green, #8FDCB8)',
         'secondary-dark': 'var(--secondary-yellow, #F0D16D)',
         'tech-icon': '#4865a1',
+        'suitability': {
+          'text': '#111827',
+          'paragraph': '#6B7280',
+          'link': '#2563eb',
+          'link-hover': '#1D4ED8',
+          'bubble': '#4f6a8f',
+          'score': '#10b981',
+        },
         'hero-bg': '#1a1a1a',
         'hero-text': '#f5f7fd',
         'hero-subtext': '#bec4cc',
@@ -85,7 +93,21 @@ module.exports = {
         '4.5': '1.125rem', // 18px
         '18': '4.5rem',    // 72px
         '22': '5.5rem',    // 88px
-        // Add more as you identify them
+        '80': '20rem',     // 320px
+        '100': '25rem',    // 400px
+        '120': '30rem',    // 480px
+        '150': '37.5rem',  // 600px
+      },
+      width: {
+        'suitability-container': '1200px',
+        'suitability-box': '1040px',
+        'suitability-inner': '500px',
+        'suitability-content': '420px',
+      },
+      fontSize: {
+        'suitability-header': ['47px', '51px'],
+        'suitability-subheader': ['20px', '20px'],
+        'suitability-paragraph': ['18px', '22px'],
       },
       boxShadow: {
         'custom-lg': '0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)', 
