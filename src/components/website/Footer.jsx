@@ -58,6 +58,8 @@ const Footer = () => {
                         <Link to="/terms" className="text-inherit no-underline">{link}</Link>
                       ) : link === 'Privacy Policy' ? (
                         <Link to="/privacy" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'About' ? (
+                        <Link to="/about" className="text-inherit no-underline">{link}</Link>
                       ) : (
                         link
                       )}

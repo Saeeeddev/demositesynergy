@@ -74,9 +74,9 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
           {/* Navigation Menu - Desktop */}
           <nav className="header__nav-menu">
             <ul className="header__nav-list">
-              <li className="header__nav-item">Product</li>
-              <li className="header__nav-item">Pricing</li>
-              <li className="header__nav-item">Contact</li>
+              <li className="header__nav-item"><Link to="/product">Product</Link></li>
+              <li className="header__nav-item"><Link to="/about">About</Link></li>
+              <li className="header__nav-item"><Link to="/contact">Contact</Link></li>
             </ul>
           </nav>
 
@@ -102,9 +102,9 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
       <div className={`header__mobile-menu ${isMobileMenuOpen ? 'header__mobile-menu--open' : ''}`}>
         <nav className="header__mobile-nav">
           <ul className="header__mobile-nav-list">
-            <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>Product</li>
-            <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>Pricing</li>
-            <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>Contact</li>
+            <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}><Link to="/product">Product</Link></li>
+            <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}><Link to="/about">About</Link></li>
+            <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}><Link to="/contact">Contact</Link></li>
           </ul>
           <button className="header__mobile-get-started-btn" onClick={() => setIsMobileMenuOpen(false)}>
             Get Started
