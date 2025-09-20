@@ -11,7 +11,7 @@ const FeatureIcon = ({ children }) => (
 
 const Product = () => {
   return (
-    <div className="min-h-screen font-sans bg-gradient-to-br">
+    <div className="min-h-screen font-sans bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <Header useColoredLogo={true} />
       
       <main className="w-full flex justify-center pt-16">

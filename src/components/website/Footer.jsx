@@ -9,11 +9,11 @@ const Footer = () => {
     },
     {
       title: 'PRODUCT',
-      links: ['About', 'Features', 'Pricing', 'Docs', 'Contact']
+      links: ['About', 'Product', 'Pricing', 'Contact']
     },
     {
       title: 'RESOURCES',
-      links: ['Blog', 'Case Studies', 'News & Updates', 'Academy / Guides', 'Support']
+      links: ['Case Studies', 'Support']
     },
     {
       title: 'CONNECT',
@@ -60,6 +60,14 @@ const Footer = () => {
                         <Link to="/privacy" className="text-inherit no-underline">{link}</Link>
                       ) : link === 'About' ? (
                         <Link to="/about" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Pricing' ? (
+                        <Link to="/pricing" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Product' ? (
+                        <Link to="/product" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Contact' ? (
+                        <Link to="/contact" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Support' ? (
+                        <Link to="/support" className="text-inherit no-underline">{link}</Link>
                       ) : (
                         link
                       )}

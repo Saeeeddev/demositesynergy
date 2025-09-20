@@ -17,7 +17,7 @@ const ContactDetail = ({ icon, title, children }) => (
 
 const Contact = () => {
   return (
-    <div className="min-h-screen font-sans bg-background-secondary">
+    <div className="min-h-screen font-sans bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <Header useColoredLogo={true} />
 
       <main className="w-full flex justify-center py-16">

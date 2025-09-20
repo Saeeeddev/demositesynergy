@@ -9,6 +9,8 @@ import TermsAndCondition from './components/page/legal/TermsAndCondition'
 import About from './components/page/About'
 import Product from './components/page/Product'
 import Contact from './components/page/Contact'
+import Pricing from './components/page/Pricing'
+import Support from './components/page/Support'
 import ScrollToTop from './components/utils/ScrollToTop'
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/support" element={<Support />} />
         </Routes>
       </div>
     </Router>
