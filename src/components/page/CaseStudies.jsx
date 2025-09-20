@@ -132,16 +132,16 @@ const CaseStudies = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center border border-gray-200 rounded-2xl p-8">
               <div>
                 <h3 className="font-display text-2xl font-bold text-gray-500 mb-4">Traditional Site Selection</h3>
-                <ul className="space-y-3 text-gray-600 text-left">
+                <ul className="space-y-3 text-gray-600 text-start">
                   <li className="flex items-start gap-3"><span className="text-red-500 mt-1.5">&#10005;</span><div><strong>Timeline:</strong> 3-6 Months</div></li>
                   <li className="flex items-start gap-3"><span className="text-red-500 mt-1.5">&#10005;</span><div><strong>Process:</strong> Manual data gathering, siloed teams</div></li>
                   <li className="flex items-start gap-3"><span className="text-red-500 mt-1.5">&#10005;</span><div><strong>Cost:</strong> High billable hours & overhead</div></li>
                   <li className="flex items-start gap-3"><span className="text-red-500 mt-1.5">&#10005;</span><div><strong>Outcome:</strong> Scattered reports, high risk of errors</div></li>
                 </ul>
               </div>
-              <div className="border-t md:border-t-0 md:border-l border-gray-200 pt-8 md:pt-0 md:pl-8">
+              <div className="border-t md:border-t-0 md:border-s border-gray-200 pt-8 md:pt-0 md:ps-8">
                 <h3 className="font-display text-2xl font-bold text-primary-dark mb-4">The SiteSynergy Platform</h3>
-                 <ul className="space-y-3 text-gray-600 text-left">
+                 <ul className="space-y-3 text-gray-600 text-start">
                   <li className="flex items-start gap-3"><span className="text-green-500 mt-1.5">&#10003;</span><div><strong>Timeline:</strong> 1-3 Days</div></li>
                   <li className="flex items-start gap-3"><span className="text-green-500 mt-1.5">&#10003;</span><div><strong>Process:</strong> Automated, unified analysis</div></li>
                   <li className="flex items-start gap-3"><span className="text-green-500 mt-1.5">&#10003;</span><div><strong>Cost:</strong> Fixed project fee, minimal overhead</div></li>

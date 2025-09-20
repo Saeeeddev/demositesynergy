@@ -10,7 +10,7 @@ const FaqItem = ({ question, children }) => {
     <div className="border-b border-gray-200 py-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left text-gray-800 hover:text-gray-900 transition-colors"
+        className="w-full flex justify-between items-center text-start text-gray-800 hover:text-gray-900 transition-colors"
       >
         <h3 className="text-lg font-medium">{question}</h3>
         <span className={`text-2xl text-gray-500 font-light transform transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
@@ -57,7 +57,7 @@ const Support = () => {
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We encourage you to take a look at our extensive documentation and FAQ to find quick solutions. Didn't find what you were looking for? We've got you covered.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-left mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-start mt-12">
               <SupportCard title="Contact Us" buttonText="Get in Touch" buttonHref="/contact">
                 Have a specific question about your project? Our team is ready to help.
               </SupportCard>

@@ -60,8 +60,8 @@ const About = () => {
                 <div className="space-y-12">
                   
                   {/* Phase 1 */}
-                  <div className="border-l-2 border-gray-200 pl-8 relative">
-                    <div className="absolute left-[-9px] top-2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full"></div>
+                  <div className="border-s-2 border-gray-200 ps-8 relative">
+                    <div className="absolute start-[-9px] top-2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full"></div>
                     <div className="mb-4">
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em]">
                         2022/2023 — PHASE I
@@ -96,8 +96,8 @@ const About = () => {
                   </div>
                   
                   {/* Phase 2 */}
-                  <div className="border-l-2 border-gray-200 pl-8 relative">
-                    <div className="absolute left-[-9px] top-2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full"></div>
+                  <div className="border-s-2 border-gray-200 ps-8 relative">
+                    <div className="absolute start-[-9px] top-2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full"></div>
                     <div className="mb-4">
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em]">
                       2024/2025 — PHASE II: ACCURACY & AUTOMATION

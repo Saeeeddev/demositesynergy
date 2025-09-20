@@ -42,7 +42,7 @@ const Product = () => {
             <div className="bg-card-background p-8 rounded-3xl shadow-surface mb-20">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Text Content */}
-                <div className="text-left">
+                <div className="text-start">
                   <p className="text-sm font-bold text-primary-dark uppercase tracking-widest mb-4">
                     UNIFIED WORKFLOW
                   </p>
@@ -68,7 +68,7 @@ const Product = () => {
             </div>
 
             {/* Feature Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-start">
               {/* Feature 1 */}
               <div className="bg-card-background p-8 rounded-2xl shadow-card hover:shadow-card-hover transition-shadow duration-300">
                 <FeatureIcon>

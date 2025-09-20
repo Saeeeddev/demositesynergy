@@ -7,7 +7,7 @@ export const Card = forwardRef(({ customClass, ...rest }, ref) => (
     {...rest}
     // Removed default background, border, and rounding to avoid style conflicts.
     // This makes the card a clean slate for custom styling in the implementation.
-    className={`absolute top-1/2 left-1/2 [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] ${customClass ?? ''} ${rest.className ?? ''}`.trim()}
+    className={`absolute top-1/2 start-1/2 [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] ${customClass ?? ''} ${rest.className ?? ''}`.trim()}
   />
 ));
 Card.displayName = 'Card';

@@ -25,7 +25,7 @@ const StackedPreviewSection = () => {
     <section className="flex flex-col lg:flex-row items-center justify-center w-full min-h-[500px] lg:h-[650px] py-8 sm:py-12 lg:py-16 bg-background-primary">
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl px-4 sm:px-6 lg:px-8 gap-8 lg:gap-0">
         
-        <div className="w-full lg:w-1/3 text-center lg:text-left px-4 lg:px-0">
+        <div className="w-full lg:w-1/3 text-center lg:text-start px-4 lg:px-0">
           <h2 className="mb-4 text-3xl sm:text-4xl font-bold font-display text-text-dark">
          Smarter Site Selection.
           </h2>
@@ -55,7 +55,7 @@ const StackedPreviewSection = () => {
                            <img 
                              src="src/assets/TechniacalSuitablitty.png" 
                              alt="Technical Suitability Analysis" 
-                             className="absolute top-0 left-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
+                             className="absolute top-0 start-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
                            />
                         </div>
                     </Card>
@@ -68,7 +68,7 @@ const StackedPreviewSection = () => {
                            <img 
                              src="src/assets/summary.png" 
                              alt="Summary Report" 
-                             className="absolute top-0 left-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
+                             className="absolute top-0 start-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
                            />
                         </div>
                     </Card>
@@ -81,7 +81,7 @@ const StackedPreviewSection = () => {
                            <img 
                              src="src/assets/Solarresource.png" 
                              alt="Solar Resource Map" 
-                             className="absolute top-0 left-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
+                             className="absolute top-0 start-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
                            />
                         </div>
                     </Card>
