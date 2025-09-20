@@ -158,7 +158,18 @@ const About = () => {
             </div>
             
             <div className="flex flex-col md:flex-row justify-center items-center gap-12">
-              
+              {/* Team Member 4 */}
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+                  <img 
+                    src="" 
+                    alt="Reza Dolati profile" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="font-semibold text-gray-900 text-lg">Dr. Younes Noorollahi</h3>
+                <p className="text-gray-600 text-sm">Exctive chairman (Renewable Energy expert)</p>
+              </div>
               {/* Team Member 1 */}
               <div className="text-center">
                 <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
@@ -176,7 +187,7 @@ const About = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
                   <img 
-                    src="" 
+                    src="src/assets/Gemini_Generated_Image_ifki4iifki4iifki.png" 
                     alt="Saeed Dolati profile" 
                     className="w-full h-full object-cover"
                   />
