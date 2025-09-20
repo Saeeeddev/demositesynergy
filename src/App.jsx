@@ -11,6 +11,8 @@ import Product from './components/page/Product'
 import Contact from './components/page/Contact'
 import Pricing from './components/page/Pricing'
 import Support from './components/page/Support'
+import CaseStudies from './components/page/CaseStudies'
+
 import ScrollToTop from './components/utils/ScrollToTop'
 
 function App() {
@@ -34,6 +36,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
         </Routes>
       </div>
     </Router>
