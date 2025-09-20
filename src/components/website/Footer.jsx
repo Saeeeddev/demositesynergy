@@ -16,6 +16,10 @@ const Footer = () => {
       links: ['Case Studies', 'Support']
     },
     {
+      title: 'TEST',
+      links: ['Not Found', 'Error Page']
+    },
+    {
       title: 'CONNECT',
       links: ['LinkedIn', 'X / Twitter', 'Instagram', 'YouTube']
     },
@@ -70,6 +74,10 @@ const Footer = () => {
                         <Link to="/support" className="text-inherit no-underline">{link}</Link>
                       ) : link === 'Case Studies' ? (
                         <Link to="/case-studies" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Not Found' ? (
+                        <Link to="/not-found" className="text-inherit no-underline">{link}</Link>
+                      ) : link === 'Error Page' ? (
+                        <Link to="/error-page" className="text-inherit no-underline">{link}</Link>
                       ) : (
                         link
                       )}

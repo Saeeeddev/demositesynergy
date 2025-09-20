@@ -12,6 +12,8 @@ import Contact from './components/page/Contact'
 import Pricing from './components/page/Pricing'
 import Support from './components/page/Support'
 import CaseStudies from './components/page/CaseStudies'
+import NotFound from './components/page/NotFound'
+import ErrorPage from './components/page/ErrorPage'
 
 import ScrollToTop from './components/utils/ScrollToTop'
 
@@ -37,6 +39,9 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/support" element={<Support />} />
           <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="/error-page" element={<ErrorPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
