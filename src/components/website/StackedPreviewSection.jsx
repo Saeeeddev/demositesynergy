@@ -31,7 +31,7 @@ const StackedPreviewSection = ({ t }) => { // 👈 Already correctly accepts 't'
         </div>
         <div className="relative flex items-center justify-center w-full lg:w-2/3 h-[400px] sm:h-[450px] lg:h-full mt-8 lg:mt-0">
             <div className="absolute transform scale-[0.45] sm:scale-[0.55] md:scale-[0.65] lg:scale-[0.70] origin-center"> 
-                <CardSwap width={830} height={530} cardDistance={60} verticalDistance={25} delay={4000} pauseOnHover={false} skewAmount={6}>
+                <CardSwap width={1000} height={600} cardDistance={60} verticalDistance={25} delay={4000} pauseOnHover={false} skewAmount={6}>
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
                         <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
                             <ShieldCheckIcon />
