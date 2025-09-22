@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from '../website/Header';
 import Footer from '../website/Footer';
 
@@ -44,8 +45,11 @@ const SupportCard = ({ title, children, buttonText, buttonHref = '#' }) => (
 
 
 const Support = () => {
+  const { t } = useTranslation('Support');
+  const faqItems = t('faq.items', { returnObjects: true });
+
   return (
-    <div className="min-h-screen font-sans bg-background-secondary">
+    <div className="min-h-screen bg-background-secondary">
       <Header useColoredLogo={true} />
 
       <main className="w-full flex justify-center py-16">
@@ -53,22 +57,22 @@ const Support = () => {
 
           {/* --- Looking for Support Section --- */}
           <div className="w-full max-w-[1200px] my-16 text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">Looking for support?</h1>
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">{t('hero.title')}</h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We encourage you to take a look at our extensive documentation and FAQ to find quick solutions. Didn't find what you were looking for? We've got you covered.
+              {t('hero.description')}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-start mt-12">
-              <SupportCard title="Contact Us" buttonText="Get in Touch" buttonHref="/contact">
-                Have a specific question about your project? Our team is ready to help.
+              <SupportCard title={t('resources.contact.title')} buttonText={t('resources.contact.button')} buttonHref="/contact">
+                {t('resources.contact.description')}
               </SupportCard>
-              <SupportCard title="Request a Demo" buttonText="Book a Call" buttonHref="/pricing">
-                See the platform in action with a guided tour from one of our specialists.
+              <SupportCard title={t('resources.demo.title')} buttonText={t('resources.demo.button')} buttonHref="/pricing">
+                {t('resources.demo.description')}
               </SupportCard>
-               <SupportCard title="Case Studies" buttonText="View Case Studies">
-                Explore real-world examples of successful site selection projects and their outcomes.
+               <SupportCard title={t('resources.caseStudies.title')} buttonText={t('resources.caseStudies.button')}>
+                {t('resources.caseStudies.description')}
               </SupportCard>
-              <SupportCard title="YouTube Tutorials" buttonText="Watch Videos">
-                Learn how to use our platform through step-by-step video tutorials and walkthroughs.
+              <SupportCard title={t('resources.tutorials.title')} buttonText={t('resources.tutorials.button')}>
+                {t('resources.tutorials.description')}
               </SupportCard>
             </div>
           </div>
@@ -76,46 +80,15 @@ const Support = () => {
           {/* --- FAQ Section --- */}
           <div className="w-full max-w-4xl my-24">
             <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold text-gray-900">Questions?</h2>
-              <p className="text-5xl font-bold text-gray-900">We have the answers.</p>
+              <h2 className="text-5xl font-bold text-gray-900">{t('faq.title')}</h2>
+              <p className="text-5xl font-bold text-gray-900">{t('faq.subtitle')}</p>
             </div>
             <div className="space-y-2">
-              <FaqItem question="How does the per-project pricing work?">
-                <p>Our model is simple: you pay a one-time fee for a complete analysis of a single project area. The price is determined by the size of the area and the complexity of the data required. This is more cost-effective than monthly subscriptions, as you only pay for the results you need.</p>
-              </FaqItem>
-              <FaqItem question="What data sources do you use for your analysis?">
-                <p>We synthesize data from a wide range of industry-standard public and private sources, including NREL for solar irradiance (GHI/DNI), EIA for grid infrastructure, USGS for topography and land use, and various federal and state databases for environmental and permitting constraints.</p>
-              </FaqItem>
-               <FaqItem question="What is the typical turnaround time for an analysis?">
-                <p>Our platform automates the most time-consuming parts of site selection. While the core analysis is completed in hours, we perform a final human review to ensure quality. You can expect a complete, decision-ready report delivered to you within 1-3 business days.</p>
-              </FaqItem>
-              <FaqItem question="How is my project data kept secure and confidential?">
-                <p>We take data security very seriously. All project data is encrypted in transit and at rest. We use secure, access-controlled cloud infrastructure, and your proprietary project information will never be shared with any third parties.</p>
-              </FaqItem>
-              <FaqItem question="What size projects can SiteSynergy analyze?">
-                <p>Our platform is designed to handle projects of all sizes, from small distributed installations (1-5 MW) to utility-scale developments (100+ MW). The analysis methodology scales automatically based on project size, ensuring appropriate detail and accuracy for your specific development needs.</p>
-              </FaqItem>
-              <FaqItem question="Do you provide financial modeling and LCOE calculations?">
-                <p>Yes, our analysis includes preliminary financial projections including Levelized Cost of Energy (LCOE), Internal Rate of Return (IRR), and payback period estimates. These are based on current market conditions, equipment costs, and site-specific factors like solar irradiance and grid connection costs.</p>
-              </FaqItem>
-              <FaqItem question="Can I get analysis for multiple sites at once?">
-                <p>Absolutely. We offer bulk pricing for portfolio analysis where you need to evaluate multiple potential sites. This is ideal for developers comparing several locations or investors evaluating acquisition opportunities across different markets.</p>
-              </FaqItem>
-              <FaqItem question="What geographic regions do you cover?">
-                <p>Currently, SiteSynergy provides comprehensive analysis coverage across the United States, with detailed grid interconnection data for all major ISOs and utilities. We're actively expanding to cover additional international markets - contact us if you have projects outside the US.</p>
-              </FaqItem>
-              <FaqItem question="How accurate are your solar yield predictions?">
-                <p>Our solar yield models use high-resolution satellite data and ground-validated measurements with typical accuracy within 3-5% of actual performance. We incorporate factors like shading, weather patterns, equipment degradation, and seasonal variations to provide realistic production estimates.</p>
-              </FaqItem>
-              <FaqItem question="What happens if I'm not satisfied with the analysis?">
-                <p>We stand behind the quality of our work. If you're not completely satisfied with your analysis, we offer a full refund within 30 days of delivery. We also provide one round of revisions at no additional cost if you need adjustments to the scope or focus areas.</p>
-              </FaqItem>
-              <FaqItem question="Can you help with permitting and regulatory analysis?">
-                <p>Our analysis includes identification of key permitting requirements, zoning restrictions, and environmental considerations. While we don't provide legal advice, our reports highlight potential regulatory hurdles and suggest strategies for navigating the approval process efficiently.</p>
-              </FaqItem>
-              <FaqItem question="Do you offer ongoing support after project delivery?">
-                <p>Yes, we provide 90 days of post-delivery support to answer questions about your analysis and help interpret the results. For long-term projects, we also offer annual updates to account for changes in grid conditions, regulations, or market factors.</p>
-              </FaqItem>
+              {Object.values(faqItems).map((item, index) => (
+                <FaqItem key={index} question={item.question}>
+                  <p>{item.answer}</p>
+                </FaqItem>
+              ))}
             </div>
           </div>
 
