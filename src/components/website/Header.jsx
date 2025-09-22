@@ -94,9 +94,12 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
             <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}><Link to="/about">{t('menu.about', { ns: 'Header' })}</Link></li>
             <li className="header__mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}><Link to="/contact">{t('menu.contact', { ns: 'Header' })}</Link></li>
           </ul>
-          <button className="header__mobile-get-started-btn" onClick={() => setIsMobileMenuOpen(false)}>
-            {t('actions.getStarted', { ns: 'Header' })}
-          </button>
+          <div className="header__mobile-actions">
+            <LanguageSwitcher />
+            <button className="header__mobile-get-started-btn" onClick={() => setIsMobileMenuOpen(false)}>
+              {t('actions.getStarted', { ns: 'Header' })}
+            </button>
+          </div>
         </nav>
       </div>
     </>

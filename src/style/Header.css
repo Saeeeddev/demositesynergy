@@ -259,6 +259,13 @@
   transform: scale(1.05);
 }
 
+.header__mobile-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
 /* ============================================ */
 /* RESPONSIVE DESIGN - Tablet (< 1044px) */
 /* ============================================ */
