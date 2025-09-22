@@ -1,1 +1,14 @@
-{}
+{
+    "logoAlt": "سايت سينرجي",
+    "menu": {
+      "product": "المنتج",
+      "about": "حول",
+      "contact": "اتصل بنا"
+    },
+    "actions": {
+      "getStarted": "ابدأ"
+    },
+    "mobileMenu": {
+      "toggleLabel": "تبديل القائمة"
+    }
+  }

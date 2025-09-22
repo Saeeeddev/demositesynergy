@@ -1,1 +1,14 @@
-{}
+{
+    "logoAlt": "سایت‌سینرژی",
+    "menu": {
+      "product": "محصول",
+      "about": "درباره",
+      "contact": "تماس"
+    },
+    "actions": {
+      "getStarted": "شروع کنید"
+    },
+    "mobileMenu": {
+      "toggleLabel": "تغییر منو"
+    }
+  }

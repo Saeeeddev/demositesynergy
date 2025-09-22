@@ -1,1 +1,53 @@
-{}
+{
+    "sections": {
+      "app": {
+        "title": "اپلیکیشن",
+        "links": {
+          "webApp": "اپلیکیشن وب",
+          "loginSignup": "ورود / ثبت‌نام"
+        }
+      },
+      "product": {
+        "title": "محصول",
+        "links": {
+          "about": "درباره",
+          "product": "محصول",
+          "pricing": "قیمت‌گذاری",
+          "contact": "تماس"
+        }
+      },
+      "resources": {
+        "title": "منابع",
+        "links": {
+          "caseStudies": "مطالعات موردی",
+          "support": "پشتیبانی"
+        }
+      },
+      "test": {
+        "title": "آزمایش",
+        "links": {
+          "notFound": "یافت نشد",
+          "errorPage": "صفحه خطا"
+        }
+      },
+      "connect": {
+        "title": "ارتباط",
+        "links": {
+          "linkedIn": "لینکدین",
+          "xTwitter": "اکس / توییتر",
+          "instagram": "اینستاگرام",
+          "youtube": "یوتیوب"
+        }
+      },
+      "legal": {
+        "title": "حقوقی",
+        "links": {
+          "privacyPolicy": "سیاست حفظ حریم خصوصی",
+          "termsConditions": "شرایط و ضوابط",
+          "security": "امنیت"
+        }
+      }
+    },
+    "copyright": "© 2025 فناوری‌های سایت‌سینرژی. تمامی حقوق محفوظ است.",
+    "logoAlt": "سایت‌سینرژی"
+  }
