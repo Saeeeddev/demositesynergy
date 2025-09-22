@@ -10,6 +10,7 @@ import DemoVideoSection from '../website/DemoVideoSection';
 import CtaSection from '../website/CtaSection';
 import DataToDecision from '../website/DataToDecision';
 import StackedPreviewSection from '../website/StackedPreviewSection';
+import '../../../public/fonts/fonts.css'
 
 function Home() {
   // 👈 2. Get the 't' function for the 'Home' namespace

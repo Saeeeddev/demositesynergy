@@ -1,5 +1,6 @@
 /* Header Container */
 .header__container {
+  direction: ltr;
   position: fixed;
   top: 23px;
   left: 0;
@@ -119,25 +120,25 @@
 /* Actions Section */
 .header__actions {
   height: 45px;
-  width: 143px;
   background-color: #6d7f9f;
   border-radius: 999px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
   padding: 3px;
   transition: all 0.3s ease;
 }
 
 .header__wrapper--scrolled .header__actions {
   height: 40px;
-  width: 110px;
+  width: auto;
   background-color: transparent;
   padding: 0;
+  gap: 8px;
 }
 
 .header__get-started-btn {
-  width: 100%;
+  padding: 0 16px;
   height: 100%;
   background-color: #ffffff;
   color: #6d7f9f;
@@ -147,6 +148,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .header__wrapper--scrolled .header__get-started-btn {
@@ -323,15 +325,17 @@
   }
   
   .header__actions {
-    width: 120px;
+    width: auto;
+    gap: 4px;
     height: 40px;
     background-color: transparent;
     padding: 2px;
   }
   
   .header__wrapper--scrolled .header__actions {
-    width: 100px;
+    width: auto;
     height: 36px;
+    gap: 8px;
   }
   
   .header__get-started-btn {

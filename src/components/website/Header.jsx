@@ -70,9 +70,8 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
           </nav>
 
           <div className="header__actions">
-            {/* 👈 Translated Button & Language Switcher Added */}
-            <button className="header__get-started-btn">{t('actions.getStarted', { ns: 'Header' })}</button>
             <LanguageSwitcher />
+            <button className="header__get-started-btn">{t('actions.getStarted', { ns: 'Header' })}</button>
           </div>
 
           <button 

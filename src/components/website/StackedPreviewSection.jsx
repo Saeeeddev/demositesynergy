@@ -19,10 +19,10 @@ const AdjustmentsHorizontalIcon = () => (
 );
 const StackedPreviewSection = ({ t }) => { // 👈 Already correctly accepts 't'
   return (
-    <section className="flex flex-col lg:flex-row items-center justify-center w-full min-h-[500px] lg:h-[650px] py-8 sm:py-12 lg:py-16 bg-background-primary">
+    <section dir="ltr" className="flex flex-col lg:flex-row items-center justify-center w-full min-h-[500px] lg:h-[650px] py-8 sm:py-12 lg:py-16 bg-background-primary">
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl px-4 sm:px-6 lg:px-8 gap-8 lg:gap-0">
         <div className="w-full lg:w-1/3 text-center lg:text-start px-4 lg:px-0">
-          <h2 className="mb-4 text-3xl sm:text-4xl font-bold font-display text-text-dark">
+          <h2 className="mb-4 text-3xl sm:text-4xl font-bold text-text-dark">
             {t('stackedPreview.title')} {/* 👈 Already translated */}
           </h2>
           <p className="text-base sm:text-lg text-primary-dark max-w-md lg:max-w-none mx-auto lg:mx-0">
@@ -35,7 +35,7 @@ const StackedPreviewSection = ({ t }) => { // 👈 Already correctly accepts 't'
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
                         <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
                             <ShieldCheckIcon />
-                            <h3 className="font-semibold font-sans text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.reliable')}</h3> {/* 👈 Already translated */}
+                            <h3 className="font-semibold text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.reliable')}</h3> {/* 👈 Already translated */}
                         </div>
                         <img 
                              src="src/assets/Solarresource.png" 
@@ -46,7 +46,7 @@ const StackedPreviewSection = ({ t }) => { // 👈 Already correctly accepts 't'
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
                          <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
                             <BoltIcon />
-                            <h3 className="font-semibold font-sans text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.fast')}</h3> {/* 👈 Already translated */}
+                            <h3 className="font-semibold text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.fast')}</h3> {/* 👈 Already translated */}
                         </div>
                         <img 
                              src="src/assets/Solarresource.png" 
@@ -57,7 +57,7 @@ const StackedPreviewSection = ({ t }) => { // 👈 Already correctly accepts 't'
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
                         <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
                             <AdjustmentsHorizontalIcon />
-                            <h3 className="font-semibold font-sans text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.customizable')}</h3> {/* 👈 Already translated */}
+                            <h3 className="font-semibold text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.customizable')}</h3> {/* 👈 Already translated */}
                         </div>
                         <img 
                              src="src/assets/Solarresource.png" 

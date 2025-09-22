@@ -1,18 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { HiOutlineGlobeAlt } from 'react-icons/hi';
 
 const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const languages = [
-    { code: 'en', name: t('language.en'), flag: '🇺🇸', dir: 'ltr' },
-    { code: 'ar', name: t('language.ar'), flag: '🇸🇦', dir: 'rtl' },
-    { code: 'fa', name: t('language.fa'), flag: '🇮🇷', dir: 'rtl' }
+  const regions = [
+    {
+      name: 'North America',
+      countries: [
+        { 
+          name: 'United States', 
+          languages: [{ code: 'en', name: 'English', dir: 'ltr' }] 
+        },
+      ]
+    },
+    {
+      name: 'Middle-East',
+      countries: [
+        { 
+          name: 'Iran', 
+          languages: [{ code: 'fa', name: 'فارسی', dir: 'rtl' }] 
+        },
+      ]
+    }
   ];
-
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -21,9 +35,14 @@ const LanguageSwitcher = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isOpen]);
 
   const handleLanguageChange = (langCode, dir) => {
     i18n.changeLanguage(langCode);
@@ -36,42 +55,54 @@ const LanguageSwitcher = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-white text-[#6d7f9f] border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm font-medium"
+        className="flex-shrink-0 flex items-center justify-center w-9 h-9 bg-transparent text-white rounded-full hover:bg-white/20 transition-colors duration-200"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <span className="text-base">{currentLanguage.flag}</span>
-        <span className="hidden sm:inline">{currentLanguage.name}</span>
-        <svg
-          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <HiOutlineGlobeAlt className="w-6 h-6" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => handleLanguageChange(lang.code, lang.dir)}
-              className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 transition-colors duration-200 ${
-                lang.code === i18n.language ? 'bg-gray-50 font-semibold text-[#6d7f9f]' : 'text-gray-700'
-              }`}
-            >
-              <span className="text-base">{lang.flag}</span>
-              <span>{lang.name}</span>
-              {lang.code === i18n.language && (
-                <svg className="w-4 h-4 ml-auto text-[#6d7f9f]" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              )}
-            </button>
-          ))}
+        <div 
+          className="fixed inset-0 bg-black/30 z-40"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        ></div>
+      )}
+
+      {isOpen && (
+        <div 
+          className="absolute top-full right-0 mt-4 w-[clamp(300px,80vw,900px)] bg-white text-black rounded-lg shadow-2xl p-6 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="language-switcher-heading"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {regions.map((region) => (
+              <div key={region.name}>
+                <h3 className="font-bold text-base mb-3 text-gray-800">{region.name}</h3>
+                <ul className="space-y-2">
+                  {region.countries.map((country) => (
+                    <li key={country.name}>
+                      <p className="font-medium text-sm text-gray-700">{country.name}</p>
+                      <div className="flex flex-wrap gap-x-2">
+                        {country.languages.map(lang => (
+                          <button
+                            key={lang.code}
+                            onClick={() => handleLanguageChange(lang.code, lang.dir)}
+                            className={`text-sm hover:underline ${lang.code === i18n.language ? 'text-blue-600 font-semibold' : 'text-gray-500'}`}
+                          >
+                            {lang.name}
+                          </button>
+                        ))}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -11,7 +11,7 @@ const techLogos = [
 
 function CompanyLogos({ t }) { // 👈 Accept 't' as a prop
   return (
-    <div className="w-full sm:w-[90%] lg:w-[1200px] h-16 my-20 sm:my-24 lg:mt-[120px] lg:mb-[140px] mx-auto bg-white rounded-xl">
+    <div dir="ltr" className="w-full sm:w-[90%] lg:w-[1200px] h-16 my-20 sm:my-24 lg:mt-[120px] lg:mb-[140px] mx-auto bg-white rounded-xl">
         <div className="text-[32px] sm:text-[36px] lg:text-[41px] text-black text-center py-5 -mt-[65px] font-medium">
             {/* 👈 Translated Header */}
             <h1>{t('companyLogos.title')}</h1>

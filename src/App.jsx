@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import clsx from 'clsx'; // A small library for conditional classes
 import './App.css'
 import { useTranslation } from 'react-i18next'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -21,19 +21,28 @@ import ErrorPage from './components/page/ErrorPage'
 import ScrollToTop from './components/utils/ScrollToTop'
 
 function App() {
+  const { i18n } = useTranslation();
+  const isFarsi = i18n.language === 'fa';
 
-  const { i18n } = useTranslation(); // 👈 Get the i18n instance
-
-  // This effect runs when the language changes and sets the page direction
+  // This effect now handles both direction and language attribute
   useEffect(() => {
-    document.documentElement.dir = i18n.dir();
+    document.documentElement.dir = isFarsi ? 'rtl' : 'ltr';
     document.documentElement.lang = i18n.language;
-  }, [i18n, i18n.language]);
+  }, [isFarsi, i18n.language]);
 
+  // NEW: Conditionally set the font class for the entire app
+  const appClasses = clsx('app', {
+    'font-sans': !isFarsi, // Your default font from tailwind.config.js
+    'font-yekan': isFarsi,  // The Yekan Bakh font for Farsi
+  });
+     
+
+
+  
   return (
     <Router>
       <ScrollToTop />
-      <div className='app'>
+      <div className={appClasses}>
         <Routes>
           <Route path="/" element={
             <>

@@ -2,7 +2,7 @@ import React from 'react';
 
 function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
   return (
-    <div className="w-full lg:w-[1350px] min-h-[800px] lg:h-[1162px] mx-auto bg-white px-4 sm:px-8 md:px-12 lg:px-20 py-10 sm:py-12 md:py-16 lg:py-20 box-border font-sans">
+    <div className="w-full lg:w-[1350px] min-h-[800px] lg:h-[1162px] mx-auto bg-white px-4 sm:px-8 md:px-12 lg:px-20 py-10 sm:py-12 md:py-16 lg:py-20 box-border">
       <div className="w-full h-full flex flex-col items-center">
         <h1 className="text-black text-3xl sm:text-4xl md:text-5xl lg:text-[47px] leading-normal lg:leading-[51px] tracking-[-1.2px] lg:tracking-[-1.7px] text-center font-bold mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4">
           {t('demoVideo.title')} {/* 👈 Translated */}
