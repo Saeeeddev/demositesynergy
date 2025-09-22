@@ -1,17 +1,13 @@
 import React from 'react';
 
-function DemoVideoSection() {
+function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
   return (
     <div className="w-full lg:w-[1350px] min-h-[800px] lg:h-[1162px] mx-auto bg-white px-4 sm:px-8 md:px-12 lg:px-20 py-10 sm:py-12 md:py-16 lg:py-20 box-border font-sans">
       <div className="w-full h-full flex flex-col items-center">
         <h1 className="text-black text-3xl sm:text-4xl md:text-5xl lg:text-[47px] leading-normal lg:leading-[51px] tracking-[-1.2px] lg:tracking-[-1.7px] text-center font-bold mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4">
-          Results That Drive Confident Decisions
+          {t('demoVideo.title')} {/* 👈 Translated */}
         </h1>
         
-        {/*
-          FIX: Removed min-h-[400px] and reduced responsive vertical padding (py-*)
-          to eliminate the large gap on mobile and tablet.
-        */}
         <div className="w-[98%] lg:w-[1035px] lg:h-[705px] px-4 sm:px-8 md:px-12 lg:px-[75px] py-6 lg:py-[45px] mb-8 lg:mb-[15px] box-border">
           <div className="w-full h-full shadow-demo-video p-1 border border-[#e5e7eb] bg-[#fafafa] rounded-2xl lg:rounded-[32px] box-border">
             <div className="w-full h-full rounded-2xl lg:rounded-[32px] border border-[#e5e7eb] overflow-hidden">
@@ -23,7 +19,7 @@ function DemoVideoSection() {
                 playsInline
               >
                 <source src="/src/assets/demos/hero-light-lg.webm" type="video/webm"/>
-                Your browser does not support the video tag.
+                {t('demoVideo.videoFallback', 'Your browser does not support the video tag.')} {/* 👈 Translated */}
               </video>
             </div>
           </div>
@@ -37,10 +33,10 @@ function DemoVideoSection() {
               </svg>
             </div>
             <h3 className="text-black text-lg sm:text-xl lg:text-[21px] tracking-[-0.28px] leading-tight lg:leading-[21px] font-semibold m-0 mb-2">
-              Comprehensive site analysis
+              {t('demoVideo.features.comprehensive.title')} {/* 👈 Translated */}
             </h3>
             <p className="text-[#6b7280] text-base lg:text-[17px] leading-relaxed lg:leading-[22.8px] m-0">
-              Layer multiple data sources to quickly identify the most suitable solar sites.
+              {t('demoVideo.features.comprehensive.description')} {/* 👈 Translated */}
             </p>
           </div>
 
@@ -52,10 +48,10 @@ function DemoVideoSection() {
               </svg>
             </div>
             <h3 className="text-black text-lg sm:text-xl lg:text-[21px] tracking-[-0.28px] leading-tight lg:leading-[21px] font-semibold m-0 mb-2">
-              Instant recommendations
+              {t('demoVideo.features.instant.title')} {/* 👈 Translated */}
             </h3>
             <p className="text-[#6b7280] text-base lg:text-[17px] leading-relaxed lg:leading-[22.8px] m-0">
-              Receive ranked site options with detailed scoring in hours, not months.
+              {t('demoVideo.features.instant.description')} {/* 👈 Translated */}
             </p>
           </div>
 
@@ -66,10 +62,10 @@ function DemoVideoSection() {
               </svg>
             </div>
             <h3 className="text-black text-lg sm:text-xl lg:text-[21px] tracking-[-0.28px] leading-tight lg:leading-[21px] font-semibold m-0 mb-2">
-              Risk-optimized decisions
+              {t('demoVideo.features.riskOptimized.title')} {/* 👈 Translated */}
             </h3>
             <p className="text-[#6b7280] text-base lg:text-[17px] leading-relaxed lg:leading-[22.8px] m-0">
-             Make confident investments backed by transparent risk assessment and mitigation strategies.
+             {t('demoVideo.features.riskOptimized.description')} {/* 👈 Translated */}
             </p>
           </div>
         </div>

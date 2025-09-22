@@ -1,4 +1,7 @@
+import React, { useState, useEffect } from 'react';
+
 import './App.css'
+import { useTranslation } from 'react-i18next'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/website/Header'
 import Footer from './components/website/Footer'
@@ -18,6 +21,15 @@ import ErrorPage from './components/page/ErrorPage'
 import ScrollToTop from './components/utils/ScrollToTop'
 
 function App() {
+
+  const { i18n } = useTranslation(); // 👈 Get the i18n instance
+
+  // This effect runs when the language changes and sets the page direction
+  useEffect(() => {
+    document.documentElement.dir = i18n.dir();
+    document.documentElement.lang = i18n.language;
+  }, [i18n, i18n.language]);
+
   return (
     <Router>
       <ScrollToTop />
@@ -25,7 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <Header isHomePage={true} />
+              <Header key={i18n.language} isHomePage={true} />
               <Home />
               <Footer />
             </>
