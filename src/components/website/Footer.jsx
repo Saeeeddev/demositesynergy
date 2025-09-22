@@ -10,8 +10,6 @@ const linkPaths = {
   contact: '/contact',
   caseStudies: '/case-studies',
   support: '/support',
-  notFound: '/not-found',
-  errorPage: '/error-page',
   privacyPolicy: '/privacy',
   termsConditions: '/terms',
   security: '/security'

@@ -23,13 +23,7 @@
         "support": "Support"
       }
     },
-    "test": {
-      "title": "TEST",
-      "links": {
-        "notFound": "Not Found",
-        "errorPage": "Error Page"
-      }
-    },
+   
     "connect": {
       "title": "CONNECT",
       "links": {

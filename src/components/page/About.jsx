@@ -1,10 +1,25 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from '../website/Header';
 import Footer from '../website/Footer';
 
 const About = () => {
+  // Use the 'About' namespace to get the correct translations
+  const { t } = useTranslation('About');
+
+  // Get the team members object from the JSON to map over it dynamically
+  const teamMembers = t('team.members', { returnObjects: true });
+  // Define the order to maintain the layout from your original file
+  const memberOrder = ['younes', 'amir', 'saeed', 'reza'];
+
+  // This handles the title with the blue span without changing your JSON file
+  const teamTitle = t('team.title');
+  const highlightedText = "developers & investors";
+  const titleParts = teamTitle.split(highlightedText);
+
+
   return (
-    <div className="min-h-screen font-sans bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <Header useColoredLogo={true} />
       
       <main className="w-full flex justify-center pt-16">
@@ -16,22 +31,22 @@ const About = () => {
               {/* Small header text */}
               <div className="mb-8">
                 <p className="text-xs font-medium font-bold text-gray-500 uppercase tracking-[0.1em] mb-8">
-                  ABOUT US
+                  {t('hero.badge')}
                 </p>
               </div>
               
               {/* Main headline */}
               <div className="mb-8">
-                <h1 className="text-[56px] leading-[64px] font-bold text-gray-900 mb-6 max-w-[800px] mx-auto">
-                Site selection redefined:<br />
-                Faster. Smarter. More accurate.
+                {/* The "whitespace-pre-line" class handles the '\n' from the JSON for line breaks */}
+                <h1 className="text-[56px] leading-[64px] font-bold text-gray-900 mb-6 max-w-[800px] mx-auto whitespace-pre-line">
+                  {t('hero.title')}
                 </h1>
               </div>
               
               {/* Description */}
               <div className="max-w-[600px] mx-auto">
                 <p className="text-lg leading-[28px] text-gray-600">
-                With SiteSynergy, months of analysis collapse into a single day — providing faster, smarter, and more accurate site decisions powered by advanced data and analytics.
+                  {t('hero.description')}
                 </p>
               </div>
             </div>
@@ -46,10 +61,10 @@ const About = () => {
                 <div className="lg:sticky lg:top-24 lg:h-screen lg:flex lg:flex-col lg:justify-start lg:pt-24">
                   <div className="mb-8">
                     <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-6">
-                      HOW WE GOT TO THIS POINT
+                      {t('progress.badge')}
                     </p>
                     <h2 className="text-[42px] leading-[48px] font-bold text-gray-900">
-                      Progress towards the mission
+                      {t('progress.title')}
                     </h2>
                   </div>
                 </div>
@@ -64,34 +79,20 @@ const About = () => {
                     <div className="absolute start-[-9px] top-2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full"></div>
                     <div className="mb-4">
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em]">
-                        2022/2023 — PHASE I
+                        {t('progress.phase1.badge')}
                       </span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    Solved “data overload” in site selection
+                      {t('progress.phase1.title')}
                     </h3>
                     <div className="space-y-3 text-gray-600 text-base leading-relaxed">
-                      <p>
-                        <strong>Traditional site analysis took months, scattered across reports, maps, and spreadsheets.</strong>
-                      </p>
-                      <p>
-                      We built the SiteSynergy Engine to unify solar, grid, land, and infrastructure data into one workflow — without slowing down decision-making.
-                      </p>
-                      <p>
-                        <strong>Site selection needed structured insight, not just raw data</strong>
-                      </p>
-                      <p>
-                      Raw datasets weren’t enough. We developed models to automatically classify, filter, and preserve only meaningful context across diverse geospatial and technical sources.
-                      </p>
-                      <p>
-                        <strong>Making this work at scale was a massive challenge</strong>
-                      </p>
-                      <p>
-                      We engineered real-time, offline-capable pipelines for geospatial ingestion and analysis — enabling instant site scoring and risk assessment without reliance on cloud-heavy processes.
-                      </p>
-                      <p>
-                        <strong>Key Breakthrough:</strong> First real-time, privacy-preserving site selection engine that could capture, structure, and process multi-layer geospatial data without manual effort — cutting timelines from months to less than a day.
-                      </p>
+                      <p><strong>{t('progress.phase1.content.problem1')}</strong></p>
+                      <p>{t('progress.phase1.content.solution1')}</p>
+                      <p><strong>{t('progress.phase1.content.problem2')}</strong></p>
+                      <p>{t('progress.phase1.content.solution2')}</p>
+                      <p><strong>{t('progress.phase1.content.problem3')}</strong></p>
+                      <p>{t('progress.phase1.content.solution3')}</p>
+                      <p><strong>{t('common:buttons.breakthrough', 'Key Breakthrough:')}</strong> {t('progress.phase1.content.breakthrough')}</p>
                     </div>
                   </div>
                   
@@ -100,41 +101,27 @@ const About = () => {
                     <div className="absolute start-[-9px] top-2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full"></div>
                     <div className="mb-4">
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em]">
-                      2024/2025 — PHASE II: ACCURACY & AUTOMATION
+                        {t('progress.phase2.badge')}
                       </span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    Solved “proactive decision-making” (Automation-1)
+                      {t('progress.phase2.title')}
                     </h3>
                     <div className="space-y-3 text-gray-600 text-base leading-relaxed">
-                      <p>
-                        <strong>Raw site data wasn’t enough — the system needed to identify which sites to prioritize, which to discard, and how to retrieve the right insights instantly.</strong>
-                      </p>
-                      <p>
-                      We built adaptive scoring and filtering models to surface the most promising sites while removing noise — a challenge no other site selection tool had solved at scale.
-                      </p>
+                      <p><strong>{t('progress.phase2.content.problem1')}</strong></p>
+                      <p>{t('progress.phase2.content.solution1')}</p>
                     </div>
                     
                     <div className="mt-8">
                       <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                      Balanced quality & quantity (Automation-2)
+                        {t('progress.phase2.subPhase.title')}
                       </h4>
                       <div className="space-y-3 text-gray-600 text-base leading-relaxed">
-                        <p>
-                          <strong>Individual site scores lacked context — site evaluation needed to “connect the dots” across multiple factors.</strong>
-                        </p>
-                        <p>
-                        At scale, insights became fragmented. Inspired by layered analysis, we built continuous linking across solar yield, grid capacity, land use, and permitting constraints — giving developers cohesive, end-to-end evaluations.
-                        </p>
-                        <p>
-                          <strong>Efficiency was a massive barrier — real-time & long-term analysis had to be lightweight.</strong>
-                        </p>
-                        <p>
-                        We achieved dramatic efficiency gains, boosting accuracy and granularity while cutting compute needs — enabling nation-scale analysis in a fraction of the time and cost.
-                        </p>
-                        <p>
-                          <strong>Key Breakthrough:</strong> First real-time, privacy-preserving site selection engine that could deliver automated, highly accurate, and scalable analysis — turning months of fragmented work into a single-day, data-driven decision.
-                        </p>
+                        <p><strong>{t('progress.phase2.subPhase.problem2')}</strong></p>
+                        <p>{t('progress.phase2.subPhase.solution2')}</p>
+                        <p><strong>{t('progress.phase2.subPhase.problem3')}</strong></p>
+                        <p>{t('progress.phase2.subPhase.solution3')}</p>
+                        <p><strong>{t('common:buttons.breakthrough', 'Key Breakthrough:')}</strong> {t('progress.phase2.subPhase.breakthrough')}</p>
                       </div>
                     </div>
                   </div>
@@ -149,66 +136,38 @@ const About = () => {
           <div className="w-full max-w-[1200px] mb-24">
             <div className="text-center mb-16">
               <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-6">
-                THE TEAM BEHIND IT
+                {t('team.badge')}
               </p>
               <h2 className="text-[42px] leading-[48px] font-bold text-gray-900 max-w-[800px] mx-auto">
-  A dedicated team crafting the ultimate 
-  site selection platform for <span className="text-blue-600">developers & investors</span>
-</h2>
+                {titleParts[0]}
+                <span className="text-blue-600">{highlightedText}</span>
+                {titleParts[1]}
+              </h2>
             </div>
             
             <div className="flex flex-col md:flex-row justify-center items-center gap-12">
-              {/* Team Member 4 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
-                  <img 
-                    src="" 
-                    alt="Reza Dolati profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="font-semibold text-gray-900 text-lg">Dr. Younes Noorollahi</h3>
-                <p className="text-gray-600 text-sm">Exctive chairman (Renewable Energy expert)</p>
-              </div>
-              {/* Team Member 1 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
-                  <img 
-                    src="" 
-                    alt="Amir Naseri profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="font-semibold text-gray-900 text-lg">Amir Naseri</h3>
-                <p className="text-gray-600 text-sm">CEO & Co-Founder (geography)</p>
-              </div>
-              
-              {/* Team Member 2 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
-                  <img 
-                    src="src/assets/Gemini_Generated_Image_ifki4iifki4iifki.png" 
-                    alt="Saeed Dolati profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="font-semibold text-gray-900 text-lg">Saeed Dolati</h3>
-                <p className="text-gray-600 text-sm">CPO & Co-Founder (Computer Engineering)</p>
-              </div>
-              
-              {/* Team Member 3 */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
-                  <img 
-                    src="" 
-                    alt="Reza Dolati profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="font-semibold text-gray-900 text-lg">Reza Dolati</h3>
-                <p className="text-gray-600 text-sm">CTO & Founding Engineer (Electrical Engineering)</p>
-              </div>
-              
+              {memberOrder.map(memberKey => {
+                const member = teamMembers[memberKey];
+                // Use a placeholder if image source is not available in JSON
+                let imgSrc = ""; 
+                if (memberKey === 'saeed') {
+                  imgSrc = "src/assets/Gemini_Generated_Image_ifki4iifki4iifki.png";
+                }
+
+                return (
+                  <div key={member.name} className="text-center">
+                    <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+                      <img 
+                        src={imgSrc} 
+                        alt={`${member.name} profile`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="font-semibold text-gray-900 text-lg">{member.name}</h3>
+                    <p className="text-gray-600 text-sm">{member.role}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -221,7 +180,7 @@ const About = () => {
                 <div className="w-24 h-24 rounded-2xl shadow-2xl shadow-gray-400/30 mx-auto flex items-center justify-center border border-gray-200 p-2">
                   <img 
                     src="/src/assets/sy_icon_transparent_background.png" 
-                    alt="SiteSynergy App Icon" 
+                    alt={t('download.appIconAlt')}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -229,20 +188,19 @@ const About = () => {
               
               {/* Download text */}
               <div className="mb-8">
-  <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-4">
-    AVAILABLE NOW
-  </p>
-  <h2 className="text-[42px] leading-[48px] font-bold text-gray-900 mb-8">
-    Transform site selection<br />
-    with speed & precision
-  </h2>
-</div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-4">
+                  {t('download.badge')}
+                </p>
+                <h2 className="text-[42px] leading-[48px] font-bold text-gray-900 mb-8 whitespace-pre-line">
+                  {t('download.title')}
+                </h2>
+              </div>
 
               {/* Get Started Button */}
               <div>
-              <button className="mt-4 w-[140px] h-[38px] py-2 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
-              🚀Get Started
-        </button>
+                <button className="mt-4 w-[140px] h-[38px] py-2 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
+                  {t('download.cta')}
+                </button>
               </div>
               
             </div>

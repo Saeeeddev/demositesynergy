@@ -23,13 +23,7 @@
           "support": "پشتیبانی"
         }
       },
-      "test": {
-        "title": "آزمایش",
-        "links": {
-          "notFound": "یافت نشد",
-          "errorPage": "صفحه خطا"
-        }
-      },
+      
       "connect": {
         "title": "ارتباط",
         "links": {
