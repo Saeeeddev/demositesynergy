@@ -134,7 +134,7 @@ const Product = () => {
               
               <div>
                 <button className="mt-4 w-[180px] h-[42px] py-2 px-4 bg-primary-dark text-white border-none rounded-full text-base font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-[2px] hover:shadow-action-btn-hover shadow-action-btn">
-                  🚀 Request a Demo
+                  Get start
                 </button>
               </div>
               
