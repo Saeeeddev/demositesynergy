@@ -1,0 +1,14 @@
+{
+  "logoAlt": "SiteSynergy",
+  "menu": {
+    "product": "Product",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "actions": {
+    "getStarted": "Get Started"
+  },
+  "mobileMenu": {
+    "toggleLabel": "Toggle menu"
+  }
+}

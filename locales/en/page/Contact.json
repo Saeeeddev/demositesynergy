@@ -1,0 +1,35 @@
+{
+  "hero": {
+    "badge": "CONTACT US",
+    "title": "Let's Start a Conversation",
+    "description": "We're here to help and answer any question you might have. We look forward to hearing from you."
+  },
+  "info": {
+    "email": {
+      "title": "Email Us",
+      "address": "hello@sitesynergy.com",
+      "description": "For general inquiries & partnerships."
+    },
+    "location": {
+      "title": "Our Location",
+      "address": "123 Innovation Drive",
+      "suite": "Suite 456, San Francisco, CA 94105"
+    },
+    "social": {
+      "title": "Connect With Us",
+      "twitter": "X / Twitter",
+      "linkedIn": "LinkedIn",
+      "discord": "Discord"
+    }
+  },
+  "form": {
+    "title": "Send us a Message",
+    "fields": {
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message"
+    },
+    "submit": "Send Message"
+  }
+}

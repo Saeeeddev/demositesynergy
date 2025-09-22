@@ -1,0 +1,55 @@
+{
+  "title": "Security",
+  "lastUpdated": "LAST UPDATED ON JULY 21, 2025",
+  "intro": {
+    "paragraph1": "Sitesynergy is committed to protecting customer data and delivering secure, high-performance site-selection and assessment tools. Our architecture and engineering practices are designed to minimize exposure by default, give customers control over their data, and provide enterprise-grade safeguards when hosted or collaborative features are used.",
+    "paragraph2": "This page summarizes our security posture, data-flow principles, authentication posture, and how cloud interactions are scoped and protected. For privacy-specific questions, contact privacy@sitesynergy.com."
+  },
+  "architecture": {
+    "localFirst": {
+      "title": "Local-first & minimum-data design",
+      "description": "Sitesynergy defaults to keeping project files, cached analyses, and private settings within the customer's environment. Cloud transfers occur only when a user explicitly enables collaboration, hosted analytics, or backups."
+    },
+    "enterprise": {
+      "title": "Enterprise-grade infrastructure & compliance",
+      "description": "For hosted services we operate on hardened infrastructure with industry-standard controls. We support SOC 2 principles and can offer enterprise deployment patterns (VPC, private tenancy, or on-premise options) for customers with strict compliance requirements."
+    },
+    "security": {
+      "title": "Continuous security testing",
+      "description": "We run regular security assessments, automated vulnerability scans, and periodic third-party penetration tests to identify and remediate issues promptly. Dependencies and infrastructure are kept up-to-date following best practices."
+    },
+    "authentication": {
+      "title": "Authentication & access controls",
+      "description": "Authentication supports single sign-on (SSO), multi-factor authentication (MFA), and role-based access controls (RBAC). Administrative actions are logged and auditable to support governance and incident investigations."
+    }
+  },
+  "privacyByDesign": {
+    "title": "Privacy by design",
+    "description": "Privacy and data minimization are central to Sitesynergy's design:",
+    "features": {
+      "localControl": {
+        "title": "Local control:",
+        "description": "Project layers, GIS uploads, and intermediate analysis results remain under customer control unless shared."
+      },
+      "scopedProcessing": {
+        "title": "Scoped processing:",
+        "description": "Cloud or third-party model calls (e.g., for heavy analytics) are scoped to the minimum data necessary for the requested task — unrelated project content is excluded."
+      },
+      "optInSharing": {
+        "title": "Opt-in sharing:",
+        "description": "Collaboration, exports, and backups are opt-in and permissioned; users decide recipients, retention, and access levels."
+      }
+    },
+    "conclusion": "These choices reduce risk while preserving flexible deployment options from local-only to fully-managed cloud."
+  },
+  "cloudFeatures": {
+    "title": "Cloud features & data transfer",
+    "paragraph1": "When you enable cloud features (collaboration, hosted analytics, or backups), Sitesynergy transmits only the minimum, contextually relevant data required for that operation. All transfers are encrypted in transit (TLS) and encrypted at rest where supported.",
+    "paragraph2": "Backups are customer-initiated, zipped, and encrypted prior to transmission; there is no automatic, persistent sync unless explicitly enabled by the customer."
+  },
+  "dataOwnership": {
+    "title": "Data ownership & model training",
+    "paragraph1": "Customers retain ownership of all project data and uploaded content. Sitesynergy does not use customer project data to train general-purpose models. Any telemetry or aggregated signals used for product improvement are anonymized and disclosed in product documentation and release notes; telemetry use is opt-out where required by law or contract.",
+    "paragraph2": "If a customer opts into improvement programs that require sample data, Sitesynergy will obtain explicit consent and document precisely what will be shared and for what purpose."
+  }
+}

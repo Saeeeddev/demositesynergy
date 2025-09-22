@@ -1,0 +1,25 @@
+{
+  "buttons": {
+    "getStarted": "شروع کنید",
+    "getInTouch": "تماس بگیرید",
+    "bookCall": "رزرو تماس",
+    "viewCaseStudies": "مشاهده نمونه کارها",
+    "watchVideos": "تماشای ویدیوها",
+    "sendMessage": "ارسال پیام",
+    "requestQuote": "درخواست قیمت پروژه"
+  },
+  "navigation": {
+    "product": "محصول",
+    "about": "درباره ما",
+    "contact": "تماس",
+    "pricing": "قیمت گذاری",
+    "support": "پشتیبانی",
+    "caseStudies": "نمونه کارها"
+  },
+  "language": {
+    "en": "English",
+    "ar": "العربية",
+    "fa": "فارسی"
+  },
+  "copyright": "© 2025 SiteSynergy Technologies. تمامی حقوق محفوظ است."
+}

@@ -1,0 +1,61 @@
+{
+  "title": "Terms & Conditions",
+  "lastUpdated": "LAST UPDATED ON SEPTEMBER 17, 2025",
+  "intro": {
+    "paragraph1": "Please read these Terms and Conditions (\"Terms\", \"Terms and Conditions\") carefully before using the Sitesynergy platform and services (\"Service\") operated by Mesh Intelligent Technologies, Inc. (\"us\", \"we\", or \"our\").",
+    "paragraph2": "Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service."
+  },
+  "sections": {
+    "accountTerms": {
+      "title": "Account Terms",
+      "description": "You are responsible for maintaining the security of your account and password. We cannot and will not be liable for any loss or damage arising from your failure to keep your account credentials secure."
+    },
+    "contentRights": {
+      "title": "Content & Data Rights",
+      "description": "You retain all rights to any content you upload, post, or display on or through the Service. By uploading content, you grant us a worldwide license to use, host, and display such content to provide the Service, collaborate, and perform related operations."
+    },
+    "serviceRules": {
+      "title": "Service Rules & Usage",
+      "description": "Our Service may only be used for lawful purposes and in accordance with these Terms. You agree not to use the Service in any way that could damage, disable, or otherwise impair the Service or interfere with any other party's use of the Service."
+    },
+    "modifications": {
+      "title": "Modifications to the Service",
+      "description": "We reserve the right to modify or discontinue, temporarily or permanently, the Service with or without notice. We shall not be liable to you or any third party for any modification, suspension, or discontinuance of the Service."
+    },
+    "subscriptionTerms": {
+      "title": "Subscription Terms",
+      "description": "Some parts of the Service are billed on a subscription basis. You will be billed in advance on a recurring and periodic basis depending on the type of subscription plan you select.",
+      "items": {
+        "billingCycle": {
+          "title": "Billing Cycle:",
+          "description": "Billing cycle dates are based on the date you subscribe and cannot be changed."
+        },
+        "automaticRenewal": {
+          "title": "Automatic Renewal:",
+          "description": "Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period."
+        },
+        "refundPolicy": {
+          "title": "Refund Policy:",
+          "description": "Refund requests may be considered on a case-by-case basis and granted at our sole discretion."
+        }
+      }
+    },
+    "legalDisclaimers": {
+      "title": "Legal Disclaimers",
+      "paragraph1": "The Service is provided \"as is\" without any warranties, expressed or implied. We do not warrant that the Service will be uninterrupted, secure, or error-free.",
+      "paragraph2": "In no event shall Mesh Intelligent Technologies, Inc. be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation loss of profits, data, use, goodwill, or other intangible losses arising out of or in connection with the Service."
+    },
+    "changesToTerms": {
+      "title": "Changes to Terms",
+      "paragraph1": "We reserve the right to modify these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.",
+      "paragraph2": "By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "description": "If you have any questions about these Terms, please contact us at:",
+      "company": "Mesh Intelligent Technologies, Inc.",
+      "address": "1311 Vine St., Cincinnati, OH 45202",
+      "email": "Email: legal@sitesynergy.com"
+    }
+  }
+}

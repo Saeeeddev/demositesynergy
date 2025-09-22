@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "badge": "OUR PRODUCTS",
+    "title": "The SiteSynergy Products",
+    "description": "An end-to-end solution for renewable energy project development, from initial assessment to final reporting."
+  },
+  "mainFeature": {
+    "badge": "UNIFIED WORKFLOW",
+    "title": "Analyze Thousands of Sites in Hours",
+    "description": "Our proprietary engine unifies geospatial, grid, land, and financial data into one intuitive dashboard. Instantly filter, score, and compare opportunities to find the perfect site without juggling spreadsheets and disconnected tools.",
+    "imageAlt": "SiteSynergy App Interface"
+  },
+  "features": {
+    "adaptive": {
+      "title": "Adaptive Scoring",
+      "description": "Customize and weigh factors like solar yield, grid capacity, and land cost to align with your unique investment strategy."
+    },
+    "multiLayer": {
+      "title": "Multi-Layer Data",
+      "description": "Access comprehensive datasets including transmission lines, substations, protected lands, and permitting constraints."
+    },
+    "endToEnd": {
+      "title": "End-to-End Evaluation",
+      "description": "Gain a cohesive, 360-degree view of every project with interconnected technical, financial, and regulatory insights."
+    }
+  },
+  "cta": {
+    "badge": "READY TO GET STARTED?",
+    "title": "Experience the Future of\nSite Selection Today",
+    "button": "Get start",
+    "appIconAlt": "SiteSynergy App Icon"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "badge": "CASE STUDIES",
+    "title": "Real-World Results, Accelerated Timelines",
+    "description": "Discover how developers and investors leverage SiteSynergy to de-risk projects and find optimal sites faster than ever before."
+  },
+  "studies": {
+    "pioneer": {
+      "client": "Pioneer Solar",
+      "title": "Project Helios: 150MW Utility-Scale Solar in West Texas",
+      "challenge": "Pioneer Solar needed to identify a utility-scale solar site with high GHI, proximity to interconnection points, and minimal environmental impact, all within a compressed 3-month deadline to meet funding requirements.",
+      "solution": "Using the SiteSynergy platform, we analyzed over 500,000 acres, applying dozens of layers including grid capacity, protected lands, slope analysis, and advanced financial modeling to score and rank the most promising parcels automatically.",
+      "results": {
+        "time": {
+          "metric": "7 Days",
+          "description": "Time to Viable Site"
+        },
+        "sites": {
+          "metric": "1,200+",
+          "description": "Potential Sites Analyzed"
+        },
+        "lcoe": {
+          "metric": "$28/MWh",
+          "description": "Projected LCOE"
+        },
+        "roi": {
+          "metric": "12%",
+          "description": "Improved ROI Projection"
+        }
+      }
+    },
+    "veridian": {
+      "client": "Veridian Renewables",
+      "title": "Project Northwind: 200MW Wind Farm in the Midwest",
+      "challenge": "Veridian faced the immense task of screening a multi-county area in Iowa for a greenfield wind project, needing to balance optimal wind speeds with complex environmental setbacks, turbine accessibility, and grid capacity.",
+      "solution": "Our platform ingested and processed terabytes of wind resource data alongside environmental, logistical, and grid constraint layers. This allowed for a rapid, multi-faceted analysis that would have taken a team of GIS analysts half a year to complete.",
+      "results": {
+        "time": {
+          "metric": "4 Weeks",
+          "description": "Time to Full Feasibility Report"
+        },
+        "area": {
+          "metric": "2.5 Million Acres",
+          "description": "Total Area Screened"
+        },
+        "capacity": {
+          "metric": "45%",
+          "description": "Projected Capacity Factor"
+        },
+        "confidence": {
+          "metric": "95%",
+          "description": "Confidence in Permit Approval"
+        }
+      }
+    },
+    "empire": {
+      "client": "Empire Co-op",
+      "title": "Hudson Valley Initiative: 25MW Community Solar",
+      "challenge": "A community solar co-op needed to find a suitable 100-200 acre parcel in a region with strict zoning laws, high land costs, and vocal community stakeholders. They had previously spent 6 months manually reviewing sites with no success.",
+      "solution": "SiteSynergy focused the search by first filtering for parcels that met the complex zoning and setback requirements. We then layered on economic and grid data to find the few sites that were not only compliant but also financially viable.",
+      "results": {
+        "sites": {
+          "metric": "3 Viable Sites",
+          "description": "Identified in Under a Week"
+        },
+        "timeSaved": {
+          "metric": "8 Months",
+          "description": "Saved in Manual Search Efforts"
+        },
+        "costSaved": {
+          "metric": "$250k",
+          "description": "Saved in Consulting Fees"
+        },
+        "compliance": {
+          "metric": "100%",
+          "description": "Met Community Setback Rules"
+        }
+      }
+    }
+  },
+  "comparison": {
+    "title": "The SiteSynergy Difference",
+    "traditional": {
+      "title": "Traditional Site Selection",
+      "timeline": "Timeline: 3-6 Months of manual research",
+      "data": "Data: Siloed, manually aggregated from various sources",
+      "risk": "Risk Assessment: Late-stage, often uncovering costly surprises",
+      "economic": "Economic Modeling: Basic, high-level spreadsheet analysis",
+      "cost": "Cost Structure: High hourly consulting fees or fixed software subscriptions"
+    },
+    "sitesynergy": {
+      "title": "The SiteSynergy Platform",
+      "timeline": "Timeline: Hours to Days for comprehensive reports",
+      "data": "Data: Unified, cross-referenced, and instantly accessible",
+      "risk": "Risk Assessment: Upfront and integrated from day one",
+      "economic": "Economic Modeling: Dynamic LCOE & IRR analysis built-in",
+      "cost": "Cost Structure: Transparent, value-based per-project fee"
+    }
+  },
+  "labels": {
+    "theChallenge": "The Challenge:",
+    "theSolution": "The Solution:",
+    "keyResults": "Key Results"
+  }
+}

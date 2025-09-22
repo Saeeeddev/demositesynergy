@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "title": "The most reliable way to select the optimal site",
+    "subtitle": "AI-driven analysis of location, solar potential, costs, and risks — empowering you to make faster, smarter, and more profitable site decisions.",
+    "cta": "Get Started"
+  },
+  "companyLogos": {
+    "title": "Companies choosing SiteSynergy"
+  },
+  "suitabilityLayer": {
+    "header": "It starts with data—\nat the site level",
+    "leftBox": {
+      "title": "We layer every factor that matters",
+      "description": "Automatically combines key site factors—land, solar, grid, environment, and more—for a complete view."
+    },
+    "rightBox": {
+      "title": "Decisions you can trust",
+      "description": "Every recommendation comes with clear reasoning. Understand exactly why each site ranks where it does.",
+      "bubble": "Why is this site ranked #1 in the region?",
+      "siteLabel": "Site A-47",
+      "scoreText": "scored 94/100",
+      "details": "Grid proximity (0.2mi) and optimal solar conditions drove the high ranking.",
+      "viewLink": "📊 Full analysis"
+    }
+  },
+  "demoVideo": {
+    "title": "Results That Drive Confident Decisions",
+    "features": {
+      "comprehensive": {
+        "title": "Comprehensive site analysis",
+        "description": "Layer multiple data sources to quickly identify the most suitable solar sites."
+      },
+      "instant": {
+        "title": "Instant recommendations",
+        "description": "Receive ranked site options with detailed scoring in hours, not months."
+      },
+      "riskOptimized": {
+        "title": "Risk-optimized decisions",
+        "description": "Make confident investments backed by transparent risk assessment and mitigation strategies."
+      }
+    }
+  },
+  "dataToDecision": {
+    "title": "Designed for accuracy, delivered with speed",
+    "smarterDecisions": {
+      "title": "Smarter decisions",
+      "description": "Solar, grid, land, and infrastructure — all in one place."
+    },
+    "yourCriteria": {
+      "title": "Your criteria",
+      "description": "Set weights, choose factors, and review results on completion."
+    },
+    "transparentByDefault": {
+      "title": "Transparent by default",
+      "description": "Every score is backed by trusted data."
+    }
+  },
+  "stackedPreview": {
+    "title": "Smarter Site Selection.",
+    "subtitle": "Optimize solar sites, cut complexity, and secure profitable locations.",
+    "cards": {
+      "reliable": "Reliable",
+      "fast": "Fast",
+      "customizable": "Customizable"
+    }
+  },
+  "ctaSection": {
+    "quote": "\"It's like I'm discovering the perfect site — with just a click\"",
+    "button": "Get Started"
+  }
+}

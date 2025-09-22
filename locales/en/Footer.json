@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "app": {
+      "title": "APP",
+      "links": {
+        "webApp": "Web App",
+        "loginSignup": "Login / Signup"
+      }
+    },
+    "product": {
+      "title": "PRODUCT",
+      "links": {
+        "about": "About",
+        "product": "Product",
+        "pricing": "Pricing",
+        "contact": "Contact"
+      }
+    },
+    "resources": {
+      "title": "RESOURCES",
+      "links": {
+        "caseStudies": "Case Studies",
+        "support": "Support"
+      }
+    },
+    "test": {
+      "title": "TEST",
+      "links": {
+        "notFound": "Not Found",
+        "errorPage": "Error Page"
+      }
+    },
+    "connect": {
+      "title": "CONNECT",
+      "links": {
+        "linkedIn": "LinkedIn",
+        "xTwitter": "X / Twitter",
+        "instagram": "Instagram",
+        "youtube": "YouTube"
+      }
+    },
+    "legal": {
+      "title": "LEGAL",
+      "links": {
+        "privacyPolicy": "Privacy Policy",
+        "termsConditions": "Terms & Conditions",
+        "security": "Security"
+      }
+    }
+  },
+  "copyright": "© 2025 SiteSynergy Technologies. All rights reserved.",
+  "logoAlt": "SiteSynergy"
+}

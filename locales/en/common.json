@@ -1,0 +1,25 @@
+{
+  "buttons": {
+    "getStarted": "Get Started",
+    "getInTouch": "Get in Touch",
+    "bookCall": "Book a Call",
+    "viewCaseStudies": "View Case Studies",
+    "watchVideos": "Watch Videos",
+    "sendMessage": "Send Message",
+    "requestQuote": "Request a Project Quote"
+  },
+  "navigation": {
+    "product": "Product",
+    "about": "About",
+    "contact": "Contact",
+    "pricing": "Pricing",
+    "support": "Support",
+    "caseStudies": "Case Studies"
+  },
+  "language": {
+    "en": "English",
+    "ar": "العربية",
+    "fa": "فارسی"
+  },
+  "copyright": "© 2025 SiteSynergy Technologies. All rights reserved."
+}
