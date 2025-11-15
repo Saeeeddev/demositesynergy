@@ -18,6 +18,10 @@ import footerFa from '../locales/fa/Footer.json';
 import homeEn from '../locales/en/Home.json';
 import homeFa from '../locales/fa/Home.json';
 
+// Import Auth page translations
+import authEn from '../locales/en/page/Auth.json';
+import authFa from '../locales/fa/page/Auth.json';
+
 // Import About page translations
 import aboutEn from '../locales/en/page/About.json';
 import aboutFa from '../locales/fa/page/About.json';
@@ -60,6 +64,7 @@ const resources = {
     Header: headerEn,
     Footer: footerEn,
     Home: homeEn,
+    Auth: authEn, 
     About: aboutEn,
     Product: productEn,
     Contact: contactEn,
@@ -75,6 +80,7 @@ const resources = {
     Header: headerFa,
     Footer: footerFa,
     Home: homeFa,
+    Auth: authFa,
     About: aboutFa,
     Product: productFa,
     Contact: contactFa,
@@ -100,6 +106,7 @@ i18n
       'Header',
       'Footer', 
       'Home',
+      'Auth',
       'About',
       'Product',
       'Contact',

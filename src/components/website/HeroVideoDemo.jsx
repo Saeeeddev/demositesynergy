@@ -15,7 +15,7 @@ function HeroVideoDemo() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/src/assets/demos/hero-light-lg.webm" type="video/webm"/>
+            <source src="/src/assets/demos/ssd.webm" type="video/webm"/>
           </video>
         </div>
       </div>

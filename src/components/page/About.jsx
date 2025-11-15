@@ -151,7 +151,17 @@ const About = () => {
                 // Use a placeholder if image source is not available in JSON
                 let imgSrc = ""; 
                 if (memberKey === 'saeed') {
-                  imgSrc = "src/assets/Gemini_Generated_Image_ifki4iifki4iifki.png";
+                  imgSrc = "src/assets/saeedprofil.png";
+                }
+                else if (memberKey === 'reza') {
+                  imgSrc = "src/assets/rezaprofile.png";
+                }
+                else if (memberKey === 'amir') {
+                  imgSrc = "src/assets/amirprofile.png";
+            
+                }
+                else if (memberKey === 'younes') {
+                  imgSrc = "src/assets/norolahi.jpg";
                 }
 
                 return (

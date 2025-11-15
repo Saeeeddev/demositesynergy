@@ -1,6 +1,6 @@
+import './App.css'
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx'; // A small library for conditional classes
-import './App.css'
 import { useTranslation } from 'react-i18next'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/website/Header'
@@ -17,6 +17,7 @@ import Support from './components/page/Support'
 import CaseStudies from './components/page/CaseStudies'
 import NotFound from './components/page/NotFound'
 import ErrorPage from './components/page/ErrorPage'
+import AuthPage from './components/page/AuthPage';
 
 import ScrollToTop from './components/utils/ScrollToTop'
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<TermsAndCondition />} />
           <Route path="/about" element={<About />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pricing" element={<Pricing />} />
