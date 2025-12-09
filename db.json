@@ -1,0 +1,76 @@
+{
+  "projects": [
+    {
+      "id": "proj-001",
+      "name": "Green Energy Solar Farm",
+      "reference": "REF-S-2024-001",
+      "status": "in-progress",
+      "location": {
+        "region": "California, USA",
+        "coordinates": "34.0522, -118.2437"
+      },
+      "clientName": "EcoPower Inc.",
+      "capacity": 150,
+      "area": 300,
+      "createdDate": "2023-01-15T09:30:00Z",
+      "projectManager": {
+        "name": "Alice Johnson",
+        "avatarUrl": "https://i.pravatar.cc/150?u=alice"
+      },
+      "metrics": {
+        "co2Reduction": 1200, "irr": 15.5, "ghiAvg": 1800, "npv": 1.8, "paybackPeriod": 5.2, "roi": 14.8
+      }
+    },
+    {
+      "id": "proj-002",
+      "name": "Wind Farm Expansion Phase II",
+      "reference": "REF-W-2024-002",
+      "status": "completed",
+      "location": { "region": "Texas, USA" },
+      "clientName": "AeroGreen Energy",
+      "capacity": 250, "area": 500, "createdDate": "2022-07-20T14:00:00Z",
+      "projectManager": { "name": "Bob Williams", "avatarUrl": "https://i.pravatar.cc/150?u=bob" },
+      "metrics": { "co2Reduction": 2500, "irr": 12.0, "ghiAvg": 0, "npv": 3.5, "paybackPeriod": 6.0, "roi": 11.5 }
+    },
+    {
+      "id": "proj-003",
+      "name": "Hydroelectric Plant Upgrade",
+      "reference": "REF-H-2024-003",
+      "status": "pending",
+      "location": { "region": "Oregon, USA" },
+      "clientName": "RiverFlow Utilities",
+      "capacity": 80, "area": 100, "createdDate": "2024-03-01T11:45:00Z",
+      "projectManager": null,
+      "metrics": { "co2Reduction": 800, "irr": 10.1, "ghiAvg": 0, "npv": 0.9, "paybackPeriod": 7.5, "roi": 9.0 }
+    },
+    {
+      "id": "proj-004",
+      "name": "Desert Solar Initiative",
+      "reference": "REF-S-2024-004",
+      "status": "in-progress",
+      "location": { "region": "Arizona, USA" },
+      "clientName": "SunRise Power",
+      "capacity": 180, "area": 350, "createdDate": "2023-09-10T16:00:00Z",
+      "projectManager": { "name": "Carol White", "avatarUrl": "https://i.pravatar.cc/150?u=carol" },
+      "metrics": { "co2Reduction": 1600, "irr": 16.8, "ghiAvg": 2200, "npv": 2.1, "paybackPeriod": 4.8, "roi": 15.5 }
+    },
+    {
+      "id": "proj-005",
+      "name": "Urban Rooftop PV",
+      "reference": "REF-S-2024-005",
+      "status": "completed",
+      "location": { "region": "New York, USA" },
+      "clientName": "CityGreen Solutions",
+      "capacity": 20, "area": 10, "createdDate": "2022-05-01T10:00:00Z",
+      "projectManager": { "name": "David Green", "avatarUrl": "https://i.pravatar.cc/150?u=david" },
+      "metrics": { "co2Reduction": 200, "irr": 11.2, "ghiAvg": 1600, "npv": 0.2, "paybackPeriod": 8.0, "roi": 10.0 }
+    }
+  ],
+  "reports": [],
+  "payments": [],
+  "user": {
+    "name": "Saeed Dolati",
+    "email": "dolatisaeed6@gmail.com",
+    "avatarUrl": "https://placehold.co/40x40/a78bfa/ffffff?text=S"
+  }
+}

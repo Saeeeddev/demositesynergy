@@ -1,0 +1,80 @@
+src/
+├── assets/                     # Images, logos, fonts, static JSONs
+│   ├── images/
+│   └── data/                   # (e.g., countyList.json, recentProjectsData.js)
+│
+├── components/                 # GLOBAL Shared Components
+│   ├── ui/                     # Generic Atoms (Button, Input, Card, Modal, Badge)
+│   ├── map/                    # Generic Leaflet Wrapper (Fixes the global variable issue)
+│   │   └── LeafletMap.jsx      # The refactored map component using refs
+│   └── common/                 # Pagination, LoadingSpinner, ErrorToast
+│
+├── layouts/                    # Application Shells (Router Layouts)
+│   ├── MainLayout.jsx          # Sidebar + Header + Outlet (For Dashboard)
+│   ├── AuthLayout.jsx          # Centered Box (For Login/Register)
+│   └── ResultLayout.jsx        # Specific Layout for Result Pages (Header + Sidebar + Secondary)
+│
+├── features/                   # CORE BUSINESS LOGIC
+│   │
+│   ├── auth/                   # Authentication Feature
+│   │   ├── components/         # LoginForm.jsx, RegisterForm.jsx
+│   │   └── pages/              # LoginPage.jsx, RegisterPage.jsx
+│   │
+│   ├── dashboard/              # Home Page Logic
+│   │   ├── components/         # StatCard.jsx, ActivityFeed.jsx
+│   │   └── HomePage.jsx
+│   │
+│   ├── projects/               # Project List & Management
+│   │   ├── components/         # ProjectCard.jsx, ProjectHeader.jsx
+│   │   └── ProjectsPage.jsx    # The overview list
+│   │
+│   ├── project-wizard/         # "New Project" Logic (Refactored Steps)
+│   │   ├── components/
+│   │   │   ├── Step1_Details.jsx
+│   │   │   ├── Step2_Criteria.jsx
+│   │   │   ├── Step3_Location.jsx
+│   │   │   └── Step4_Financial.jsx
+│   │   └── NewProjectPage.jsx  # Wrapper holding the steps
+│   │
+│   ├── project-results/        # [NEW] The Result Page Feature
+│   │   ├── components/         # Result-specific small components
+│   │   │   ├── ResultHeader.jsx
+│   │   │   ├── ResultSidebar.jsx
+│   │   │   └── ResultSecondarySidebar.jsx
+│   │   ├── pages/
+│   │   │   ├── OverviewPage.jsx
+│   │   │   ├── LocationLayersPage.jsx
+│   │   │   └── FinancialPage.jsx
+│   │   └── index.jsx           # Entry point for results
+│   │
+│   ├── reports/                # Report Library
+│   │   └── ReportsPage.jsx
+│   │
+│   ├── payments/               # Payment History
+│   │   └── PaymentsPage.jsx
+│   │
+│   └── settings/               # Settings Features
+│       └── ProfilePage.jsx
+│
+├── hooks/                      # Global Custom Hooks
+│   ├── useMap.js               # Logic to interact with Leaflet map instance
+│   └── useAuth.js
+│
+├── lib/                        # Configuration & 3rd Party Setup
+│   ├── axios.js                # Axios instance configuration
+│   ├── queryClient.js          # TanStack Query Client setup
+│   └── utils.js                # Helper functions (format currency, dates)
+│
+├── routes/                     # React Router Configuration
+│   ├── index.jsx               # Main Router definition
+│   └── ProtectedRoute.jsx      # Guard for auth checking
+│
+├── stores/                     # ZUSTAND STORES (Replacing Contexts)
+│   ├── useUIStore.js           # Sidebar toggle, Modals, Notifications
+│   ├── useAuthStore.js         # User session state
+│   ├── useWizardStore.js       # Replaces NewProjectContext (Input data)
+│   └── useResultStore.js       # State for the Result page analysis
+│
+├── App.jsx                     # Providers wrapper (QueryClientProvider, Router)
+├── main.jsx                    # Entry point
+└── index.css                   # Tailwind imports

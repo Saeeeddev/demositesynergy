@@ -1,0 +1,54 @@
+{
+  "East Azerbaijan": [
+    { "county": "Mianeh", "osm_id": "R6555226" }, { "county": "Kaleybar", "osm_id": "R6555172" },
+    { "county": "Sarab", "osm_id": "R6555068" }, { "county": "Marand", "osm_id": "R6555204" },
+    { "county": "Ahar", "osm_id": "R6554897" }, { "county": "Charuymaq", "osm_id": "R6555271" },
+    { "county": "Bostanabad", "osm_id": "R6554929" }, { "county": "Shabestar", "osm_id": "R6555102" },
+    { "county": "Varzaqan", "osm_id": "R6555258" }, { "county": "Heris", "osm_id": "R6555250" },
+    { "county": "Hashtrud", "osm_id": "R6555251" }, { "county": "Tabriz", "osm_id": "R6554961" },
+    { "county": "Maragheh", "osm_id": "R6555202" }, { "county": "Jolfa", "osm_id": "R6554977" },
+    { "county": "Osku", "osm_id": "R6554882" }, { "county": "Azarshahr", "osm_id": "R6554856" },
+    { "county": "Malekan", "osm_id": "R6555212" }, { "county": "Bonab", "osm_id": "R6554936" },
+    { "county": "Ajabshir", "osm_id": "R6555122" }
+  ],
+  "West Azerbaijan": [
+    { "county": "Urumia", "osm_id": "R6554877" }, { "county": "Khoy", "osm_id": "R6555007" },
+    { "county": "Mahabad", "osm_id": "R6555217" }, { "county": "Salmas", "osm_id": "R6555083" },
+    { "county": "Bukan", "osm_id": "R6554953" }, { "county": "Shahindezh", "osm_id": "R6555101" },
+    { "county": "Piranshahr", "osm_id": "R6555052" }, { "county": "Takab", "osm_id": "R6554967" },
+    { "county": "Miandoab", "osm_id": "R6555224" }, { "county": "Chaldoran", "osm_id": "R2390404" },
+    { "county": "Maku", "osm_id": "R6555194" }, { "county": "Poldasht", "osm_id": "R6555176" },
+    { "county": "Sardasht", "osm_id": "R6555075" }, { "county": "Ashnavieh", "osm_id": "R6555240" },
+    { "county": "Naghadeh", "osm_id": "R6555236" }, { "county": "Chaypareh", "osm_id": "R6555090" },
+    { "county": "Showt", "osm_id": "R6555115" }
+  ],
+  "Ardabil":[
+    { "county": "Meshginshahr", "osm_id": "R6555209" }, { "county": "Khalkhal", "osm_id": "R6554995" },
+    { "county": "Ardabil", "osm_id": "R6554871" }, { "county": "Garmi", "osm_id": "R6555285" },
+    { "county": "Bilehsavar", "osm_id": "R6554957" }, { "county": "Parsabad", "osm_id": "R6555260" },
+    { "county": "Kosar", "osm_id": "R6555180" }, { "county": "Nir", "osm_id": "R6555244" },
+    { "county": "Namin", "osm_id": "R6555238" }, { "county": "Sareyn", "osm_id": "R6555076" }
+  ],
+  "Isfahan": [
+    { "county": "Nain", "osm_id": "R6555231" }, { "county": "Isfahan", "osm_id": "R6556135" },
+    { "county": "Ardestan", "osm_id": "R6556061" }, { "county": "Khur and Biabanak", "osm_id": "R6556184" },
+    { "county": "Aran and Bidgol", "osm_id": "R6556037" }, { "county": "Shahin Shahr and Meymeh", "osm_id": "R6556289" },
+    { "county": "Semirom", "osm_id": "R6556253" }, { "county": "Kashan", "osm_id": "R6556169" },
+    { "county": "Natanz", "osm_id": "R6556223" }, { "county": "Shahreza", "osm_id": "R6556277" },
+    { "county": "Najafabad", "osm_id": "R6556217" }, { "county": "Fereydunshahr", "osm_id": "R6556093" },
+    { "county": "Fereydan", "osm_id": "R6556085" }, { "county": "Barkhar", "osm_id": "R6556029" },
+    { "county": "Dehaqan", "osm_id": "R6556077" }, { "county": "Tiran and Karvan", "osm_id": "R6556297" },
+    { "county": "Golpayegan", "osm_id": "R6556117" }, { "county": "Chadegan", "osm_id": "R6556053" },
+    { "county": "Lenjan", "osm_id": "R6556192" }, { "county": "Mobarakeh", "osm_id": "R6556231" },
+    { "county": "Khansar", "osm_id": "R6556177" }, { "county": "Falavarjan", "osm_id": "R6556109" },
+    { "county": "Khomeini Shahr", "osm_id": "R6556153" }
+  ],
+  "Yazd": [
+    { "county": "Ardekan", "osm_id": "R6556200" }, { "county": "Bafq", "osm_id": "R6556192" },
+    { "county": "Khatam", "osm_id": "R6556188" }, { "county": "Mehriz", "osm_id": "R6556212" },
+    { "county": "Bahabad", "osm_id": "R6556176" }, { "county": "Taft", "osm_id": "R6556228" },
+    { "county": "Yazd", "osm_id": "R6555259" }, { "county": "Abarkuh", "osm_id": "R6556164" },
+    { "county": "Meybod", "osm_id": "R6556236" }, { "county": "Ashkezar", "osm_id": "R6556244" },
+    { "county": "Tabas", "osm_id": "R6556152" }, { "county": "Behabad", "osm_id": "R6556180" }
+  ]
+}
