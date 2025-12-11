@@ -66,11 +66,23 @@
       "metrics": { "co2Reduction": 200, "irr": 11.2, "ghiAvg": 1600, "npv": 0.2, "paybackPeriod": 8.0, "roi": 10.0 }
     }
   ],
-  "reports": [],
-  "payments": [],
+  "reports": [
+    { "id": "r001", "title": "Solar Resource Assessment", "type": "technical", "date": "2023-12-15", "author": "Sarah Johnson" },
+    { "id": "r002", "title": "Financial Analysis - Valley View", "type": "financial", "date": "2023-11-28", "author": "Michael Chen" },
+    { "id": "r003", "title": "Environmental Impact Overview", "type": "environmental", "date": "2023-12-02", "author": "Emma Rodriguez" }
+  ],
+  "payments": [
+    { "id": "proj_01", "name": "Solar Farm California", "cost": 499.00, "purchaseDate": "Sep 5, 2025", "status": "Paid" },
+    { "id": "proj_02", "name": "Texas Wind Project", "cost": 850.00, "purchaseDate": "Aug 21, 2025", "status": "Paid" },
+    { "id": "proj_04", "name": "Hydroelectric Plant Upgrade", "cost": 1200.00, "purchaseDate": "Sep 1, 2025", "status": "Failed" }
+  ],
   "user": {
-    "name": "Saeed Dolati",
+    "fullName": "Saeed Dolati",
     "email": "dolatisaeed6@gmail.com",
+    "phone": "+1 (555) 123-4567",
+    "organization": "SiteSynergy Inc.",
+    "jobTitle": "Solar Project Manager",
+    "bio": "Experienced renewable energy professional.",
     "avatarUrl": "https://placehold.co/40x40/a78bfa/ffffff?text=S"
   }
 }

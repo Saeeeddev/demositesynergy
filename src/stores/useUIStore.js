@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export const useUIStore = create((set) => ({
-  isNavOpen: true, // Corresponds to the desktop secondary sidebar
+  isNavOpen: true, // Corresponds to the secondary sidebar visibility
   isNotificationOpen: false,
   isProfileOpen: false,
 
@@ -20,5 +20,7 @@ export const useUIStore = create((set) => ({
   closeAllPanels: () => set({
     isNotificationOpen: false,
     isProfileOpen: false,
+    // Note: We typically don't auto-close nav on panel interaction unless on mobile, 
+    // but preserving desktop state is better UX.
   }),
 }));

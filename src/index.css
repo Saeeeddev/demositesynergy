@@ -1,29 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
 
 /* Leaflet Map Styles */
 @import 'leaflet/dist/leaflet.css';
 @import 'leaflet-draw/dist/leaflet.draw.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    /* Custom Scrollbar Logic */
+    /* Custom Scrollbar Logic (Firefox) */
     scrollbar-width: thin;
     scrollbar-color: rgba(109, 127, 159, 0.7) transparent;
   }
 
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-background-main text-gray-900;
   }
 }
 
-/* Chrome/Safari Scrollbar override */
+/* Chrome/Safari Scrollbar override to match old version */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px; /* Use the thin style */
 }
 
 ::-webkit-scrollbar-track {
@@ -31,10 +32,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(109, 127, 159, 0.5);
+  background: rgba(109, 127, 159, 0.7);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(109, 127, 159, 0.8);
+  background: rgba(109, 127, 159, 0.9);
 }
