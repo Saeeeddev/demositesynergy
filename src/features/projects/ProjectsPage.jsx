@@ -59,7 +59,7 @@ const ProjectsPage = () => {
   }
 
   return (
-    <div className="flex flex-col flex-grow">
+    <div className="flex flex-col flex-grow p-4 sm:p-6 lg:p-8 space-y-6">
       {/* 1. Header with Stats (fetched from DB) */}
       <ProjectsHeader projectStats={projectStats} />
       

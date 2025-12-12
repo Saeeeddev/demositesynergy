@@ -145,42 +145,36 @@
     {
       "id": "r001",
       "title": "Solar Resource Assessment",
-      "type": "technical",
       "date": "2023-12-15",
       "author": "Sarah Johnson"
     },
     {
       "id": "r002",
       "title": "Financial Analysis - Valley View",
-      "type": "financial",
       "date": "2023-11-28",
       "author": "Michael Chen"
     },
     {
       "id": "r003",
       "title": "Environmental Impact Overview",
-      "type": "environmental",
       "date": "2023-12-02",
       "author": "Emma Rodriguez"
     },
     {
       "id": "r004",
       "title": "Due Diligence Package",
-      "type": "comprehensive",
       "date": "2023-12-10",
       "author": "James Wilson"
     },
     {
       "id": "r005",
       "title": "Grid Connection Feasibility",
-      "type": "technical",
       "date": "2023-11-15",
       "author": "Sarah Johnson"
     },
     {
       "id": "r006",
       "title": "Q4 Financial Projections",
-      "type": "financial",
       "date": "2024-01-05",
       "author": "Michael Chen"
     }
