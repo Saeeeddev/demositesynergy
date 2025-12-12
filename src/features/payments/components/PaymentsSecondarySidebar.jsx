@@ -6,9 +6,9 @@ import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 const PaymentsSecondarySidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const { data: payments = [] } = useQuery({
+  const { data: recentPayments = [] } = useQuery({
     queryKey: ['recentPayments'],
-    queryFn: async () => (await api.get('/payments?_limit=5')).data
+    queryFn: async () => (await api.get('/recentPayments')).data
   });
 
   const getStatusColor = (status) => {
@@ -23,33 +23,30 @@ const PaymentsSecondarySidebar = () => {
   return (
     <div className="w-full pt-4">
       <div className="w-full flex items-center justify-between mb-2">
-        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Recent Transactions</h3>
+        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Recent Payments</h3>
         <button onClick={() => setIsOpen(!isOpen)} className="p-1 rounded-full hover:bg-gray-100 transition-colors">
           {isOpen ? <IoChevronUp className="w-4 h-4 text-gray-400" /> : <IoChevronDown className="w-4 h-4 text-gray-400" />}
         </button>
       </div>
       
       {isOpen && (
-        <div className="space-y-2">
-          {payments.length > 0 ? (
-            payments.map((payment) => (
-                <div key={payment.id} className="block p-3 rounded-lg bg-gray-50/50 hover:bg-gray-100 transition-colors cursor-default border border-transparent hover:border-gray-200">
-                    <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 truncate flex-1 pr-2" title={payment.name}>
+        <div className="space-y-1">
+          {recentPayments.length > 0 ? (
+            recentPayments.map((payment) => (
+                <div key={payment.id} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 group cursor-pointer transition-all duration-200">
+                    <div className="flex-1 min-w-0 pr-2">
+                        <span className="block text-sm font-medium text-gray-700 group-hover:text-primary-blue transition-colors truncate">
                             {payment.name}
                         </span>
-                        <span className="text-xs font-bold text-gray-900">${payment.cost.toLocaleString()}</span>
+                        {/* Date line removed as per request */}
                     </div>
-                    <div className="flex justify-between items-center mt-1">
-                        <span className="text-[10px] text-gray-400">Ref: {payment.id.split('_')[1]}</span>
-                        <span className={`text-[10px] font-bold uppercase tracking-wider ${getStatusColor(payment.status)}`}>
-                            {payment.status}
-                        </span>
+                    <div className="text-right">
+                        <span className="block text-xs font-bold text-gray-600">${payment.cost}</span>
                     </div>
                 </div>
             ))
           ) : (
-              <p className="text-xs text-gray-400 italic p-1">No recent transactions.</p>
+              <p className="text-xs text-gray-400 italic p-1">No recent payments.</p>
           )}
         </div>
       )}

@@ -10,7 +10,9 @@ import {
   ChartBarIcon, 
   CheckCircleIcon,
   ClockIcon,
-  ExclamationCircleIcon
+  ExclamationCircleIcon,
+  ChatBubbleLeftEllipsisIcon,
+  ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
 
 const StatCard = ({ icon, title, value, change, changeType }) => {
@@ -52,14 +54,25 @@ const QuickLinkCard = ({ icon, title, description, onClick }) => (
   </button>
 );
 
-const RecentActivityItem = ({ icon, text, time }) => (
+const getNotificationIcon = (type) => {
+    switch (type) {
+        case 'success': return <CheckCircleIcon className="h-4 w-4 text-emerald-500" />;
+        case 'mention': return <ChatBubbleLeftEllipsisIcon className="h-4 w-4 text-sky-500" />;
+        case 'failed': return <ExclamationTriangleIcon className="h-4 w-4 text-rose-500" />;
+        default: return <ClockIcon className="h-4 w-4 text-gray-500" />;
+    }
+};
+
+const RecentActivityItem = ({ notification }) => (
   <li className="flex items-start space-x-3 py-3 first:pt-0 last:pb-0">
     <div className="p-1.5 bg-gray-100 rounded-full mt-0.5 flex-shrink-0">
-      {React.cloneElement(icon, { className: "h-4 w-4 text-gray-500" })}
+      {getNotificationIcon(notification.type)}
     </div>
     <div className="flex-1 min-w-0">
-      <p className="text-sm text-gray-700 leading-snug">{text}</p>
-      <p className="text-xs text-gray-400 mt-1">{time}</p>
+      <p className="text-sm text-gray-700 leading-snug">
+         <span className="font-semibold">{notification.userName}</span> {notification.action} {notification.target && <strong>"{notification.target}"</strong>}
+      </p>
+      <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
     </div>
   </li>
 );
@@ -67,20 +80,19 @@ const RecentActivityItem = ({ icon, text, time }) => (
 const HomePage = () => {
   const navigate = useNavigate();
 
-  // Parallel data fetching with Error State Handling
+  // Fetch Dashboard Data from DB
   const { data: dashboardData, isLoading, isError, error } = useQuery({
     queryKey: ['dashboardData'],
     queryFn: async () => {
-        // Attempt fetch
-        const [userRes, projectsRes, paymentsRes] = await Promise.all([
+        const [userRes, statsRes, notifRes] = await Promise.all([
             api.get('/user'),
-            api.get('/projects'),
-            api.get('/payments')
+            api.get('/dashboardStats'),
+            api.get('/notifications?_limit=4&_sort=id&_order=desc')
         ]);
         return {
             user: userRes.data,
-            projects: projectsRes.data,
-            payments: paymentsRes.data
+            stats: statsRes.data,
+            notifications: notifRes.data
         };
     }
   });
@@ -89,10 +101,11 @@ const HomePage = () => {
       return <div className="p-8 flex justify-center text-gray-500 font-medium">Loading Dashboard...</div>;
   }
 
-  // --- SAFE DESTUCTURING FIX ---
-  // If connection fails, dashboardData might be undefined even if we handle isError below.
-  // We defaults to empty objects/arrays to prevent the crash.
-  const { user = {}, projects = [], payments = [] } = dashboardData || {};
+  const { 
+      user = {}, 
+      stats = {}, // Stats now come from DB
+      notifications = [] 
+  } = dashboardData || {};
 
   // Render Network Error State if fetch failed
   if (isError) {
@@ -103,7 +116,7 @@ const HomePage = () => {
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-1">Connection Error</h3>
             <p className="text-sm text-gray-500 max-w-md">
-                Could not connect to the database server. Please ensure <code className="bg-gray-100 px-1 py-0.5 rounded text-xs">npm run server</code> is running on port 3000.
+                Could not connect to the database server.
             </p>
             <p className="text-xs text-red-400 mt-4 font-mono bg-red-50 px-3 py-2 rounded">
                 {error?.message || "Network Error"}
@@ -112,20 +125,15 @@ const HomePage = () => {
       );
   }
 
-  // Calculate Stats safely
-  const activeProjects = Array.isArray(projects) 
-    ? projects.filter(p => p.status === 'in-progress' || p.status === 'pending').length 
-    : 0;
-    
-  const completedProjects = Array.isArray(projects) 
-    ? projects.filter(p => p.status === 'completed').length 
-    : 0;
-    
-  const pendingPaymentsAmount = Array.isArray(payments)
-    ? payments
-        .filter(p => p.status === 'Failed' || p.status === 'Pending')
-        .reduce((sum, p) => sum + (p.cost || 0), 0)
-    : 0;
+  // Safe defaults if stats are missing
+  const { 
+      activeProjects = 0, 
+      activeProjectsChange = '', 
+      reportsGenerated = 0, 
+      reportsChange = '', 
+      completedProjects = 0, 
+      actionNeededAmount = 0 
+  } = stats;
 
   const userName = user?.fullName?.split(' ')[0] || 'User';
 
@@ -137,21 +145,21 @@ const HomePage = () => {
         <p className="text-gray-500 text-sm mt-1">Here's a snapshot of your workspace.</p>
       </div>
 
-      {/* --- Stat Cards --- */}
+      {/* --- Stat Cards (Data from DB) --- */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard 
             icon={<FolderIcon />} 
             title="Active Projects" 
             value={activeProjects} 
-            change="+2" 
-            changeType="increase" 
+            change={activeProjectsChange} 
+            changeType={activeProjectsChange.includes('+') ? "increase" : "decrease"} 
         />
         <StatCard 
             icon={<ChartBarIcon />} 
             title="Reports Generated" 
-            value="8" 
-            change="+5%" 
-            changeType="increase" 
+            value={reportsGenerated} 
+            change={reportsChange} 
+            changeType={reportsChange.includes('+') ? "increase" : "decrease"} 
         />
         <StatCard 
             icon={<CheckCircleIcon />} 
@@ -161,7 +169,7 @@ const HomePage = () => {
         <StatCard 
             icon={<CreditCardIcon />} 
             title="Action Needed" 
-            value={`$${pendingPaymentsAmount.toLocaleString()}`} 
+            value={`$${(actionNeededAmount || 0).toLocaleString()}`} 
             change="Invoices" 
             changeType="decrease" 
         />
@@ -193,26 +201,18 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* --- Recent Activity --- */}
+        {/* --- Recent Activity (Notifications from DB) --- */}
         <div>
            <h2 className="text-lg font-semibold text-gray-800 mb-3">Recent Activity</h2>
            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
              <ul className="divide-y divide-gray-100">
-               <RecentActivityItem 
-                 icon={<CheckCircleIcon className="text-emerald-500" />} 
-                 text={<><strong>Project "Desert Flats"</strong> has been marked as complete.</>}
-                 time="2 hours ago"
-               />
-               <RecentActivityItem 
-                 icon={<DocumentTextIcon className="text-primary-blue" />} 
-                 text={<>A new financial report for <strong>"Valley View"</strong> was uploaded.</>}
-                 time="1 day ago"
-               />
-               <RecentActivityItem 
-                 icon={<ClockIcon className="text-amber-500" />} 
-                 text={<>The deadline for <strong>"Highland Mesa"</strong> has been updated.</>}
-                 time="3 days ago"
-               />
+               {notifications.length > 0 ? (
+                 notifications.map(notif => (
+                    <RecentActivityItem key={notif.id} notification={notif} />
+                 ))
+               ) : (
+                 <p className="text-sm text-gray-400 italic">No recent activity.</p>
+               )}
              </ul>
            </div>
         </div>

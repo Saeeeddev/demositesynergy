@@ -6,9 +6,9 @@ import { IoChevronDown, IoChevronUp, IoDownloadOutline } from 'react-icons/io5';
 const ReportSecondarySidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const { data: reports = [] } = useQuery({
+  const { data: recentReports = [] } = useQuery({
     queryKey: ['recentReports'],
-    queryFn: async () => (await api.get('/reports?_limit=5')).data
+    queryFn: async () => (await api.get('/recentReports')).data
   });
 
   return (
@@ -22,17 +22,20 @@ const ReportSecondarySidebar = () => {
       
       {isOpen && (
         <div className="space-y-1">
-          {reports.length > 0 ? (
-            reports.map((report) => (
-                <button 
+          {recentReports.length > 0 ? (
+            recentReports.map((report) => (
+                <div 
                     key={report.id} 
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 group cursor-pointer transition-all duration-200 text-left"
+                    className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 group cursor-pointer transition-all duration-200"
                 >
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-primary-blue transition-colors truncate flex-1 pr-2">
-                        {report.title}
-                    </span>
+                    <div className="flex-1 min-w-0 pr-2">
+                        <span className="block text-sm font-medium text-gray-700 group-hover:text-primary-blue transition-colors truncate">
+                            {report.title}
+                        </span>
+                        {/* Date line removed as per request */}
+                    </div>
                     <IoDownloadOutline className="w-4 h-4 text-gray-300 group-hover:text-primary-blue transition-colors opacity-0 group-hover:opacity-100 flex-shrink-0" />
-                </button>
+                </div>
             ))
           ) : (
               <p className="text-xs text-gray-400 italic p-1">No recent reports.</p>

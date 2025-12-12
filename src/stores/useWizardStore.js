@@ -119,8 +119,12 @@ export const useWizardStore = create((set, get) => ({
   // Step 4: Financials
   // Handles deep nested updates like "opex_details.personnel.num_engineers"
   updateFinancialNested: (e) => {
-    // If it's a raw event (e.target)
-    let name, value;
+    // 1. Guard against non-events to prevent direct loop calls
+    if (!e || !e.target) return;
+
+    let { name, value } = e.target;
+    // ensure numbers are numbers
+    value = e.target.type === 'number' ? (parseFloat(value) || 0) : value;
     if (e.target) {
         name = e.target.name;
         value = e.target.type === 'number' ? (parseFloat(e.target.value) || 0) : e.target.value;

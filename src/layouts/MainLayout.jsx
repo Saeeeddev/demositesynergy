@@ -12,7 +12,7 @@ const MainLayout = () => {
   const { isNotificationOpen, isProfileOpen } = useUIStore();
 
   return (
-    <div className="flex bg-background-main min-h-screen font-sans">
+    <div className="flex bg-white min-h-screen font-sans">
       <Sidebar />
 
       <div className="flex-1 flex flex-col h-screen relative min-h-screen">

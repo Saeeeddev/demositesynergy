@@ -9,8 +9,7 @@ const HomeSecondarySidebar = () => {
   const { data: recentProjects = [] } = useQuery({
     queryKey: ['recentProjects'],
     queryFn: async () => {
-      // Mocking sort/limit via JSON server query params logic (or just fetching all if not supported and slicing)
-      const { data } = await api.get('/projects?_limit=5'); 
+      const { data } = await api.get('/recentProjects'); 
       return data;
     }
   });

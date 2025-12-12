@@ -77,16 +77,21 @@ const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
 // --- Main Step Component ---
 
 const Step2_Criteria = () => {
+    // FIX: Add useShallow
     const { 
         projectDetails, 
-        criteriaSettings: initialCriteria, 
+        criteriaSettings, // rename local prop to match store if needed, or mapping is fine
         saveCriteria 
-    } = useWizardStore();
+    } = useWizardStore(useShallow(state => ({
+        projectDetails: state.projectDetails,
+        criteriaSettings: state.criteriaSettings,
+        saveCriteria: state.saveCriteria
+    })));
 
     // Local state for edits before saving
     // NOTE: In strict architecture, we might move this into Zustand actions, 
     // but specific Step forms often keep draft state local until "Next".
-    const [settings, setSettings] = useState(initialCriteria);
+    const [settings, setSettings] = useState(criteriaSettings);
     const [activeTab, setActiveTab] = useState('weights');
     
     const isStandardMode = projectDetails?.analysisMode === 'standard';
