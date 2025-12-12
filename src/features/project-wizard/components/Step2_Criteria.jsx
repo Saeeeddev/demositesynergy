@@ -1,47 +1,52 @@
 import React, { useState, useMemo } from 'react';
 import { useWizardStore } from '../../../stores/useWizardStore';
+import { useShallow } from 'zustand/react/shallow';
 import {
   ScaleIcon, 
   CurrencyDollarIcon, 
   WrenchScrewdriverIcon, 
   GlobeAltIcon,
   CubeTransparentIcon,
-  ChevronRightIcon
+  ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-// --- Small Reusable UI Components for Criteria ---
+// --- Components matching reference ---
 
-const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%', disabled = false }) => (
-  <div className="space-y-2 py-1">
-    <div className="flex items-center justify-between">
-      <label className={`text-sm font-medium ${disabled ? 'text-gray-400' : 'text-gray-700'}`}>{label}</label>
-      <span className={`text-xs font-bold px-2 py-0.5 rounded ${disabled ? 'text-gray-400 bg-gray-100' : 'text-primary-blue bg-blue-50'}`}>
-        {value}{unit}
-      </span>
+const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%', disabled = false }) => {
+  const display = `${value}${unit}`;
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <label className={`text-sm font-medium ${disabled ? 'text-gray-400' : 'text-gray-700'}`}>{label}</label>
+        <span className={`text-sm font-semibold ${disabled ? 'text-gray-400' : 'text-primary-blue'}`}>{display}</span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        disabled={disabled}
+        className={`w-full h-2 bg-gray-200 rounded-lg appearance-none ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} accent-primary-blue`}
+      />
     </div>
-    <input 
-      type="range" 
-      min={min} 
-      max={max} 
-      value={value} 
-      onChange={(e) => onChange(parseFloat(e.target.value))} 
-      disabled={disabled} 
-      className={`w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-blue disabled:opacity-50 transition-all`} 
-    />
-  </div>
-);
+  );
+};
 
-const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel="Step", bufferLabel="Buffer", maxBuffer, disabled }) => (
-    <div className="grid grid-cols-2 gap-4 mt-2">
+const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel="Step (m)", bufferLabel="Buffer (m)", maxBuffer, disabled }) => (
+    <div className="grid grid-cols-2 gap-3 mt-2">
       <div>
-        <label className={`block text-[10px] font-bold uppercase tracking-wider mb-1 ${disabled ? 'text-gray-300' : 'text-gray-500'}`}>{stepLabel} (m)</label>
-        <div className={`w-full py-2 px-3 rounded-lg text-sm font-medium border border-transparent ${disabled ? 'bg-gray-100 text-gray-400' : 'bg-blue-50/50 text-primary-blue'}`}>
-            {stepValue}
+        <label className={`block text-xs font-medium ${disabled ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{stepLabel} <span className="text-gray-400 font-normal">(Preset)</span></label>
+        <div className={`w-full p-2 rounded-md text-sm font-semibold ${
+          disabled ? 'bg-gray-100 text-gray-400' : 'bg-primary-blue/10 text-primary-blue border-l-4 border-primary-blue'
+        }`}>
+          {stepValue}
         </div>
       </div>
       <div>
-        <label className={`block text-[10px] font-bold uppercase tracking-wider mb-1 ${disabled ? 'text-gray-300' : 'text-gray-500'}`}>
-            {bufferLabel} (m) <span className="font-normal lowercase opacity-75">max: {maxBuffer}</span>
+        <label className={`block text-xs font-medium ${disabled ? 'text-gray-400' : 'text-gray-600'} mb-1`}>
+          {bufferLabel}
+          {maxBuffer && <span className="text-gray-400 font-normal ml-1">(max: {maxBuffer})</span>}
         </label>
         <input 
             type="number" 
@@ -49,23 +54,29 @@ const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel=
             onChange={e => onBufferChange(parseFloat(e.target.value) || 0)} 
             disabled={disabled} 
             max={maxBuffer}
-            className={`w-full py-2 px-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary-blue focus:border-primary-blue disabled:bg-gray-50 disabled:text-gray-400`}
+            className={`w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-primary-blue focus:border-primary-blue ${
+                disabled ? 'bg-gray-50 cursor-not-allowed opacity-50' : ''
+            }`}
         />
       </div>
     </div>
 );
 
 const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
-  <div className={`border rounded-xl p-4 transition-all duration-200 ${!enabled ? 'bg-gray-50 border-gray-200' : 'bg-white border-gray-300 hover:border-gray-400'}`}>
-    <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
-      <h4 className={`text-sm font-bold ${enabled ? 'text-gray-800' : 'text-gray-400'}`}>{title}</h4>
+  <div className={`bg-white border border-gray-200 rounded-lg p-4 space-y-3 transition-all ${!enabled ? 'bg-gray-50' : ''}`}>
+    <div className="flex items-center justify-between border-b border-gray-100 pb-1.5">
+      <h4 className={`text-sm font-semibold ${enabled ? 'text-gray-800' : 'text-gray-400'}`}>{title}</h4>
       <button 
         type="button" 
         onClick={onToggle} 
         disabled={disableToggle} 
-        className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors focus:outline-none ${enabled ? 'bg-primary-blue' : 'bg-gray-300'} ${disableToggle ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+        className={`relative inline-flex h-6 w-12 flex-shrink-0 items-center rounded-full transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm ${
+            disableToggle ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+        } ${
+            enabled ? 'bg-primary-blue focus:ring-primary-blue shadow-primary-blue/20' : 'bg-gray-400 border-2 border-gray-400 hover:bg-gray-500 hover:border-gray-600'
+        }`}
       >
-        <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${enabled ? 'translate-x-5' : 'translate-x-1'}`} />
+        <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition-all duration-200 ease-in-out ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`} />
       </button>
     </div>
     <div className={!enabled ? 'opacity-50 pointer-events-none' : ''}>
@@ -77,10 +88,9 @@ const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
 // --- Main Step Component ---
 
 const Step2_Criteria = () => {
-    // FIX: Add useShallow
     const { 
         projectDetails, 
-        criteriaSettings, // rename local prop to match store if needed, or mapping is fine
+        criteriaSettings, 
         saveCriteria 
     } = useWizardStore(useShallow(state => ({
         projectDetails: state.projectDetails,
@@ -88,9 +98,7 @@ const Step2_Criteria = () => {
         saveCriteria: state.saveCriteria
     })));
 
-    // Local state for edits before saving
-    // NOTE: In strict architecture, we might move this into Zustand actions, 
-    // but specific Step forms often keep draft state local until "Next".
+    // Local state for edits
     const [settings, setSettings] = useState(criteriaSettings);
     const [activeTab, setActiveTab] = useState('weights');
     
@@ -100,11 +108,20 @@ const Step2_Criteria = () => {
         return Object.values(settings.overallWeights).reduce((sum, val) => sum + val, 0);
     }, [settings.overallWeights]);
 
-    // Helpers to update deeply nested state
+    // Helpers
     const updateWeight = (cat, val) => {
+        const otherWeightsSum = Object.entries(settings.overallWeights)
+            .filter(([key]) => key !== cat)
+            .reduce((sum, [, val]) => sum + val, 0);
+
+        let newValue = Math.round(val);
+        if (otherWeightsSum + newValue > 100) {
+            newValue = 100 - otherWeightsSum;
+        }
+
         setSettings(prev => ({
             ...prev,
-            overallWeights: { ...prev.overallWeights, [cat]: val }
+            overallWeights: { ...prev.overallWeights, [cat]: newValue }
         }));
     };
 
@@ -123,35 +140,34 @@ const Step2_Criteria = () => {
 
     // Tabs Config
     const tabs = [
-        { id: 'weights', label: 'Potential Weights', icon: ScaleIcon },
-        { id: 'economic', label: 'Economic', icon: CurrencyDollarIcon },
-        { id: 'technical', label: 'Technical', icon: WrenchScrewdriverIcon },
-        { id: 'environmental', label: 'Environmental', icon: GlobeAltIcon },
-        { id: 'geological', label: 'Geological', icon: CubeTransparentIcon },
+        { id: 'weights', label: 'Potential Weights', icon: ScaleIcon, desc: 'Set importance of each category' },
+        { id: 'economic', label: 'Economic', icon: CurrencyDollarIcon, desc: 'Infrastructure and cost factors' },
+        { id: 'technical', label: 'Technical', icon: WrenchScrewdriverIcon, desc: 'Solar resource and terrain factors' },
+        { id: 'environmental', label: 'Environmental', icon: GlobeAltIcon, desc: 'Environmental protection criteria' },
+        { id: 'geological', label: 'Geological', icon: CubeTransparentIcon, desc: 'Soil and geological constraints' },
     ];
 
     const handleContinue = () => {
-        // Validation for manual mode
         if (!isStandardMode && totalWeight !== 100) {
             alert(`Total weighting must equal 100% (Currently ${totalWeight}%)`);
             return;
         }
-        saveCriteria(settings); // Sync to store and move next
+        saveCriteria(settings); 
     };
 
     // --- Tab Renders ---
 
     const renderWeightsTab = () => (
-        <div className="space-y-8 animate-fade-in-up">
-            <div>
-                <h3 className="text-lg font-bold text-gray-900">Category Weighting</h3>
-                <p className="text-sm text-gray-500 mt-1">
-                    Define the importance of each main category for the feasibility score. 
-                    {isStandardMode && <span className="text-amber-600 font-medium ml-1"> (Locked in Standard Mode)</span>}
+        <div className="h-full flex flex-col">
+            <div className="flex-shrink-0 mb-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-1">Potential Weighting</h3>
+                <p className="text-xs text-gray-600">
+                    Distribute the importance of each category. The total must be exactly 100%.
+                    {isStandardMode && <span className="block text-amber-600 font-semibold mt-1">⚠️ Standard mode: Values are preset and cannot be modified</span>}
                 </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-6">
                     <SliderSetting label="Economic Potential" value={settings.overallWeights.economic} onChange={v => updateWeight('economic', v)} disabled={isStandardMode} />
                     <SliderSetting label="Technical Potential" value={settings.overallWeights.technical} onChange={v => updateWeight('technical', v)} disabled={isStandardMode} />
@@ -162,52 +178,64 @@ const Step2_Criteria = () => {
                 </div>
             </div>
 
-            <div className={`mt-6 p-4 rounded-xl border flex justify-between items-center ${totalWeight === 100 ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`}>
-                <span className={`text-sm font-semibold ${totalWeight === 100 ? 'text-emerald-800' : 'text-red-800'}`}>Total Allocation</span>
-                <span className={`text-xl font-bold ${totalWeight === 100 ? 'text-emerald-700' : 'text-red-700'}`}>{totalWeight}%</span>
+            <div className="mt-8 pt-4 border-t border-gray-200">
+                <div className={`flex justify-between items-center font-bold text-lg ${totalWeight === 100 ? 'text-gray-800' : 'text-red-600'}`}>
+                    <span>Total Weight</span>
+                    <span>{totalWeight}%</span>
+                </div>
+                {totalWeight !== 100 && !isStandardMode && (<p className="text-xs text-red-600 mt-1 text-right">The total weight must be exactly 100% to continue.</p>)}
             </div>
         </div>
     );
 
     const renderFactorsTab = (sectionKey, factorKeys) => {
-        // Generic renderer for Economic/Tech/Env/Geo tabs
-        // Uses `settings[sectionKey]` data
         return (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in-up">
-                {factorKeys.map(key => {
-                    const factorData = settings[sectionKey][key];
-                    // Clean titles: powerDistance -> Power Distance
-                    const title = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-                    
-                    return (
-                        <FactorGroup 
-                            key={key} 
-                            title={title} 
-                            enabled={factorData.enabled} 
-                            onToggle={() => updateFactor(sectionKey, key, 'enabled', !factorData.enabled)} 
-                            disableToggle={isStandardMode}
-                        >
-                            <SliderSetting 
-                                label="Importance" 
-                                value={factorData.weight} 
-                                onChange={v => updateFactor(sectionKey, key, 'weight', v)} 
-                                min={0} max={20} 
-                                disabled={isStandardMode || !factorData.enabled} 
-                            />
-                            
-                            {/* Render buffers only if the setting has them (Tech might just have step) */}
-                            {(factorData.step !== undefined || factorData.buffer !== undefined) && (
-                                <StepAndBufferInput 
-                                    stepValue={factorData.step || 0}
-                                    bufferValue={factorData.buffer || 0} 
-                                    onBufferChange={v => updateFactor(sectionKey, key, 'buffer', v)} 
-                                    maxBuffer={sectionKey === 'economic' ? 2000 : 500} 
-                                    disabled={isStandardMode || !factorData.enabled}
-                                />
-                            )}
-                        </FactorGroup>
-                    );
-                })}
+             <div className="h-full flex flex-col">
+                <div className="flex-shrink-0 mb-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1)} Factors</h3>
+                  <p className="text-xs text-gray-600">
+                    Configure constraints and parameters.
+                    {isStandardMode && <span className="block text-amber-600 font-semibold mt-1">⚠️ Standard mode: Values are preset and cannot be modified</span>}
+                  </p>
+                </div>
+                <div className="flex-1 relative">
+                    <div className="absolute inset-0 overflow-y-auto pr-2 sm:pr-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            {factorKeys.map(key => {
+                                const factorData = settings[sectionKey][key];
+                                const title = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                                
+                                return (
+                                    <FactorGroup 
+                                        key={key} 
+                                        title={title} 
+                                        enabled={factorData.enabled} 
+                                        onToggle={() => updateFactor(sectionKey, key, 'enabled', !factorData.enabled)} 
+                                        disableToggle={isStandardMode}
+                                    >
+                                        <SliderSetting 
+                                            label="Factor Weight" 
+                                            value={factorData.weight} 
+                                            onChange={v => updateFactor(sectionKey, key, 'weight', v)} 
+                                            min={0} max={20} 
+                                            disabled={isStandardMode || !factorData.enabled} 
+                                        />
+                                        
+                                        {(factorData.step !== undefined || factorData.buffer !== undefined) && (
+                                            <StepAndBufferInput 
+                                                stepValue={factorData.step || 0}
+                                                bufferValue={factorData.buffer || 0} 
+                                                onBufferChange={v => updateFactor(sectionKey, key, 'buffer', v)} 
+                                                maxBuffer={sectionKey === 'economic' ? 2000 : 500} 
+                                                disabled={isStandardMode || !factorData.enabled}
+                                            />
+                                        )}
+                                    </FactorGroup>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     };
@@ -215,42 +243,48 @@ const Step2_Criteria = () => {
     return (
         <div className="flex flex-col lg:flex-row bg-white rounded-xl shadow-sm border border-gray-200 h-full overflow-hidden">
             {/* Sidebar */}
-            <aside className="w-full lg:w-64 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-200 flex-shrink-0">
-                <nav className="p-4 space-y-1">
-                    {tabs.map(tab => (
-                        <button 
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`w-full flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 
-                                ${activeTab === tab.id ? 'bg-white shadow-sm text-primary-blue ring-1 ring-black/5' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'}
-                            `}
-                        >
-                            <tab.icon className={`h-5 w-5 mr-3 ${activeTab === tab.id ? 'text-primary-blue' : 'text-gray-400'}`} />
-                            {tab.label}
+            <div className="hidden lg:block w-full lg:w-64 bg-gray-50 border-r border-gray-200 flex-shrink-0 relative z-10">
+                <div className="p-4 overflow-y-auto h-full">
+                    <h3 className="text-sm font-semibold text-gray-900 mb-3">Categories</h3>
+                    <nav className="space-y-1.5">
+                        {tabs.map((tab) => (
+                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} type="button" className={`w-full flex items-start text-left gap-3 p-2.5 rounded-lg transition-all duration-200 ${ activeTab === tab.id ? 'bg-primary-blue text-white shadow-sm' : 'hover:bg-white text-gray-700 hover:shadow-sm'}`}>
+                            <tab.icon className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                            <div>
+                            <div className="text-sm font-medium">{tab.label}</div>
+                            <div className={`text-xs ${activeTab === tab.id ? 'text-white/80' : 'text-gray-500'}`}>{tab.desc}</div>
+                            </div>
                         </button>
-                    ))}
-                </nav>
-            </aside>
+                        ))}
+                    </nav>
+                </div>
+            </div>
 
             {/* Content Area */}
             <div className="flex-1 flex flex-col min-h-0">
-                <div className="flex-1 overflow-y-auto p-6 lg:p-8">
-                    {activeTab === 'weights' && renderWeightsTab()}
-                    {activeTab === 'economic' && renderFactorsTab('economic', ['powerDistance', 'airportDistance', 'cityDistance', 'roadsDistance', 'railwaysDistance'])}
-                    {activeTab === 'technical' && renderFactorsTab('technical', ['ghi', 'slope', 'landUse'])}
-                    {activeTab === 'environmental' && renderFactorsTab('environmental', ['waterAreas', 'protectedAreas', 'historicSites', 'mines', 'militaryArea'])}
-                    {activeTab === 'geological' && renderFactorsTab('geological', ['faultLines'])}
+                <div className="flex-1 overflow-hidden p-4 sm:p-6">
+                    <div className="h-full">
+                        {activeTab === 'weights' && renderWeightsTab()}
+                        {activeTab === 'economic' && renderFactorsTab('economic', ['powerDistance', 'airportDistance', 'cityDistance', 'roadsDistance', 'railwaysDistance'])}
+                        {activeTab === 'technical' && renderFactorsTab('technical', ['ghi', 'slope', 'landUse'])}
+                        {activeTab === 'environmental' && renderFactorsTab('environmental', ['waterAreas', 'protectedAreas', 'historicSites', 'mines', 'militaryArea'])}
+                        {activeTab === 'geological' && renderFactorsTab('geological', ['faultLines'])}
+                    </div>
                 </div>
 
                 {/* Internal Step Footer */}
-                <div className="p-6 border-t border-gray-100 bg-gray-50/50 flex justify-end">
-                    <button 
-                        onClick={handleContinue} 
-                        className="flex items-center bg-primary-blue hover:bg-primary-blue/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-sm transition-all"
-                    >
-                        Save Criteria & Continue 
-                        <ChevronRightIcon className="ml-2 w-4 h-4" />
-                    </button>
+                <div className="border-t border-gray-200 px-4 sm:px-6 py-3 bg-gray-50 rounded-b-xl flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+                        <div className="text-xs text-gray-500">Project: <strong>{projectDetails.name}</strong></div>
+                        <button 
+                            onClick={handleContinue} 
+                            disabled={!isStandardMode && totalWeight !== 100}
+                            className="w-full sm:w-auto px-6 py-2 bg-primary-blue text-white rounded-lg text-sm font-semibold hover:bg-primary-blue/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Save Criteria & Continue 
+                            <ArrowRightIcon className="w-3 h-3" />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

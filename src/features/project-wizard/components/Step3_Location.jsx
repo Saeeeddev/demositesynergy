@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { api } from '../../../lib/axios';
 import { useWizardStore } from '../../../stores/useWizardStore';
 import LeafletMap from '../../../components/map/LeafletMap';
-import countyList from '../../../assets/data/countyList.json'; // Importing local JSON
+import countyList from '../../../assets/data/countyList.json'; 
 import { 
   PencilSquareIcon, 
   GlobeAmericasIcon, 
@@ -12,7 +10,10 @@ import {
   InformationCircleIcon, 
   ChevronDownIcon,
   XMarkIcon,
-  ExclamationCircleIcon
+  ExclamationCircleIcon,
+  MagnifyingGlassIcon,
+  TrashIcon,
+  ArrowPathIcon
 } from '@heroicons/react/24/outline';
 
 const SidebarSelectionCard = ({ active, onClick, icon: Icon, title }) => (
@@ -31,11 +32,31 @@ const SidebarSelectionCard = ({ active, onClick, icon: Icon, title }) => (
   </button>
 );
 
-const ErrorToast = ({ message, onClose }) => (
-    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[1000] flex items-center p-3 text-red-800 bg-red-50 border border-red-200 rounded-lg shadow-lg animate-fade-in-up">
-        <ExclamationCircleIcon className="w-5 h-5 mr-2 flex-shrink-0" />
-        <div className="text-xs font-semibold mr-4">{message}</div>
-        <button onClick={onClose}><XMarkIcon className="w-4 h-4" /></button>
+const ErrorToast = ({ message, onClose }) => {
+    if(!message) return null;
+    return (
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[2000] animate-bounce-in">
+            <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg shadow-lg flex items-center gap-3">
+                <ExclamationCircleIcon className="w-6 h-6 text-red-600" />
+                <div>
+                <h4 className="font-bold text-sm">Action Failed</h4>
+                <p className="text-xs">{message}</p>
+                </div>
+                <button onClick={onClose} className="ml-2 text-red-400 hover:text-red-700">
+                <XMarkIcon className="w-5 h-5" />
+                </button>
+            </div>
+        </div>
+    );
+};
+
+const LoadingOverlay = ({ message }) => (
+    <div className="absolute inset-0 z-[1500] bg-gray-600 bg-opacity-50 flex flex-col items-center justify-center text-white">
+        <svg className="animate-spin h-8 w-8 text-white mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p className="text-sm font-semibold">{message}</p>
     </div>
 );
 
@@ -55,13 +76,27 @@ const Step3_Location = () => {
   const [counties, setCounties] = useState([]);
   const [mapError, setMapError] = useState(null);
   const [loadingBoundary, setLoadingBoundary] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
 
-  // Constants
   const isDrawMode = projectDetails.scale === 'draw';
   const isCountyMode = projectDetails.scale === 'county';
   const MAX_AREA_SQ_KM = 52000;
   
-  // -- Sync Counties when Province Changes --
+  // -- Effects --
+
+  // 1. AUTO-START DRAWING: If in Draw Mode and no location is set, start drawing tool.
+  useEffect(() => {
+      if (isDrawMode && !locationData) {
+          // Small timeout to ensure map ref is ready and previous ops are cleared
+          const timer = setTimeout(() => {
+              mapRef.current?.startDrawing();
+          }, 200);
+          return () => clearTimeout(timer);
+      }
+  }, [isDrawMode, locationData]);
+
+  // 2. Update counties dropdown
   useEffect(() => {
     if (projectDetails.province) {
       setCounties(countyList[projectDetails.province]?.map(c => c.county) || []);
@@ -70,70 +105,123 @@ const Step3_Location = () => {
     }
   }, [projectDetails.province]);
 
-  // -- Map Event Handlers --
-  const handleMapDrawCreated = (customJson) => {
+  // 3. Handle County Selection (Administrative Mode Fetching)
+  useEffect(() => {
+    if (isCountyMode && projectDetails.county && projectDetails.province) {
+        if (locationData?.name === `${projectDetails.county}, ${projectDetails.province}`) return;
+
+        const fetchBoundary = async () => {
+            setLoadingBoundary(true);
+            setMapError(null);
+            
+            let fallbackOsmId = null;
+            if (countyList[projectDetails.province]) {
+                const found = countyList[projectDetails.province].find(c => c.county === projectDetails.county);
+                if (found) fallbackOsmId = found.osm_id;
+            }
+
+            try {
+                const searchName = encodeURIComponent(projectDetails.county);
+                const searchProvince = encodeURIComponent(projectDetails.province);
+                const nameUrl = `https://nominatim.openstreetmap.org/search?county=${searchName}&state=${searchProvince}&country=Iran&format=json&polygon_geojson=1&limit=1`;
+                
+                let response = await fetch(nameUrl);
+                let data = await response.json();
+                let feature = null;
+
+                if (response.ok && data && data.length > 0 && data[0].geojson) {
+                    feature = data[0].geojson;
+                } else if (fallbackOsmId) {
+                    const idUrl = `https://nominatim.openstreetmap.org/lookup?osm_ids=R${fallbackOsmId}&polygon_geojson=1&format=json`;
+                    const idRes = await fetch(idUrl);
+                    const idData = await idRes.json();
+                    if (idRes.ok && idData && idData.length > 0 && idData[0].geojson) {
+                        feature = idData[0].geojson;
+                    }
+                }
+
+                if (feature) {
+                    const formattedData = mapRef.current?.loadCountyBoundary(feature);
+                    const newLoc = {
+                        name: `${projectDetails.county}, ${projectDetails.province}`,
+                        type: 'county',
+                        data: { ...formattedData, properties: { ...formattedData.properties, osm_id: fallbackOsmId } }
+                    };
+                    updateLocationData(newLoc);
+                } else {
+                    throw new Error(`Could not retrieve boundary data for "${projectDetails.county}".`);
+                }
+
+            } catch (err) {
+                console.error(err);
+                setMapError("Failed to fetch location boundary. Please try Drawing Mode.");
+            } finally {
+                setLoadingBoundary(false);
+            }
+        };
+
+        fetchBoundary();
+    }
+  }, [projectDetails.county, projectDetails.province, isCountyMode]);
+
+  // -- Handlers --
+
+  const handleMapCreated = (customJson) => {
     const newData = { name: 'Custom Area', type: 'drawn_area', data: customJson };
-    updateLocationData(newData); // Local state in store for immediate preview
+    updateLocationData(newData);
     setMapError(null);
   };
 
   const handleMapError = (msg) => {
     setMapError(msg);
-    setTimeout(() => setMapError(null), 4000);
+    setTimeout(() => setMapError(null), 5000);
   };
 
   const handleMethodChange = (mode) => {
     handleScaleSelection(mode);
-    mapRef.current?.clearLayers(); // Clean slate on switch
+    updateLocationData(null);
+    setMapError(null);
+    mapRef.current?.deleteSelection();
+    
+    // Explicitly start drawing if switching to draw mode (redundant with useEffect but safer)
+    if (mode === 'draw') {
+        setTimeout(() => mapRef.current?.startDrawing(), 100);
+    }
   };
 
-  const handleSelectCounty = async (e) => {
-      const newCounty = e.target.value;
-      updateProjectDetails(e); // Sync store details
-      setLoadingBoundary(true);
-      setMapError(null);
+  const handleReset = () => {
+    // 1. Clear Map
+    mapRef.current?.deleteSelection();
+    // 2. Clear State
+    updateLocationData(null);
+    setMapError(null);
+    // 3. Restart Drawing (useEffect will pick this up because isDrawMode is true and locationData is null)
+  };
 
-      // Find OSM ID if available
-      const countyMeta = countyList[projectDetails.province]?.find(c => c.county === newCounty);
-      
-      try {
-          if (!newCounty) throw new Error("Invalid selection");
+  const handleSearch = async () => {
+    if (!searchQuery || isSearching) return;
+    setIsSearching(true);
+    setMapError(null);
 
-          // SIMULATION: Fetching geometry from standard API
-          // In real app, this hits the `axios` instance which might proxy to OpenStreetMap or local GIS DB
-          // For now, we simulate a successful geometry fetch or fail.
-          
-          const params = {
-              q: `${newCounty}, ${projectDetails.province}, Iran`,
-              polygon_geojson: 1,
-              format: 'json',
-              limit: 1
-          };
-          
-          // Actual network call using standard OSM endpoint for this demo since we don't have the GIS server running
-          const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(params.q)}&polygon_geojson=1&format=json`);
-          const data = await res.json();
-
-          if (data && data.length > 0 && data[0].geojson) {
-              // Valid Geometry Found
-              const normalizedData = mapRef.current?.loadBoundary(data[0].geojson);
-              
-              const newData = { 
-                  name: `${newCounty}, ${projectDetails.province}`, 
-                  type: 'county', 
-                  data: normalizedData 
-              };
-              updateLocationData(newData);
-          } else {
-              setMapError(`Could not find boundary for ${newCounty}. Try Drawing instead.`);
-          }
-
-      } catch (err) {
-          console.error(err);
-          setMapError("Failed to fetch location boundary. Please use Draw Mode.");
-      } finally {
-          setLoadingBoundary(false);
-      }
+    try {
+        const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&limit=1&countrycodes=ir`;
+        const response = await fetch(url);
+        
+        if(!response.ok) throw new Error("Service unavailable");
+        
+        const data = await response.json();
+        if (data && data.length > 0) {
+            const { lat, lon } = data[0];
+            mapRef.current?.flyToLocation(parseFloat(lat), parseFloat(lon), 13);
+            setSearchQuery('');
+        } else {
+            setMapError(`Location "${searchQuery}" not found in Iran.`);
+        }
+    } catch (error) {
+        setMapError("Search failed. Please try again.");
+    } finally {
+        setIsSearching(false);
+    }
   };
 
   const areaSize = locationData?.data?.properties?.areaSqKm || 0;
@@ -142,41 +230,51 @@ const Step3_Location = () => {
   return (
     <div className="flex flex-col lg:flex-row flex-1 w-full relative h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       
-      {/* 1. Map Panel (Left/Top) */}
-      <div className="flex-1 relative bg-gray-200 lg:order-1 h-[400px] lg:h-auto min-h-0">
+      {/* 1. Map Display (Left/Top) */}
+      <div className="flex-1 relative bg-gray-200 lg:order-1 h-[500px] lg:h-auto min-h-0">
         <LeafletMap 
             ref={mapRef} 
             initialData={locationData}
-            onDrawComplete={handleMapDrawCreated}
-            onEditComplete={handleMapDrawCreated} // Updates store on edit too
+            onCreated={handleMapCreated}
             onError={handleMapError}
         />
         
-        {/* Loading Overlay */}
-        {loadingBoundary && (
-            <div className="absolute inset-0 bg-white/60 z-[999] flex flex-col items-center justify-center backdrop-blur-sm">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-blue mb-2"></div>
-                <p className="text-xs font-semibold text-gray-700">Fetching Boundary...</p>
-            </div>
-        )}
-
-        {/* Map Toast */}
+        {loadingBoundary && <LoadingOverlay message={`Fetching boundary for ${projectDetails.county}...`} />}
         {mapError && <ErrorToast message={mapError} onClose={() => setMapError(null)} />}
         
-        {/* Legend/Mode Indicator on Map */}
-        <div className="absolute top-4 left-4 z-[400] bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg shadow border border-gray-200 text-xs font-semibold text-gray-600">
-            Mode: <span className="text-primary-blue">{isDrawMode ? "Custom Drawing" : "Administrative"}</span>
-        </div>
+        {/* Draw Mode Search Bar */}
+        {isDrawMode && (
+          <div className="absolute bottom-4 left-4 right-4 z-[1000]">
+            <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-lg shadow-md border border-gray-200/50">
+              <div className="pl-3"><MagnifyingGlassIcon className="h-4 w-4 text-gray-400" /></div>
+              <input 
+                type="text" 
+                placeholder="Search location in Iran..." 
+                value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)} 
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()} 
+                className="w-full px-2 py-2 text-xs text-gray-700 border-none bg-transparent focus:outline-none placeholder:text-gray-400" 
+              />
+              <button 
+                onClick={handleSearch} 
+                disabled={isSearching} 
+                className="px-3 py-2 text-xs font-medium text-white bg-primary-blue rounded-r-lg hover:bg-primary-blue/90 transition-colors disabled:bg-gray-400"
+              >
+                {isSearching ? '...' : 'Search'}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* 2. Controls Panel (Right/Bottom) */}
+      {/* 2. Side Panel (Right/Bottom) */}
       <aside className="w-full lg:w-80 bg-gray-50 border-t lg:border-t-0 lg:border-l border-gray-200 flex-shrink-0 flex flex-col p-0 lg:order-2">
         
-        {/* -- Method Selector -- */}
-        <div className="p-5 border-b border-gray-200 bg-white">
+        {/* Method Selection */}
+        <div className="p-4 border-b border-gray-200 bg-white">
             <div className="flex items-center gap-2 mb-3">
-                <MapPinIcon className="h-4 w-4 text-primary-blue" />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500">Selection Method</h3>
+                <MapPinIcon className="h-5 w-5 text-primary-blue" />
+                <h3 className="text-sm font-semibold text-gray-900">Selection Method</h3>
             </div>
             <div className="grid grid-cols-2 gap-3">
                 <SidebarSelectionCard 
@@ -194,50 +292,32 @@ const Step3_Location = () => {
             </div>
         </div>
 
-        {/* -- Dynamic Controls -- */}
-        <div className="p-5 space-y-5 overflow-y-auto flex-grow">
+        <div className="p-4 space-y-4 overflow-y-auto flex-grow">
             
-            {/* Draw Mode Info */}
-            {isDrawMode && (
-                <div className="space-y-3 animate-fade-in-up">
-                    <p className="text-xs text-gray-500 leading-relaxed">
-                        Use the drawing tool to define a precise area for analysis. Ideal for custom land parcels or non-standard regions.
-                    </p>
-                    <button 
-                        onClick={() => mapRef.current?.startDrawing()} 
-                        className="w-full py-2.5 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-100 hover:border-gray-400 transition-all flex items-center justify-center gap-2 shadow-sm"
-                    >
-                        <PencilSquareIcon className="h-4 w-4" /> Start Drawing
-                    </button>
-                    <button 
-                        onClick={() => { mapRef.current?.clearLayers(); updateLocationData(null); }}
-                        className="w-full py-2.5 text-red-600 text-xs font-medium hover:underline"
-                    >
-                        Clear Map
-                    </button>
-                </div>
-            )}
-
-            {/* Administrative Mode Inputs */}
+            {/* Administrative Controls */}
             {isCountyMode && (
-                <div className="space-y-4 animate-fade-in-up">
-                    
-                    <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 flex items-start gap-2.5">
-                        <InformationCircleIcon className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <p className="text-[10px] text-blue-800 leading-relaxed">
-                            Boundaries are sourced from OpenStreetMap. For precise legal boundaries, we recommend the <strong>Draw Area</strong> tool.
+                <div className="flex flex-col gap-4 animate-fadeIn">
+                    <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 flex items-start gap-3">
+                        <InformationCircleIcon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-xs text-blue-800 leading-relaxed">
+                            Administrative boundaries are sourced from public datasets. For precise parcels, use the <strong>Draw Area</strong> mode.
                         </p>
                     </div>
 
                     <div className="space-y-3">
                         <div className="relative">
-                            <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Province</label>
+                            <label className="block text-xs font-semibold text-gray-500 mb-1.5 ml-1 uppercase tracking-wide">Province</label>
                             <div className="relative">
                                 <select 
                                     name="province" 
                                     value={projectDetails.province} 
-                                    onChange={updateProjectDetails} 
-                                    className="w-full appearance-none bg-white border border-gray-300 text-gray-700 text-sm rounded-lg p-2.5 focus:outline-none focus:ring-1 focus:ring-primary-blue"
+                                    onChange={(e) => {
+                                        updateProjectDetails(e);
+                                        // Reset county when province changes
+                                        const event = { target: { name: 'county', value: '' } };
+                                        updateProjectDetails(event);
+                                    }} 
+                                    className="w-full appearance-none bg-white border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 focus:outline-none focus:ring-1 focus:ring-primary-blue"
                                 >
                                     <option value="">Select Province...</option>
                                     {provinces.map(p => <option key={p} value={p}>{p}</option>)}
@@ -247,14 +327,14 @@ const Step3_Location = () => {
                         </div>
 
                         <div className="relative">
-                            <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">County</label>
+                            <label className="block text-xs font-semibold text-gray-500 mb-1.5 ml-1 uppercase tracking-wide">County</label>
                             <div className="relative">
                                 <select 
                                     name="county" 
                                     value={projectDetails.county} 
-                                    onChange={handleSelectCounty} 
+                                    onChange={updateProjectDetails} 
                                     disabled={!projectDetails.province}
-                                    className="w-full appearance-none bg-white border border-gray-300 text-gray-700 text-sm rounded-lg p-2.5 focus:outline-none focus:ring-1 focus:ring-primary-blue disabled:bg-gray-100 disabled:text-gray-400"
+                                    className="w-full appearance-none bg-white border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 focus:outline-none focus:ring-1 focus:ring-primary-blue disabled:bg-gray-100 disabled:text-gray-400"
                                 >
                                     <option value="">Select County...</option>
                                     {counties.map(c => <option key={c} value={c}>{c}</option>)}
@@ -265,37 +345,62 @@ const Step3_Location = () => {
                     </div>
                 </div>
             )}
-        </div>
 
-        {/* -- Summary / Confirm -- */}
-        {locationData && (
-            <div className="p-5 bg-white border-t border-gray-200 mt-auto shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.02)]">
-                <div className={`rounded-lg p-3 mb-3 border ${isAreaTooLarge ? 'bg-red-50 border-red-200' : 'bg-gray-50 border-gray-200'}`}>
-                    <div className="flex justify-between items-center text-xs text-gray-500 mb-1">
-                        <span>Selected Area</span>
-                        {isAreaTooLarge && <span className="text-red-600 font-bold flex items-center"><XMarkIcon className="w-3 h-3 mr-1"/>Too Large</span>}
+            {/* Draw Mode Instructions */}
+            {isDrawMode && !locationData && (
+                <div className="flex flex-col items-center justify-center p-6 text-center text-gray-500 space-y-3">
+                    <div className="p-3 bg-blue-50 rounded-full">
+                        <PencilSquareIcon className="w-6 h-6 text-primary-blue" />
                     </div>
-                    <div className="flex justify-between items-baseline">
-                        <span className="font-semibold text-gray-800 text-sm truncate max-w-[150px]">{locationData.name}</span>
-                        <span className={`font-bold font-mono text-sm ${isAreaTooLarge ? 'text-red-600' : 'text-primary-blue'}`}>
-                            {areaSize.toLocaleString()} km²
-                        </span>
+                    <div>
+                        <h4 className="text-sm font-semibold text-gray-900">Draw on Map</h4>
+                        <p className="text-xs mt-1">Click points on the map to define your area. Double click to finish.</p>
                     </div>
                 </div>
+            )}
+        </div>
 
-                <button 
-                    onClick={() => saveLocation(locationData)} // Next Step
-                    disabled={isAreaTooLarge}
-                    className={`
-                        w-full py-2.5 px-4 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-md
-                        ${isAreaTooLarge 
-                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200' 
-                            : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-lg'
-                        }
-                    `}
-                >
-                    {isAreaTooLarge ? 'Select Smaller Area' : <>Confirm Location <CheckIcon className="w-4 h-4" /></>}
-                </button>
+        {/* Selected Area Summary & Reset */}
+        {locationData && (
+            <div className="p-4 border-t border-gray-200 bg-white mt-auto">
+                <div className="flex justify-between items-center mb-3">
+                    <h5 className="text-sm font-semibold text-gray-800">Selected Area</h5>
+                </div>
+
+                <div className={`bg-gray-50 p-3 rounded-lg border space-y-2 ${isAreaTooLarge ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}>
+                    <div className="flex justify-between">
+                        <span className="text-xs font-medium text-gray-600">Name:</span>
+                        <span className="text-xs font-semibold truncate max-w-[150px]">{locationData.name}</span>
+                    </div>
+                    {areaSize > 0 && (
+                        <div className="flex justify-between border-t border-gray-200/50 pt-2 mt-2">
+                            <span className={`text-xs font-medium ${isAreaTooLarge ? 'text-red-700' : 'text-gray-600'}`}>Area:</span>
+                            <span className={`text-xs font-bold ${isAreaTooLarge ? 'text-red-700' : 'text-primary-blue'}`}>{areaSize.toLocaleString()} km²</span>
+                        </div>
+                    )}
+                </div>
+
+                <div className="flex gap-2 mt-3">
+                    {/* RESET BUTTON */}
+                    <button 
+                        onClick={handleReset} 
+                        className="px-3 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center justify-center transition-colors shadow-sm"
+                        title="Reset Drawing"
+                    >
+                        <TrashIcon className="h-5 w-5" />
+                    </button>
+
+                    {/* CONFIRM BUTTON */}
+                    <button 
+                        onClick={() => saveLocation(locationData)} 
+                        disabled={isAreaTooLarge}
+                        className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2 ${
+                            isAreaTooLarge ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-primary-blue text-white hover:bg-primary-blue/90'
+                        }`}
+                    >
+                        {isAreaTooLarge ? 'Area Too Large' : <><CheckIcon className="h-4 w-4" /> Confirm Location</>}
+                    </button>
+                </div>
             </div>
         )}
       </aside>

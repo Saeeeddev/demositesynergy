@@ -14,32 +14,7 @@ import Step1_Details from './components/Step1_Details';
 import Step2_Criteria from './components/Step2_Criteria';
 import Step3_Location from './components/Step3_Location';
 import Step4_Financial from './components/Step4_Financial';
-import ReviewPage from './components/ReviewPage'; // We will create this in Batch 6
-
-const StepIndicator = ({ stepNumber, label, currentStep, isCompleted }) => {
-  let colorClass = "text-gray-400";
-  let iconContent = stepNumber;
-
-  if (isCompleted) {
-    colorClass = "text-emerald-600";
-    iconContent = <CheckIcon className="w-3 h-3" />;
-  } else if (currentStep === stepNumber) {
-    colorClass = "text-primary-blue";
-  }
-
-  return (
-    <div className={`flex items-center text-xs font-medium ${colorClass}`}>
-      <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium border shadow-sm mr-1.5 transition-colors
-        ${isCompleted ? 'bg-emerald-500 border-emerald-500 text-white' : ''}
-        ${currentStep === stepNumber ? 'bg-primary-blue border-primary-blue text-white' : ''}
-        ${!isCompleted && currentStep !== stepNumber ? 'bg-white border-gray-200 text-gray-500' : ''}
-      `}>
-        {iconContent}
-      </div>
-      <span className="hidden sm:inline">{label}</span>
-    </div>
-  );
-};
+import ReviewPage from './components/ReviewPage';
 
 const NewProjectPage = () => {
   const navigate = useNavigate();
@@ -56,7 +31,6 @@ const NewProjectPage = () => {
   };
 
   const handleExit = () => {
-      // confirm logic if needed
       navigate('/projects');
   };
 
@@ -77,9 +51,7 @@ const NewProjectPage = () => {
             >
                 <ArrowLeftIcon className="w-5 h-5" />
             </button>
-            <div className="p-2 bg-primary-blue/10 rounded-lg">
-                <BuildingOfficeIcon className="h-6 w-6 text-primary-blue" />
-            </div>
+            <BuildingOfficeIcon className="h-6 w-6 text-primary-blue" />
             <div>
                 <h1 className="text-xl font-bold text-gray-900">New Project</h1>
                 <p className="text-xs text-gray-500">Step {currentStep} of 4</p>
@@ -87,19 +59,41 @@ const NewProjectPage = () => {
         </div>
 
         {/* Breadcrumb Steps */}
-        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-100">
-            <StepIndicator stepNumber={1} label="Details" currentStep={currentStep} isCompleted={currentStep > 1} />
-            <ArrowRightIcon className="w-3 h-3 text-gray-300" />
-            <StepIndicator stepNumber={2} label="Criteria" currentStep={currentStep} isCompleted={currentStep > 2} />
-            <ArrowRightIcon className="w-3 h-3 text-gray-300" />
-            <StepIndicator stepNumber={3} label="Location" currentStep={currentStep} isCompleted={currentStep > 3} />
-            <ArrowRightIcon className="w-3 h-3 text-gray-300" />
-            <StepIndicator stepNumber={4} label="Financial" currentStep={currentStep} isCompleted={currentStep > 4} />
+        <div className="flex items-center text-xs gap-2">
+            <div className={`flex items-center ${currentStep >= 1 ? 'text-primary-blue' : 'text-gray-400'}`}>
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm ${currentStep >= 1 ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    {currentStep > 1 ? <CheckIcon className="w-3 h-3" /> : '1'}
+                </div>
+                <span className={`ml-1.5 font-medium hidden sm:inline ${currentStep === 1 ? 'text-gray-900' : ''}`}>Details</span>
+            </div>
+            <ArrowRightIcon className="w-3 h-3 text-gray-400" />
+            
+            <div className={`flex items-center ${currentStep >= 2 ? 'text-primary-blue' : 'text-gray-400'}`}>
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm ${currentStep >= 2 ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    {currentStep > 2 ? <CheckIcon className="w-3 h-3" /> : '2'}
+                </div>
+                <span className={`ml-1.5 font-medium hidden sm:inline ${currentStep === 2 ? 'text-gray-900' : ''}`}>Criteria</span>
+            </div>
+            <ArrowRightIcon className="w-3 h-3 text-gray-400" />
+            
+            <div className={`flex items-center ${currentStep >= 3 ? 'text-primary-blue' : 'text-gray-400'}`}>
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm ${currentStep >= 3 ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    {currentStep > 3 ? <CheckIcon className="w-3 h-3" /> : '3'}
+                </div>
+                <span className={`ml-1.5 font-medium hidden sm:inline ${currentStep === 3 ? 'text-gray-900' : ''}`}>Location</span>
+            </div>
+            <ArrowRightIcon className="w-3 h-3 text-gray-400" />
+            
+            <div className={`flex items-center ${currentStep >= 4 ? 'text-primary-blue' : 'text-gray-400'}`}>
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm ${currentStep >= 4 ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    4
+                </div>
+                <span className={`ml-1.5 font-medium hidden sm:inline ${currentStep === 4 ? 'text-gray-900' : ''}`}>Financial</span>
+            </div>
         </div>
       </div>
 
       {/* Wizard Content Container */}
-      {/* IMPORTANT: Step components themselves are responsible for their internal layout (scrolling/footers) to allow for step-specific designs like Maps */}
       <div className="flex-1 min-h-0"> 
         {currentStep === 1 && <Step1_Details />}
         {currentStep === 2 && <Step2_Criteria />}

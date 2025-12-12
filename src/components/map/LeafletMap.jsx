@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import L from 'leaflet';
 import 'leaflet-draw';
+import 'leaflet/dist/leaflet.css';
+import 'leaflet-draw/dist/leaflet.draw.css';
 
-// Ensure specific icons are loaded for Leaflet in Vite
+// Ensure specific icons are loaded for Leaflet
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-// Fix for default Leaflet marker icons
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
@@ -28,48 +29,56 @@ function getLayerAreaSqKm(layer) {
 
 function formatLayerToJson(layer) {
   const geoJSON = layer.toGeoJSON();
+  
+  if (!geoJSON.geometry || !geoJSON.geometry.coordinates) return null;
+
   let coordinates = geoJSON.geometry.coordinates[0];
   
-  // Flatten if nested too deep (GeoJSON Polygon standard)
-  if (coordinates.length > 0 && Array.isArray(coordinates[0][0])) {
-      coordinates = coordinates[0]; 
+  // Handle nested arrays
+  while (coordinates.length > 0 && Array.isArray(coordinates[0]) && Array.isArray(coordinates[0][0])) {
+      coordinates = coordinates[0];
   }
 
-  // Convert to simple lat/lon object array
-  const formattedPoints = coordinates.map(coord => ({ lat: coord[1], lon: coord[0] }));
-  
-  // Remove closing point if duplicate
-  if (formattedPoints.length > 1) {
-      const first = formattedPoints[0];
-      const last = formattedPoints[formattedPoints.length - 1];
-      if (first.lat === last.lat && first.lon === last.lon) {
-          formattedPoints.pop();
-      }
+  // Close the polygon loop if necessary
+  if (coordinates.length > 1) {
+    const firstPoint = coordinates[0];
+    const lastPoint = coordinates[coordinates.length - 1];
+    if (firstPoint[0] === lastPoint[0] && firstPoint[1] === lastPoint[1]) {
+      coordinates = coordinates.slice(0, -1);
+    }
   }
+
+  const formattedPoints = coordinates.map(coord => ({
+    lat: coord[1],
+    lon: coord[0]
+  }));
+
+  const areaSqKm = getLayerAreaSqKm(layer);
 
   return {
-    coordinates: { type: "polygon", points: formattedPoints },
-    properties: { areaSqKm: parseFloat(getLayerAreaSqKm(layer).toFixed(2)) },
+    coordinates: {
+      type: "polygon",
+      points: formattedPoints
+    },
+    properties: {
+      areaSqKm: parseFloat(areaSqKm.toFixed(2))
+    }
   };
 }
 
-const LeafletMap = forwardRef(({ initialData, onDrawComplete, onEditComplete, onError }, ref) => {
+const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
   const mapContainerRef = useRef(null);
-  
-  // Instance Refs
   const mapInstance = useRef(null);
-  const drawnItems = useRef(null);     // Editable layers (Draw mode)
-  const boundaryLayer = useRef(null);  // Read-only layers (Admin mode)
+  const drawnItems = useRef(null);
+  const boundaryLayer = useRef(null);
   const drawControl = useRef(null);
-  const editControl = useRef(null);
 
-  // --- Initialization ---
+  // --- Initialize Map ---
   useEffect(() => {
     if (!mapContainerRef.current || mapInstance.current) return;
 
     const iranBounds = L.latLngBounds([[24.5, 44], [39.8, 63.4]]);
     
-    // Create Map
     const map = L.map(mapContainerRef.current, {
       zoomControl: false,
       attributionControl: false,
@@ -79,145 +88,124 @@ const LeafletMap = forwardRef(({ initialData, onDrawComplete, onEditComplete, on
 
     mapInstance.current = map;
 
-    // Layers (Satellite + Hybrid)
-    L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { maxZoom: 19 }).addTo(map);
+    setTimeout(() => { map.invalidateSize(); }, 250);
+
+    // Layers
     map.createPane('labels');
     map.getPane('labels').style.zIndex = 399;
     map.getPane('labels').style.pointerEvents = 'none';
-    L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { pane: 'labels' }).addTo(map);
 
+    L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { attribution: '© Google Satellite' }).addTo(map);
+    L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution: '© Google Hybrid', pane: 'labels' }).addTo(map);
     L.control.zoom({ position: 'topright' }).addTo(map);
 
     // Feature Groups
     drawnItems.current = new L.FeatureGroup().addTo(map);
     boundaryLayer.current = new L.FeatureGroup().addTo(map);
 
-    // Draw Controls
+    // Draw Controls (Polygon Only, No Edit Toolbar)
     drawControl.current = new L.Draw.Polygon(map, {
       allowIntersection: false,
       showArea: false,
-      shapeOptions: { color: '#0ea5e9', clickable: true }, // primary-blue
-      drawError: { color: '#ef4444', message: '<strong>Error:</strong> Shapes cannot intersect!' } // rose-500
+      shapeOptions: { color: '#0ea5e9', clickable: true },
+      drawError: { color: '#e11d48', message: '<strong>Error:</strong> Shape edges cannot cross!' }
     });
 
-    editControl.current = new L.EditToolbar.Edit(map, {
-      featureGroup: drawnItems.current,
-    });
-
-    // --- Events ---
+    // Events
     map.on(L.Draw.Event.CREATED, (event) => {
       const layer = event.layer;
       const area = getLayerAreaSqKm(layer);
 
       if (area > MAX_AREA_SQ_KM) {
+        map.removeLayer(layer);
         if (onError) onError(`Area too large! (${area.toFixed(0)} km²). Limit is ${MAX_AREA_SQ_KM.toLocaleString()}.`);
-        return; // Don't add layer
+        return;
       }
 
-      // Enforce single shape rule
-      drawnItems.current.clearLayers(); 
+      drawnItems.current.clearLayers();
       drawnItems.current.addLayer(layer);
       
-      if (onDrawComplete) onDrawComplete(formatLayerToJson(layer));
+      const customJson = formatLayerToJson(layer);
+      if (onCreated && customJson) onCreated(customJson);
     });
-
-    map.on(L.Draw.Event.EDITED, (event) => {
-      const layers = event.layers;
-      // We assume single layer for project
-      layers.eachLayer(layer => {
-         const json = formatLayerToJson(layer);
-         // Check size again on edit
-         if (json.properties.areaSqKm > MAX_AREA_SQ_KM) {
-             if (onError) onError(`Edited area is too large.`);
-         }
-         if (onEditComplete) onEditComplete(json);
-      });
-    });
-
-    // Invalidate size fix for layout shifts
-    setTimeout(() => { map.invalidateSize(); }, 300);
 
     return () => {
       map.remove();
       mapInstance.current = null;
     };
-  }, []); // Only runs once
+  }, []);
 
-  // --- Sync Initial Data (e.g., Back button navigation) ---
+  // --- Sync Data ---
   useEffect(() => {
-    if (!mapInstance.current || !initialData) return;
+    if (!mapInstance.current) return;
+    
+    // Safety check
+    if (!initialData || !initialData.data || !initialData.data.coordinates?.points) {
+        if (initialData === null && drawnItems.current) {
+             drawnItems.current.clearLayers();
+             boundaryLayer.current.clearLayers();
+        }
+        return;
+    }
 
-    // Determine type based on provided structure or guess
-    const points = initialData.data?.coordinates?.points;
-    if (!points || points.length === 0) return;
-
+    const points = initialData.data.coordinates.points;
     const latLngs = points.map(p => [p.lat, p.lon]);
     
-    // Clear everything first
-    drawnItems.current.clearLayers();
-    boundaryLayer.current.clearLayers();
+    if (latLngs.length === 0) return;
 
-    let layer;
-    
-    if (initialData.type === 'county') {
-        // Read-only blue fill
-        layer = L.polygon(latLngs, { color: '#0ea5e9', weight: 2, fillOpacity: 0.2, interactive: false });
-        boundaryLayer.current.addLayer(layer);
-    } else {
-        // Editable line
-        layer = L.polygon(latLngs, { color: '#0ea5e9' });
-        drawnItems.current.addLayer(layer);
+    if (drawnItems.current) drawnItems.current.clearLayers();
+    if (boundaryLayer.current) boundaryLayer.current.clearLayers();
+
+    if (initialData.type === 'drawn_area') {
+        const poly = L.polygon(latLngs, { color: '#0ea5e9' });
+        drawnItems.current.addLayer(poly);
+        // We don't force fitBounds here to keep the user's view stable
+    } else if (initialData.type === 'county') {
+        const poly = L.polygon(latLngs, {
+            color: '#0ea5e9', weight: 2, opacity: 1, fillColor: '#0ea5e9', fillOpacity: 0.2, interactive: false
+        });
+        boundaryLayer.current.addLayer(poly);
+        mapInstance.current.fitBounds(poly.getBounds(), { padding: [20, 20] });
     }
-
-    if (layer) {
-        mapInstance.current.fitBounds(layer.getBounds(), { padding: [50, 50] });
-    }
-
   }, [initialData]);
 
-  // --- Exposed Methods ---
+  // --- Imperative Handle ---
   useImperativeHandle(ref, () => ({
     startDrawing: () => {
-      drawnItems.current.clearLayers();
-      boundaryLayer.current.clearLayers();
-      drawControl.current.enable();
+        // Ensure clean state before drawing
+        if (drawnItems.current) drawnItems.current.clearLayers();
+        if (boundaryLayer.current) boundaryLayer.current.clearLayers();
+        if (drawControl.current) drawControl.current.enable();
     },
     
-    startEditing: () => {
-      if (drawnItems.current.getLayers().length > 0) {
-        editControl.current.enable();
-      }
+    deleteSelection: () => {
+        if (drawnItems.current) drawnItems.current.clearLayers();
+        if (boundaryLayer.current) boundaryLayer.current.clearLayers();
+        // Also disable draw control just in case it was pending
+        if (drawControl.current) drawControl.current.disable(); 
     },
     
-    stopEditing: () => {
-      editControl.current.save();
-      editControl.current.disable();
+    flyToLocation: (lat, lon, zoom) => {
+        if (mapInstance.current) mapInstance.current.flyTo([lat, lon], zoom);
     },
     
-    cancelEditing: () => {
-      editControl.current.revertLayers();
-      editControl.current.disable();
-    },
-    
-    clearLayers: () => {
-      drawnItems.current.clearLayers();
-      boundaryLayer.current.clearLayers();
-    },
-
-    loadBoundary: (geoJsonFeature) => {
-        drawnItems.current.clearLayers();
+    loadCountyBoundary: (geojsonFeature) => {
+        if (!boundaryLayer.current || !mapInstance.current) return;
         boundaryLayer.current.clearLayers();
+        drawnItems.current.clearLayers(); 
         
-        const layer = L.geoJSON(geoJsonFeature, {
+        const countyLayer = L.geoJSON(geojsonFeature, {
             style: { color: '#0ea5e9', weight: 2, opacity: 1, fillColor: '#0ea5e9', fillOpacity: 0.2 },
             interactive: false
         });
         
-        boundaryLayer.current.addLayer(layer);
-        if (mapInstance.current) {
-            mapInstance.current.fitBounds(layer.getBounds(), { padding: [20, 20] });
+        boundaryLayer.current.addLayer(countyLayer);
+        if (countyLayer.getBounds().isValid()) mapInstance.current.fitBounds(countyLayer.getBounds());
+        
+        if (countyLayer.getLayers().length > 0) {
+             return formatLayerToJson(countyLayer.getLayers()[0]);
         }
-        return formatLayerToJson(layer.getLayers()[0]); // Return normalized data for storage
+        return null;
     }
   }));
 

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-// --- Default States from Old Version ---
+// --- Default States ---
 
 const initialProjectDetails = {
   name: '',
@@ -13,7 +13,7 @@ const initialProjectDetails = {
   province: '',
   county: '',
   shapeID: '',
-  analysisMode: null, // 'standard' or 'custom'
+  analysisMode: null, 
 };
 
 const initialCriteriaSettings = {
@@ -60,19 +60,17 @@ export const useWizardStore = create((set, get) => ({
   currentStep: 1,
   projectType: null, // 'solar', 'wind'
   projectDetails: initialProjectDetails,
-  criteriaSettings: initialCriteriaSettings, // Pre-populated to allow editing
+  criteriaSettings: initialCriteriaSettings,
   locationData: null,
   financialSettings: initialFinancialSettings,
 
   // --- ACTIONS ---
 
-  // Navigation
   setProjectType: (type) => set({ projectType: type, currentStep: 1 }),
   goToStep: (step) => set({ currentStep: step }),
   nextStep: () => set((state) => ({ currentStep: Math.min(state.currentStep + 1, 5) })),
   prevStep: () => set((state) => ({ currentStep: Math.max(state.currentStep - 1, 1) })),
   
-  // Step 1: Details
   updateProjectDetails: (e) => {
     const { name, value } = e.target;
     set((state) => {
@@ -81,17 +79,17 @@ export const useWizardStore = create((set, get) => ({
       // Auto-update financial capacity if details capacity changes
       if (name === 'capacity') {
         const numVal = parseFloat(value) || 0;
-        // Need to update nested financial state deeply
         const newFin = JSON.parse(JSON.stringify(state.financialSettings));
         newFin.project_basics.capacity_mw = numVal;
         return { projectDetails: updated, financialSettings: newFin };
       }
 
-      // Reset Location/County logic
+      // Reset Location/County logic when province changes
       if (name === 'province') {
         updated.county = '';
         updated.shapeID = '';
-        return { projectDetails: updated }; // leave financials alone
+        // Note: locationData needs to be cleared manually via handleScaleSelection usually, 
+        // but here we just update inputs.
       }
 
       return { projectDetails: updated };
@@ -102,11 +100,8 @@ export const useWizardStore = create((set, get) => ({
     projectDetails: { ...state.projectDetails, analysisMode: mode }
   })),
 
-  // Step 2: Criteria
-  // Replaces the whole object (usually triggered by "Save" on Step 2)
   saveCriteria: (settings) => set({ criteriaSettings: settings, currentStep: 3 }),
 
-  // Step 3: Location
   handleScaleSelection: (scale) => set((state) => ({
     projectDetails: { ...state.projectDetails, scale, province: '', county: '', shapeID: '' },
     locationData: null
@@ -114,41 +109,26 @@ export const useWizardStore = create((set, get) => ({
   
   saveLocation: (data) => set({ locationData: data, currentStep: 4 }),
 
-  updateLocationData: (data) => set({ locationData: data }), // Helper for Map edits without changing step
+  updateLocationData: (data) => set({ locationData: data }),
 
-  // Step 4: Financials
-  // Handles deep nested updates like "opex_details.personnel.num_engineers"
   updateFinancialNested: (e) => {
-    // 1. Guard against non-events to prevent direct loop calls
     if (!e || !e.target) return;
-
     let { name, value } = e.target;
-    // ensure numbers are numbers
     value = e.target.type === 'number' ? (parseFloat(value) || 0) : value;
-    if (e.target) {
-        name = e.target.name;
-        value = e.target.type === 'number' ? (parseFloat(e.target.value) || 0) : e.target.value;
-    } else {
-        // Direct value passed (from custom handlers)
-        return; // we don't support non-event updates in this implementation unless specific
-    }
 
     set((state) => {
       const keys = name.split('.');
       const newState = JSON.parse(JSON.stringify(state.financialSettings));
       let current = newState;
-      
       for (let i = 0; i < keys.length - 1; i++) {
-        if (!current[keys[i]]) current[keys[i]] = {}; // safety check
+        if (!current[keys[i]]) current[keys[i]] = {}; 
         current = current[keys[i]];
       }
-      
       current[keys[keys.length - 1]] = value;
       return { financialSettings: newState };
     });
   },
 
-  // Reset to initial
   reset: () => set({
     currentStep: 1,
     projectType: null,
