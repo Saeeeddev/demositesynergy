@@ -2,7 +2,6 @@ import React from 'react';
 import useResultStore from '../../../stores/useResultStore';
 import { useFinancialData } from '../hooks/useResultQueries';
 
-// Tabs Components
 import DashboardTab from '../components/Financial/Tabs/DashboardTab';
 import CapexTab from '../components/Financial/Tabs/CapexTab';
 import OpexTab from '../components/Financial/Tabs/OpexTab';
@@ -44,8 +43,9 @@ const FinancialPage = () => {
     }
   };
 
+  // FIX: Removed 'h-full' and 'overflow-y-auto'. Added 'min-h-full'.
   return (
-    <div className="p-4 sm:p-6 h-full overflow-y-auto bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200">
+    <div className="p-4 sm:p-6 min-h-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200">
       {renderContent()}
     </div>
   );

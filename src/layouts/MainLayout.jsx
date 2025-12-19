@@ -18,19 +18,31 @@ const MainLayout = () => {
       <div className="flex-1 flex flex-col h-screen relative min-h-screen">
         <MobileHeader />
         
-        {/* Main Content Area - matches MainContent.jsx structure from old version */}
+        {/* Main Content Area */}
         <main className="flex-1 flex flex-col min-h-0 p-0 md:pt-[10px] md:pr-[10px]">
+          {/* 
+             Outer Card: Keeps overflow-hidden to maintain rounded corners clipping 
+             and external shadow consistency.
+          */}
           <div className="bg-white md:rounded-[18px] md:shadow-[0px_0px_20px_rgba(0,0,0,0.1)] flex-1 flex flex-col overflow-hidden relative">
-            <div className="flex-1 overflow-y-auto pb-20 md:pb-0">
+            
+            {/* 
+               FIX IS HERE: 
+               Changed 'overflow-hidden' to 'overflow-y-auto'.
+               This allows the Outlet (ProjectsPage) to scroll vertically 
+               within this container.
+            */}
+            <div className="w-full h-full overflow-y-auto relative">
               <Outlet />
             </div>
+
           </div>
         </main>
         
         <BottomNavBar />
       </div>
 
-      {/* Panels (Profile/Notifications) */}
+      {/* Panels */}
       <AnimatePresence>
         {isNotificationOpen && (
           <>
@@ -47,9 +59,9 @@ const MainLayout = () => {
           </>
         )}
       </AnimatePresence>
-      
     </div>
   );
 };
 
 export default MainLayout;
+

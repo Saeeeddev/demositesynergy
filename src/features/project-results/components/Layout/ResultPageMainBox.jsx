@@ -7,30 +7,25 @@ import LayersPage from '../../pages/LayersPage';
 import FinancialPage from '../../pages/FinancialPage';
 
 const ResultPageMainBox = () => {
-  // Read View State
   const contentView = useResultStore((state) => state.contentView);
 
   const renderContent = () => {
     switch (contentView) {
-      case 'project-overview':
-        return <ProjectOverviewPage />;
-      
-      case 'financial-page':
-        return <FinancialPage />;
-      
-      case 'layers-page':
-        return <LayersPage />;
-
-      default:
-        // Default to Layers
-        return <LayersPage />;
+      case 'project-overview': return <ProjectOverviewPage />;
+      case 'financial-page': return <FinancialPage />;
+      case 'layers-page': return <LayersPage />;
+      default: return <LayersPage />;
     }
   };
 
   const isMapView = contentView === 'layers-page';
-  // If it's the map, we hide overflow to let Leaflet handle it. 
-  // If it's data/financials, we allow the container to scroll.
-  const mainContainerClass = `flex-1 bg-gray-50/80 ${isMapView ? 'overflow-hidden' : 'overflow-y-auto'}`;
+  
+  // FIX: Using 'h-full' ensures the container fills the parent flex item.
+  // 'overflow-y-auto' enables scrolling for content pages.
+  // 'overflow-hidden' for map prevents double scrollbars.
+  const mainContainerClass = `w-full h-full bg-gray-50/80 relative ${
+    isMapView ? 'overflow-hidden' : 'overflow-y-auto'
+  }`;
 
   return (
     <main className={mainContainerClass}>

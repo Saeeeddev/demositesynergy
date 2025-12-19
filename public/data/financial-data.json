@@ -55,8 +55,16 @@
       { "year": 1, "revenue": 72017, "opex": 13049, "ebitda": 58967, "netProfit": -86090, "fcf": -62482, "dscr": 0.53 },
       { "year": 2, "revenue": 90925, "opex": 17617, "ebitda": 73308, "netProfit": -71749, "fcf": -101080, "dscr": 0.43 },
       { "year": 3, "revenue": 120553, "opex": 23783, "ebitda": 96769, "netProfit": -34264, "fcf": -79250, "dscr": 0.56 },
+      { "year": 4, "revenue": 159833, "opex": 32107, "ebitda": 127725, "netProfit": 13940, "fcf": -49703, "dscr": 0.74 },
       { "year": 5, "revenue": 211913, "opex": 43345, "ebitda": 168568, "netProfit": 75999, "fcf": -10725, "dscr": 0.98 },
-      { "year": 10, "revenue": 868180, "opex": 231223, "ebitda": 636957, "netProfit": 451937, "fcf": 456165, "dscr": 10.00 }
+      { "year": 6, "revenue": 280962, "opex": 69613, "ebitda": 211348, "netProfit": 144876, "fcf": 30500, "dscr": 1.23 },
+      { "year": 7, "revenue": 372511, "opex": 93978, "ebitda": 278532, "netProfit": 244158, "fcf": 265485, "dscr": 10.00 },
+      { "year": 8, "revenue": 493889, "opex": 126871, "ebitda": 367017, "netProfit": 249482, "fcf": 266607, "dscr": 10.00 },
+      { "year": 9, "revenue": 654816, "opex": 171276, "ebitda": 483540, "netProfit": 336874, "fcf": 348444, "dscr": 10.00 },
+      { "year": 10, "revenue": 868180, "opex": 231223, "ebitda": 636957, "netProfit": 451937, "fcf": 456165, "dscr": 10.00 },
+      { "year": 15, "revenue": 3556818, "opex": 1036812, "ebitda": 2520005, "netProfit": 1864223, "fcf": 1776999, "dscr": 10.00 },
+      { "year": 20, "revenue": 14571798, "opex": 4649101, "ebitda": 9922697, "netProfit": 7416242, "fcf": 6960999, "dscr": 10.00 },
+      { "year": 25, "revenue": 59698668, "opex": 20846724, "ebitda": 38851943, "netProfit": 29138957, "fcf": 35276472, "dscr": 10.00 }
     ],
     "sensitivity": [
       { "name": "Base Case", "irr": 33.4 },

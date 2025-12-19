@@ -11,47 +11,52 @@ const iranBounds = [
   [40.00, 64.00] 
 ];
 
-// --- Async Layer Component (The Performance Fix) ---
-// This component manages its own data fetching and Leaflet lifecycle
+// --- Map Resizer Hook ---
+// This component listens for resize events and forces Leaflet to update
+const MapResizer = () => {
+  const map = useMap();
+  
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      map.invalidateSize();
+    });
+    
+    // Observe the map container div
+    resizeObserver.observe(map.getContainer());
+    
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [map]);
+
+  return null;
+};
+
+// --- Async Layer Component ---
 const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLayerCallback }) => {
   const map = useMap();
   const isVisible = useResultStore(state => state.layers[layerKey]);
   const selectedFeature = useResultStore(state => state.selectedFeature);
-
-  // Fetch data only if visible (Batch 2 Hook)
   const { data } = useMapLayer(layerKey, isVisible);
-  
-  // Ref to hold the Leaflet layer instance
   const geoJsonLayerRef = useRef(null);
 
-  // 1. Mount/Unmount Layer based on visibility and data availability
   useEffect(() => {
     if (isVisible && data && !geoJsonLayerRef.current) {
-      // Initialize Leaflet GeoJSON layer
       geoJsonLayerRef.current = L.geoJSON(data, {
-        // Pass style function
         style: (feature) => {
-          // Check if selected logic is handled here or via effect below
-          // We pass isSelected to the callback if needed immediately
           const isSelected = selectedFeature?.layer === layerKey && selectedFeature?.id === feature.id; 
           return styleCallback ? styleCallback(layerKey, isSelected, feature.properties) : {};
         },
-        // Pass interaction logic
         onEachFeature: (feature, layer) => {
           if (onEachFeatureCallback) onEachFeatureCallback(feature, layer, layerKey);
         },
-        // Pass point rendering logic (circles for cities/airports)
         pointToLayer: pointToLayerCallback
       });
-
       geoJsonLayerRef.current.addTo(map);
     } else if (!isVisible && geoJsonLayerRef.current) {
-      // Cleanup
       geoJsonLayerRef.current.remove();
       geoJsonLayerRef.current = null;
     }
-
-    // Cleanup on unmount
     return () => {
       if (geoJsonLayerRef.current) {
         geoJsonLayerRef.current.remove();
@@ -60,14 +65,11 @@ const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLay
     };
   }, [isVisible, data, map, layerKey, onEachFeatureCallback, pointToLayerCallback, styleCallback, selectedFeature]);
 
-  // 2. React to Selection Changes (Re-style without removing layer)
   useEffect(() => {
     if (geoJsonLayerRef.current && styleCallback) {
       geoJsonLayerRef.current.eachLayer((layer) => {
         const feature = layer.feature;
-        // Check if this specific feature is selected
         const isSelected = selectedFeature?.layer === layerKey && selectedFeature?.id === feature.id;
-        
         const newStyle = styleCallback(layerKey, isSelected, feature.properties);
         if (layer.setStyle) layer.setStyle(newStyle);
       });
@@ -81,13 +83,12 @@ const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLay
 const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
   const mapRef = useRef();
 
-  // Point to Layer Helper (for Cities/Airports)
   const pointToLayerFn = (feature, latlng) => {
     return L.circleMarker(latlng);
   };
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-gray-100 z-0 overflow-hidden rounded-xl border border-gray-200">
+    <div className="absolute inset-0 w-full h-full bg-gray-100 z-0 overflow-hidden border border-gray-200">
       <MapContainer 
         ref={mapRef} 
         center={[32.4279, 53.6880]} 
@@ -104,7 +105,10 @@ const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
           attribution='&copy; <a href="http://www.esri.com/">Esri</a>' 
         />
         
-        {/* Render Async Layers - They handle their own fetching */}
+        {/* Helper to auto-resize map when sidebar toggles */}
+        <MapResizer />
+
+        {/* Layers */}
         <AsyncLayer layerKey="powerLines" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
         <AsyncLayer layerKey="ghi" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
         <AsyncLayer layerKey="roads" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
@@ -117,8 +121,6 @@ const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
         <AsyncLayer layerKey="landuse" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
         <AsyncLayer layerKey="technical" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
         <AsyncLayer layerKey="dem" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        
-        {/* Simple Layers (Can stay or be async too) */}
         <AsyncLayer layerKey="allocatedLand" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
         <AsyncLayer layerKey="selectedLocation" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
 

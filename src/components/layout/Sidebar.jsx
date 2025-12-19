@@ -2,16 +2,14 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useUIStore } from '../../stores/useUIStore';
 
-// We will implement these full secondary bars in the next batches. 
-// For now, these imports would fail, so I will conditionally render content directly.
+// Imports for Standard Sidebars
 import HomeSecondarySidebar from '../../features/dashboard/components/HomeSecondarySidebar';
 import ProjectSecondarySidebar from '../../features/projects/components/ProjectSecondarySidebar';
 import ReportSecondarySidebar from '../../features/reports/components/ReportSecondarySidebar';
 import PaymentsSecondarySidebar from '../../features/payments/components/PaymentsSecondarySidebar';
 import SettingSecondarySidebar from '../../features/settings/components/SettingSecondarySidebar';
 
-
-// --- SVG Icons ---
+// Icons
 const MenuIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>;
 const MenuCollapseIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="3" y1="12" x2="13" y2="12"></line><line x1="3" y1="6" x2="13" y2="6"></line><line x1="3" y1="18" x2="13" y2="18"></line><polyline points="18 16 15 12 18 10"></polyline></svg>;
 const PlusIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>;
@@ -20,7 +18,6 @@ const FolderIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/
 const BarChartIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="12" x2="12" y1="20" y2="10"></line><line x1="18" x2="18" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="16"></line></svg>;
 const CreditCardIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>;
 const BellIcon = ({ className = "w-6 h-6" }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>;
-
 
 const NewProjectButton = () => {
   const navigate = useNavigate();
@@ -59,25 +56,24 @@ const Sidebar = () => {
   ];
 
   // Logic to render the correct Secondary Sidebar based on the route
+  // The Result Page logic is purposefully EXCLUDED here so it defaults 
+  // to 'ProjectSecondarySidebar' (or keeps state) without interfering.
   const renderSecondaryContent = () => {
     const p = location.pathname;
     
-    // During this Batch 1, we import the files if they exist, or show placeholders if they fail (conceptually).
-    // In practice, I will use the actual imports and if those files are placeholders in your current tree, it works.
     if (p.startsWith('/dashboard')) return <HomeSecondarySidebar />;
+    // When inside /projects/:id/result, it will match this and show the Project list sidebar
+    // This is expected behavior if you want the main nav to remain static.
     if (p.startsWith('/projects')) return <ProjectSecondarySidebar />;
     if (p.startsWith('/reports')) return <ReportSecondarySidebar />;
     if (p.startsWith('/payments')) return <PaymentsSecondarySidebar />;
     if (p.startsWith('/settings')) return <SettingSecondarySidebar />;
     
-    // Default fallback
     return <HomeSecondarySidebar />;
   };
 
   return (
     <div className="hidden md:flex sticky top-0 h-screen self-start z-50">
-      
-      {/* Primary Icon Sidebar */}
       <nav className={`w-[70px] h-screen bg-transparent flex flex-col items-center pt-[8px] shadow-sm self-start border-r border-gray-200/50 bg-white`}>
         <div className="h-[56px] w-[40px] flex items-center justify-center pb-[16px]">
           <button 
@@ -118,11 +114,8 @@ const Sidebar = () => {
         </div>
       </nav>
 
-      {/* Secondary Sliding Sidebar */}
       <div className={`transition-all duration-300 ease-in-out ${isNavOpen ? 'w-[264px]' : 'w-0'} ${!isNavOpen ? 'pointer-events-none' : ''}`}>
         <div className={`h-full flex flex-col w-[264px] bg-white border-r border-gray-200/50 ${isNavOpen ? 'opacity-100' : 'opacity-0'} ${!isNavOpen ? 'pointer-events-none' : ''}`}>
-          
-          {/* Logo Area */}
           <div className="h-[72px] px-[16px] pt-[12px] flex-shrink-0">
             <div className="h-[40px] w-[232px] flex items-center">
               <img 
@@ -133,12 +126,9 @@ const Sidebar = () => {
               />
             </div>
           </div>
-          
-          {/* Secondary Content Area */}
           <div className="w-[264px] px-[16px] flex-grow overflow-y-auto">
             {renderSecondaryContent()}
           </div>
-          
         </div>
       </div>
     </div>

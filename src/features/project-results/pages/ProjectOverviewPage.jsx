@@ -6,7 +6,6 @@ import ProjectSummaryTab from '../components/ProjectOverview/Tabs/ProjectSummary
 import BasicSiteInfoTab from '../components/ProjectOverview/Tabs/BasicSiteInfoTab';
 import GridInfrastructureTab from '../components/ProjectOverview/Tabs/GridInfrastructureTab';
 
-// Helper for status colors
 const getValueClass = (value, type) => {
   if (type === 'performance') {
     if (value > 80) return 'text-green-600';
@@ -38,21 +37,19 @@ const ProjectOverviewPage = () => {
     switch (activeTab) {
       case 'summary':
         return <ProjectSummaryTab summaryData={siteData.summaryData} solarResource={siteData.solarResource} />;
-      
       case 'basic-info':
         return <BasicSiteInfoTab siteData={siteData} getValueClass={getValueClass} />;
-        
       case 'grid-infrastructure':
-        // We pass 'gridInfo' from the JSON to the 'gridData' prop of the component
         return <GridInfrastructureTab gridData={siteData.gridInfo} />;
-
       default:
         return <ProjectSummaryTab summaryData={siteData.summaryData} solarResource={siteData.solarResource} />;
     }
   };
 
+  // FIX: Removed 'h-full' and 'overflow-y-auto'. Added 'min-h-full'.
+  // This allows the parent ResultPageMainBox to handle the scrolling.
   return (
-    <div className="h-full w-full bg-gray-50/80 overflow-y-auto">
+    <div className="min-h-full w-full bg-gray-50/80 pb-10">
       {renderContent()}
     </div>
   );
