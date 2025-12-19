@@ -88,7 +88,7 @@ const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
   };
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-gray-100 z-0 overflow-hidden border border-gray-200">
+    <div className="absolute inset-0 w-full h-full bg-gray-100 z-0 overflow-hidden border-gray-200">
       <MapContainer 
         ref={mapRef} 
         center={[32.4279, 53.6880]} 

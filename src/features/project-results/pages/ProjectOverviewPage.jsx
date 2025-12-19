@@ -49,7 +49,7 @@ const ProjectOverviewPage = () => {
   // FIX: Removed 'h-full' and 'overflow-y-auto'. Added 'min-h-full'.
   // This allows the parent ResultPageMainBox to handle the scrolling.
   return (
-    <div className="min-h-full w-full bg-gray-50/80 pb-10">
+    <div className="h-full w-full bg-gray-50/80">
       {renderContent()}
     </div>
   );
