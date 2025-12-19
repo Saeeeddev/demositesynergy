@@ -12,6 +12,8 @@
   html {
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    
     /* Custom Scrollbar Logic (Firefox) */
     scrollbar-width: thin;
     scrollbar-color: rgba(109, 127, 159, 0.7) transparent;
@@ -20,11 +22,99 @@
   body {
     @apply bg-background-main text-gray-900;
   }
+
+  /* Result Module Typography Overrides */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold;
+  }
+  
+  h1 { @apply text-3xl md:text-4xl lg:text-5xl; }
+  h2 { @apply text-2xl md:text-3xl lg:text-4xl; }
+  h3 { @apply text-xl md:text-2xl lg:text-3xl; }
+  h4 { @apply text-lg md:text-xl; }
+  h5 { @apply text-base md:text-lg; }
+  h6 { @apply text-sm md:text-base font-semibold; }
 }
 
-/* Chrome/Safari Scrollbar override to match old version */
+@layer components {
+  /* Reusable Components for Result Module */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-blue text-white hover:bg-primary-dark focus:ring-primary-dark;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary-dark;
+  }
+  
+  .btn-outline {
+    @apply border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-primary-blue;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6 transition-all;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-1;
+  }
+  
+  .input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-primary-blue;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  /* Map container specific */
+  .map-container {
+    @apply w-full h-full rounded-xl overflow-hidden bg-neutral-100 shadow-inner;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-blue to-primary-light-blue bg-clip-text text-transparent;
+  }
+
+  /* Animation Utilities */
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 15s ease infinite;
+  }
+
+  @keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Animation Simulators for tailwindcss-animate compatibility */
+  .animate-in {
+    animation-name: fade-in;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fade-in 0.3s ease-out forwards;
+  }
+  
+  .zoom-in-95 {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: zoom-in-95 0.2s ease-out forwards;
+  }
+}
+
+/* Chrome/Safari Scrollbar override */
 ::-webkit-scrollbar {
-  width: 5px; /* Use the thin style */
+  width: 5px; 
 }
 
 ::-webkit-scrollbar-track {

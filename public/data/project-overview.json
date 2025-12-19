@@ -1,0 +1,38 @@
+{
+  "name": "Yazd solar 2mw",
+  "reference": "REF-S-2024-001",
+  "clientName": "Taban khorshidi",
+  "location": {
+    "region": "Yazd, Iran",
+    "coordinates": "34.0522, -118.2437"
+  },
+  "basicInfo": {
+    "ProjectId": "PROJ-SOL-2024-001",
+    "coordinates": "34.0522° N, 118.2437° W",
+    "landArea": "500 Hectares",
+    "ownership": "Private",
+    "landUse": "Agricultural",
+    "nearestCity": "Yazd, Iran",
+    "accessibility": "Good"
+  },
+  "solarResource": {
+    "annualGHI": "2,100 kWh/m²",
+    "dateSource": "Global Solar Atlas",
+    "dni": "2,400 kWh/m²"
+  },
+  "summaryData": {
+    "overallSuitability": {
+      "rating": "Good",
+      "score": 8.2
+    },
+    "feasibilitySummary": "The site demonstrates strong potential for solar energy generation, with high GHI values and excellent accessibility.",
+    "keyMetrics": {
+      "npv": "1,250,000",
+      "roi": "12.5",
+      "paybackPeriod": "8.2",
+      "lcoe": "0.045",
+      "irr": "14.8"
+    }
+  }
+  
+}

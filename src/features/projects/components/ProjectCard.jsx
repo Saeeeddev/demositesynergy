@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   MapPinIcon, 
   CalendarIcon, 
@@ -11,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 const ProjectCard = ({ project }) => {
+  const navigate = useNavigate();
   const [showEditNote, setShowEditNote] = useState(false);
 
   const getStatusInfo = (status) => {
@@ -66,8 +68,15 @@ const ProjectCard = ({ project }) => {
     }, 2000);
   };
 
+  const handleViewDetails = () => {
+    navigate(`/projects/${project.id}/result`);
+  };
+
   return (
-    <div className="bg-white rounded-2xl shadow-card border border-gray-100 hover:shadow-lg overflow-hidden transition-all duration-200 flex flex-col">
+    <div 
+      onClick={handleViewDetails}
+      className="bg-white rounded-2xl shadow-card border border-gray-100 hover:shadow-card-hover overflow-hidden transition-all duration-200 flex flex-col cursor-pointer group"
+    >
       <div className="relative">
         <div className="h-40 bg-gray-100 flex items-center justify-center relative">
           <div className="absolute top-3 right-3">
@@ -78,7 +87,7 @@ const ProjectCard = ({ project }) => {
               <span className="ml-1.5 capitalize">{project.status.replace('-', ' ')}</span>
             </span>
           </div>
-          {/* Display Project ID here, reference removed from DB */}
+          {/* Display Project ID */}
           <div className="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded font-mono">
             {project.id}
           </div>
@@ -86,7 +95,9 @@ const ProjectCard = ({ project }) => {
       </div>
       
       <div className="p-4 flex-grow flex flex-col">
-        <h3 className="font-medium text-gray-900 text-lg line-clamp-1">{project.name}</h3>
+        <h3 className="font-medium text-gray-900 text-lg line-clamp-1 group-hover:text-primary-blue transition-colors">
+          {project.name}
+        </h3>
         
         <div className="mt-1 flex items-center text-sm text-gray-500">
           <MapPinIcon className="mr-1.5 h-4 w-4 flex-shrink-0 text-gray-400" />
@@ -152,7 +163,7 @@ const ProjectCard = ({ project }) => {
         </div>
       </div>
       
-      <div className="border-t border-gray-100 px-4 py-3 bg-gray-50 flex items-center justify-between">
+      <div className="border-t border-gray-100 px-4 py-3 bg-gray-50 flex items-center justify-between group-hover:bg-blue-50/30 transition-colors">
         <div className="flex space-x-2 relative">
           {/* Notification Popover */}
           {showEditNote && (
@@ -164,12 +175,16 @@ const ProjectCard = ({ project }) => {
           
           <button 
             onClick={handleEditClick}
-            className="p-1 text-gray-500 hover:text-primary-blue rounded-full bg-white hover:bg-gray-100 transition-colors"
+            className="p-1 text-gray-500 hover:text-primary-blue rounded-full bg-white hover:bg-gray-100 transition-colors shadow-sm"
           >
             <PencilIcon className="h-5 w-5" /> 
           </button>
         </div>
-        <button className="flex items-center text-sm font-medium text-gray-500 hover:text-primary-light-blue transition-colors">
+        
+        <button 
+          onClick={(e) => { e.stopPropagation(); handleViewDetails(); }}
+          className="flex items-center text-sm font-bold text-gray-500 hover:text-primary-blue transition-colors"
+        >
           <span>View Details</span>
           <ChevronRightIcon className="ml-1 h-4 w-4" />
         </button>

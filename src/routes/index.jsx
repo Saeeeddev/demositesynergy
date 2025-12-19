@@ -15,6 +15,9 @@ const ReportsPage = React.lazy(() => import('../features/reports/ReportsPage'));
 const PaymentsPage = React.lazy(() => import('../features/payments/PaymentsPage'));
 const ProfilePage = React.lazy(() => import('../features/settings/ProfilePage'));
 
+// New Result Module (Standalone Layout)
+const ResultPage = React.lazy(() => import('../features/project-results/components/Layout/ResultPageLayout'));
+
 const Loading = () => <div className="h-screen w-full flex items-center justify-center text-gray-500 font-medium">Loading Application...</div>;
 
 export const router = createBrowserRouter([
@@ -23,7 +26,6 @@ export const router = createBrowserRouter([
     element: <Navigate to="/dashboard" replace />,
   },
   
-  // --- ADD THIS TO FIX 404 ON LOGIN ---
   {
     path: '/login',
     element: <Navigate to="/auth/login" replace />,
@@ -39,6 +41,13 @@ export const router = createBrowserRouter([
     ]
   },
 
+  // Independent Result View (Full Screen)
+  // This sits outside MainLayout to take over the full viewport
+  {
+    path: '/projects/:id/result',
+    element: <Suspense fallback={<Loading />}><ResultPage /></Suspense>
+  },
+
   {
     path: '/',
     element: <MainLayout />,
@@ -48,7 +57,6 @@ export const router = createBrowserRouter([
         path: 'projects', 
         children: [
           { index: true, element: <Suspense fallback={<Loading />}><ProjectsPage /></Suspense> },
-          // IMPORTANT: If this file is missing, the app will crash when you click "New Project"
           { path: 'new', element: <Suspense fallback={<Loading />}><NewProjectPage /></Suspense> }
         ]
       },
