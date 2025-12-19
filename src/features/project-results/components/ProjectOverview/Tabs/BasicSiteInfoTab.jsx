@@ -9,7 +9,7 @@ const InfoRow = ({ label, value, valueClass = "text-gray-900" }) => (
       </span>
     </div>
     
-    <div className="text-right flex items-baseline gap-1">
+    <div className="text-left flex items-baseline gap-1" dir="ltr"> {/* Values LTR */}
       <span className={`text-lg font-bold ${valueClass}`}>
         {value}
       </span>
@@ -18,20 +18,28 @@ const InfoRow = ({ label, value, valueClass = "text-gray-900" }) => (
 );
 
 const BasicSiteInfoTab = ({ siteData, getValueClass }) => {
-  // Defensive check
   if (!siteData || !siteData.basicInfo) return null;
   
   const { basicInfo } = siteData;
 
+  // Translation Map for Values that might be in English in DB
+  const translateValue = (val) => {
+      if(val === 'Private') return 'خصوصی';
+      if(val === 'Public') return 'دولتی';
+      if(val === 'Agricultural') return 'کشاورزی';
+      if(val === 'Good') return 'خوب';
+      return val;
+  };
+
   return (
-    <div className="h-full w-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200 p-6 overflow-y-auto animate-fade-in">
+    <div className="h-full w-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200 p-6 overflow-y-auto animate-fade-in text-right" dir="rtl">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
         
         {/* Card Header */}
         <div className="px-6 py-5 border-b border-gray-100 bg-gray-50/30">
           <div>
-            <h4 className="text-lg font-medium text-gray-800 mb-1">Basic Site Information</h4>
-            <p className="text-xs text-gray-500 mt-0.5">Project identification and geographical characteristics</p>
+            <h4 className="text-lg font-medium text-gray-800 mb-1">اطلاعات پایه سایت</h4>
+            <p className="text-xs text-gray-500 mt-0.5">شناسنامه پروژه و ویژگی‌های جغرافیایی</p>
           </div>
         </div>
 
@@ -39,16 +47,16 @@ const BasicSiteInfoTab = ({ siteData, getValueClass }) => {
         <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
             
-            <InfoRow label="Project ID" value={basicInfo.ProjectId} />
-            <InfoRow label="Coordinates" value={basicInfo.coordinates} />
-            <InfoRow label="Land Area" value={basicInfo.landArea} />
-            <InfoRow label="Land Ownership" value={basicInfo.ownership} />
-            <InfoRow label="Land Use Classification" value={basicInfo.landUse} />
-            <InfoRow label="Nearest City" value={basicInfo.nearestCity} />
+            <InfoRow label="شناسه پروژه" value={basicInfo.ProjectId} />
+            <InfoRow label="مختصات" value={basicInfo.coordinates} />
+            <InfoRow label="مساحت زمین" value={basicInfo.landArea} />
+            <InfoRow label="مالکیت زمین" value={translateValue(basicInfo.ownership)} />
+            <InfoRow label="کاربری اراضی" value={translateValue(basicInfo.landUse)} />
+            <InfoRow label="نزدیک‌ترین شهر" value={basicInfo.nearestCity} />
             
             <InfoRow 
-              label="Accessibility" 
-              value={basicInfo.accessibility}
+              label="دسترسی" 
+              value={translateValue(basicInfo.accessibility)}
               valueClass={getValueClass ? getValueClass(basicInfo.accessibility, 'status') : "text-gray-900"}
             />
 
@@ -57,7 +65,7 @@ const BasicSiteInfoTab = ({ siteData, getValueClass }) => {
 
         <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
            <p className="text-xs text-gray-400 text-center">
-             Site data verified against latest GIS survey records.
+             داده‌های سایت با آخرین رکوردهای نقشه‌برداری GIS تایید شده است.
            </p>
         </div>
 

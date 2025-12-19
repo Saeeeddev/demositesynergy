@@ -35,9 +35,9 @@ const MobileHeader = () => {
       className="md:hidden sticky top-0 z-40 bg-white shadow-sm w-full h-[60px] px-4 flex items-center justify-between"
       animate={{ y: isVisible ? 0 : "-100%" }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
+      dir="rtl"
     >
       <div className="h-[36px]">
-        {/* Placeholder image logic matching old code */}
         <img 
             src="src/assets/images/sitesynergy_logo_colored.png" 
             alt="SiteSynergy Logo" 

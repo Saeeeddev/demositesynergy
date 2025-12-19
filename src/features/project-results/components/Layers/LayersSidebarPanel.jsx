@@ -25,12 +25,19 @@ const LayerItem = ({ icon, label, iconBgColor, iconColor, layerKey }) => {
 
   return (
     <div className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-gray-50 transition-all duration-200 group">
+      {/* 
+         RTL Layout:
+         Flex row (Start is Right).
+         Icon/Label on Right. Switch on Left.
+         Standard 'justify-between' handles this separation.
+      */}
       <div className="flex items-center gap-3">
         <div className={`w-8 h-8 ${iconBgColor} rounded-lg flex items-center justify-center flex-shrink-0`}>
           {React.cloneElement(icon, { className: `w-5 h-5 ${iconColor}` })}
         </div>
         <p className="text-sm font-medium text-gray-800">{label}</p>
       </div>
+      
       <label className="relative inline-flex items-center cursor-pointer">
         <input 
           type="checkbox" 
@@ -38,6 +45,15 @@ const LayerItem = ({ icon, label, iconBgColor, iconColor, layerKey }) => {
           onChange={() => toggleLayer(layerKey)} 
           className="sr-only peer" 
         />
+        {/* Toggle Switch */}
+        {/* 
+           RTL Check: 
+           peer-checked:after:translate-x-full moves the dot to the right (physically).
+           In LTR: OFF (Left), ON (Right).
+           In RTL: The logic of the switch visual usually remains (Left=Off, Right=On) or flips.
+           Tailwind 'translate-x-full' is physical translation.
+           This style should look fine in RTL as standard toggle switches usually fill L->R.
+        */}
         <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-offset-2 peer-focus:ring-primary-blue peer-checked:bg-primary-blue peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
       </label>
     </div>
@@ -59,41 +75,41 @@ export default function LayersSidebarPanel() {
   return (
     <div className="space-y-6 pb-[80px]">
       <div className="space-y-3">
-        <SectionHeader title="Site Boundaries" />
+        <SectionHeader title="مرزهای سایت" />
         <div className="space-y-1">
-          <LayerItem label="Selected Location" layerKey="selectedLocation" icon={<MapPinIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />
-          <LayerItem label="Allocated Land" layerKey="allocatedLand" icon={<MapIcon />} iconBgColor="bg-emerald-50" iconColor="text-emerald-600" />
+          <LayerItem label="موقعیت انتخابی" layerKey="selectedLocation" icon={<MapPinIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />
+          <LayerItem label="زمین تخصیص‌یافته" layerKey="allocatedLand" icon={<MapIcon />} iconBgColor="bg-emerald-50" iconColor="text-emerald-600" />
         </div>
       </div>
 
       <div className="space-y-3">
-        <SectionHeader title="Analysis Layers" />
+        <SectionHeader title="لایه‌های تحلیلی" />
         <div className="space-y-1">
-          <LayerItem label="Technical" layerKey="technical" icon={<Cog6ToothIcon />} iconBgColor="bg-violet-50" iconColor="text-violet-600" />
+          <LayerItem label="تحلیل فنی" layerKey="technical" icon={<Cog6ToothIcon />} iconBgColor="bg-violet-50" iconColor="text-violet-600" />
         </div>
       </div>
       
       <div className="space-y-3">
-        <SectionHeader title="Resource & Terrain" />
+        <SectionHeader title="منابع و عوارض زمین" />
         <div className="space-y-1">
-          <LayerItem label="GHI" layerKey="ghi" icon={<SunIcon />} iconBgColor="bg-amber-50" iconColor="text-amber-600" /> 
-          <LayerItem label="Slope" layerKey="slope" icon={<ChartBarIcon />} iconBgColor="bg-emerald-50" iconColor="text-emerald-600" />
-          <LayerItem label="DEM" layerKey="dem" icon={<GlobeAltIcon />} iconBgColor="bg-blue-50" iconColor="text-blue-600" />
+          <LayerItem label="تابش خورشیدی (GHI)" layerKey="ghi" icon={<SunIcon />} iconBgColor="bg-amber-50" iconColor="text-amber-600" /> 
+          <LayerItem label="شیب" layerKey="slope" icon={<ChartBarIcon />} iconBgColor="bg-emerald-50" iconColor="text-emerald-600" />
+          <LayerItem label="مدل ارتفاعی (DEM)" layerKey="dem" icon={<GlobeAltIcon />} iconBgColor="bg-blue-50" iconColor="text-blue-600" />
         </div>
       </div>
 
       <div className="space-y-3">
-        <SectionHeader title="Geographic Layers" />
+        <SectionHeader title="عوارض جغرافیایی" />
         <div className="space-y-1">
-          <LayerItem label="Power line" layerKey="powerLines" icon={<BoltIcon />} iconBgColor="bg-purple-50" iconColor="text-purple-600" />
-          <LayerItem label="Roads" layerKey="roads" icon={<TruckIcon />} iconBgColor="bg-orange-50" iconColor="text-orange-600" />
-          <LayerItem label="Railways" layerKey="railways" icon={<TicketIcon />} iconBgColor="bg-yellow-50" iconColor="text-yellow-600" />
-          <LayerItem label="Airports" layerKey="airports" icon={<PaperAirplaneIcon />} iconBgColor="bg-blue-50" iconColor="text-blue-600" />
-          <LayerItem label="Cities" layerKey="cities" icon={<BuildingOffice2Icon />} iconBgColor="bg-gray-100" iconColor="text-gray-600" />
-          <LayerItem label="Water Areas" layerKey="waterAreas" icon={<CloudIcon />} iconBgColor="bg-teal-50" iconColor="text-teal-600" />
-          <LayerItem label="Land Use" layerKey="landuse" icon={<HomeIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />
-          <LayerItem label="Protected Area" layerKey="protectedAreas" icon={<ShieldCheckIcon />} iconBgColor="bg-green-50" iconColor="text-green-600" />
-          <LayerItem label="Fault" layerKey="fault" icon={<ExclamationTriangleIcon />} iconBgColor="bg-rose-50" iconColor="text-rose-600" />
+          <LayerItem label="خطوط انتقال برق" layerKey="powerLines" icon={<BoltIcon />} iconBgColor="bg-purple-50" iconColor="text-purple-600" />
+          <LayerItem label="جاده‌ها" layerKey="roads" icon={<TruckIcon />} iconBgColor="bg-orange-50" iconColor="text-orange-600" />
+          <LayerItem label="راه‌آهن" layerKey="railways" icon={<TicketIcon />} iconBgColor="bg-yellow-50" iconColor="text-yellow-600" />
+          <LayerItem label="فرودگاه‌ها" layerKey="airports" icon={<PaperAirplaneIcon />} iconBgColor="bg-blue-50" iconColor="text-blue-600" />
+          <LayerItem label="شهرها و آبادی‌ها" layerKey="cities" icon={<BuildingOffice2Icon />} iconBgColor="bg-gray-100" iconColor="text-gray-600" />
+          <LayerItem label="منابع آبی" layerKey="waterAreas" icon={<CloudIcon />} iconBgColor="bg-teal-50" iconColor="text-teal-600" />
+          <LayerItem label="کاربری اراضی" layerKey="landuse" icon={<HomeIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />
+          <LayerItem label="مناطق حفاظت‌شده" layerKey="protectedAreas" icon={<ShieldCheckIcon />} iconBgColor="bg-green-50" iconColor="text-green-600" />
+          <LayerItem label="گسل‌ها" layerKey="fault" icon={<ExclamationTriangleIcon />} iconBgColor="bg-rose-50" iconColor="text-rose-600" />
         </div>
       </div>
     </div>

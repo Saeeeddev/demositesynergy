@@ -10,7 +10,7 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-// --- Components matching reference ---
+// --- Components ---
 
 const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%', disabled = false }) => {
   const display = `${value}${unit}`;
@@ -18,7 +18,7 @@ const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%',
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <label className={`text-sm font-medium ${disabled ? 'text-gray-400' : 'text-gray-700'}`}>{label}</label>
-        <span className={`text-sm font-semibold ${disabled ? 'text-gray-400' : 'text-primary-blue'}`}>{display}</span>
+        <span className={`text-sm font-semibold ${disabled ? 'text-gray-400' : 'text-primary-blue'}`} dir="ltr">{display}</span>
       </div>
       <input
         type="range"
@@ -28,17 +28,18 @@ const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%',
         onChange={(e) => onChange(parseFloat(e.target.value))}
         disabled={disabled}
         className={`w-full h-2 bg-gray-200 rounded-lg appearance-none ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} accent-primary-blue`}
+        style={{ direction: 'ltr' }} // Sliders should often stay LTR for logic (Left=Low, Right=High), or RTL if preferred. Keeping LTR logic for consistency with numbers.
       />
     </div>
   );
 };
 
-const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel="Step (m)", bufferLabel="Buffer (m)", maxBuffer, disabled }) => (
+const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel="گام (متر)", bufferLabel="حریم (متر)", maxBuffer, disabled }) => (
     <div className="grid grid-cols-2 gap-3 mt-2">
       <div>
-        <label className={`block text-xs font-medium ${disabled ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{stepLabel} <span className="text-gray-400 font-normal">(Preset)</span></label>
-        <div className={`w-full p-2 rounded-md text-sm font-semibold ${
-          disabled ? 'bg-gray-100 text-gray-400' : 'bg-primary-blue/10 text-primary-blue border-l-4 border-primary-blue'
+        <label className={`block text-xs font-medium ${disabled ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{stepLabel} <span className="text-gray-400 font-normal">(پیش‌فرض)</span></label>
+        <div className={`w-full p-2 rounded-md text-sm font-semibold text-center ${
+          disabled ? 'bg-gray-100 text-gray-400' : 'bg-primary-blue/10 text-primary-blue border-r-4 border-primary-blue' // Changed border-l to border-r for RTL visual accent
         }`}>
           {stepValue}
         </div>
@@ -46,7 +47,7 @@ const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel=
       <div>
         <label className={`block text-xs font-medium ${disabled ? 'text-gray-400' : 'text-gray-600'} mb-1`}>
           {bufferLabel}
-          {maxBuffer && <span className="text-gray-400 font-normal ml-1">(max: {maxBuffer})</span>}
+          {maxBuffer && <span className="text-gray-400 font-normal ms-1">(حداکثر: {maxBuffer})</span>}
         </label>
         <input 
             type="number" 
@@ -54,7 +55,7 @@ const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel=
             onChange={e => onBufferChange(parseFloat(e.target.value) || 0)} 
             disabled={disabled} 
             max={maxBuffer}
-            className={`w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-primary-blue focus:border-primary-blue ${
+            className={`w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-primary-blue focus:border-primary-blue text-center ${
                 disabled ? 'bg-gray-50 cursor-not-allowed opacity-50' : ''
             }`}
         />
@@ -75,6 +76,7 @@ const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
         } ${
             enabled ? 'bg-primary-blue focus:ring-primary-blue shadow-primary-blue/20' : 'bg-gray-400 border-2 border-gray-400 hover:bg-gray-500 hover:border-gray-600'
         }`}
+        dir="ltr" // Keep toggle LTR for left-right movement logic
       >
         <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition-all duration-200 ease-in-out ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`} />
       </button>
@@ -84,6 +86,48 @@ const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
     </div>
   </div>
 );
+
+// --- Dictionary for Translations ---
+const dictionary = {
+    // Categories
+    weights: 'وزن‌دهی پتانسیل',
+    economic: 'اقتصادی',
+    technical: 'فنی',
+    environmental: 'زیست‌محیطی',
+    geological: 'زمین‌شناسی',
+    
+    // Descriptions
+    weightsDesc: 'تعیین میزان اهمیت هر دسته‌بندی',
+    economicDesc: 'زیرساخت‌ها و عوامل هزینه',
+    technicalDesc: 'منابع خورشیدی و عوامل زمین',
+    environmentalDesc: 'معیارهای حفاظت محیط‌زیست',
+    geologicalDesc: 'محدودیت‌های خاک و زمین‌شناسی',
+
+    // Factors
+    powerDistance: 'فاصله تا شبکه برق',
+    airportDistance: 'فاصله تا فرودگاه',
+    cityDistance: 'فاصله تا شهر',
+    roadsDistance: 'فاصله تا جاده',
+    railwaysDistance: 'فاصله تا راه‌آهن',
+    ghi: 'تابش خورشیدی (GHI)',
+    slope: 'شیب زمین',
+    landUse: 'کاربری اراضی',
+    waterAreas: 'منابع آبی',
+    protectedAreas: 'مناطق حفاظت‌شده',
+    historicSites: 'سایت‌های تاریخی',
+    mines: 'معادن',
+    militaryArea: 'مناطق نظامی',
+    faultLines: 'گسل‌ها',
+    
+    // Labels
+    factorWeight: 'وزن فاکتور',
+    potentialWeights: 'وزن‌دهی پتانسیل‌ها',
+    economicPotential: 'پتانسیل اقتصادی',
+    technicalPotential: 'پتانسیل فنی',
+    environmentalPotential: 'پتانسیل زیست‌محیطی',
+    geologicalPotential: 'پتانسیل زمین‌شناسی',
+    totalWeight: 'مجموع وزن',
+};
 
 // --- Main Step Component ---
 
@@ -140,16 +184,16 @@ const Step2_Criteria = () => {
 
     // Tabs Config
     const tabs = [
-        { id: 'weights', label: 'Potential Weights', icon: ScaleIcon, desc: 'Set importance of each category' },
-        { id: 'economic', label: 'Economic', icon: CurrencyDollarIcon, desc: 'Infrastructure and cost factors' },
-        { id: 'technical', label: 'Technical', icon: WrenchScrewdriverIcon, desc: 'Solar resource and terrain factors' },
-        { id: 'environmental', label: 'Environmental', icon: GlobeAltIcon, desc: 'Environmental protection criteria' },
-        { id: 'geological', label: 'Geological', icon: CubeTransparentIcon, desc: 'Soil and geological constraints' },
+        { id: 'weights', label: dictionary.weights, icon: ScaleIcon, desc: dictionary.weightsDesc },
+        { id: 'economic', label: dictionary.economic, icon: CurrencyDollarIcon, desc: dictionary.economicDesc },
+        { id: 'technical', label: dictionary.technical, icon: WrenchScrewdriverIcon, desc: dictionary.technicalDesc },
+        { id: 'environmental', label: dictionary.environmental, icon: GlobeAltIcon, desc: dictionary.environmentalDesc },
+        { id: 'geological', label: dictionary.geological, icon: CubeTransparentIcon, desc: dictionary.geologicalDesc },
     ];
 
     const handleContinue = () => {
         if (!isStandardMode && totalWeight !== 100) {
-            alert(`Total weighting must equal 100% (Currently ${totalWeight}%)`);
+            alert(`مجموع وزن‌ها باید دقیقاً ۱۰۰٪ باشد (مقدار فعلی: ${totalWeight}٪)`);
             return;
         }
         saveCriteria(settings); 
@@ -160,30 +204,30 @@ const Step2_Criteria = () => {
     const renderWeightsTab = () => (
         <div className="h-full flex flex-col">
             <div className="flex-shrink-0 mb-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-1">Potential Weighting</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">{dictionary.potentialWeights}</h3>
                 <p className="text-xs text-gray-600">
-                    Distribute the importance of each category. The total must be exactly 100%.
-                    {isStandardMode && <span className="block text-amber-600 font-semibold mt-1">⚠️ Standard mode: Values are preset and cannot be modified</span>}
+                    میزان اهمیت هر دسته‌بندی را مشخص کنید. مجموع وزن‌ها باید دقیقاً ۱۰۰٪ باشد.
+                    {isStandardMode && <span className="block text-amber-600 font-semibold mt-1">⚠️ حالت استاندارد: مقادیر پیش‌فرض هستند و قابل تغییر نمی‌باشند.</span>}
                 </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-6">
-                    <SliderSetting label="Economic Potential" value={settings.overallWeights.economic} onChange={v => updateWeight('economic', v)} disabled={isStandardMode} />
-                    <SliderSetting label="Technical Potential" value={settings.overallWeights.technical} onChange={v => updateWeight('technical', v)} disabled={isStandardMode} />
+                    <SliderSetting label={dictionary.economicPotential} value={settings.overallWeights.economic} onChange={v => updateWeight('economic', v)} disabled={isStandardMode} />
+                    <SliderSetting label={dictionary.technicalPotential} value={settings.overallWeights.technical} onChange={v => updateWeight('technical', v)} disabled={isStandardMode} />
                 </div>
                 <div className="space-y-6">
-                    <SliderSetting label="Environmental Potential" value={settings.overallWeights.environmental} onChange={v => updateWeight('environmental', v)} disabled={isStandardMode} />
-                    <SliderSetting label="Geological Potential" value={settings.overallWeights.geological} onChange={v => updateWeight('geological', v)} disabled={isStandardMode} />
+                    <SliderSetting label={dictionary.environmentalPotential} value={settings.overallWeights.environmental} onChange={v => updateWeight('environmental', v)} disabled={isStandardMode} />
+                    <SliderSetting label={dictionary.geologicalPotential} value={settings.overallWeights.geological} onChange={v => updateWeight('geological', v)} disabled={isStandardMode} />
                 </div>
             </div>
 
             <div className="mt-8 pt-4 border-t border-gray-200">
                 <div className={`flex justify-between items-center font-bold text-lg ${totalWeight === 100 ? 'text-gray-800' : 'text-red-600'}`}>
-                    <span>Total Weight</span>
-                    <span>{totalWeight}%</span>
+                    <span>{dictionary.totalWeight}</span>
+                    <span dir="ltr">{totalWeight}%</span>
                 </div>
-                {totalWeight !== 100 && !isStandardMode && (<p className="text-xs text-red-600 mt-1 text-right">The total weight must be exactly 100% to continue.</p>)}
+                {totalWeight !== 100 && !isStandardMode && (<p className="text-xs text-red-600 mt-1 text-left">مجموع وزن‌ها باید ۱۰۰٪ باشد تا بتوانید ادامه دهید.</p>)}
             </div>
         </div>
     );
@@ -192,18 +236,18 @@ const Step2_Criteria = () => {
         return (
              <div className="h-full flex flex-col">
                 <div className="flex-shrink-0 mb-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">{sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1)} Factors</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">فاکتورهای {dictionary[sectionKey]}</h3>
                   <p className="text-xs text-gray-600">
-                    Configure constraints and parameters.
-                    {isStandardMode && <span className="block text-amber-600 font-semibold mt-1">⚠️ Standard mode: Values are preset and cannot be modified</span>}
+                    پیکربندی محدودیت‌ها و پارامترها.
+                    {isStandardMode && <span className="block text-amber-600 font-semibold mt-1">⚠️ حالت استاندارد: مقادیر پیش‌فرض هستند و قابل تغییر نمی‌باشند.</span>}
                   </p>
                 </div>
                 <div className="flex-1 relative">
-                    <div className="absolute inset-0 overflow-y-auto pr-2 sm:pr-4">
+                    <div className="absolute inset-0 overflow-y-auto ps-2 sm:ps-4">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {factorKeys.map(key => {
                                 const factorData = settings[sectionKey][key];
-                                const title = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                                const title = dictionary[key] || key;
                                 
                                 return (
                                     <FactorGroup 
@@ -214,7 +258,7 @@ const Step2_Criteria = () => {
                                         disableToggle={isStandardMode}
                                     >
                                         <SliderSetting 
-                                            label="Factor Weight" 
+                                            label={dictionary.factorWeight} 
                                             value={factorData.weight} 
                                             onChange={v => updateFactor(sectionKey, key, 'weight', v)} 
                                             min={0} max={20} 
@@ -242,13 +286,13 @@ const Step2_Criteria = () => {
 
     return (
         <div className="flex flex-col lg:flex-row bg-white rounded-xl shadow-sm border border-gray-200 h-full overflow-hidden">
-            {/* Sidebar */}
-            <div className="hidden lg:block w-full lg:w-64 bg-gray-50 border-r border-gray-200 flex-shrink-0 relative z-10">
+            {/* Sidebar (Right in RTL) */}
+            <div className="hidden lg:block w-full lg:w-64 bg-gray-50 border-e border-gray-200 flex-shrink-0 relative z-10">
                 <div className="p-4 overflow-y-auto h-full">
-                    <h3 className="text-sm font-semibold text-gray-900 mb-3">Categories</h3>
+                    <h3 className="text-sm font-semibold text-gray-900 mb-3">دسته‌بندی‌ها</h3>
                     <nav className="space-y-1.5">
                         {tabs.map((tab) => (
-                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} type="button" className={`w-full flex items-start text-left gap-3 p-2.5 rounded-lg transition-all duration-200 ${ activeTab === tab.id ? 'bg-primary-blue text-white shadow-sm' : 'hover:bg-white text-gray-700 hover:shadow-sm'}`}>
+                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} type="button" className={`w-full flex items-start text-right gap-3 p-2.5 rounded-lg transition-all duration-200 ${ activeTab === tab.id ? 'bg-primary-blue text-white shadow-sm' : 'hover:bg-white text-gray-700 hover:shadow-sm'}`}>
                             <tab.icon className="w-5 h-5 flex-shrink-0 mt-0.5" />
                             <div>
                             <div className="text-sm font-medium">{tab.label}</div>
@@ -275,14 +319,14 @@ const Step2_Criteria = () => {
                 {/* Internal Step Footer */}
                 <div className="border-t border-gray-200 px-4 sm:px-6 py-3 bg-gray-50 rounded-b-xl flex-shrink-0">
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-                        <div className="text-xs text-gray-500">Project: <strong>{projectDetails.name}</strong></div>
+                        <div className="text-xs text-gray-500">پروژه: <strong>{projectDetails.name}</strong></div>
                         <button 
                             onClick={handleContinue} 
                             disabled={!isStandardMode && totalWeight !== 100}
                             className="w-full sm:w-auto px-6 py-2 bg-primary-blue text-white rounded-lg text-sm font-semibold hover:bg-primary-blue/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Save Criteria & Continue 
-                            <ArrowRightIcon className="w-3 h-3" />
+                            ذخیره و ادامه
+                            <ArrowRightIcon className="w-3 h-3 transform scale-x-[-1]" />
                         </button>
                     </div>
                 </div>

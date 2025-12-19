@@ -6,15 +6,16 @@ const DashboardTab = ({ data }) => {
   
   const { kpi } = data;
 
+  // Translation & Formatting
   const items = [
-    { label: "Project IRR", value: `${kpi.irrProject}%`, isHighlight: true },
-    { label: "Shareholder IRR", value: `${kpi.irrEquity}%`, isHighlight: true },
-    { label: "Payback Period (PBP)", value: kpi.pbp, unit: "Years" },
-    { label: "Average DSCR", value: kpi.dscr, unit: "x" },
-    { label: "Total Investment", value: kpi.totalInvestment.toLocaleString(), unit: "M Rial" },
-    { label: "NPV (Project)", value: kpi.npv.toLocaleString(), unit: "M Rial" },
-    { label: "Working Capital", value: kpi.workingCapital.toLocaleString(), unit: "M Rial" },
-    { label: "LCOE", value: kpi.lcoe.toLocaleString(), unit: "Rial/kWh" },
+    { label: "نرخ بازده داخلی پروژه (Project IRR)", value: `${kpi.irrProject}%`, isHighlight: true },
+    { label: "نرخ بازده حقوق صاحبان سهام (Equity IRR)", value: `${kpi.irrEquity}%`, isHighlight: true },
+    { label: "دوره بازگشت سرمایه (PBP)", value: kpi.pbp.replace('Years', 'سال').replace('Months', 'ماه'), unit: "" },
+    { label: "میانگین پوشش بدهی (DSCR)", value: kpi.dscr, unit: "x" },
+    { label: "کل سرمایه‌گذاری", value: kpi.totalInvestment.toLocaleString(), unit: "میلیون ریال" },
+    { label: "ارزش خالص فعلی (NPV)", value: kpi.npv.toLocaleString(), unit: "میلیون ریال" },
+    { label: "سرمایه در گردش", value: kpi.workingCapital.toLocaleString(), unit: "میلیون ریال" },
+    { label: "هزینه تراز شده انرژی (LCOE)", value: kpi.lcoe.toLocaleString(), unit: "ریال/کیلووات ساعت" },
   ];
 
   return (
@@ -23,8 +24,8 @@ const DashboardTab = ({ data }) => {
         <div className="px-6 py-5 border-b border-gray-100 bg-gray-50/30 flex items-center justify-between">
           <div className="flex items-center gap-3">
              <div>
-                <h4 className="text-lg font-medium text-gray-800 mb-1">Management Dashboard & KPIs</h4>
-                <p className="text-xs text-gray-500 mt-0.5">Key performance indicators for project viability</p>
+                <h4 className="text-lg font-medium text-gray-800 mb-1">داشبورد مدیریتی و شاخص‌های کلیدی</h4>
+                <p className="text-xs text-gray-500 mt-0.5">شاخص‌های عملکردی برای ارزیابی توجیه‌پذیری پروژه</p>
              </div>
           </div>
         </div>
@@ -42,12 +43,21 @@ const DashboardTab = ({ data }) => {
                   </span>
                 </div>
                 
-                <div className="text-right flex items-baseline gap-1">
+                {/* 
+                   Value Display: 
+                   dir="ltr" ensures numbers (e.g. 33.36%) display correctly (Left to Right).
+                   The container is flex-row, so LTR puts value on Left, unit on Right.
+                   In RTL context, we want Value on Right, Unit on Left visually? 
+                   Actually, in Persian math notation, numbers are written LTR. 
+                   "100 Million" -> "۱۰۰ میلیون".
+                   So we keep LTR inside this specific block to keep number ordering correct.
+                */}
+                <div className="text-left flex items-baseline gap-1" dir="ltr">
                   <span className={`text-lg font-bold ${item.isHighlight ? 'text-emerald-600' : 'text-gray-900'}`}>
                     {item.value}
                   </span>
                   {item.unit && (
-                    <span className="text-xs text-gray-400 font-medium">{item.unit}</span>
+                    <span className="text-xs text-gray-400 font-medium" dir="rtl">{item.unit}</span>
                   )}
                 </div>
               </div>

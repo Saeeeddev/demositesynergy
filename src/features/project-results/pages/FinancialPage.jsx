@@ -17,7 +17,7 @@ const FinancialPage = () => {
   if (isLoading) {
     return (
       <div className="flex h-full items-center justify-center bg-gray-50">
-        <div className="text-sm font-medium text-gray-500 animate-pulse">Loading Financial Model...</div>
+        <div className="text-sm font-medium text-gray-500 animate-pulse">در حال بارگذاری مدل مالی...</div>
       </div>
     );
   }
@@ -25,7 +25,7 @@ const FinancialPage = () => {
   if (isError || !financialData) {
     return (
       <div className="flex h-full items-center justify-center bg-gray-50">
-        <div className="text-sm font-medium text-red-500">Error loading financial data.</div>
+        <div className="text-sm font-medium text-red-500">خطا در بارگذاری داده‌های مالی.</div>
       </div>
     );
   }
@@ -43,9 +43,8 @@ const FinancialPage = () => {
     }
   };
 
-  // FIX: Removed 'h-full' and 'overflow-y-auto'. Added 'min-h-full'.
   return (
-    <div className="p-4 sm:p-6 min-h-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200">
+    <div className="p-4 sm:p-6 min-h-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200" dir="rtl">
       {renderContent()}
     </div>
   );

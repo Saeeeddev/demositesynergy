@@ -26,7 +26,7 @@ const NewProjectButton = () => {
       <button className="w-10 h-10 bg-button-action-blue text-white rounded-full flex items-center justify-center shadow-lg hover:bg-button-action-blue/90 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-primary-blue/40">
         <PlusIcon className="w-6 h-6" />
       </button>
-      <span className="text-xs mt-2 font-semibold text-gray-700">New</span>
+      <span className="text-xs mt-2 font-semibold text-gray-700">جدید</span>
     </div>
   );
 };
@@ -38,7 +38,7 @@ const NavItem = ({ to, icon, label }) => (
                 <div className={`w-[40px] h-[40px] rounded-lg flex items-center justify-center transition-all duration-200 ${isActive ? "bg-button-action-blue text-white shadow-lg shadow-primary-blue/30" : "text-gray-500 group-hover:bg-primary-light-blue group-hover:text-button-action-blue"}`}>
                     {icon}
                 </div>
-                <span className={`text-xs mt-1 transition-colors duration-200 ${isActive ? 'text-button-action-blue font-semibold' : 'text-gray-700 group-hover:text-button-action-blue'}`}>{label}</span>
+                <span className={`text-[11px] mt-1 transition-colors duration-200 ${isActive ? 'text-button-action-blue font-semibold' : 'text-gray-700 group-hover:text-button-action-blue'}`}>{label}</span>
             </div>
         )}
     </NavLink>
@@ -49,21 +49,16 @@ const Sidebar = () => {
   const location = useLocation();
 
   const navItems = [
-    { to: '/dashboard', icon: <HomeIcon />, label: "Home" },
-    { to: '/projects', icon: <FolderIcon />, label: "Projects" },
-    { to: '/reports', icon: <BarChartIcon />, label: "Reports" },
-    { to: '/payments', icon: <CreditCardIcon />, label: "Payments" },
+    { to: '/dashboard', icon: <HomeIcon />, label: "خانه" },
+    { to: '/projects', icon: <FolderIcon />, label: "پروژه‌ها" },
+    { to: '/reports', icon: <BarChartIcon />, label: "گزارش‌ها" },
+    { to: '/payments', icon: <CreditCardIcon />, label: "مالی" },
   ];
 
-  // Logic to render the correct Secondary Sidebar based on the route
-  // The Result Page logic is purposefully EXCLUDED here so it defaults 
-  // to 'ProjectSecondarySidebar' (or keeps state) without interfering.
   const renderSecondaryContent = () => {
     const p = location.pathname;
     
     if (p.startsWith('/dashboard')) return <HomeSecondarySidebar />;
-    // When inside /projects/:id/result, it will match this and show the Project list sidebar
-    // This is expected behavior if you want the main nav to remain static.
     if (p.startsWith('/projects')) return <ProjectSecondarySidebar />;
     if (p.startsWith('/reports')) return <ReportSecondarySidebar />;
     if (p.startsWith('/payments')) return <PaymentsSecondarySidebar />;
@@ -74,13 +69,18 @@ const Sidebar = () => {
 
   return (
     <div className="hidden md:flex sticky top-0 h-screen self-start z-50">
-      <nav className={`w-[70px] h-screen bg-transparent flex flex-col items-center pt-[8px] shadow-sm self-start border-r border-gray-200/50 bg-white`}>
+      {/* 
+         Change border-r to border-e (End/Left in RTL)
+         This creates the main thin navigation strip
+      */}
+      <nav className={`w-[70px] h-screen bg-transparent flex flex-col items-center pt-[8px] shadow-sm self-start border-e border-gray-200/50 bg-white`}>
         <div className="h-[56px] w-[40px] flex items-center justify-center pb-[16px]">
           <button 
             onClick={toggleNav} 
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors transform hover:scale-105"
           >
-            {isNavOpen ? <MenuCollapseIcon className="w-5 h-5 text-gray-600" /> : <MenuIcon className="w-5 h-5 text-gray-600" />}
+            {/* Flip logic for menu icon if needed, but generic icons usually okay */}
+            {isNavOpen ? <MenuCollapseIcon className="w-5 h-5 text-gray-600 transform scale-x-[-1]" /> : <MenuIcon className="w-5 h-5 text-gray-600" />}
           </button>
         </div>
         
@@ -114,10 +114,14 @@ const Sidebar = () => {
         </div>
       </nav>
 
+      {/* 
+         Secondary Sidebar Panel 
+         border-r -> border-e
+      */}
       <div className={`transition-all duration-300 ease-in-out ${isNavOpen ? 'w-[264px]' : 'w-0'} ${!isNavOpen ? 'pointer-events-none' : ''}`}>
-        <div className={`h-full flex flex-col w-[264px] bg-white border-r border-gray-200/50 ${isNavOpen ? 'opacity-100' : 'opacity-0'} ${!isNavOpen ? 'pointer-events-none' : ''}`}>
-          <div className="h-[72px] px-[16px] pt-[12px] flex-shrink-0">
-            <div className="h-[40px] w-[232px] flex items-center">
+        <div className={`h-full flex flex-col w-[264px] bg-white border-e border-gray-200/50 ${isNavOpen ? 'opacity-100' : 'opacity-0'} ${!isNavOpen ? 'pointer-events-none' : ''}`}>
+          <div className="h-[72px] px-[16px] pt-[12px] flex-shrink-0 flex justify-center">
+            <div className="h-[40px] w-[232px] flex items-center justify-center">
               <img 
                 src="src/assets/images/sitesynergy_logo_colored.png" 
                 alt="SiteSynergy Logo"

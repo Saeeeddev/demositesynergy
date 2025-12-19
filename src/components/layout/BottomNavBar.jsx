@@ -19,18 +19,24 @@ const BottomNavBar = () => {
     const navigate = useNavigate();
 
     const navItems = [
-        { to: '/dashboard', icon: <HomeIcon />, label: "Home" },
-        { to: '/projects', icon: <FolderIcon />, label: "Projects" },
-        { to: '/reports', icon: <BarChartIcon />, label: "Reports" },
-        { to: '/payments', icon: <CreditCardIcon />, label: "Payments" },
+        { to: '/dashboard', icon: <HomeIcon />, label: "خانه" },
+        { to: '/projects', icon: <FolderIcon />, label: "پروژه‌ها" },
+        { to: '/reports', icon: <BarChartIcon />, label: "گزارش‌ها" },
+        { to: '/payments', icon: <CreditCardIcon />, label: "مالی" },
     ];
 
     const leftItems = navItems.slice(0, 2);
     const rightItems = navItems.slice(2, 4);
 
     return (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40" dir="rtl">
             <div className="flex justify-around items-center h-full">
+                {/* 
+                   In RTL Flex:
+                   Start is Right. End is Left.
+                   We want Home on the Right.
+                   So leftItems (Home, Projects) come first in markup (Start).
+                */}
                 <div className="flex items-center h-full">
                     {leftItems.map(item => <BottomNavItem key={item.to} {...item} />)}
                 </div>

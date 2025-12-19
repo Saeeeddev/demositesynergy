@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const AuthLayout = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 sm:p-6 lg:p-8 font-sans">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 sm:p-6 lg:p-8 font-sans" dir="rtl">
       <div className="w-full max-w-md space-y-8">
         
         {/* Logo Area */}
@@ -24,7 +24,7 @@ const AuthLayout = () => {
 
         {/* Footer */}
         <p className="text-center text-xs text-gray-500">
-          &copy; {new Date().getFullYear()} SiteSynergy. All rights reserved.
+          &copy; {new Date().getFullYear()} SiteSynergy. تمامی حقوق محفوظ است.
         </p>
       </div>
     </div>

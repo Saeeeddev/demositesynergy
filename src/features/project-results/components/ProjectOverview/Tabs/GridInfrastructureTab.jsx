@@ -3,19 +3,20 @@ import React from 'react';
 // --- STATIC DATA (Placeholder) ---
 const STATIC_GRID_DATA = {
   distance: '12 km',
-  substation: 'Yazd Central Substation',
+  substation: 'پست مرکزی یزد',
   capacity: '50 MW',
-  impact: 'Low',
+  impact: 'کم',
   voltage: '230 kV',
-  potential: 'High',
-  availability: 'Available',
+  potential: 'زیاد',
+  availability: 'موجود',
 };
 
 // --- Local Color Helper ---
 const getStatusColor = (value) => {
   const v = value?.toLowerCase();
-  if (v === 'good' || v === 'high' || v === 'low' || v === 'available') return 'text-emerald-600';
-  if (v === 'fair' || v === 'medium') return 'text-yellow-600';
+  // Check English keywords (if DB data) OR Farsi keywords
+  if (v === 'good' || v === 'high' || v === 'low' || v === 'available' || v === 'زیاد' || v === 'کم' || v === 'موجود') return 'text-emerald-600';
+  if (v === 'fair' || v === 'medium' || v === 'متوسط') return 'text-yellow-600';
   return 'text-red-600';
 };
 
@@ -27,8 +28,8 @@ const InfoRow = ({ label, value, valueClass = "text-gray-900" }) => (
         {label}
       </span>
     </div>
-    <div className="text-right flex items-baseline gap-1">
-      <span className={`text-lg font-bold ${valueClass}`}>
+    <div className="text-left flex items-baseline gap-1" dir="ltr">
+      <span className={`text-lg font-bold ${valueClass} text-right`} dir="rtl">
         {value}
       </span>
     </div>
@@ -36,18 +37,17 @@ const InfoRow = ({ label, value, valueClass = "text-gray-900" }) => (
 );
 
 const GridInfrastructureTab = ({ gridData }) => {
-  // Use props if available, otherwise fallback to static data
   const data = gridData || STATIC_GRID_DATA;
 
   return (
-    <div className="h-full w-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200 p-6 overflow-y-auto animate-fade-in">
+    <div className="h-full w-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200 p-6 overflow-y-auto animate-fade-in text-right" dir="rtl">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden relative">
         
         {/* --- BACKGROUND WATERMARK --- */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center z-0">
           <div className="transform -rotate-12 opacity-[0.04] whitespace-nowrap select-none">
             <span className="text-9xl font-black text-gray-900 uppercase tracking-widest">
-              Coming Soon • Beta • Preview
+              نسخه آزمایشی • بزودی
             </span>
           </div>
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/20 via-transparent to-purple-50/20"></div>
@@ -58,12 +58,12 @@ const GridInfrastructureTab = ({ gridData }) => {
           <div className="flex items-center gap-3">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <h4 className="text-lg font-medium text-gray-800">Grid & Infrastructure Access</h4>
+                <h4 className="text-lg font-medium text-gray-800">دسترسی به شبکه و زیرساخت</h4>
                 <span className="px-2 py-0.5 rounded-md bg-amber-100 border border-amber-200 text-[10px] font-bold text-amber-700 uppercase tracking-wide">
-                  Static Preview
+                  پیش‌نمایش
                 </span>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Connection feasibility and grid technical specifications</p>
+              <p className="text-xs text-gray-500 mt-0.5">امکان‌سنجی اتصال و مشخصات فنی شبکه</p>
             </div>
           </div>
         </div>
@@ -71,34 +71,34 @@ const GridInfrastructureTab = ({ gridData }) => {
         {/* Content */}
         <div className="relative p-6 z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
-            <InfoRow label="Transmission Line Distance" value={data.distance} />
-            <InfoRow label="Nearest Substation" value={data.substation} />
+            <InfoRow label="فاصله تا خط انتقال" value={data.distance} />
+            <InfoRow label="نزدیک‌ترین پست برق" value={data.substation} />
             
             <InfoRow 
-              label="Grid Capacity" 
+              label="ظرفیت شبکه" 
               value={data.capacity} 
               valueClass="text-indigo-600"
             />
             
             <InfoRow 
-              label="Substation Voltage" 
+              label="ولتاژ پست" 
               value={data.voltage} 
             />
             
             <InfoRow 
-              label="Grid Impact" 
+              label="تأثیر بر شبکه" 
               value={data.impact} 
               valueClass={getStatusColor(data.impact)}
             />
             
             <InfoRow 
-              label="Capacity Potential" 
+              label="پتانسیل ظرفیت" 
               value={data.potential} 
               valueClass={getStatusColor(data.potential)}
             />
             
             <InfoRow 
-              label="Interconnection Availability" 
+              label="قابلیت اتصال" 
               value={data.availability} 
               valueClass={getStatusColor(data.availability)}
             />
@@ -108,7 +108,7 @@ const GridInfrastructureTab = ({ gridData }) => {
         <div className="relative px-9 py-4 bg-gray-50 border-t border-gray-100 z-10">
            <p className="text-s text-gray-400 text-center flex items-center justify-center gap-1">
              <span>⚠️</span>
-             This module is currently in development. Data shown is a placeholder.
+             این ماژول در حال توسعه است. داده‌های نمایش داده شده نمونه هستند.
            </p>
         </div>
 

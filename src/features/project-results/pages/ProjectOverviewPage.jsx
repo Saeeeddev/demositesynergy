@@ -13,6 +13,7 @@ const getValueClass = (value, type) => {
     return 'text-red-600';
   }
   if (type === 'status') {
+    // Check against English values from DB to ensure styling works
     const v = value?.toLowerCase();
     if (v === 'good' || v === 'high' || v === 'low' || v === 'available') return 'text-green-600'; 
     if (v === 'fair' || v === 'medium') return 'text-yellow-600';
@@ -26,11 +27,11 @@ const ProjectOverviewPage = () => {
   const { data: siteData, isLoading, isError } = useProjectData();
 
   if (isLoading) {
-    return <div className="flex h-full items-center justify-center text-gray-500">Loading Overview...</div>;
+    return <div className="flex h-full items-center justify-center text-gray-500">در حال بارگذاری بررسی کلی...</div>;
   }
 
   if (isError || !siteData) {
-    return <div className="flex h-full items-center justify-center text-red-500">Failed to load project data.</div>;
+    return <div className="flex h-full items-center justify-center text-red-500">خطا در بارگذاری داده‌های پروژه.</div>;
   }
 
   const renderContent = () => {
@@ -46,8 +47,6 @@ const ProjectOverviewPage = () => {
     }
   };
 
-  // FIX: Removed 'h-full' and 'overflow-y-auto'. Added 'min-h-full'.
-  // This allows the parent ResultPageMainBox to handle the scrolling.
   return (
     <div className="h-full w-full bg-gray-50/80">
       {renderContent()}

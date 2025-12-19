@@ -9,9 +9,8 @@ function LayersPage() {
   // Get Global State
   const layers = useResultStore(state => state.layers);
   const setSelectedFeature = useResultStore(state => state.setSelectedFeature);
-  // selectedFeature is used inside UnifiedBaseMap via store, but we might need it here for other logic if extended
 
-  // --- COLOR HELPERS ---
+  // --- COLOR HELPERS (Kept logic, just helper functions) ---
   const getDefaultColor = useCallback((layer) => {
     const colors = {
       powerLines: '#e31a1c', roads: '#1f78b4', railways: '#33a02c', airports: '#6a3d9a',
@@ -101,17 +100,37 @@ function LayersPage() {
        feature.id = Math.random().toString(36).substr(2, 9);
     }
 
-    // 2. Bind Popups
+    // 2. Bind Popups (Translated)
     const props = feature.properties || {};
-    let popupContent = `<b>Layer:</b> ${currentLayer}`;
+    
+    // Map internal keys to Farsi labels
+    const layerNames = {
+        powerLines: 'خطوط برق',
+        roads: 'جاده‌ها',
+        railways: 'راه‌آهن',
+        cities: 'شهر/آبادی',
+        airports: 'فرودگاه',
+        waterAreas: 'منابع آبی',
+        fault: 'گسل',
+        protectedAreas: 'منطقه حفاظت‌شده',
+        landuse: 'کاربری اراضی',
+        technical: 'فنی',
+        dem: 'ارتفاع',
+        ghi: 'تابش'
+    };
+
+    let popupContent = `<div style="text-align: right; font-family: 'Yekan Bakh', sans-serif;">
+        <b>لایه:</b> ${layerNames[currentLayer] || currentLayer}`;
     
     if (currentLayer === 'technical' || currentLayer === 'dem') {
-      popupContent += `<br><b>Gridcode:</b> ${props.gridcode || 'N/A'}`;
+      popupContent += `<br><b>کد شبکه:</b> ${props.gridcode || 'نامشخص'}`;
     } else if (currentLayer === 'ghi') {
-      popupContent += `<br><b>Contour:</b> ${props.Contour || 'N/A'}`;
+      popupContent += `<br><b>مقدار تابش:</b> ${props.Contour || 'نامشخص'}`;
     } else if (props.name || props.Name) {
-      popupContent += `<br><b>Name:</b> ${props.name || props.Name}`;
+      popupContent += `<br><b>نام:</b> ${props.name || props.Name}`;
     }
+    popupContent += `</div>`;
+    
     layer.bindPopup(popupContent);
 
     // 3. Click Handler -> Updates Store
@@ -122,21 +141,20 @@ function LayersPage() {
 
   // --- LEGEND RENDERING ---
   const renderLegend = () => (
-    <div className="mt-2.5">
+    <div className="mt-2.5" dir="rtl">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3">
-          {layers.powerLines && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 bg-[#e31a1c]"></div> <span className="text-xs">Power Lines</span> </div> )}
-          {layers.roads && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 bg-[#1f78b4]"></div> <span className="text-xs">Roads</span> </div> )}
-          {layers.railways && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 border-t-2 border-dashed border-[#33a02c]"></div> <span className="text-xs">Railways</span> </div> )}
-          {layers.cities && ( <div className="flex items-center gap-2"> <div className="w-3 h-3 rounded-full bg-[#ff7f00] border border-black"></div> <span className="text-xs">Cities</span> </div> )}
-          {layers.airports && ( <div className="flex items-center gap-2"> <div className="w-3 h-3 rounded-full bg-[#6a3d9a] border border-black"></div> <span className="text-xs">Airports</span> </div> )}
-          {layers.waterAreas && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#b2df8a] opacity-80"></div> <span className="text-xs">Water Areas</span> </div> )}
-          {layers.fault && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 bg-[#a6cee3] border-dashed border-t"></div> <span className="text-xs">Fault Lines</span> </div> )}
-          {layers.protectedAreas && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#fb9a99] opacity-80 border border-green-800"></div> <span className="text-xs">Protected</span> </div> )}
-          {layers.ghi && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-gradient-to-r from-blue-400 via-green-400 to-red-500"></div> <span className="text-xs">GHI Heatmap</span> </div> )}
-          {/* Default fallback for others */}
-          {Object.entries(layers).filter(([k, v]) => v && !['powerLines','roads','railways','cities','airports','waterAreas','fault','protectedAreas','ghi'].includes(k)).map(([key]) => (
-             <div key={key} className="flex items-center gap-2"> <div className="w-5 h-2 bg-gray-400 opacity-50"></div> <span className="text-xs capitalize">{key}</span> </div>
-          ))}
+          {layers.powerLines && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 bg-[#e31a1c]"></div> <span className="text-xs">خطوط برق</span> </div> )}
+          {layers.roads && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 bg-[#1f78b4]"></div> <span className="text-xs">جاده‌ها</span> </div> )}
+          {layers.railways && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 border-t-2 border-dashed border-[#33a02c]"></div> <span className="text-xs">راه‌آهن</span> </div> )}
+          {layers.cities && ( <div className="flex items-center gap-2"> <div className="w-3 h-3 rounded-full bg-[#ff7f00] border border-black"></div> <span className="text-xs">شهرها</span> </div> )}
+          {layers.airports && ( <div className="flex items-center gap-2"> <div className="w-3 h-3 rounded-full bg-[#6a3d9a] border border-black"></div> <span className="text-xs">فرودگاه‌ها</span> </div> )}
+          {layers.waterAreas && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#b2df8a] opacity-80"></div> <span className="text-xs">منابع آبی</span> </div> )}
+          {layers.fault && ( <div className="flex items-center gap-2"> <div className="w-5 h-1 bg-[#a6cee3] border-dashed border-t"></div> <span className="text-xs">گسل‌ها</span> </div> )}
+          {layers.protectedAreas && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#fb9a99] opacity-80 border border-green-800"></div> <span className="text-xs">حفاظت‌شده</span> </div> )}
+          {layers.ghi && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-gradient-to-r from-blue-400 via-green-400 to-red-500"></div> <span className="text-xs">تابش (GHI)</span> </div> )}
+          {layers.landuse && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#fdbf6f]"></div> <span className="text-xs">کاربری اراضی</span> </div> )}
+          {layers.dem && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-gradient-to-r from-red-500 to-yellow-300"></div> <span className="text-xs">ارتفاع (DEM)</span> </div> )}
+          {layers.technical && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-purple-400"></div> <span className="text-xs">فنی</span> </div> )}
       </div>
     </div>
   );
@@ -149,12 +167,13 @@ function LayersPage() {
       />
       
       {/* Legend Container */}
+      {/* Positioned at bottom-right physically, which is visually logical for the map controls area */}
       <div className="absolute bottom-6 right-6 z-[1000] w-[300px] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 overflow-hidden max-h-[40vh] flex flex-col">
           <button 
               onClick={() => setIsLegendOpen(!isLegendOpen)}
               className="w-full px-4 py-3 flex items-center justify-between bg-white border-b border-gray-100 hover:bg-gray-50 transition-colors"
           >
-              <span className="text-sm font-semibold text-gray-700">Map Legend</span>
+              <span className="text-sm font-semibold text-gray-700">راهنمای نقشه</span>
               <ChevronDownIcon className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isLegendOpen ? 'rotate-180' : ''}`} />
           </button>
           

@@ -28,8 +28,6 @@ const ProjectsPage = () => {
   });
 
   // Fetch Header Stats from DB
-  // Removing default '0' values in initialData to allow UI to react to loaded data or loading state if preferred,
-  // but keeping structure to prevent crash.
   const { data: projectStats = { total: 0, completed: 0, inProgress: 0, pending: 0, totalCapacity: 0, estimatedGeneration: 0, totalArea: 0, avgROI: 0 } } = useQuery({
       queryKey: ['projectStats'],
       queryFn: fetchProjectStats,
@@ -45,7 +43,7 @@ const ProjectsPage = () => {
   if (isLoadingProjects) {
     return (
         <div className="flex items-center justify-center h-full p-8 text-gray-500 font-medium">
-            Loading...
+            در حال بارگذاری...
         </div>
     );
   }
@@ -53,7 +51,7 @@ const ProjectsPage = () => {
   if (isError) {
     return (
         <div className="text-center py-10">
-             <div className="text-red-500">Error loading projects: {error.message}</div>
+             <div className="text-red-500">خطا در بارگذاری پروژه‌ها: {error.message}</div>
         </div>
     );
   }
@@ -83,8 +81,8 @@ const ProjectsPage = () => {
         </>
       ) : (
         <div className="text-center py-10 bg-white rounded-lg shadow-sm">
-          <h3 className="text-lg font-medium text-gray-800">No Projects Found</h3>
-          <p className="text-sm text-gray-500 mt-1">Please adjust your search criteria.</p>
+          <h3 className="text-lg font-medium text-gray-800">پروژه‌ای یافت نشد</h3>
+          <p className="text-sm text-gray-500 mt-1">لطفاً معیارهای جستجو را تغییر دهید.</p>
         </div>
       )}
     </div>

@@ -24,14 +24,15 @@ const StatCard = ({ icon, title, value, change, changeType }) => {
         <div className="p-2 bg-gray-100 rounded-md">
           {React.cloneElement(icon, { className: "h-5 w-5 text-gray-600" })}
         </div>
-        <div className="ml-3">
+        {/* ms-3 adds margin to the start (right in RTL) */}
+        <div className="ms-3">
           <p className="text-xs text-gray-500">{title}</p>
           <p className="text-xl font-semibold text-gray-800">{value}</p>
         </div>
       </div>
       {change && (
         <p className={`text-xs mt-2 ${changeColor}`}>
-          {change} from last month
+          {change} نسبت به ماه قبل
         </p>
       )}
     </div>
@@ -41,16 +42,17 @@ const StatCard = ({ icon, title, value, change, changeType }) => {
 const QuickLinkCard = ({ icon, title, description, onClick }) => (
   <button 
     onClick={onClick} 
-    className="group flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors w-full text-left"
+    className="group flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors w-full text-right"
   >
     <div className="p-2 bg-gray-100 rounded-md flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all">
        {React.cloneElement(icon, { className: "h-5 w-5 text-gray-600" })}
     </div>
-    <div className="ml-4 flex-1 min-w-0">
+    <div className="ms-4 flex-1 min-w-0">
       <h3 className="font-medium text-gray-800 text-sm group-hover:text-primary-blue transition-colors">{title}</h3>
       <p className="text-xs text-gray-500 line-clamp-1">{description}</p>
     </div>
-    <ArrowRightIcon className="h-4 w-4 text-gray-400 group-hover:translate-x-1 group-hover:text-primary-blue transition-all flex-shrink-0 ml-2" />
+    {/* Flip arrow for RTL so it points Left */}
+    <ArrowRightIcon className="h-4 w-4 text-gray-400 group-hover:-translate-x-1 transition-all flex-shrink-0 ms-2 transform scale-x-[-1]" />
   </button>
 );
 
@@ -64,13 +66,18 @@ const getNotificationIcon = (type) => {
 };
 
 const RecentActivityItem = ({ notification }) => (
-  <li className="flex items-start space-x-3 py-3 first:pt-0 last:pb-0">
+  <li className="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
     <div className="p-1.5 bg-gray-100 rounded-full mt-0.5 flex-shrink-0">
       {getNotificationIcon(notification.type)}
     </div>
     <div className="flex-1 min-w-0">
       <p className="text-sm text-gray-700 leading-snug">
-         <span className="font-semibold">{notification.userName}</span> {notification.action} {notification.target && <strong>"{notification.target}"</strong>}
+         <span className="font-semibold">{notification.userName}</span> 
+         {/* Simplified translation mapping */}
+         {notification.type === 'mention' ? ' شما را منشن کرد در ' : 
+          notification.type === 'success' ? ' تکمیل کرد: ' : 
+          notification.type === 'failed' ? ' خطا در: ' : ' فعالیت: '}
+         {notification.target && <strong>"{notification.target}"</strong>}
       </p>
       <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
     </div>
@@ -98,34 +105,32 @@ const HomePage = () => {
   });
 
   if (isLoading) {
-      return <div className="p-8 flex justify-center text-gray-500 font-medium">Loading Dashboard...</div>;
+      return <div className="p-8 flex justify-center text-gray-500 font-medium">در حال بارگذاری داشبورد...</div>;
   }
 
   const { 
       user = {}, 
-      stats = {}, // Stats now come from DB
+      stats = {}, 
       notifications = [] 
   } = dashboardData || {};
 
-  // Render Network Error State if fetch failed
   if (isError) {
       return (
         <div className="p-8 flex flex-col items-center justify-center h-[50vh] text-center">
             <div className="bg-red-50 p-4 rounded-full mb-4">
                 <ExclamationCircleIcon className="w-8 h-8 text-red-500" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-1">Connection Error</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-1">خطای ارتباط</h3>
             <p className="text-sm text-gray-500 max-w-md">
-                Could not connect to the database server.
+                ارتباط با سرور پایگاه داده برقرار نشد.
             </p>
-            <p className="text-xs text-red-400 mt-4 font-mono bg-red-50 px-3 py-2 rounded">
+            <p className="text-xs text-red-400 mt-4 font-mono bg-red-50 px-3 py-2 rounded" dir="ltr">
                 {error?.message || "Network Error"}
             </p>
         </div>
       );
   }
 
-  // Safe defaults if stats are missing
   const { 
       activeProjects = 0, 
       activeProjectsChange = '', 
@@ -135,42 +140,42 @@ const HomePage = () => {
       actionNeededAmount = 0 
   } = stats;
 
-  const userName = user?.fullName?.split(' ')[0] || 'User';
+  const userName = user?.fullName?.split(' ')[0] || 'کاربر';
 
   return (
     <div className="p-4 sm:p-6 bg-gray-50/50 min-h-full">
       {/* --- Header --- */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Welcome back, {userName}!</h1>
-        <p className="text-gray-500 text-sm mt-1">Here's a snapshot of your workspace.</p>
+        <h1 className="text-2xl font-semibold text-gray-800">خوش آمدید، {userName}!</h1>
+        <p className="text-gray-500 text-sm mt-1">نگاهی کلی به وضعیت پروژه‌ها و فعالیت‌های اخیر.</p>
       </div>
 
       {/* --- Stat Cards (Data from DB) --- */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard 
             icon={<FolderIcon />} 
-            title="Active Projects" 
+            title="پروژه‌های فعال" 
             value={activeProjects} 
             change={activeProjectsChange} 
             changeType={activeProjectsChange.includes('+') ? "increase" : "decrease"} 
         />
         <StatCard 
             icon={<ChartBarIcon />} 
-            title="Reports Generated" 
+            title="گزارش‌های تولید شده" 
             value={reportsGenerated} 
             change={reportsChange} 
             changeType={reportsChange.includes('+') ? "increase" : "decrease"} 
         />
         <StatCard 
             icon={<CheckCircleIcon />} 
-            title="Completed Projects" 
+            title="پروژه‌های تکمیل شده" 
             value={completedProjects} 
         />
         <StatCard 
             icon={<CreditCardIcon />} 
-            title="Action Needed" 
+            title="نیازمند اقدام" 
             value={`$${(actionNeededAmount || 0).toLocaleString()}`} 
-            change="Invoices" 
+            change="فاکتورها" 
             changeType="decrease" 
         />
       </div>
@@ -178,32 +183,32 @@ const HomePage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* --- Quick Actions --- */}
         <div className="lg:col-span-2">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">Quick Actions</h2>
+          <h2 className="text-lg font-semibold text-gray-800 mb-3">دسترسی سریع</h2>
           <div className="bg-white p-2 rounded-xl border border-gray-200 shadow-sm divide-y divide-gray-100">
             <QuickLinkCard 
               onClick={() => navigate('/projects')}
               icon={<FolderIcon />} 
-              title="Browse Projects" 
-              description="View and manage all ongoing and completed projects."
+              title="مرور پروژه‌ها" 
+              description="مدیریت و مشاهده تمام پروژه‌های جاری و تکمیل شده."
             />
             <QuickLinkCard 
               onClick={() => navigate('/reports')}
               icon={<DocumentTextIcon />} 
-              title="Access Report Library" 
-              description="Find and download technical, financial, and environmental reports."
+              title="کتابخانه گزارش‌ها" 
+              description="دسترسی و دانلود گزارش‌های فنی، مالی و محیط‌زیستی."
             />
             <QuickLinkCard 
               onClick={() => navigate('/payments')}
               icon={<CreditCardIcon />} 
-              title="Manage Payments" 
-              description="Review your purchase history and download invoices."
+              title="مدیریت پرداخت‌ها" 
+              description="بررسی تاریخچه خریدها و دانلود فاکتورها."
             />
           </div>
         </div>
 
         {/* --- Recent Activity (Notifications from DB) --- */}
         <div>
-           <h2 className="text-lg font-semibold text-gray-800 mb-3">Recent Activity</h2>
+           <h2 className="text-lg font-semibold text-gray-800 mb-3">فعالیت‌های اخیر</h2>
            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
              <ul className="divide-y divide-gray-100">
                {notifications.length > 0 ? (
@@ -211,7 +216,7 @@ const HomePage = () => {
                     <RecentActivityItem key={notif.id} notification={notif} />
                  ))
                ) : (
-                 <p className="text-sm text-gray-400 italic">No recent activity.</p>
+                 <p className="text-sm text-gray-400 italic">فعالیتی ثبت نشده است.</p>
                )}
              </ul>
            </div>

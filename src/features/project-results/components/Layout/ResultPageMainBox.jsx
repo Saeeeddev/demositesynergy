@@ -20,9 +20,9 @@ const ResultPageMainBox = () => {
 
   const isMapView = contentView === 'layers-page';
   
-  // FIX: Using 'h-full' ensures the container fills the parent flex item.
-  // 'overflow-y-auto' enables scrolling for content pages.
-  // 'overflow-hidden' for map prevents double scrollbars.
+  // Container Logic:
+  // Map View: overflow-hidden (Map handles its own panning/zooming)
+  // Data Views: overflow-y-auto (Standard scrolling)
   const mainContainerClass = `w-full h-full bg-gray-50/80 relative ${
     isMapView ? 'overflow-hidden' : 'overflow-y-auto'
   }`;
@@ -35,3 +35,4 @@ const ResultPageMainBox = () => {
 };
 
 export default ResultPageMainBox;
+

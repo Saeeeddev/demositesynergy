@@ -7,7 +7,7 @@ import useResultStore from '../../../../stores/useResultStore';
 
 const ContentLoading = () => (
   <div className="flex h-full w-full items-center justify-center bg-gray-50">
-    <div className="animate-pulse text-sm text-gray-400">Loading Result Module...</div>
+    <div className="animate-pulse text-sm text-gray-400">در حال بارگذاری نتایج...</div>
   </div>
 );
 
@@ -28,12 +28,17 @@ const ResultPageLayout = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-gray-100 overflow-hidden relative">
+    <div className="flex flex-col h-full w-full bg-gray-100 overflow-hidden relative" dir="rtl">
       
       <ResultPageHeader onBack={handleBack} />
       
       <div className="flex flex-1 overflow-hidden relative">
-        {/* Sidebar is fixed width, so it won't be affected by parent flex issues */}
+        {/* 
+           RTL Layout:
+           Flex row starts from Right.
+           1. ResultPageSidebar (First Child) -> Appears on Right
+           2. ResultPageMainBox (Second Child) -> Appears on Left (taking remaining space)
+        */}
         <ResultPageSidebar />
         
         {/* Main Content takes remaining space */}

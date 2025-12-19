@@ -17,9 +17,9 @@ export default function ProjectOverviewSidebarPanel() {
   }, [setContentView]);
 
   const tabs = [
-    { id: 'summary', label: 'Executive Summary', icon: PresentationChartLineIcon },
-    { id: 'basic-info', label: 'Basic Information', icon: InformationCircleIcon },
-    { id: 'grid-infrastructure', label: 'Grid & Infrastructure', icon: BoltIcon },
+    { id: 'summary', label: 'خلاصه مدیریتی', icon: PresentationChartLineIcon },
+    { id: 'basic-info', label: 'اطلاعات پایه', icon: InformationCircleIcon },
+    { id: 'grid-infrastructure', label: 'شبکه و زیرساخت', icon: BoltIcon },
   ];
 
   return (
@@ -33,7 +33,8 @@ export default function ProjectOverviewSidebarPanel() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-left
+              // RTL Change: 'text-left' -> 'text-right'
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-right
                 ${isActive 
                   ? 'bg-Sidebar-item-blue text-white shadow-sm' 
                   : 'text-gray-600 hover:text-primary-blue hover:bg-gray-100'}`}

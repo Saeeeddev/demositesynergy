@@ -4,15 +4,20 @@
 @import 'leaflet/dist/leaflet.css';
 @import 'leaflet-draw/dist/leaflet.draw.css';
 
+/* Import Farsi Fonts */
+@import './assets/fonts/fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    /* Set default font to Yekan Bakh */
+    font-family: 'Yekan Bakh', 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
+    direction: rtl; /* Enforce RTL globally */
     
     /* Custom Scrollbar Logic (Firefox) */
     scrollbar-width: thin;
@@ -25,7 +30,8 @@
 
   /* Result Module Typography Overrides */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-semibold;
+    /* Use Fat font for headings if desired, or standard bold */
+    @apply font-display font-bold;
   }
   
   h1 { @apply text-3xl md:text-4xl lg:text-5xl; }

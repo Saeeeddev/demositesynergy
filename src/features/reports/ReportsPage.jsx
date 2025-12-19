@@ -44,7 +44,7 @@ const ReportsPage = () => {
   const paginatedReports = reports.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="flex flex-col flex-grow px-4 sm:px-6 lg:px-8 py-6">
+    <div className="flex flex-col flex-grow px-4 sm:px-6 lg:px-8 py-6 text-right" dir="rtl">
       
       {/* --- Main Container --- */}
       <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
@@ -52,8 +52,9 @@ const ReportsPage = () => {
         {/* Header Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div className="flex items-center">
-            <DocumentTextIcon className="h-6 w-6 text-primary-blue mr-3" />
-            <h2 className="text-xl font-medium text-gray-800">Report Repository</h2>
+            {/* Changed mr-3 to ms-3 */}
+            <DocumentTextIcon className="h-6 w-6 text-primary-blue ms-3" />
+            <h2 className="text-xl font-medium text-gray-800">مخزن گزارش‌ها</h2>
           </div>
         </div>
         
@@ -61,9 +62,9 @@ const ReportsPage = () => {
         <div className="mb-6 relative">
             {/* Notification Tooltip */}
             {showNote && (
-                <div className="absolute bottom-full left-1/4 mb-2 z-20 w-max px-2 py-1 text-[11px] font-medium text-white bg-gray-800 rounded shadow-lg animate-fade-in-up">
-                    Module coming in next update
-                    <div className="absolute top-full left-4 -mt-[1px] border-4 border-transparent border-t-gray-800"></div>
+                <div className="absolute bottom-full right-1/4 mb-2 z-20 w-max px-2 py-1 text-[11px] font-medium text-white bg-gray-800 rounded shadow-lg animate-fade-in-up">
+                    امکان جستجو و فیلتر در بروزرسانی بعدی
+                    <div className="absolute top-full right-4 -mt-[1px] border-4 border-transparent border-t-gray-800"></div>
                 </div>
             )}
 
@@ -74,21 +75,22 @@ const ReportsPage = () => {
                         className="relative w-full md:max-w-xs cursor-pointer"
                         onClick={handleRestrictedAction}
                     >
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        {/* Icon on Right (Start) */}
+                        <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none">
                             <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
                         </div>
                         <input
                             type="text"
                             readOnly
-                            placeholder="Search reports..."
-                            className="pl-10 pr-4 py-2 block w-full rounded-lg border border-gray-300 focus:border-gray-300 focus:ring-0 text-sm cursor-pointer bg-white"
+                            placeholder="جستجو در گزارش‌ها..."
+                            className="ps-10 pe-4 py-2 block w-full rounded-lg border border-gray-300 focus:border-gray-300 focus:ring-0 text-sm cursor-pointer bg-white text-right"
                         />
                     </div>
                     
                     {/* Badge Label */}
                     <div className="flex-shrink-0">
                         <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200">
-                            Search & Sort available in next update
+                            جستجو و فیلتر پیشرفته بزودی
                         </span>
                     </div>
                 </div>
@@ -102,8 +104,8 @@ const ReportsPage = () => {
                                 onClick={handleRestrictedAction}
                                 className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-colors"
                             >
-                                Sort by Date
-                                <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+                                مرتب‌سازی بر اساس تاریخ
+                                <ChevronDownIcon className="-me-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                             </button>
                         </div>
                     </div>
@@ -113,7 +115,7 @@ const ReportsPage = () => {
 
         {/* Content Grid */}
         {isLoading ? (
-            <div className="text-center py-12 text-gray-500">Loading reports...</div>
+            <div className="text-center py-12 text-gray-500">در حال دریافت گزارش‌ها...</div>
         ) : paginatedReports.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
@@ -128,19 +130,20 @@ const ReportsPage = () => {
                     
                     <div className="space-y-2 text-xs text-gray-500 mb-4 flex-grow">
                        <div className="flex items-center">
-                        <UserCircleIcon className="h-4 w-4 mr-2" />
+                        <UserCircleIcon className="h-4 w-4 ms-0 me-2" />
                         <span>{report.author}</span>
                       </div>
                       <div className="flex items-center">
-                        <ClockIcon className="h-4 w-4 mr-2" />
-                        <span>{new Date(report.date).toLocaleDateString()}</span>
+                        <ClockIcon className="h-4 w-4 ms-0 me-2" />
+                        {/* Persian Date */}
+                        <span>{new Date(report.date).toLocaleDateString('fa-IR')}</span>
                       </div>
                     </div>
                     
                     <div className="border-t border-gray-100 pt-3 mt-auto">
-                      <button className="w-full px-4 py-2 flex items-center justify-center bg-white border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50">
-                        <ArrowDownTrayIcon className="h-4 w-4 mr-1.5" />
-                        Download
+                      <button className="w-full px-4 py-2 flex items-center justify-center bg-white border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                        <ArrowDownTrayIcon className="h-4 w-4 ms-1.5" />
+                        دانلود
                       </button>
                     </div>
                   </div>
@@ -156,8 +159,8 @@ const ReportsPage = () => {
           </>
         ) : (
             <div className="text-center py-10 bg-gray-50 rounded-lg">
-                <h3 className="text-lg font-medium text-gray-800">No Reports Found</h3>
-                <p className="text-sm text-gray-500 mt-1">Please adjust your search criteria.</p>
+                <h3 className="text-lg font-medium text-gray-800">گزارشی یافت نشد</h3>
+                <p className="text-sm text-gray-500 mt-1">لطفاً پارامترهای جستجو را تغییر دهید.</p>
             </div>
         )}
       </div>

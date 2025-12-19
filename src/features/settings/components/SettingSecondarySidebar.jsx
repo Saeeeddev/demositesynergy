@@ -13,18 +13,20 @@ const SettingSecondarySidebar = () => {
       }
     >
       <Icon className="w-5 h-5" />
-      <span className="ml-3 text-sm font-medium">{label}</span>
+      {/* RTL: Changed ml-3 to mr-3 */}
+      <span className="mr-3 text-sm font-medium">{label}</span>
     </NavLink>
   );
 
   return (
-    <div className="w-full h-full text-gray-800 pt-3">
+    <div className="w-full h-full text-gray-800 pt-3 text-right" dir="rtl">
       <nav>
         <div className="mt-2">
-          <h3 className="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Personal account</h3>
+          {/* RTL: Changed px-2 to text-right */}
+          <h3 className="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 text-right">حساب شخصی</h3>
           <ul className="space-y-1">
-            <li><NavItem to="/settings" icon={UserIcon} label="Your profile" /></li>
-            <li><NavItem to="/settings/security" icon={LockClosedIcon} label="Login & Security" /></li>
+            <li><NavItem to="/settings" icon={UserIcon} label="پروفایل شما" /></li>
+            <li><NavItem to="/settings/security" icon={LockClosedIcon} label="ورود و امنیت" /></li>
           </ul>
         </div>
       </nav>

@@ -21,13 +21,13 @@ export default function FinancialSidebarPanel() {
   }, [setContentView]);
 
   const tabs = [
-    { id: 'dashboard', label: 'Dashboard & KPIs', icon: Squares2X2Icon },
-    { id: 'capex', label: 'CAPEX Breakdown', icon: ChartPieIcon },
-    { id: 'opex', label: 'OPEX Analysis', icon: CurrencyDollarIcon },
-    { id: 'cashflow', label: 'Cash Flow & ROI', icon: PresentationChartLineIcon },
-    { id: 'sensitivity', label: 'Sensitivity Analysis', icon: ClipboardDocumentListIcon },
-    { id: 'strategic', label: 'SWOT & Risk', icon: ShieldExclamationIcon },
-    { id: 'timeline', label: 'Project Timeline', icon: ClockIcon },
+    { id: 'dashboard', label: 'داشبورد و شاخص‌ها', icon: Squares2X2Icon },
+    { id: 'capex', label: 'تحلیل هزینه‌های سرمایه‌ای', icon: ChartPieIcon }, // CAPEX
+    { id: 'opex', label: 'تحلیل هزینه‌های عملیاتی', icon: CurrencyDollarIcon }, // OPEX
+    { id: 'cashflow', label: 'جریان نقدینگی و ROI', icon: PresentationChartLineIcon },
+    { id: 'sensitivity', label: 'تحلیل حساسیت', icon: ClipboardDocumentListIcon },
+    { id: 'strategic', label: 'ریسک و SWOT', icon: ShieldExclamationIcon },
+    { id: 'timeline', label: 'زمان‌بندی پروژه', icon: ClockIcon },
   ];
 
   return (
@@ -41,7 +41,8 @@ export default function FinancialSidebarPanel() {
             <button 
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-left
+              // RTL: text-right aligns content to start (Right)
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-right
                 ${isActive 
                   ? 'bg-Sidebar-item-blue text-white shadow-sm' 
                   : 'text-gray-600 hover:text-primary-blue hover:bg-gray-100'}`}

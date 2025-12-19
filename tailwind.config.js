@@ -7,7 +7,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        // --- Existing Colors ---
         'primary-dark': 'var(--primary-blue, #6D7F9F)',
         'secondary': 'var(--secondary-green, #8FDCB8)',
         'secondary-dark': 'var(--secondary-yellow, #F0D16D)',
@@ -30,13 +29,12 @@ export default {
         'highlight-blue-strong': '#4f46e5',
         'tech-icon-bg': '#0077cc',
         'tech-card-bg': '#ffffff',
-
-        // --- New Result Module Specific ---
-        'Sidebar-item-blue': '#6D7F9F', // Matches primary-blue, used in result sidebar
+        'Sidebar-item-blue': '#6D7F9F', 
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'],
-        display: ['Poppins', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        // Updated to prioritize Yekan Bakh
+        sans: ['"Yekan Bakh"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['"Yekan Bakh"', 'Poppins', 'sans-serif'],
       },
       borderRadius: {
         'lg': '10px',
@@ -57,14 +55,14 @@ export default {
         'action-btn-hover': '0 10px 20px rgba(15, 23, 42, 0.2)',
         'tech-card': '0 2px 6px rgba(0, 0, 0, 0.08)',
         'tech-card-hover': '0 4px 12px rgba(0, 0, 0, 0.12)',
-        'card-hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)', // Added for result cards
+        'card-hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)', 
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.3s ease-out forwards',
         'bounce-in': 'bounce-in 0.4s ease-out forwards',
         'pulse': 'pulse 2s infinite',
-        'fade-in': 'fade-in 0.3s ease-out forwards', // Added
-        'in': 'fade-in 0.2s ease-out forwards', // Utility for animate-in
+        'fade-in': 'fade-in 0.3s ease-out forwards',
+        'in': 'fade-in 0.2s ease-out forwards', 
       },
       keyframes: {
         'fade-in-up': {
@@ -84,7 +82,6 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        // Simulating tailwindcss-animate zoom-in-95
         'zoom-in-95': {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },

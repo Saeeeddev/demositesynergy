@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import useResultStore from '../../../../stores/useResultStore';
 
-// Import the specific panels
+// Import the specific panels (assumed to be in place or coming in next batches)
 import ProjectOverviewSidebarPanel from '../ProjectOverview/ProjectOverviewSidebarPanel';
 import LayersSidebarPanel from '../Layers/LayersSidebarPanel';
 import FinancialSidebarPanel from '../Financial/FinancialSidebarPanel';
@@ -17,19 +17,19 @@ export default function ResultPageSidebar() {
   const tabs = [
     {
       id: 'layers',
-      label: 'Layers',
+      label: 'لایه‌ها',
       icon: <MapPinIcon className="w-5 h-5" />,
       contentView: 'layers-page'
     },
     {
       id: 'project-overview',
-      label: 'Overview',
+      label: 'بررسی کلی',
       icon: <ClipboardDocumentCheckIcon className="w-5 h-5" />,
       contentView: 'project-overview'
     },
     {
       id: 'financial',
-      label: 'Financial',
+      label: 'تحلیل مالی',
       icon: <BanknotesIcon className="w-5 h-5" />,
       contentView: 'financial-page'
     },
@@ -50,8 +50,10 @@ export default function ResultPageSidebar() {
   };
 
   return (
-    // Changed bg-white to bg-gray-50 to distinguish from main sidebar
-    <div className="w-[280px] h-full bg-gray-50 border-r border-gray-200 flex flex-col shrink-0 transition-all duration-300">
+    // RTL Style Change:
+    // border-r -> border-e (border-end, which is Left in RTL)
+    // The sidebar is on the Right, so the border should be on its Left.
+    <div className="w-[280px] h-full bg-gray-50 border-e border-gray-200 flex flex-col shrink-0 transition-all duration-300">
       {/* Internal Tabs Row */}
       <div className="flex items-center justify-around p-2 border-b border-gray-200 bg-gray-100/50">
         {tabs.map((tab) => {
@@ -74,7 +76,7 @@ export default function ResultPageSidebar() {
       </div>
 
       {/* Internal Content Area */}
-      <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 custom-scrollbar text-right">
          {renderPanelContent()}
       </div>
     </div>
