@@ -39,7 +39,7 @@ const MobileHeader = () => {
       <div className="h-[36px]">
         {/* Placeholder image logic matching old code */}
         <img 
-            src="/assets/images/sitesynergy_logo_colored.png" 
+            src="src/assets/images/sitesynergy_logo_colored.png" 
             alt="SiteSynergy Logo" 
             className="h-full object-contain" 
             onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/200x36/cccccc/333333?text=Logo'; }}
