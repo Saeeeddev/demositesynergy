@@ -24,7 +24,6 @@ const StatCard = ({ icon, title, value, change, changeType }) => {
         <div className="p-2 bg-gray-100 rounded-md">
           {React.cloneElement(icon, { className: "h-5 w-5 text-gray-600" })}
         </div>
-        {/* ms-3 adds margin to the start (right in RTL) */}
         <div className="ms-3">
           <p className="text-xs text-gray-500">{title}</p>
           <p className="text-xl font-semibold text-gray-800">{value}</p>
@@ -51,7 +50,6 @@ const QuickLinkCard = ({ icon, title, description, onClick }) => (
       <h3 className="font-medium text-gray-800 text-sm group-hover:text-primary-blue transition-colors">{title}</h3>
       <p className="text-xs text-gray-500 line-clamp-1">{description}</p>
     </div>
-    {/* Flip arrow for RTL so it points Left */}
     <ArrowRightIcon className="h-4 w-4 text-gray-400 group-hover:-translate-x-1 transition-all flex-shrink-0 ms-2 transform scale-x-[-1]" />
   </button>
 );
@@ -65,6 +63,7 @@ const getNotificationIcon = (type) => {
     }
 };
 
+// --- CORRECTED COMPONENT ---
 const RecentActivityItem = ({ notification }) => (
   <li className="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
     <div className="p-1.5 bg-gray-100 rounded-full mt-0.5 flex-shrink-0">
@@ -72,17 +71,28 @@ const RecentActivityItem = ({ notification }) => (
     </div>
     <div className="flex-1 min-w-0">
       <p className="text-sm text-gray-700 leading-snug">
-         <span className="font-semibold">{notification.userName}</span> 
-         {/* Simplified translation mapping */}
-         {notification.type === 'mention' ? ' شما را منشن کرد در ' : 
-          notification.type === 'success' ? ' تکمیل کرد: ' : 
-          notification.type === 'failed' ? ' خطا در: ' : ' فعالیت: '}
-         {notification.target && <strong>"{notification.target}"</strong>}
+        {/* 
+          This logic now correctly displays the full notification text.
+          It handles 'mentions' differently from other system messages.
+        */}
+        {notification.type === 'mention' ? (
+          <>
+            <span className="font-semibold">{notification.userName}</span>
+            {' '}{notification.action}{' '}
+            {notification.target && <strong>"{notification.target}"</strong>}
+          </>
+        ) : (
+          <>
+            <span className="font-semibold">{notification.userName}:</span>
+            {' '}{notification.action}
+          </>
+        )}
       </p>
       <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
     </div>
   </li>
 );
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -143,6 +153,8 @@ const HomePage = () => {
   const userName = user?.fullName?.split(' ')[0] || 'کاربر';
 
   return (
+     <div className="flex flex-col flex-grow px-4 sm:px-6 lg:px-8 py-6 text-right" dir="rtl">
+  
     <div className="p-4 sm:p-6 bg-gray-50/50 min-h-full">
       {/* --- Header --- */}
       <div className="mb-6">
@@ -223,6 +235,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

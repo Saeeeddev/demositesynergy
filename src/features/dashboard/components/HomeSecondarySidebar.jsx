@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { api } from '../../../lib/axios';
 import { IoChevronDown, IoChevronUp, IoEyeOutline } from 'react-icons/io5';
 
 const HomeSecondarySidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate(); // Initialize navigate hook
 
   const { data: recentProjects = [] } = useQuery({
     queryKey: ['recentProjects'],
@@ -13,6 +15,11 @@ const HomeSecondarySidebar = () => {
       return data;
     }
   });
+
+  // Handler to navigate to project result page
+  const handleProjectClick = (projectId) => {
+    navigate(`/projects/${projectId}/result`);
+  };
 
   return (
     <div className="w-full pt-4">
@@ -32,6 +39,8 @@ const HomeSecondarySidebar = () => {
             recentProjects.map((project) => (
                 <div 
                     key={project.id} 
+                    // Add onClick handler here
+                    onClick={() => handleProjectClick(project.id)}
                     className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 group cursor-pointer transition-all duration-200"
                 >
                 <div className="flex-1 min-w-0 pe-2">
@@ -39,7 +48,6 @@ const HomeSecondarySidebar = () => {
                         {project.name}
                     </span>
                     <span className="block text-[10px] text-gray-400 text-right">
-                        {/* Persian Date Formatting */}
                         {new Date(project.createdDate).toLocaleDateString('fa-IR')}
                     </span>
                 </div>

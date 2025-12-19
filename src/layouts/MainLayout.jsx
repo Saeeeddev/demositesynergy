@@ -26,7 +26,7 @@ const MainLayout = () => {
              Outer Card: Keeps overflow-hidden to maintain rounded corners clipping 
              and external shadow consistency.
           */}
-          <div className="bg-white md:rounded-[18px] md:shadow-[0px_0px_20px_rgba(0,0,0,0.1)] flex-1 flex flex-col overflow-hidden relative">
+          <div className="bg-white md:rounded-[18px] md:shadow-[0px_0px_20px_rgba(0,0,0,0.1)] flex-1 flex flex-col overflow-hidden relative border border-gray-200">
             
             <div className="w-full h-full overflow-y-auto relative">
               <Outlet />

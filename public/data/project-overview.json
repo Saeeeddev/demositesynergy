@@ -1,19 +1,19 @@
 {
-  "name": "Yazd solar 2mw",
+  "name": "نیروگاه خورشیدی ۲ مگاواتی یزد",
   "reference": "REF-S-2024-001",
-  "clientName": "Taban khorshidi",
+  "clientName": "شرکت انرژی خورشیدی پارس",
   "location": {
-    "region": "Yazd, Iran",
+    "region": "یزد، ایران",
     "coordinates": "34.0522, -118.2437"
   },
   "basicInfo": {
     "ProjectId": "PROJ-SOL-2024-001",
     "coordinates": "34.0522° N, 118.2437° W",
-    "landArea": "500 Hectares",
-    "ownership": "Private",
-    "landUse": "Agricultural",
-    "nearestCity": "Yazd, Iran",
-    "accessibility": "Good"
+    "landArea": "۵۰۰ هکتار",
+    "ownership": "خصوصی",
+    "landUse": "کشاورزی",
+    "nearestCity": "یزد، ایران",
+    "accessibility": "خوب"
   },
   "solarResource": {
     "annualGHI": "2,100 kWh/m²",
@@ -22,10 +22,10 @@
   },
   "summaryData": {
     "overallSuitability": {
-      "rating": "Good",
+      "rating": "خوب",
       "score": 8.2
     },
-    "feasibilitySummary": "The site demonstrates strong potential for solar energy generation, with high GHI values and excellent accessibility.",
+    "feasibilitySummary": "این سایت پتانسیل بالایی برای تولید انرژی خورشیدی نشان می‌دهد. مقادیر بالای تابش افقی جهانی (GHI) و تابش مستقیم نرمال (DNI) در کنار دسترسی عالی به زیرساخت‌های جاده‌ای، این مکان را به گزینه‌ای ایده‌آل برای احداث نیروگاه تبدیل کرده است. تحلیل‌های اولیه نشان می‌دهد که پروژه از نظر اقتصادی توجیه‌پذیر بوده و می‌تواند بازدهی مناسبی را برای سرمایه‌گذاران به همراه داشته باشد.",
     "keyMetrics": {
       "npv": "1,250,000",
       "roi": "12.5",
@@ -34,5 +34,4 @@
       "irr": "14.8"
     }
   }
-  
 }
