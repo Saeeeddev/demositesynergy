@@ -1,6 +1,8 @@
 import React from 'react';
 import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import HighchartsReactOriginal from 'highcharts-react-official';
+
+const HighchartsReact = HighchartsReactOriginal.default || HighchartsReactOriginal;
 
 const CashFlowTab = ({ data }) => {
   if (!data || !data.charts) return null;

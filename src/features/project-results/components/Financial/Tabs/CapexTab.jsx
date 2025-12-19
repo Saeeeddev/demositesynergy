@@ -1,6 +1,10 @@
 import React from 'react';
 import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import HighchartsReactOriginal from 'highcharts-react-official';
+
+// SAFETY FIX: Handle Vite/CJS interoperability issues
+// Sometimes the import resolves to an object { default: Component } instead of the Component itself
+const HighchartsReact = HighchartsReactOriginal.default || HighchartsReactOriginal;
 
 const CapexCard = ({ title, data, total, currency = "M Rial" }) => {
   const COLORS = ['#EF4444', '#F97316', '#EAB308', '#84CC16', '#10B981', '#06B6D4', '#3B82F6', '#6366F1'];

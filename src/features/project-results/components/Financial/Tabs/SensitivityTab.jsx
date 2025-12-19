@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import HighchartsReactOriginal from 'highcharts-react-official';
+
+const HighchartsReact = HighchartsReactOriginal.default || HighchartsReactOriginal;
 
 const SensitivityTab = ({ data }) => {
   // Safety check: ensure chart data exists
