@@ -85,7 +85,7 @@ export default function LayersSidebarPanel() {
       <div className="space-y-3">
         <SectionHeader title="لایه‌های تحلیلی" />
         <div className="space-y-1">
-          <LayerItem label="تحلیل فنی" layerKey="technical" icon={<Cog6ToothIcon />} iconBgColor="bg-violet-50" iconColor="text-violet-600" />
+          <LayerItem label=" پتانسیل عملیاتی" layerKey="technical" icon={<Cog6ToothIcon />} iconBgColor="bg-violet-50" iconColor="text-violet-600" />
         </div>
       </div>
       

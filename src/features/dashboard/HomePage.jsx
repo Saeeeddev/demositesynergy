@@ -47,10 +47,10 @@ const QuickLinkCard = ({ icon, title, description, onClick }) => (
        {React.cloneElement(icon, { className: "h-5 w-5 text-gray-600" })}
     </div>
     <div className="ms-4 flex-1 min-w-0">
-      <h3 className="font-medium text-gray-800 text-sm group-hover:text-primary-blue transition-colors">{title}</h3>
-      <p className="text-xs text-gray-500 line-clamp-1">{description}</p>
+      <h3 className="font-medium text-gray-800 text-sm group-hover:text-primary-blue transition-colors tracking-wide">{title}</h3>
+      <p className="text-xs text-gray-500 line-clamp-1 tracking-wide">{description}</p>
     </div>
-    <ArrowRightIcon className="h-4 w-4 text-gray-400 group-hover:-translate-x-1 transition-all flex-shrink-0 ms-2 transform scale-x-[-1]" />
+    <ArrowRightIcon className="h-4 w-4 text-gray-400 group-hover:-translate-x-0.5 transition-all flex-shrink-0 ms-2 transform scale-x-[-1]" />
   </button>
 );
 
