@@ -1,12 +1,80 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-// Helper for fetching static data from public folder
-// We use a raw axios instance here to fetch relative paths (e.g., /data/...)
-// rather than the configured api instance which points to /api/
+// Helper for fetching static data
 const fetchData = async (url) => {
   const { data } = await axios.get(url);
   return data;
+};
+
+// --- HELPER: Fetch Real GHI from Open-Meteo ---
+const fetchGhiFromOpenMeteo = async () => {
+  // 1. Define the Grid based on your specific Polygon coordinates
+  const minLat = 29.48;
+  const maxLat = 31.01;
+  const minLon = 57.49;
+  const maxLon = 59.00;
+  
+  // Resolution: 0.1 degrees (approx 11km) for better detail
+  const step = 0.1; 
+  
+  const points = [];
+  for (let lat = minLat; lat <= maxLat; lat += step) {
+    for (let lon = minLon; lon <= maxLon; lon += step) {
+      points.push({ lat, lon });
+    }
+  }
+
+  // 2. Prepare API Request (Bulk)
+  const lats = points.map(p => p.lat).join(',');
+  const lons = points.map(p => p.lon).join(',');
+
+  // Fetch 2023 Daily Totals
+  const url = `https://archive-api.open-meteo.com/v1/archive?latitude=${lats}&longitude=${lons}&start_date=2023-01-01&end_date=2023-12-31&daily=shortwave_radiation_sum&timezone=auto`;
+
+  const { data } = await axios.get(url);
+  
+  // Ensure results are an array
+  const results = Array.isArray(data) ? data : [data];
+
+  // 3. Convert to GeoJSON Polygons
+  const features = results.map((item, index) => {
+    const lat = points[index].lat;
+    const lon = points[index].lon;
+
+    // Sum daily MJ/m² values
+    const dailySums = item.daily.shortwave_radiation_sum || [];
+    const totalMJ = dailySums.reduce((acc, val) => acc + (val || 0), 0);
+    
+    // Convert MJ/m² to kWh/m² (1 MJ = 0.277778 kWh)
+    const totalKWh = Math.round(totalMJ * 0.277778);
+
+    // Create Polygon (Square cell centered on point)
+    const r = step / 2; 
+    return {
+      type: "Feature",
+      id: `ghi-${index}`,
+      properties: {
+        Contour: totalKWh, // This key matches your getGhiColor function
+        name: `Annual GHI: ${totalKWh} kWh/m²`
+      },
+      geometry: {
+        type: "Polygon",
+        coordinates: [[
+          [lon - r, lat - r],
+          [lon + r, lat - r],
+          [lon + r, lat + r],
+          [lon - r, lat + r],
+          [lon - r, lat - r]
+        ]]
+      }
+    };
+  });
+
+  return {
+    type: "FeatureCollection",
+    features: features
+  };
 };
 
 // --- 1. Financial Data Hook ---
@@ -14,7 +82,7 @@ export const useFinancialData = () => {
   return useQuery({
     queryKey: ['financials'],
     queryFn: () => fetchData('/data/financial-data.json'), 
-    staleTime: 5 * 60 * 1000, // Cache for 5 mins
+    staleTime: 5 * 60 * 1000, 
     retry: 1,
   });
 };
@@ -28,15 +96,11 @@ export const useProjectData = () => {
   });
 };
 
-// --- 3. Map Layers Hook (The Performance Saver) ---
-// This hook ONLY fetches if the 'enabled' param is true.
-// If the user never clicks "Power Lines", we never download the file.
+// --- 3. Map Layers Hook ---
 export const useMapLayer = (layerKey, isVisible) => {
   
-  // Map internal store keys to API endpoints/filenames in public/data
   const layerEndpoints = {
     powerLines: '/data/power_lines_wgs1984_Features.json',
-    ghi: '/data/Contour_ghi44_FeaturesToJSON.json',
     roads: '/data/roads_wgs1984_FeaturesToJSON.json',
     railways: '/data/railways_wgs1984_FeaturesToJ.json',
     airports: '/data/airports_wgs1984_FeaturesToJ.json',
@@ -47,19 +111,25 @@ export const useMapLayer = (layerKey, isVisible) => {
     landuse: '/data/landuse_wgs1984_Clip_Feature.json',
     technical: '/data/technical_wgs1984_FeaturesTo.json',
     dem: '/data/extract_dem_wgs_reclass_poly.json',
-    // Note: 'allocatedLand' and 'selectedLocation' usually come from dynamic state
-    // rather than static files, so they are excluded here or would need specific endpoints.
+    allocatedLand: '/data/alo.json', 
+    slope: '/data/Contour_slope1_FeaturesToJSO.json',
+    // We handle 'ghi' dynamically now
+    ghi: null 
   };
-
-  const endpoint = layerEndpoints[layerKey];
 
   return useQuery({
     queryKey: ['map-layer', layerKey],
-    queryFn: () => fetchData(endpoint),
-    // ONLY fetch if visible and we have a defined endpoint
-    enabled: !!isVisible && !!endpoint, 
-    staleTime: Infinity, // Keep in memory forever once fetched (v5)
-    gcTime: Infinity,    // Never garbage collect these large files (v5)
+    queryFn: () => {
+      // SPECIAL CASE: Fetch GHI from Open-Meteo
+      if (layerKey === 'ghi') {
+        return fetchGhiFromOpenMeteo();
+      }
+      // Standard Static Files
+      return fetchData(layerEndpoints[layerKey]);
+    },
+    enabled: !!isVisible && (!!layerEndpoints[layerKey] || layerKey === 'ghi'), 
+    staleTime: Infinity, 
+    gcTime: Infinity,    
     refetchOnWindowFocus: false,
   });
 };

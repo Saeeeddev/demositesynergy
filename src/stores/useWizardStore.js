@@ -30,12 +30,10 @@ const initialCriteriaSettings = {
     slope: { weight: 20, step: 3, buffer: 0, enabled: true },
     landUse: { selected: ['bare_rock', 'desert', 'scrub', 'heath', 'shrubland', 'grassland', 'sand', 'barren', 'meadow'], weight: 10, enabled: true },
   },
+  // --- UPDATED: Removed historicSites, mines, militaryArea ---
   environmental: {
     waterAreas: { weight: 2, step: 500, buffer: 200, enabled: true },
     protectedAreas: { weight: 10, step: 300, buffer: 500, enabled: true },
-    historicSites: { weight: 2, step: 500, buffer: 200, enabled: true },
-    mines: { weight: 2, step: 500, buffer: 500, enabled: true },
-    militaryArea: { weight: 2, step: 500, buffer: 500, enabled: true },
   },
   geological: {
     faultLines: { weight: 5, step: 500, buffer: 200, enabled: true },
@@ -88,8 +86,6 @@ export const useWizardStore = create((set, get) => ({
       if (name === 'province') {
         updated.county = '';
         updated.shapeID = '';
-        // Note: locationData needs to be cleared manually via handleScaleSelection usually, 
-        // but here we just update inputs.
       }
 
       return { projectDetails: updated };

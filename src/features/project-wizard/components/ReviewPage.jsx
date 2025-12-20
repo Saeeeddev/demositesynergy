@@ -59,7 +59,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
       return `${coords.points.length} راس`;
   };
 
-  // --- JSON Generator Function (Kept as is for API logic) ---
+  // --- JSON Generator Function ---
   const generatePayload = () => {
     const isStandard = projectDetails.analysisMode === 'standard';
     
@@ -96,9 +96,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
             osm_landuse: { enabled: cs.technical?.landUse?.enabled, weight: cs.technical?.landUse?.weight },
             railways: { enabled: cs.economic?.railwaysDistance?.enabled, weight: cs.economic?.railwaysDistance?.weight },
             airports: { enabled: cs.economic?.airportDistance?.enabled, weight: cs.economic?.airportDistance?.weight },
-            military_areas: { enabled: cs.environmental?.militaryArea?.enabled, weight: cs.environmental?.militaryArea?.weight },
-            historic_sites: { enabled: cs.environmental?.historicSites?.enabled, weight: cs.environmental?.historicSites?.weight },
-            mines: { enabled: cs.environmental?.mines?.enabled, weight: cs.environmental?.mines?.weight },
+            // REMOVED: historicSites, mines, militaryArea from payload to prevent crashes
             fault: { enabled: cs.geological?.faultLines?.enabled, weight: cs.geological?.faultLines?.weight },
             villages: { enabled: true, weight: 5 }, 
             rivers: { enabled: true, weight: 2 }, 
@@ -170,12 +168,20 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
 
   // --- Handlers ---
   const handleConfirmClick = async () => {
-    const finalPayload = generatePayload();
-    console.log("Submission JSON:", JSON.stringify(finalPayload, null, 4));
-    if (onConfirm) {
-        await onConfirm(finalPayload); 
+    try {
+        const finalPayload = generatePayload();
+        console.log("Submission JSON:", JSON.stringify(finalPayload, null, 4));
+        
+        if (onConfirm) {
+            await onConfirm(finalPayload);
+        }
+        
+        // Show success modal ONLY if no error occurred
+        setShowSuccessModal(true);
+    } catch (error) {
+        console.error("Payload generation or submission error:", error);
+        alert("خطا در ایجاد داده‌های نهایی.");
     }
-    setShowSuccessModal(true);
   };
 
   const handleModalClose = () => {
@@ -273,11 +279,6 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
                   </p>
               </div>
               <div className="flex gap-3 w-full sm:w-auto">
-                  {/* 
-                     RTL Button Order: 
-                     In standard RTL Flex row: First element is Right, Second is Left.
-                     So Back is Right, Confirm is Left. This is correct RTL flow (Back -> Forward).
-                  */}
                   <button 
                       onClick={onBack}
                       className="flex-1 sm:flex-none px-6 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors"

@@ -1,18 +1,18 @@
 {
-  "name": "نیروگاه خورشیدی ۲ مگاواتی یزد",
+  "name": "نیروگاه خورشیدی ۲ مگاواتی کرمان",
   "reference": "REF-S-2024-001",
   "clientName": "شرکت انرژی خورشیدی پارس",
   "location": {
-    "region": "یزد، ایران",
+    "region": "کرمان، ایران",
     "coordinates": "34.0522, -118.2437"
   },
   "basicInfo": {
     "ProjectId": "PROJ-SOL-2024-001",
     "coordinates": "34.0522° N, 118.2437° W",
-    "landArea": "۵۰۰ هکتار",
-    "ownership": "خصوصی",
-    "landUse": "کشاورزی",
-    "nearestCity": "یزد، ایران",
+    "landArea": "3 هکتار",
+    "ownership": "عمومی",
+    "landUse": "بایر",
+    "nearestCity": "کرمان، ایران",
     "accessibility": "خوب"
   },
   "solarResource": {

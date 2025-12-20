@@ -10,11 +10,12 @@ function LayersPage() {
   const layers = useResultStore(state => state.layers);
   const setSelectedFeature = useResultStore(state => state.setSelectedFeature);
 
-  // --- COLOR HELPERS (Kept logic, just helper functions) ---
+  // --- COLOR HELPERS ---
   const getDefaultColor = useCallback((layer) => {
     const colors = {
       powerLines: '#e31a1c', roads: '#1f78b4', railways: '#33a02c', airports: '#6a3d9a',
-      cities: '#ff7f00', waterAreas: '#b2df8a', fault: '#a6cee3', protectedAreas: '#fb9a99', landuse: '#fdbf6f'
+      cities: '#ff7f00', waterAreas: '#b2df8a', fault: '#a6cee3', protectedAreas: '#fb9a99', 
+      landuse: '#fdbf6f', allocatedLand: '#10b981', slope: '#8B4513'
     };
     return colors[layer] || '#808080';
   }, []);
@@ -30,6 +31,15 @@ function LayersPage() {
     if (val < 2600) return '#f29e2e';
     if (val <= 3000) return '#d7191c';
     return '#d7191c'; 
+  }, []);
+
+  const getSlopeColor = useCallback((value) => {
+    if (value === undefined || value === null) return '#8B4513';
+    // Simple gradient for slope based on common values in file (0.15 - 1.05)
+    if (value < 0.3) return '#2E8B57'; // Green (Flat)
+    if (value < 0.6) return '#E4D00A'; // Yellow
+    if (value < 0.9) return '#FF8C00'; // Orange
+    return '#8B0000'; // Dark Red (Steep)
   }, []);
 
   const getGridCodeColor = useCallback((gridcode, layer) => {
@@ -50,6 +60,25 @@ function LayersPage() {
     const defaultColor = getDefaultColor(currentLayer);
     const selectedColor = '#850085ff';
     let color = isSelected ? selectedColor : defaultColor;
+
+    // Allocated Land (Alo) Style
+    if (currentLayer === 'allocatedLand') {
+      return { 
+        fillColor: '#10b981', 
+        color: '#065f46', 
+        weight: 3, 
+        fillOpacity: 0.4,
+        dashArray: '5, 5'
+      };
+    }
+
+    // Slope Style
+    if (currentLayer === 'slope') {
+      const contour = properties.Contour;
+      const slopeColor = getSlopeColor(contour);
+      color = isSelected ? selectedColor : slopeColor;
+      return { color: color, weight: isSelected ? 5 : 3, opacity: 1 };
+    }
 
     if (currentLayer === 'landuse') {
       const type = properties.lable_talf || 'unknown';
@@ -91,16 +120,14 @@ function LayersPage() {
       return { color: color, weight: isSelected ? 5 : 3, opacity: 1 };
     }
     return { color, weight: 3 };
-  }, [getDefaultColor, getLanduseColor, getGridCodeColor, getGhiColor]);
+  }, [getDefaultColor, getLanduseColor, getGridCodeColor, getGhiColor, getSlopeColor]);
 
   // --- INTERACTION FUNCTION (Passed to Map) ---
   const onEachFeature = useCallback((feature, layer, currentLayer) => {
-    // 1. Assign ID if missing for selection logic
     if (!feature.id) {
        feature.id = Math.random().toString(36).substr(2, 9);
     }
 
-    // 2. Bind Popups (Translated)
     const props = feature.properties || {};
     
     // Map internal keys to Farsi labels
@@ -116,7 +143,9 @@ function LayersPage() {
         landuse: 'کاربری اراضی',
         technical: 'فنی',
         dem: 'ارتفاع',
-        ghi: 'تابش'
+        ghi: 'تابش',
+        allocatedLand: 'زمین تخصیص‌یافته',
+        slope: 'شیب'
     };
 
     let popupContent = `<div style="text-align: right; font-family: 'Yekan Bakh', sans-serif;">
@@ -124,8 +153,8 @@ function LayersPage() {
     
     if (currentLayer === 'technical' || currentLayer === 'dem') {
       popupContent += `<br><b>کد شبکه:</b> ${props.gridcode || 'نامشخص'}`;
-    } else if (currentLayer === 'ghi') {
-      popupContent += `<br><b>مقدار تابش:</b> ${props.Contour || 'نامشخص'}`;
+    } else if (currentLayer === 'ghi' || currentLayer === 'slope') {
+      popupContent += `<br><b>مقدار:</b> ${props.Contour || 'نامشخص'}`;
     } else if (props.name || props.Name) {
       popupContent += `<br><b>نام:</b> ${props.name || props.Name}`;
     }
@@ -133,7 +162,6 @@ function LayersPage() {
     
     layer.bindPopup(popupContent);
 
-    // 3. Click Handler -> Updates Store
     layer.on('click', () => {
       setSelectedFeature({ layer: currentLayer, id: feature.id });
     });
@@ -155,6 +183,10 @@ function LayersPage() {
           {layers.landuse && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#fdbf6f]"></div> <span className="text-xs">کاربری اراضی</span> </div> )}
           {layers.dem && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-gradient-to-r from-red-500 to-yellow-300"></div> <span className="text-xs">ارتفاع (DEM)</span> </div> )}
           {layers.technical && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-purple-400"></div> <span className="text-xs">فنی</span> </div> )}
+          
+          {/* New Legend Items */}
+          {layers.allocatedLand && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-[#10b981] opacity-40 border border-[#065f46]"></div> <span className="text-xs">زمین تخصیص‌یافته</span> </div> )}
+          {layers.slope && ( <div className="flex items-center gap-2"> <div className="w-5 h-2 bg-gradient-to-r from-green-700 via-yellow-400 to-red-800"></div> <span className="text-xs">شیب</span> </div> )}
       </div>
     </div>
   );
@@ -166,8 +198,6 @@ function LayersPage() {
         onEachFeatureFn={onEachFeature}
       />
       
-      {/* Legend Container */}
-      {/* Positioned at bottom-right physically, which is visually logical for the map controls area */}
       <div className="absolute bottom-6 right-6 z-[1000] w-[300px] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 overflow-hidden max-h-[40vh] flex flex-col">
           <button 
               onClick={() => setIsLegendOpen(!isLegendOpen)}

@@ -10,7 +10,8 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-// --- Components ---
+// --- Components (SliderSetting, StepAndBufferInput, FactorGroup) ---
+// (Assuming these are defined in your file as before, kept short for brevity)
 
 const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%', disabled = false }) => {
   const display = `${value}${unit}`;
@@ -28,7 +29,7 @@ const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%',
         onChange={(e) => onChange(parseFloat(e.target.value))}
         disabled={disabled}
         className={`w-full h-2 bg-gray-200 rounded-lg appearance-none ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} accent-primary-blue`}
-        style={{ direction: 'ltr' }} // Sliders should often stay LTR for logic (Left=Low, Right=High), or RTL if preferred. Keeping LTR logic for consistency with numbers.
+        style={{ direction: 'ltr' }}
       />
     </div>
   );
@@ -39,7 +40,7 @@ const StepAndBufferInput = ({ stepValue, bufferValue, onBufferChange, stepLabel=
       <div>
         <label className={`block text-xs font-medium ${disabled ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{stepLabel} <span className="text-gray-400 font-normal">(پیش‌فرض)</span></label>
         <div className={`w-full p-2 rounded-md text-sm font-semibold text-center ${
-          disabled ? 'bg-gray-100 text-gray-400' : 'bg-primary-blue/10 text-primary-blue border-r-4 border-primary-blue' // Changed border-l to border-r for RTL visual accent
+          disabled ? 'bg-gray-100 text-gray-400' : 'bg-primary-blue/10 text-primary-blue border-r-4 border-primary-blue'
         }`}>
           {stepValue}
         </div>
@@ -76,7 +77,7 @@ const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
         } ${
             enabled ? 'bg-primary-blue focus:ring-primary-blue shadow-primary-blue/20' : 'bg-gray-400 border-2 border-gray-400 hover:bg-gray-500 hover:border-gray-600'
         }`}
-        dir="ltr" // Keep toggle LTR for left-right movement logic
+        dir="ltr"
       >
         <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition-all duration-200 ease-in-out ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`} />
       </button>
@@ -114,9 +115,7 @@ const dictionary = {
     landUse: 'کاربری اراضی',
     waterAreas: 'منابع آبی',
     protectedAreas: 'مناطق حفاظت‌شده',
-    historicSites: 'سایت‌های تاریخی',
-    mines: 'معادن',
-    militaryArea: 'مناطق نظامی',
+    // REMOVED: historicSites, mines, militaryArea
     faultLines: 'گسل‌ها',
     
     // Labels
@@ -247,6 +246,8 @@ const Step2_Criteria = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {factorKeys.map(key => {
                                 const factorData = settings[sectionKey][key];
+                                if (!factorData) return null; // Safety check in case key doesn't exist
+
                                 const title = dictionary[key] || key;
                                 
                                 return (
@@ -311,7 +312,8 @@ const Step2_Criteria = () => {
                         {activeTab === 'weights' && renderWeightsTab()}
                         {activeTab === 'economic' && renderFactorsTab('economic', ['powerDistance', 'airportDistance', 'cityDistance', 'roadsDistance', 'railwaysDistance'])}
                         {activeTab === 'technical' && renderFactorsTab('technical', ['ghi', 'slope', 'landUse'])}
-                        {activeTab === 'environmental' && renderFactorsTab('environmental', ['waterAreas', 'protectedAreas', 'historicSites', 'mines', 'militaryArea'])}
+                        {/* REMOVED: mines, militaryArea, historicSites from list */}
+                        {activeTab === 'environmental' && renderFactorsTab('environmental', ['waterAreas', 'protectedAreas'])}
                         {activeTab === 'geological' && renderFactorsTab('geological', ['faultLines'])}
                     </div>
                 </div>
