@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { 
-  MapIcon,
+import React from 'react';
+import {MapIcon,
   Cog6ToothIcon,
   SunIcon,
   ChartBarIcon,
@@ -14,11 +13,11 @@ import {
   HomeIcon,
   ShieldCheckIcon,
   ExclamationTriangleIcon,
-  MapPinIcon
-} from '@heroicons/react/24/outline';
+  MapPinIcon } from '@heroicons/react/24/outline';
 import useResultStore from '../../../../stores/useResultStore';
 
-// Helper Component for List Items
+
+
 const LayerItem = ({ icon, label, iconBgColor, iconColor, layerKey }) => {
   const isChecked = useResultStore(state => state.layers[layerKey]);
   const toggleLayer = useResultStore(state => state.toggleLayer);
@@ -48,17 +47,14 @@ const LayerItem = ({ icon, label, iconBgColor, iconColor, layerKey }) => {
 const SectionHeader = ({ title }) => (
   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2.5">{title}</h4>
 );
-
 export default function LayersSidebarPanel() {
-  const setContentView = useResultStore(state => state.setContentView);
-  
-  useEffect(() => {
-    setContentView('layers-page');
-  }, [setContentView]);
+  // REMOVE THIS:
+  // const setContentView = useResultStore(state => state.setContentView);
+  // useEffect(() => { setContentView('layers-page'); }, [setContentView]);
 
   return (
     <div className="space-y-6 pb-[80px]">
-      <div className="space-y-3">
+       <div className="space-y-3">
         <SectionHeader title="مرزهای سایت" />
         <div className="space-y-1">
           <LayerItem label="موقعیت انتخابی" layerKey="selectedLocation" icon={<MapPinIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />

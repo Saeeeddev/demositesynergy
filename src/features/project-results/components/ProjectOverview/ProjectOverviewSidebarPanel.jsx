@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { 
   PresentationChartLineIcon,
   InformationCircleIcon,
@@ -7,14 +7,10 @@ import {
 import useResultStore from '../../../../stores/useResultStore';
 
 export default function ProjectOverviewSidebarPanel() {
+  // Logic cleaned: Removed 'setContentView' and useEffect. 
+  // Router now handles the page view.
   const activeTab = useResultStore(state => state.activeProjectTab);
   const setActiveTab = useResultStore(state => state.setProjectTab);
-  const setContentView = useResultStore(state => state.setContentView);
-
-  // Ensure main view is correct when this sidebar is mounted
-  useEffect(() => {
-    setContentView('project-overview');
-  }, [setContentView]);
 
   const tabs = [
     { id: 'summary', label: 'خلاصه مدیریتی', icon: PresentationChartLineIcon },
@@ -33,7 +29,6 @@ export default function ProjectOverviewSidebarPanel() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              // RTL Change: 'text-left' -> 'text-right'
               className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-right
                 ${isActive 
                   ? 'bg-Sidebar-item-blue text-white shadow-sm' 

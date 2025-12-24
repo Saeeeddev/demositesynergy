@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { 
   PresentationChartLineIcon, 
   CurrencyDollarIcon, 
@@ -11,19 +11,15 @@ import {
 import useResultStore from '../../../../stores/useResultStore';
 
 export default function FinancialSidebarPanel() {
+  // Logic cleaned: Removed 'setContentView' and useEffect.
+  // Router now handles the page view.
   const activeTab = useResultStore(state => state.activeFinancialTab);
   const setActiveTab = useResultStore(state => state.setFinancialTab);
-  const setContentView = useResultStore(state => state.setContentView);
-
-  // Ensure the main view renders the financial page when this sidebar is active
-  useEffect(() => {
-    setContentView('financial-page');
-  }, [setContentView]);
 
   const tabs = [
     { id: 'dashboard', label: 'داشبورد و شاخص‌ها', icon: Squares2X2Icon },
-    { id: 'capex', label: 'تحلیل هزینه‌های سرمایه‌ای', icon: ChartPieIcon }, // CAPEX
-    { id: 'opex', label: 'تحلیل هزینه‌های عملیاتی', icon: CurrencyDollarIcon }, // OPEX
+    { id: 'capex', label: 'تحلیل هزینه‌های سرمایه‌ای', icon: ChartPieIcon },
+    { id: 'opex', label: 'تحلیل هزینه‌های عملیاتی', icon: CurrencyDollarIcon },
     { id: 'cashflow', label: 'جریان نقدینگی و ROI', icon: PresentationChartLineIcon },
     { id: 'sensitivity', label: 'تحلیل حساسیت', icon: ClipboardDocumentListIcon },
     { id: 'strategic', label: 'ریسک و SWOT', icon: ShieldExclamationIcon },
@@ -41,7 +37,6 @@ export default function FinancialSidebarPanel() {
             <button 
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              // RTL: text-right aligns content to start (Right)
               className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-right
                 ${isActive 
                   ? 'bg-Sidebar-item-blue text-white shadow-sm' 

@@ -1,22 +1,17 @@
 import { create } from 'zustand';
 
 const useResultStore = create((set) => ({
-  // --- Navigation State ---
-  activePanel: 'layers',       // 'layers', 'project-overview', 'financial'
-  contentView: 'layers-page',  // 'layers-page', 'project-overview', 'financial-page'
+  // --- REMOVED: activePanel, contentView (Handled by URL now) ---
   
-  // Sub-tabs
+  // Sub-tabs (These are fine to keep in state if they don't change URL, 
+  // or you can make them query params like ?tab=capex)
   activeFinancialTab: 'dashboard',
   activeProjectTab: 'summary',
 
-  // Actions for Navigation
-  setPanel: (panel) => set({ activePanel: panel }),
-  setContentView: (view) => set({ contentView: view }),
   setFinancialTab: (tab) => set({ activeFinancialTab: tab }),
   setProjectTab: (tab) => set({ activeProjectTab: tab }),
 
   // --- Map Layer Visibility State ---
-  // We use a single object for cleaner updates
   layers: {
     selectedLocation: true,
     allocatedLand: false,
@@ -34,23 +29,14 @@ const useResultStore = create((set) => ({
     dem: false,
   },
 
-  // Action: Toggle a specific layer
   toggleLayer: (layerKey) => set((state) => ({
-    layers: {
-      ...state.layers,
-      [layerKey]: !state.layers[layerKey]
-    }
+    layers: { ...state.layers, [layerKey]: !state.layers[layerKey] }
   })),
 
-  // Action: Set specific value (e.g., from a "Reset" button)
   setLayerVisibility: (layerKey, isVisible) => set((state) => ({
-    layers: {
-      ...state.layers,
-      [layerKey]: isVisible
-    }
+    layers: { ...state.layers, [layerKey]: isVisible }
   })),
   
-  // Map Selection State (clicked feature on map)
   selectedFeature: null,
   setSelectedFeature: (feature) => set({ selectedFeature: feature }),
 }));
