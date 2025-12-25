@@ -1,4 +1,5 @@
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 import useResultStore from '../../../stores/useResultStore';
 import { useProjectData } from '../hooks/useResultQueries';
 
@@ -13,7 +14,6 @@ const getValueClass = (value, type) => {
     return 'text-red-600';
   }
   if (type === 'status') {
-    // Check against English values from DB to ensure styling works
     const v = value?.toLowerCase();
     if (v === 'good' || v === 'high' || v === 'low' || v === 'available') return 'text-green-600'; 
     if (v === 'fair' || v === 'medium') return 'text-yellow-600';
@@ -23,15 +23,32 @@ const getValueClass = (value, type) => {
 };
 
 const ProjectOverviewPage = () => {
+  // Get ID from the Layout context
+  const { projectId } = useOutletContext();
+  
   const activeTab = useResultStore(state => state.activeProjectTab);
-  const { data: siteData, isLoading, isError } = useProjectData();
+  
+  // Pass the ID to the hook
+  const { data: siteData, isLoading, isError } = useProjectData(projectId);
 
   if (isLoading) {
-    return <div className="flex h-full items-center justify-center text-gray-500">در حال بارگذاری بررسی کلی...</div>;
+    return (
+        <div className="flex h-full items-center justify-center bg-gray-50">
+             <div className="text-gray-500 animate-pulse">در حال بارگذاری بررسی کلی ({projectId})...</div>
+        </div>
+    );
   }
 
+  // Handle case where project exists but results haven't been generated yet
   if (isError || !siteData) {
-    return <div className="flex h-full items-center justify-center text-red-500">خطا در بارگذاری داده‌های پروژه.</div>;
+    return (
+        <div className="flex flex-col h-full items-center justify-center bg-gray-50 text-center p-6">
+            <h3 className="text-lg font-bold text-gray-800 mb-2">اطلاعاتی یافت نشد</h3>
+            <p className="text-gray-500 text-sm max-w-md">
+                هنوز داده‌های تحلیلی برای این پروژه محاسبه نشده‌اند یا در سیستم موجود نیستند.
+            </p>
+        </div>
+    );
   }
 
   const renderContent = () => {
@@ -41,7 +58,8 @@ const ProjectOverviewPage = () => {
       case 'basic-info':
         return <BasicSiteInfoTab siteData={siteData} getValueClass={getValueClass} />;
       case 'grid-infrastructure':
-        return <GridInfrastructureTab gridData={siteData.gridInfo} />;
+        // Safe access to gridInfo in case it's missing in some JSON entries
+        return <GridInfrastructureTab gridData={siteData.gridInfo || {}} />;
       default:
         return <ProjectSummaryTab summaryData={siteData.summaryData} solarResource={siteData.solarResource} />;
     }
@@ -55,3 +73,4 @@ const ProjectOverviewPage = () => {
 };
 
 export default ProjectOverviewPage;
+

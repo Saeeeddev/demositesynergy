@@ -1,4 +1,5 @@
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 import useResultStore from '../../../stores/useResultStore';
 import { useFinancialData } from '../hooks/useResultQueries';
 
@@ -11,13 +12,23 @@ import StrategicTab from '../components/Financial/Tabs/StrategicTab';
 import TimelineTab from '../components/Financial/Tabs/TimelineTab';
 
 const FinancialPage = () => {
+  // Get ID from the Layout context
+  const { projectId } = useOutletContext();
+
   const activeTab = useResultStore(state => state.activeFinancialTab);
-  const { data: financialData, isLoading, isError } = useFinancialData();
+  
+  // Pass the ID to the hook
+  const { data: financialData, isLoading, isError } = useFinancialData(projectId);
 
   if (isLoading) {
     return (
       <div className="flex h-full items-center justify-center bg-gray-50">
-        <div className="text-sm font-medium text-gray-500 animate-pulse">در حال بارگذاری مدل مالی...</div>
+        <div className="flex flex-col items-center gap-3">
+             <div className="h-2 w-24 bg-gray-200 rounded overflow-hidden">
+                <div className="h-full bg-primary-blue animate-[loading_1s_ease-in-out_infinite]"></div>
+             </div>
+             <div className="text-sm font-medium text-gray-500">در حال بارگذاری مدل مالی...</div>
+        </div>
       </div>
     );
   }
@@ -25,7 +36,9 @@ const FinancialPage = () => {
   if (isError || !financialData) {
     return (
       <div className="flex h-full items-center justify-center bg-gray-50">
-        <div className="text-sm font-medium text-red-500">خطا در بارگذاری داده‌های مالی.</div>
+        <div className="text-sm font-medium text-red-500">
+           خطا در بارگذاری داده‌های مالی برای پروژه {projectId}.
+        </div>
       </div>
     );
   }

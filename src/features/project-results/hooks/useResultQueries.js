@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { api } from '../../../lib/axios';
 
-// Helper for fetching static data
-const fetchData = async (url) => {
+// Helper for fetching static data (for Maps)
+const fetchStaticData = async (url) => {
   const { data } = await axios.get(url);
   return data;
 };
@@ -77,26 +78,41 @@ const fetchGhiFromOpenMeteo = async () => {
   };
 };
 
-// --- 1. Financial Data Hook ---
-export const useFinancialData = () => {
+// --- 1. Dynamic Financial Data Hook ---
+export const useFinancialData = (projectId) => {
   return useQuery({
-    queryKey: ['financials'],
-    queryFn: () => fetchData('/data/financial-data.json'), 
+    queryKey: ['financials', projectId],
+    queryFn: async () => {
+      // Fetch merged results
+      const { data } = await api.get(`/projectResults/${projectId}`);
+      // Return the full object, component will destructure
+      return data;
+    },
+    enabled: !!projectId, // Only fetch if ID exists
     staleTime: 5 * 60 * 1000, 
     retry: 1,
   });
 };
 
-// --- 2. Project Overview Hook ---
-export const useProjectData = () => {
+// --- 2. Dynamic Project Overview Hook ---
+export const useProjectData = (projectId) => {
   return useQuery({
-    queryKey: ['project-overview'],
-    queryFn: () => fetchData('/data/project-overview.json'), 
+    queryKey: ['project-overview', projectId],
+    queryFn: async () => {
+       const { data: resultData } = await api.get(`/projectResults/${projectId}`);
+       
+       // OPTIONAL: Fetch Basic Project Info separately if needed
+       // const { data: projData } = await api.get(`/projects/${projectId}`);
+       
+       // For now, projectResults in db.json contains everything we need
+       return resultData; 
+    },
+    enabled: !!projectId,
     staleTime: 5 * 60 * 1000,
   });
 };
 
-// --- 3. Map Layers Hook ---
+// --- 3. Map Layers Hook (Static Data + GHI) ---
 export const useMapLayer = (layerKey, isVisible) => {
   
   const layerEndpoints = {
@@ -113,19 +129,16 @@ export const useMapLayer = (layerKey, isVisible) => {
     dem: '/data/extract_dem_wgs_reclass_poly.json',
     allocatedLand: '/data/alo.json', 
     slope: '/data/Contour_slope1_FeaturesToJSO.json',
-    // We handle 'ghi' dynamically now
-    ghi: null 
+    ghi: null // Handled dynamically
   };
 
   return useQuery({
     queryKey: ['map-layer', layerKey],
     queryFn: () => {
-      // SPECIAL CASE: Fetch GHI from Open-Meteo
       if (layerKey === 'ghi') {
         return fetchGhiFromOpenMeteo();
       }
-      // Standard Static Files
-      return fetchData(layerEndpoints[layerKey]);
+      return fetchStaticData(layerEndpoints[layerKey]);
     },
     enabled: !!isVisible && (!!layerEndpoints[layerKey] || layerKey === 'ghi'), 
     staleTime: Infinity, 
