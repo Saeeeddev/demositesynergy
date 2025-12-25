@@ -22,7 +22,7 @@ const FinancialPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-full items-center justify-center bg-gray-50">
+      <div className="flex w-full h-full items-center justify-center bg-gray-50">
         <div className="flex flex-col items-center gap-3">
              <div className="h-2 w-24 bg-gray-200 rounded overflow-hidden">
                 <div className="h-full bg-primary-blue animate-[loading_1s_ease-in-out_infinite]"></div>
@@ -57,7 +57,7 @@ const FinancialPage = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6 min-h-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200" dir="rtl">
+    <div className="p-4 sm:p-6 w-full overflow-auto min-h-full bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200" dir="rtl">
       {renderContent()}
     </div>
   );
