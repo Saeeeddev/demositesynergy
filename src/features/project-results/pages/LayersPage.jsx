@@ -3,51 +3,48 @@ import { useOutletContext } from 'react-router-dom';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import UnifiedBaseMap from '../components/Layers/UnifiedBaseMap';
 import useResultStore from '../../../stores/useResultStore';
-import { useProjectData } from '../hooks/useResultQueries';
 
 function LayersPage() {
   const [isLegendOpen, setIsLegendOpen] = useState(true);
-  const { projectId } = useOutletContext();
   
-  // Get Global State
+  // 1. Get Project Data from Context (Validated by Layout)
+  const { projectId, projectData } = useOutletContext();
+  
+  // Global State
   const layers = useResultStore(state => state.layers);
   const setSelectedFeature = useResultStore(state => state.setSelectedFeature);
 
-  // Fetch Dynamic Data for this specific project
-  const { data: projectData } = useProjectData(projectId);
-
   // --- DYNAMIC AREA GENERATOR ---
-  // Convert DB Format ({ points: [{lat, lon}] }) to GeoJSON ({ type: Feature, geometry: ... })
+  // Convert Project Coordinates to GeoJSON for the map
   const customSelectedArea = useMemo(() => {
-    // 1. Try to find the polygon data in projectData.
-    // Assuming structure in db.json for saved projects mirrors what Wizard creates:
-    // It might be stored directly or within basicInfo/summary (depends on backend mapping)
-    // For Batch 1 db.json, let's fallback to a default Iran square if missing, 
-    // OR try to parse it from 'basicInfo.coordinates' string if that's all we have.
-    
+    if (!projectData) return null;
+
     let coords = null;
-    
-    // Check if real polygon data exists (add this field to DB if missing in real app)
-    // For now, let's create a dummy box around the single coordinate point in 'basicInfo' 
-    // to verify dynamic loading works.
-    
-    if (projectData?.basicInfo?.coordinates) {
-       // Parse "34.05° N, 118.24° W" string logic (Mock) or check explicit object
-       // We'll use the coordinate string as center
-       // In a real scenario, use projectData.locationData or similar.
-       const latLon = [30.5, 57.5]; // Default center if parse fails
-       // Create a mock small square around center
+
+    // SCENARIO A: Data from Wizard (coordinates object with points array)
+    if (projectData.coordinates && projectData.coordinates.points) {
+        const points = projectData.coordinates.points;
+        // Convert [{lat, lon}] to [[lon, lat]] for GeoJSON
+        coords = [points.map(p => [p.lon, p.lat])];
+    }
+    // SCENARIO B: Legacy DB format (basicInfo string)
+    else if (projectData.basicInfo?.coordinates) {
+       // Mock fallback for demo if string parsing isn't implemented
+       // In a real app, parse "34.05 N, 118.24 W"
+       // We'll create a dummy box near Yazd/Kerman for visualization
+       const lat = 31.0; 
+       const lon = 56.0;
        const r = 0.05; 
        coords = [[
-         [latLon[1]-r, latLon[0]-r],
-         [latLon[1]+r, latLon[0]-r],
-         [latLon[1]+r, latLon[0]+r],
-         [latLon[1]-r, latLon[0]+r],
-         [latLon[1]-r, latLon[0]-r]
+         [lon-r, lat-r],
+         [lon+r, lat-r],
+         [lon+r, lat+r],
+         [lon-r, lat+r],
+         [lon-r, lat-r]
        ]];
     }
 
-    if (!coords) return null; // Or return null so nothing draws
+    if (!coords) return null;
 
     return {
       type: "FeatureCollection",
@@ -55,7 +52,7 @@ function LayersPage() {
         {
           type: "Feature",
           id: `proj-${projectId}-boundary`,
-          properties: { name: projectData.name || "Selected Project Area" },
+          properties: { name: projectData.name || "محدوده پروژه" },
           geometry: {
             type: "Polygon",
             coordinates: coords
@@ -66,11 +63,11 @@ function LayersPage() {
   }, [projectData, projectId]);
 
 
-  // --- COLOR & STYLE LOGIC (Existing) ---
+  // --- COLOR & STYLE LOGIC ---
   const getDefaultColor = useCallback((layer) => {
     const colors = {
-      powerLines: '#e31a1c', roads: '#1f78b4', railways: '#33a02c', airports: '#6a3d9a',
-      cities: '#ff7f00', waterAreas: '#b2df8a', fault: '#a6cee3', protectedAreas: '#fb9a99', 
+      powerLines: '#e31a1c', roads: '#fb923c', railways: '#33a02c', airports: '#6a3d9a',
+      cities: '#f59e0b', waterAreas: '#3b82f6', fault: '#be123c', protectedAreas: '#10b981', 
       landuse: '#fdbf6f', allocatedLand: '#10b981', slope: '#8B4513'
     };
     return colors[layer] || '#808080';
@@ -90,16 +87,17 @@ function LayersPage() {
         };
     }
     
-    // ... (Keep existing complex style logic for 'slope', 'dem', etc. provided in previous prompts)
-    // For brevity, defaulting the rest:
     return { color: color, weight: isSelected ? 4 : 2, opacity: 0.8 };
   }, [getDefaultColor]);
 
   const onEachFeature = useCallback((feature, layer, currentLayer) => {
-    // Bind Popups...
     layer.on('click', () => {
        if (feature.id) setSelectedFeature({ layer: currentLayer, id: feature.id });
     });
+    // Add simple tooltip
+    if (feature.properties && feature.properties.name) {
+        layer.bindTooltip(feature.properties.name);
+    }
   }, [setSelectedFeature]);
 
   // --- RENDER ---
@@ -108,11 +106,12 @@ function LayersPage() {
       <UnifiedBaseMap 
         styleFn={getStyleByLayer}
         onEachFeatureFn={onEachFeature}
-        customData={customSelectedArea} // Passing Dynamic Data Here
+        customData={customSelectedArea} // Passing Dynamic Boundary
+        projectId={projectId}           // Passing ID for secure fetching
       />
       
       {/* Legend Container */}
-      <div className="absolute bottom-6 right-6 z-[1000] w-[300px] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 overflow-hidden max-h-[40vh] flex flex-col">
+      <div className="absolute bottom-6 right-6 z-[1000] w-[280px] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 overflow-hidden max-h-[40vh] flex flex-col transition-all" dir="rtl">
           <button 
               onClick={() => setIsLegendOpen(!isLegendOpen)}
               className="w-full px-4 py-3 flex items-center justify-between bg-white border-b border-gray-100 hover:bg-gray-50 transition-colors"
@@ -122,10 +121,33 @@ function LayersPage() {
           </button>
           
           {isLegendOpen && (
-              <div className="p-4 overflow-y-auto">
-                   {/* Simplified Legend for demo */}
-                   {layers.selectedLocation && <div className="flex items-center gap-2"><div className="w-5 h-1 border-dashed border-2 border-blue-600"></div><span className="text-xs">محدوده پروژه</span></div>}
-                   {/* Add rest of legends here... */}
+              <div className="p-4 overflow-y-auto space-y-3">
+                   {/* Dynamic Legend Items */}
+                   <div className="flex items-center gap-3">
+                       <div className="w-6 h-0 border-t-2 border-dashed border-blue-600"></div>
+                       <span className="text-xs text-gray-600">محدوده پروژه</span>
+                   </div>
+                   
+                   {layers.powerLines && (
+                       <div className="flex items-center gap-3">
+                           <div className="w-6 h-1 bg-red-600 rounded"></div>
+                           <span className="text-xs text-gray-600">خطوط انتقال</span>
+                       </div>
+                   )}
+                   {layers.roads && (
+                       <div className="flex items-center gap-3">
+                           <div className="w-6 h-1 bg-orange-400 rounded"></div>
+                           <span className="text-xs text-gray-600">جاده‌ها</span>
+                       </div>
+                   )}
+                   {layers.cities && (
+                       <div className="flex items-center gap-3">
+                           <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                           <span className="text-xs text-gray-600">شهرها</span>
+                       </div>
+                   )}
+                   
+                   {/* Add more as needed based on active layers */}
               </div>
           )}
       </div>

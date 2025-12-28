@@ -11,30 +11,6 @@ const iranBounds = [
   [40.00, 64.00] 
 ];
 
-// --- 1. DEFINE YOUR CUSTOM COORDINATES HERE ---
-const customSelectedArea = {
-  type: "FeatureCollection",
-  features: [
-    {
-      type: "Feature",
-      id: "selected-custom-area",
-      properties: { name: "User Selected Area" },
-      geometry: {
-        type: "Polygon",
-        // GeoJSON requires a triple nested array for Polygons: [ [ [Lng, Lat], ... ] ]
-        coordinates: [[
-          [57.492461124538814, 29.485908067784209],
-  [59.00024186714296, 29.485908067784209],
-  [59.00024186714296, 31.014421494245155],
-  [57.492461124538814, 31.014421494245155],
-  [57.492461124538814, 29.485908067784209]
-        ]]
-      }
-    }
-  ]
-};
-
-
 // --- Map Resizer Hook ---
 const MapResizer = () => {
   const map = useMap();
@@ -50,16 +26,18 @@ const MapResizer = () => {
   return null;
 };
 
-// --- 2. UPDATE ASYNC LAYER TO ACCEPT 'customData' ---
-const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLayerCallback, customData }) => {
+// --- Async Layer Component ---
+// Now accepts projectId to fetch specific/secure layers
+const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLayerCallback, customData, projectId }) => {
   const map = useMap();
   const isVisible = useResultStore(state => state.layers[layerKey]);
   const selectedFeature = useResultStore(state => state.selectedFeature);
   
-  // Only fetch if no customData is provided
-  const { data: apiData } = useMapLayer(layerKey, isVisible && !customData);
+  // Pass projectId to the hook so it can fetch specific data if needed
+  // Only fetch from API if no customData is provided
+  const { data: apiData } = useMapLayer(layerKey, isVisible && !customData, projectId);
   
-  // Use customData if available, otherwise use API data
+  // Use customData if available (e.g. for the project boundary), otherwise use API data
   const data = customData || apiData;
   
   const geoJsonLayerRef = useRef(null);
@@ -78,7 +56,7 @@ const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLay
       });
       geoJsonLayerRef.current.addTo(map);
 
-      // Optional: Fly to the custom area when it loads
+      // Fly to the custom area when it loads (e.g. Project Boundary)
       if (customData) {
         const bounds = geoJsonLayerRef.current.getBounds();
         if (bounds.isValid()) {
@@ -98,6 +76,7 @@ const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLay
     };
   }, [isVisible, data, map, layerKey, onEachFeatureCallback, pointToLayerCallback, styleCallback, selectedFeature, customData]);
 
+  // Handle Style Updates (Selection)
   useEffect(() => {
     if (geoJsonLayerRef.current && styleCallback) {
       geoJsonLayerRef.current.eachLayer((layer) => {
@@ -113,7 +92,7 @@ const AsyncLayer = ({ layerKey, styleCallback, onEachFeatureCallback, pointToLay
 };
 
 // --- Main Map Component ---
-const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
+const UnifiedBaseMap = ({ styleFn, onEachFeatureFn, customData, projectId }) => {
   const mapRef = useRef();
 
   const pointToLayerFn = (feature, latlng) => {
@@ -124,8 +103,8 @@ const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
     <div className="absolute inset-0 w-full h-full bg-gray-100 z-0 overflow-hidden border-gray-200">
       <MapContainer 
         ref={mapRef} 
-        center={[30.5, 57.5]} // Centered roughly near your coordinates
-        zoom={8} 
+        center={[32.4279, 53.6880]} // Default Center
+        zoom={6} 
         minZoom={5} 
         maxBounds={iranBounds} 
         maxBoundsViscosity={1.0} 
@@ -140,27 +119,27 @@ const UnifiedBaseMap = ({ styleFn, onEachFeatureFn }) => {
         
         <MapResizer />
 
-        {/* --- 3. PASS THE CUSTOM DATA TO THE LAYER --- */}
+        {/* 1. Project Boundary Layer (Custom Data) */}
         <AsyncLayer 
           layerKey="selectedLocation" 
-          customData={customSelectedArea} 
+          customData={customData} 
           styleCallback={styleFn} 
           onEachFeatureCallback={onEachFeatureFn} 
+          projectId={projectId}
         />
 
-        {/* Other Active Layers */}
-        <AsyncLayer layerKey="roads" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="railways" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="airports" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} pointToLayerCallback={pointToLayerFn} />
-        <AsyncLayer layerKey="cities" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} pointToLayerCallback={pointToLayerFn} />
-        <AsyncLayer layerKey="waterAreas" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="technical" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="allocatedLand" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        
-        <AsyncLayer layerKey="powerLines" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="ghi" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="fault" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
-        <AsyncLayer layerKey="slope" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} />
+        {/* 2. Dynamic Layers (Pass projectId for secure/custom fetching) */}
+        <AsyncLayer layerKey="roads" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="railways" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="airports" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} pointToLayerCallback={pointToLayerFn} projectId={projectId} />
+        <AsyncLayer layerKey="cities" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} pointToLayerCallback={pointToLayerFn} projectId={projectId} />
+        <AsyncLayer layerKey="waterAreas" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="technical" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="allocatedLand" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="powerLines" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="ghi" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="fault" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
+        <AsyncLayer layerKey="slope" styleCallback={styleFn} onEachFeatureCallback={onEachFeatureFn} projectId={projectId} />
 
       </MapContainer>
     </div>

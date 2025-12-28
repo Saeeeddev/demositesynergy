@@ -9,7 +9,8 @@ import {
   WrenchScrewdriverIcon, 
   ShieldCheckIcon,
   MapPinIcon,
-  CheckIcon 
+  CheckIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline';
 
 const ReviewItem = ({ label, value, unit }) => (
@@ -59,6 +60,12 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
       return `${coords.points.length} راس`;
   };
 
+  const getServiceLabel = (type) => {
+      if (type === 'full') return 'مکان‌یابی + گزارش جامع';
+      if (type === 'report') return 'فقط گزارش امکان‌سنجی';
+      return 'نامشخص';
+  };
+
   // --- JSON Generator Function ---
   const generatePayload = () => {
     const isStandard = projectDetails.analysisMode === 'standard';
@@ -75,6 +82,9 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
             lat: pt[1], 
             lon: pt[0]
         }));
+    } else if (locationData?.data?.coordinates?.points) {
+        // Handle custom format from LeafletMap
+        points = locationData.data.coordinates.points;
     }
 
     // 2. Parameters Transformation
@@ -96,7 +106,6 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
             osm_landuse: { enabled: cs.technical?.landUse?.enabled, weight: cs.technical?.landUse?.weight },
             railways: { enabled: cs.economic?.railwaysDistance?.enabled, weight: cs.economic?.railwaysDistance?.weight },
             airports: { enabled: cs.economic?.airportDistance?.enabled, weight: cs.economic?.airportDistance?.weight },
-            // REMOVED: historicSites, mines, militaryArea from payload to prevent crashes
             fault: { enabled: cs.geological?.faultLines?.enabled, weight: cs.geological?.faultLines?.weight },
             villages: { enabled: true, weight: 5 }, 
             rivers: { enabled: true, weight: 2 }, 
@@ -104,6 +113,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
     }
 
     return {
+        service_type: projectDetails.serviceType, // Added Service Type
         project_info: {
             project_name: projectDetails.name,
             project_manager: projectDetails.manager,
@@ -117,12 +127,6 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
             points: points
         },
         analysis_mode: projectDetails.analysisMode,
-        data_paths: {
-            dem: "Default_Path_Or_Null",
-            fault: "Default_Path_Or_Null",
-            ghi: "Default_Path_Or_Null",
-            protected_areas: "Default_Path_Or_Null"
-        },
         parameters: parameters, 
         financial_inputs: {
             project_basics: {
@@ -132,22 +136,9 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
                 description: "هزینه‌های سرمایه‌گذاری",
                 total_investment_cost_mil_rial: fs.capex_breakdown.total_investment_cost_mil_rial,
                 salvage_value_mil_rial: fs.capex_breakdown.salvage_value_mil_rial,
-                equipment_mil_rial: 0,
-                civil_buildings_mil_rial: 0,
-                civil_foundation_mil_rial: 0,
-                grid_connection_mil_rial: 0,
-                engineering_mil_rial: 0,
-                rental_equipment_mil_rial: 0,
-                surplus_material_cost_mil_rial: 0,
-                pre_opening_mil_rial: 0,
-                installation_mil_rial: 0,
-                contingency_mil_rial: 0,
-                excess_material_sales_mil_rial: 0
             },
             opex_details: {
-                personnel: {
-                   ...fs.opex_details.personnel
-                },
+                personnel: { ...fs.opex_details.personnel },
                 maintenance: {
                    ...fs.opex_details.maintenance,
                    panel_cleaning_percent: 0.002,
@@ -176,61 +167,32 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
             await onConfirm(finalPayload);
         }
         
-        // Show success modal ONLY if no error occurred
-        setShowSuccessModal(true);
+        // Modal is handled by parent NewProjectPage usually, 
+        // but if ReviewPage handles it:
+        // setShowSuccessModal(true); 
     } catch (error) {
-        console.error("Payload generation or submission error:", error);
+        console.error("Payload generation error:", error);
         alert("خطا در ایجاد داده‌های نهایی.");
     }
-  };
-
-  const handleModalClose = () => {
-      setShowSuccessModal(false);
-      reset();
-      navigate('/projects');
   };
 
   return (
     <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative">
       
-      {/* --- Success Modal Overlay --- */}
-      {showSuccessModal && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[2px] p-4 animate-in fade-in duration-200">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 flex flex-col items-center text-center transform scale-100 animate-in zoom-in-95 duration-200">
-                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-5">
-                    <CheckIcon className="w-10 h-10 text-emerald-500" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-xl font-extrabold text-gray-900 mb-2">
-                    تحلیل ثبت شد!
-                </h3>
-                <div className="text-sm text-gray-600 space-y-3 mb-6">
-                    <p>
-                        تحلیل پروژه شما با موفقیت ارسال شد و در حال پردازش است.
-                    </p>
-                    <p>
-                        پس از آماده شدن گزارش، از طریق ایمیل به شما اطلاع داده خواهد شد. این فرآیند معمولاً <span className="font-bold text-gray-800">کمتر از ۲۴ ساعت</span> زمان می‌برد.
-                    </p>
-                </div>
-                <button 
-                    onClick={handleModalClose}
-                    className="w-full py-3 bg-[#63748E] hover:bg-[#4F5D75] text-white rounded-xl font-bold text-sm transition-colors shadow-sm"
-                >
-                    متوجه شدم
-                </button>
-            </div>
-        </div>
-      )}
-
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto p-5 lg:p-6 thin-scrollbar">
         <div className="max-w-7xl mx-auto space-y-8">
             
+            {/* New Service Section */}
+            <ReviewSection title="نوع خدمات" icon={DocumentTextIcon}>
+                <ReviewItem label="سرویس انتخابی" value={getServiceLabel(projectDetails.serviceType)} />
+            </ReviewSection>
+
             <ReviewSection title="مشخصات پروژه و مکان" icon={BuildingOfficeIcon}>
                 <ReviewItem label="نام پروژه" value={projectDetails.name} />
                 <ReviewItem label="شرکت" value={projectDetails.company} />
                 <ReviewItem label="کارفرما" value={projectDetails.owner} />
                 <ReviewItem label="مدیر" value={projectDetails.manager} />
-                <ReviewItem label="آدرس" value={projectDetails.location} />
             </ReviewSection>
 
             <ReviewSection title="جغرافیا و محدوده" icon={MapPinIcon}>
@@ -245,7 +207,6 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
                 <ReviewItem label="وزن اقتصادی" value={cs.overallWeights.economic} unit="%" />
                 <ReviewItem label="وزن فنی" value={cs.overallWeights.technical} unit="%" />
                 <ReviewItem label="وزن زیست‌محیطی" value={cs.overallWeights.environmental} unit="%" />
-                <ReviewItem label="وزن زمین‌شناسی" value={cs.overallWeights.geological} unit="%" />
             </ReviewSection>
 
             <ReviewSection title="ورودی‌های مالی" icon={CurrencyDollarIcon}>
@@ -254,8 +215,6 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
                 <ReviewItem label="تولید (سال اول)" value={fmtNum(fs.project_basics.production_year1_kwh)} unit="kWh" />
                 <ReviewItem label="سرمایه‌گذاری کل" value={fmtNum(fs.capex_breakdown.total_investment_cost_mil_rial)} unit="م.ر" />
                 <ReviewItem label="تعرفه (سال اول)" value={fmtNum(fs.sales_assumptions.electricity_tariff_year1_rial_kwh)} unit="ریال/kWh" />
-                <ReviewItem label="نسبت وام" value={fmtPct(fs.financing.debt_ratio)} />
-                <ReviewItem label="نرخ بهره" value={fmtPct(fs.financing.interest_rate)} />
                 <ReviewItem label="تورم" value={fmtPct(fs.financial_params.inflation_rate)} />
             </ReviewSection>
 
@@ -275,7 +234,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
               <div className="flex items-start gap-2 max-w-xl">
                   <ShieldCheckIcon className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-gray-500 text-justify">
-                      با تایید این فرم، صحت اطلاعات وارد شده را تایید می‌کنید. در صورت نیاز به تغییر، از دکمه <strong>بازگشت</strong> استفاده کنید.
+                      با تایید این فرم، صحت اطلاعات وارد شده را تایید می‌کنید.
                   </p>
               </div>
               <div className="flex gap-3 w-full sm:w-auto">
@@ -306,3 +265,4 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
 };
 
 export default ReviewPage;
+

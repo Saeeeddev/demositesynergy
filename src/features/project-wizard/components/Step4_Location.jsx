@@ -15,7 +15,6 @@ import {
   TrashIcon
 } from '@heroicons/react/24/outline';
 
-// Helper UI Component
 const SidebarSelectionCard = ({ active, onClick, icon: Icon, title }) => (
   <button
     onClick={onClick}
@@ -50,7 +49,7 @@ const ErrorToast = ({ message, onClose }) => {
     );
 };
 
-const Step3_Location = () => {
+const Step4_Location = () => {
   const mapRef = useRef(null);
   
   const { 
@@ -71,17 +70,18 @@ const Step3_Location = () => {
   const isDrawMode = projectDetails.scale === 'draw';
   const isCountyMode = projectDetails.scale === 'county';
   
-  // Safe limits matches LeafletMap config
   const MAX_AREA_SQ_KM = 52000;
 
   // -- Effects --
 
-  // Auto-start drawing only if needed
+  // Auto-start drawing when entering draw mode with no existing data
   useEffect(() => {
       if (isDrawMode && !locationData) {
           const timer = setTimeout(() => {
-              mapRef.current?.startDrawing();
-          }, 300); // Slight delay ensures map is mounted
+              if (mapRef.current) {
+                  mapRef.current.startDrawing();
+              }
+          }, 300); 
           return () => clearTimeout(timer);
       }
   }, [isDrawMode, locationData]);
@@ -95,7 +95,7 @@ const Step3_Location = () => {
     }
   }, [projectDetails.province]);
 
-  // Fetch Administrative Boundary
+  // Fetch Administrative Boundary for County Mode
   useEffect(() => {
     if (isCountyMode && projectDetails.county && projectDetails.province) {
         if (locationData?.name === `${projectDetails.county}, ${projectDetails.province}`) return;
@@ -105,9 +105,9 @@ const Step3_Location = () => {
             setMapError(null);
             
             try {
-                // Nominatim query
                 const searchName = encodeURIComponent(projectDetails.county);
                 const searchProvince = encodeURIComponent(projectDetails.province);
+                // Note: Using &polygon_geojson=1 to get boundaries
                 const url = `https://nominatim.openstreetmap.org/search?county=${searchName}&state=${searchProvince}&country=Iran&format=json&polygon_geojson=1&limit=1`;
                 
                 const response = await fetch(url);
@@ -118,7 +118,6 @@ const Step3_Location = () => {
                 if (data && data.length > 0 && data[0].geojson) {
                     const geoJson = data[0].geojson;
                     
-                    // Call Map Method
                     const formattedData = mapRef.current?.loadCountyBoundary(geoJson);
                     
                     if (formattedData) {
@@ -128,7 +127,6 @@ const Step3_Location = () => {
                             data: formattedData
                         });
                     } else {
-                        // Sometimes geojson is multipolygon or point which might fail parser
                         throw new Error("ساختار هندسی نامعتبر دریافت شد.");
                     }
                 } else {
@@ -150,7 +148,6 @@ const Step3_Location = () => {
   // -- Handlers --
 
   const handleMapCreated = (customJson) => {
-    // This fires when User finishes a polygon
     if (!customJson) return; 
     
     updateLocationData({
@@ -168,7 +165,7 @@ const Step3_Location = () => {
 
   const handleMethodChange = (mode) => {
     handleScaleSelection(mode);
-    updateLocationData(null); // Clear previous selection
+    updateLocationData(null); 
     mapRef.current?.deleteSelection();
   };
 
@@ -176,6 +173,7 @@ const Step3_Location = () => {
     mapRef.current?.deleteSelection();
     updateLocationData(null);
     setMapError(null);
+    
     if(isDrawMode) {
         setTimeout(() => mapRef.current?.startDrawing(), 100);
     }
@@ -187,7 +185,6 @@ const Step3_Location = () => {
     setMapError(null);
 
     try {
-        // Simple search logic
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&limit=1&countrycodes=ir`;
         const response = await fetch(url);
         const data = await response.json();
@@ -211,7 +208,7 @@ const Step3_Location = () => {
   return (
     <div className="flex flex-col lg:flex-row flex-1 w-full relative h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       
-      {/* SIDEBAR CONFIGURATION (Right) */}
+      {/* SIDEBAR CONFIGURATION */}
       <aside className="w-full lg:w-80 bg-gray-50 border-b lg:border-b-0 lg:border-e border-gray-200 flex-shrink-0 flex flex-col order-1 lg:order-1 z-10">
         
         <div className="p-4 border-b border-gray-200 bg-white">
@@ -252,8 +249,8 @@ const Step3_Location = () => {
                                  <select 
                                      value={projectDetails.province}
                                      onChange={(e) => {
-                                         updateProjectDetails(e); // name="province" assumed implicit in native select or handled by store logic
-                                         updateProjectDetails({ target: { name: 'county', value: '' }}); // Reset county
+                                         updateProjectDetails(e); 
+                                         updateProjectDetails({ target: { name: 'county', value: '' }}); 
                                      }}
                                      name="province"
                                      className="w-full bg-white border border-gray-300 text-gray-800 text-sm rounded-lg p-2.5 focus:ring-1 focus:ring-primary-blue focus:border-primary-blue outline-none"
@@ -324,7 +321,7 @@ const Step3_Location = () => {
                         }`}
                      >
                          <CheckIcon className="w-5 h-5" />
-                         تایید نهایی
+                         ذخیره و ادامه (مالی)
                      </button>
                  </div>
             </div>
@@ -332,7 +329,7 @@ const Step3_Location = () => {
 
       </aside>
 
-      {/* MAP AREA (Left) */}
+      {/* MAP AREA */}
       <div className="flex-1 relative order-2 lg:order-2 bg-gray-100 min-h-[400px]">
          <LeafletMap 
              ref={mapRef}
@@ -363,6 +360,7 @@ const Step3_Location = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleGeocodeSearch()}
+                        dir="auto"
                      />
                      <button 
                         onClick={handleGeocodeSearch}
@@ -379,4 +377,4 @@ const Step3_Location = () => {
   );
 };
 
-export default Step3_Location;
+export default Step4_Location;

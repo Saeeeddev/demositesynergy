@@ -1,7 +1,6 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import useResultStore from '../../../stores/useResultStore';
-import { useProjectData } from '../hooks/useResultQueries';
 
 import ProjectSummaryTab from '../components/ProjectOverview/Tabs/ProjectSummaryTab';
 import BasicSiteInfoTab from '../components/ProjectOverview/Tabs/BasicSiteInfoTab';
@@ -23,45 +22,49 @@ const getValueClass = (value, type) => {
 };
 
 const ProjectOverviewPage = () => {
-  // Get ID from the Layout context
-  const { projectId } = useOutletContext();
-  
+  // Get Data directly from Layout Context (No re-fetch needed)
+  // This ensures we show exactly what the Layout validated.
+  const { projectData } = useOutletContext();
   const activeTab = useResultStore(state => state.activeProjectTab);
   
-  // Pass the ID to the hook
-  const { data: siteData, isLoading, isError } = useProjectData(projectId);
+  // Since Layout handles Error/Loading, projectData is guaranteed here.
+  // However, specific fields inside it might be missing depending on JSON structure.
+  
+  // Safety check for empty object
+  if (!projectData) return null;
 
-  if (isLoading) {
-    return (
-        <div className="flex h-full items-center justify-center bg-gray-50">
-             <div className="text-gray-500 animate-pulse">در حال بارگذاری بررسی کلی ({projectId})...</div>
-        </div>
-    );
-  }
-
-  // Handle case where project exists but results haven't been generated yet
-  if (isError || !siteData) {
-    return (
-        <div className="flex flex-col h-full items-center justify-center bg-gray-50 text-center p-6">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">اطلاعاتی یافت نشد</h3>
-            <p className="text-gray-500 text-sm max-w-md">
-                هنوز داده‌های تحلیلی برای این پروژه محاسبه نشده‌اند یا در سیستم موجود نیستند.
-            </p>
-        </div>
-    );
-  }
+  // Use the fetched data
+  const siteData = projectData;
 
   const renderContent = () => {
     switch (activeTab) {
       case 'summary':
-        return <ProjectSummaryTab summaryData={siteData.summaryData} solarResource={siteData.solarResource} />;
+        return (
+            <ProjectSummaryTab 
+                summaryData={siteData.summaryData} 
+                solarResource={siteData.solarResource} 
+            />
+        );
       case 'basic-info':
-        return <BasicSiteInfoTab siteData={siteData} getValueClass={getValueClass} />;
+        return (
+            <BasicSiteInfoTab 
+                siteData={siteData} 
+                getValueClass={getValueClass} 
+            />
+        );
       case 'grid-infrastructure':
-        // Safe access to gridInfo in case it's missing in some JSON entries
-        return <GridInfrastructureTab gridData={siteData.gridInfo || {}} />;
+        return (
+            <GridInfrastructureTab 
+                gridData={siteData.gridInfo || {}} 
+            />
+        );
       default:
-        return <ProjectSummaryTab summaryData={siteData.summaryData} solarResource={siteData.solarResource} />;
+        return (
+            <ProjectSummaryTab 
+                summaryData={siteData.summaryData} 
+                solarResource={siteData.solarResource} 
+            />
+        );
     }
   };
 

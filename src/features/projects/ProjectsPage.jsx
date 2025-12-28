@@ -5,13 +5,12 @@ import ProjectsHeader from './components/ProjectsHeader';
 import ProjectCard from './components/ProjectCard';
 import Pagination from '../../components/common/Pagination';
 
-// Fetch function for Projects
+// Fetch function: Ensure sorting is DESCENDING by Date (Newest first)
 const fetchProjects = async () => {
   const { data } = await api.get('/projects?_sort=createdDate&_order=desc');
   return data;
 };
 
-// Fetch function for Project Stats
 const fetchProjectStats = async () => {
     const { data } = await api.get('/projectStats');
     return data;
@@ -27,13 +26,13 @@ const ProjectsPage = () => {
     queryFn: fetchProjects,
   });
 
-  // Fetch Header Stats from DB
+  // Fetch Header Stats
   const { data: projectStats = { total: 0, completed: 0, inProgress: 0, pending: 0, totalCapacity: 0, estimatedGeneration: 0, totalArea: 0, avgROI: 0 } } = useQuery({
       queryKey: ['projectStats'],
       queryFn: fetchProjectStats,
   });
 
-  // Client-side pagination logic
+  // Pagination Logic
   const totalPages = Math.ceil(projects.length / itemsPerPage);
   const paginatedProjects = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -43,7 +42,7 @@ const ProjectsPage = () => {
   if (isLoadingProjects) {
     return (
         <div className="flex items-center justify-center h-full p-8 text-gray-500 font-medium">
-            در حال بارگذاری...
+            در حال بارگذاری پروژه‌ها...
         </div>
     );
   }
@@ -57,11 +56,16 @@ const ProjectsPage = () => {
   }
 
   return (
-    <div className="flex flex-col flex-grow p-4 sm:p-6 lg:p-8 space-y-6">
-      {/* 1. Header with Stats (fetched from DB) */}
+    <div className="flex flex-col flex-grow px-4 sm:px-6 lg:px-8 py-6 space-y-6 text-right" dir="rtl">
+      {/* 1. Header with Stats */}
       <ProjectsHeader projectStats={projectStats} />
       
       {/* 2. Project Grid */}
+      {/* 
+          Grid Flow in RTL:
+          First item (Newest) starts at the Top-Right.
+          Subsequent items fill to the Left.
+      */}
       {projects.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -82,7 +86,7 @@ const ProjectsPage = () => {
       ) : (
         <div className="text-center py-10 bg-white rounded-lg shadow-sm">
           <h3 className="text-lg font-medium text-gray-800">پروژه‌ای یافت نشد</h3>
-          <p className="text-sm text-gray-500 mt-1">لطفاً معیارهای جستجو را تغییر دهید.</p>
+          <p className="text-sm text-gray-500 mt-1">هنوز پروژه‌ای ثبت نکرده‌اید.</p>
         </div>
       )}
     </div>

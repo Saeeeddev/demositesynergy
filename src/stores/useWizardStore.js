@@ -13,7 +13,8 @@ const initialProjectDetails = {
   province: '',
   county: '',
   shapeID: '',
-  analysisMode: null, 
+  analysisMode: null,
+  serviceType: '', // NEW: 'full' (Site Selection + Report) or 'report' (Report Only)
 };
 
 const initialCriteriaSettings = {
@@ -30,7 +31,6 @@ const initialCriteriaSettings = {
     slope: { weight: 20, step: 3, buffer: 0, enabled: true },
     landUse: { selected: ['bare_rock', 'desert', 'scrub', 'heath', 'shrubland', 'grassland', 'sand', 'barren', 'meadow'], weight: 10, enabled: true },
   },
-  // --- UPDATED: Removed historicSites, mines, militaryArea ---
   environmental: {
     waterAreas: { weight: 2, step: 500, buffer: 200, enabled: true },
     protectedAreas: { weight: 10, step: 300, buffer: 500, enabled: true },
@@ -55,7 +55,7 @@ const initialFinancialSettings = {
 
 export const useWizardStore = create((set, get) => ({
   // --- STATE ---
-  currentStep: 1,
+  currentStep: 1, // Will start at 1 for Service Type Selection
   projectType: null, // 'solar', 'wind'
   projectDetails: initialProjectDetails,
   criteriaSettings: initialCriteriaSettings,
@@ -64,9 +64,17 @@ export const useWizardStore = create((set, get) => ({
 
   // --- ACTIONS ---
 
-  setProjectType: (type) => set({ projectType: type, currentStep: 1 }),
+  setProjectType: (type) => set({ projectType: type, currentStep: 1 }), // Now goes to Step 1 (Service Type)
+  
+  // NEW: Action to set service type
+  setServiceType: (type) => set((state) => ({
+    projectDetails: { ...state.projectDetails, serviceType: type }
+  })),
+
   goToStep: (step) => set({ currentStep: step }),
-  nextStep: () => set((state) => ({ currentStep: Math.min(state.currentStep + 1, 5) })),
+  
+  // FIX: Increased max steps to 7 (6 content steps + final review)
+  nextStep: () => set((state) => ({ currentStep: Math.min(state.currentStep + 1, 7) })),
   prevStep: () => set((state) => ({ currentStep: Math.max(state.currentStep - 1, 1) })),
   
   updateProjectDetails: (e) => {
@@ -96,14 +104,18 @@ export const useWizardStore = create((set, get) => ({
     projectDetails: { ...state.projectDetails, analysisMode: mode }
   })),
 
-  saveCriteria: (settings) => set({ criteriaSettings: settings, currentStep: 3 }),
+  // FIX: saveCriteria now moves to Step 4 (Location if full, Financial if report)
+  // This logic needs to be updated when we integrate Step4_Location and Step5_Financial
+  // For now, let's assume standard next step after criteria.
+  saveCriteria: (settings) => set({ criteriaSettings: settings, currentStep: 4 }), // Moves to Location (Step 4)
 
   handleScaleSelection: (scale) => set((state) => ({
     projectDetails: { ...state.projectDetails, scale, province: '', county: '', shapeID: '' },
     locationData: null
   })),
   
-  saveLocation: (data) => set({ locationData: data, currentStep: 4 }),
+  // FIX: saveLocation now moves to Step 5
+  saveLocation: (data) => set({ locationData: data, currentStep: 5 }), // Moves to Financial (Step 5)
 
   updateLocationData: (data) => set({ locationData: data }),
 

@@ -7,32 +7,27 @@ import {
   MapPinIcon, 
   AdjustmentsHorizontalIcon, 
   PencilSquareIcon,
-  ArrowRightIcon // Will use ChevronLeft or ArrowLeft for "Next" in RTL context if needed, usually ArrowRight flipped
+  ArrowRightIcon 
 } from '@heroicons/react/24/outline';
 
 const FormInput = ({ label, icon: Icon, type = "text", ...props }) => (
   <div className="group">
     <label className="block text-xs font-semibold text-gray-500 mb-1.5 ms-1 uppercase tracking-wide">{label}</label>
     <div className="relative">
-      {/* 
-         RTL Change: 
-         - inset-y-0 left-0 -> inset-y-0 start-0 (places icon on the right in RTL)
-         - pl-10 -> ps-10 (padding-start)
-         - pr-3 -> pe-3 (padding-end)
-      */}
       <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none">
         <Icon className="h-5 w-5 text-gray-400 group-focus-within:text-primary-blue transition-colors" />
       </div>
       <input
         type={type}
         {...props}
-        className="block w-full ps-10 pe-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all shadow-sm hover:bg-white text-right"
+        dir="auto" // Allows correct behavior for Farsi/English mixed text
+        className="block w-full ps-10 pe-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all shadow-sm hover:bg-white"
       />
     </div>
   </div>
 );
 
-const Step1_Details = () => {
+const Step2_Details = () => {
   const { projectDetails, updateProjectDetails, handleAnalysisModeSelection, nextStep } = useWizardStore();
 
   const isFormValid = projectDetails.name && projectDetails.company && projectDetails.owner && projectDetails.capacity && projectDetails.location && projectDetails.analysisMode;
@@ -154,7 +149,6 @@ const Step1_Details = () => {
             className="w-full sm:w-auto px-6 py-2.5 bg-primary-blue text-white rounded-lg text-sm font-semibold hover:bg-primary-blue/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md flex items-center justify-center gap-2"
           >
             ادامه به معیارها
-            {/* Flip ArrowRight to point Left for "Next" in RTL */}
             <ArrowRightIcon className="w-4 h-4 transform scale-x-[-1]" />
           </button>
         </div>
@@ -163,4 +157,4 @@ const Step1_Details = () => {
   );
 };
 
-export default Step1_Details;
+export default Step2_Details;

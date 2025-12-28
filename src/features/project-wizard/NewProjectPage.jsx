@@ -6,21 +6,22 @@ import {
   BuildingOfficeIcon, 
   CheckIcon, 
   ArrowRightIcon,
-  CheckCircleIcon // Added for the success modal
+  CheckCircleIcon 
 } from '@heroicons/react/24/outline';
 
-// Sub-Components
+// Sub-Components (Note the new naming convention)
 import ProjectTypeSelection from './components/ProjectTypeSelection';
-import Step1_Details from './components/Step1_Details';
-import Step2_Criteria from './components/Step2_Criteria';
-import Step3_Location from './components/Step3_Location';
-import Step4_Financial from './components/Step4_Financial';
+import Step1_ServiceType from './components/Step1_ServiceType'; // NEW
+import Step2_Details from './components/Step2_Details';         // RENAMED
+import Step3_Criteria from './components/Step3_Criteria';       // RENAMED
+import Step4_Location from './components/Step4_Location';       // RENAMED
+import Step5_Financial from './components/Step5_Financial';     // RENAMED
 import ReviewPage from './components/ReviewPage';
 
 const NewProjectPage = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false); // 1. New Success State
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const { 
     currentStep, projectType, setProjectType, prevStep 
@@ -38,7 +39,6 @@ const NewProjectPage = () => {
       navigate('/projects');
   };
 
-  // --- 2. Updated Handler for Submission ---
   const handleProjectSubmit = async (payload) => {
     setIsSubmitting(true);
     try {
@@ -46,7 +46,6 @@ const NewProjectPage = () => {
       console.log("Sending data to API...", payload);
       await new Promise(resolve => setTimeout(resolve, 2000)); 
       
-      // Success! Open the modal
       setShowSuccessModal(true);
 
     } catch (error) {
@@ -57,7 +56,6 @@ const NewProjectPage = () => {
     }
   };
 
-  // Handler for closing modal and redirecting
   const handleSuccessRedirect = () => {
     navigate('/projects');
   };
@@ -66,6 +64,7 @@ const NewProjectPage = () => {
     return <ProjectTypeSelection onBack={handleExit} />;
   }
 
+  // Helper for step visual state
   const getStepStyle = (stepNum) => {
     if (currentStep > stepNum) return 'bg-primary-blue text-white';
     if (currentStep === stepNum) return 'bg-primary-blue text-white';
@@ -93,50 +92,72 @@ const NewProjectPage = () => {
             <BuildingOfficeIcon className="h-6 w-6 text-primary-blue" />
             <div>
                 <h1 className="text-xl font-bold text-gray-900">پروژه جدید</h1>
-                <p className="text-xs text-gray-500">مرحله {currentStep} از ۴</p>
+                <p className="text-xs text-gray-500">مرحله {currentStep} از ۵</p>
             </div>
         </div>
 
-        {/* Breadcrumb Steps */}
-        <div className="flex items-center text-xs gap-2">
+        {/* Breadcrumb Steps (Updated for 5 Steps) */}
+        <div className="hidden md:flex items-center text-xs gap-2 overflow-x-auto">
+            
+            {/* Step 1: Services */}
             <div className={`flex items-center ${getStepTextStyle(1)}`}>
                 <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(1)}`}>
                     {currentStep > 1 ? <CheckIcon className="w-3 h-3" /> : '۱'}
                 </div>
-                <span className={`ms-1.5 hidden sm:inline ${currentStep === 1 ? 'text-gray-900' : ''}`}>مشخصات</span>
+                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 1 ? 'text-gray-900' : ''}`}>خدمات</span>
             </div>
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1]" />
+            
+            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
+
+            {/* Step 2: Details */}
             <div className={`flex items-center ${getStepTextStyle(2)}`}>
                 <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(2)}`}>
                     {currentStep > 2 ? <CheckIcon className="w-3 h-3" /> : '۲'}
                 </div>
-                <span className={`ms-1.5 hidden sm:inline ${currentStep === 2 ? 'text-gray-900' : ''}`}>معیارها</span>
+                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 2 ? 'text-gray-900' : ''}`}>مشخصات</span>
             </div>
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1]" />
+
+            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
+
+            {/* Step 3: Criteria */}
             <div className={`flex items-center ${getStepTextStyle(3)}`}>
                 <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(3)}`}>
                     {currentStep > 3 ? <CheckIcon className="w-3 h-3" /> : '۳'}
                 </div>
-                <span className={`ms-1.5 hidden sm:inline ${currentStep === 3 ? 'text-gray-900' : ''}`}>مکان‌یابی</span>
+                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 3 ? 'text-gray-900' : ''}`}>معیارها</span>
             </div>
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1]" />
+
+            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
+
+            {/* Step 4: Location */}
             <div className={`flex items-center ${getStepTextStyle(4)}`}>
                 <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(4)}`}>
                     {currentStep > 4 ? <CheckIcon className="w-3 h-3" /> : '۴'}
                 </div>
-                <span className={`ms-1.5 hidden sm:inline ${currentStep === 4 ? 'text-gray-900' : ''}`}>مالی</span>
+                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 4 ? 'text-gray-900' : ''}`}>مکان‌یابی</span>
+            </div>
+
+            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
+
+            {/* Step 5: Financial */}
+            <div className={`flex items-center ${getStepTextStyle(5)}`}>
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(5)}`}>
+                    {currentStep > 5 ? <CheckIcon className="w-3 h-3" /> : '۵'}
+                </div>
+                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 5 ? 'text-gray-900' : ''}`}>مالی</span>
             </div>
         </div>
       </div>
 
       {/* Wizard Content Container */}
       <div className="flex-1 min-h-0"> 
-        {currentStep === 1 && <Step1_Details />}
-        {currentStep === 2 && <Step2_Criteria />}
-        {currentStep === 3 && <Step3_Location />}
-        {currentStep === 4 && <Step4_Financial />}
+        {currentStep === 1 && <Step1_ServiceType />}
+        {currentStep === 2 && <Step2_Details />}
+        {currentStep === 3 && <Step3_Criteria />}
+        {currentStep === 4 && <Step4_Location />}
+        {currentStep === 5 && <Step5_Financial />}
         
-        {currentStep === 5 && (
+        {currentStep === 6 && (
             <ReviewPage 
                 onBack={prevStep} 
                 onConfirm={handleProjectSubmit}
@@ -145,7 +166,7 @@ const NewProjectPage = () => {
         )}
       </div>
 
-      {/* --- 3. Success Modal Overlay --- */}
+      {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 transform transition-all animate-in fade-in zoom-in duration-200">

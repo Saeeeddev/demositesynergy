@@ -9,10 +9,24 @@ import UserProfilePanel from '../components/layout/UserProfilePanel';
 import { useUIStore } from '../stores/useUIStore';
 
 const MainLayout = () => {
-  const { isNotificationOpen, isProfileOpen } = useUIStore();
+  const { isNotificationOpen, isProfileOpen, closeAllPanels } = useUIStore();
 
   return (
     <div className="flex bg-white min-h-screen font-sans" dir="rtl">
+      
+      {/* 
+        CLICK OUTSIDE LAYER: 
+        A transparent fixed div that covers the screen behind the panels.
+        Clicking it closes the active panel.
+      */}
+      {(isNotificationOpen || isProfileOpen) && (
+        <div 
+          className="fixed inset-0 z-[1900] bg-transparent cursor-default"
+          onClick={closeAllPanels}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Sidebar appears on the Right (Start) in RTL */}
       <Sidebar />
 
@@ -20,7 +34,7 @@ const MainLayout = () => {
         <MobileHeader />
         
         {/* Main Content Area */}
-        {/* Changed md:pr-[10px] to md:pe-[10px] (padding-end) for logical spacing on the left side */}
+        {/* md:pe-[10px] adds padding on the left side in RTL for the 'card' effect */}
         <main className="flex-1 flex flex-col min-h-0 p-0 md:pt-[10px] md:pe-[10px]">
           {/* 
              Outer Card: Keeps overflow-hidden to maintain rounded corners clipping 
@@ -28,7 +42,7 @@ const MainLayout = () => {
           */}
           <div className="bg-white md:rounded-[18px] md:shadow-[0px_0px_20px_rgba(0,0,0,0.1)] flex-1 flex flex-col overflow-hidden relative border border-gray-200">
             
-            <div className="w-full h-full overflow-y-auto relative">
+            <div className="w-full h-full overflow-y-auto relative custom-scrollbar">
               <Outlet />
             </div>
 
@@ -38,7 +52,7 @@ const MainLayout = () => {
         <BottomNavBar />
       </div>
 
-      {/* Panels */}
+      {/* Panels (Z-Index 2000, above the click-outside layer) */}
       <AnimatePresence>
         {isNotificationOpen && (
           <>

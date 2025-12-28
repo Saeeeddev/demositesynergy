@@ -2,6 +2,10 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useUIStore } from '../../stores/useUIStore';
 
+// --- LOGO IMPORT FIX ---
+// Importing allows Vite to handle the path correctly on build & nested routes
+import LogoImage from '../../assets/images/sitesynergy_logo_colored.png';
+
 // Imports for Standard Sidebars
 import HomeSecondarySidebar from '../../features/dashboard/components/HomeSecondarySidebar';
 import ProjectSecondarySidebar from '../../features/projects/components/ProjectSecondarySidebar';
@@ -123,14 +127,14 @@ const Sidebar = () => {
           <div className="h-[72px] px-[16px] pt-[12px] flex-shrink-0 flex justify-center">
             <div className="h-[40px] w-[232px] flex items-center justify-center">
               <img 
-                src="src/assets/images/sitesynergy_logo_colored.png" 
+                src={LogoImage} 
                 alt="SiteSynergy Logo"
                 className="h-full object-contain"
-                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/232x40/cccccc/333333?text=Logo+Error'; }}
+                onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
               />
             </div>
           </div>
-          <div className="w-[264px] px-[16px] flex-grow overflow-y-auto">
+          <div className="w-[264px] px-[16px] flex-grow overflow-y-auto custom-scrollbar">
             {renderSecondaryContent()}
           </div>
         </div>
@@ -140,3 +144,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

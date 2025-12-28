@@ -10,8 +10,7 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-// --- Components (SliderSetting, StepAndBufferInput, FactorGroup) ---
-// (Assuming these are defined in your file as before, kept short for brevity)
+// --- Sub-components included for safety ---
 
 const SliderSetting = ({ label, value, onChange, min = 0, max = 100, unit = '%', disabled = false }) => {
   const display = `${value}${unit}`;
@@ -88,23 +87,17 @@ const FactorGroup = ({ title, children, enabled, onToggle, disableToggle }) => (
   </div>
 );
 
-// --- Dictionary for Translations ---
 const dictionary = {
-    // Categories
     weights: 'وزن‌دهی پتانسیل',
     economic: 'اقتصادی',
     technical: 'فنی',
     environmental: 'زیست‌محیطی',
     geological: 'زمین‌شناسی',
-    
-    // Descriptions
     weightsDesc: 'تعیین میزان اهمیت هر دسته‌بندی',
     economicDesc: 'زیرساخت‌ها و عوامل هزینه',
     technicalDesc: 'منابع خورشیدی و عوامل زمین',
     environmentalDesc: 'معیارهای حفاظت محیط‌زیست',
     geologicalDesc: 'محدودیت‌های خاک و زمین‌شناسی',
-
-    // Factors
     powerDistance: 'فاصله تا شبکه برق',
     airportDistance: 'فاصله تا فرودگاه',
     cityDistance: 'فاصله تا شهر',
@@ -115,10 +108,7 @@ const dictionary = {
     landUse: 'کاربری اراضی',
     waterAreas: 'منابع آبی',
     protectedAreas: 'مناطق حفاظت‌شده',
-    // REMOVED: historicSites, mines, militaryArea
     faultLines: 'گسل‌ها',
-    
-    // Labels
     factorWeight: 'وزن فاکتور',
     potentialWeights: 'وزن‌دهی پتانسیل‌ها',
     economicPotential: 'پتانسیل اقتصادی',
@@ -128,9 +118,7 @@ const dictionary = {
     totalWeight: 'مجموع وزن',
 };
 
-// --- Main Step Component ---
-
-const Step2_Criteria = () => {
+const Step3_Criteria = () => {
     const { 
         projectDetails, 
         criteriaSettings, 
@@ -141,7 +129,6 @@ const Step2_Criteria = () => {
         saveCriteria: state.saveCriteria
     })));
 
-    // Local state for edits
     const [settings, setSettings] = useState(criteriaSettings);
     const [activeTab, setActiveTab] = useState('weights');
     
@@ -151,7 +138,6 @@ const Step2_Criteria = () => {
         return Object.values(settings.overallWeights).reduce((sum, val) => sum + val, 0);
     }, [settings.overallWeights]);
 
-    // Helpers
     const updateWeight = (cat, val) => {
         const otherWeightsSum = Object.entries(settings.overallWeights)
             .filter(([key]) => key !== cat)
@@ -181,7 +167,6 @@ const Step2_Criteria = () => {
         }));
     };
 
-    // Tabs Config
     const tabs = [
         { id: 'weights', label: dictionary.weights, icon: ScaleIcon, desc: dictionary.weightsDesc },
         { id: 'economic', label: dictionary.economic, icon: CurrencyDollarIcon, desc: dictionary.economicDesc },
@@ -195,10 +180,9 @@ const Step2_Criteria = () => {
             alert(`مجموع وزن‌ها باید دقیقاً ۱۰۰٪ باشد (مقدار فعلی: ${totalWeight}٪)`);
             return;
         }
+        // This will now move to Step 4 (Location) based on Store logic
         saveCriteria(settings); 
     };
-
-    // --- Tab Renders ---
 
     const renderWeightsTab = () => (
         <div className="h-full flex flex-col">
@@ -246,7 +230,7 @@ const Step2_Criteria = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {factorKeys.map(key => {
                                 const factorData = settings[sectionKey][key];
-                                if (!factorData) return null; // Safety check in case key doesn't exist
+                                if (!factorData) return null;
 
                                 const title = dictionary[key] || key;
                                 
@@ -287,7 +271,7 @@ const Step2_Criteria = () => {
 
     return (
         <div className="flex flex-col lg:flex-row bg-white rounded-xl shadow-sm border border-gray-200 h-full overflow-hidden">
-            {/* Sidebar (Right in RTL) */}
+            {/* Sidebar */}
             <div className="hidden lg:block w-full lg:w-64 bg-gray-50 border-e border-gray-200 flex-shrink-0 relative z-10">
                 <div className="p-4 overflow-y-auto h-full">
                     <h3 className="text-sm font-semibold text-gray-900 mb-3">دسته‌بندی‌ها</h3>
@@ -312,13 +296,12 @@ const Step2_Criteria = () => {
                         {activeTab === 'weights' && renderWeightsTab()}
                         {activeTab === 'economic' && renderFactorsTab('economic', ['powerDistance', 'airportDistance', 'cityDistance', 'roadsDistance', 'railwaysDistance'])}
                         {activeTab === 'technical' && renderFactorsTab('technical', ['ghi', 'slope', 'landUse'])}
-                        {/* REMOVED: mines, militaryArea, historicSites from list */}
                         {activeTab === 'environmental' && renderFactorsTab('environmental', ['waterAreas', 'protectedAreas'])}
                         {activeTab === 'geological' && renderFactorsTab('geological', ['faultLines'])}
                     </div>
                 </div>
 
-                {/* Internal Step Footer */}
+                {/* Footer */}
                 <div className="border-t border-gray-200 px-4 sm:px-6 py-3 bg-gray-50 rounded-b-xl flex-shrink-0">
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
                         <div className="text-xs text-gray-500">پروژه: <strong>{projectDetails.name}</strong></div>
@@ -337,4 +320,4 @@ const Step2_Criteria = () => {
     );
 };
 
-export default Step2_Criteria;
+export default Step3_Criteria;

@@ -13,25 +13,17 @@ import {
   SunIcon, 
   UserGroupIcon, 
   WrenchScrewdriverIcon,
-  ChevronRightIcon,
   ShieldCheckIcon,
   BuildingOfficeIcon,
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-// --- Compact Component ---
 const CompactFinancialInput = ({ label, icon: Icon, value, onChange, name, min, max, step, readOnly, type="number", description }) => (
   <div className="group relative">
     <div className="flex justify-between items-baseline mb-1">
         <label htmlFor={name} className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider truncate text-right">{label}</label>
     </div>
     <div className="relative">
-      {/* 
-         RTL Adjustment: 
-         Icon moved to 'start-0' (Right side)
-         Padding changed to 'ps-9' (Padding Start)
-         Input text aligned center
-      */}
       <div className="absolute inset-y-0 start-0 ps-2.5 flex items-center pointer-events-none">
         <Icon className={`h-4 w-4 transition-colors ${readOnly ? 'text-gray-300' : 'text-gray-400 group-focus-within:text-primary-blue'}`} />
       </div>
@@ -54,13 +46,12 @@ const CompactFinancialInput = ({ label, icon: Icon, value, onChange, name, min, 
           }
         `}
         placeholder="0"
-        dir="ltr" // Numbers are easier to edit in LTR mode, even in a Persian UI
+        dir="ltr" 
       />
     </div>
   </div>
 );
 
-// --- Section Container ---
 const FinancialSectionCard = ({ title, icon: Icon, children, className = "" }) => (
     <div className={`bg-white border border-gray-200 rounded-xl p-4 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}>
         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-gray-100">
@@ -75,7 +66,7 @@ const FinancialSectionCard = ({ title, icon: Icon, children, className = "" }) =
     </div>
 );
 
-const Step4_Financial = () => {
+const Step5_Financial = () => {
   const { financialSettings, updateFinancialNested, goToStep, projectDetails } = useWizardStore(
     useShallow(state => ({
       financialSettings: state.financialSettings,
@@ -95,7 +86,7 @@ const Step4_Financial = () => {
         <div className="max-w-7xl mx-auto h-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
             
-            {/* Col 1: Basics & Sales */}
+            {/* Col 1 */}
             <div className="flex flex-col gap-4">
                 <FinancialSectionCard title="اطلاعات پایه" icon={BoltIcon}>
                     <CompactFinancialInput label="ظرفیت (مگاوات)" name="project_basics.capacity_mw" value={fs.project_basics.capacity_mw} onChange={updateFinancialNested} readOnly={true} icon={BoltIcon} />
@@ -119,7 +110,7 @@ const Step4_Financial = () => {
                 </FinancialSectionCard>
             </div>
 
-            {/* Col 2: Params & Financing */}
+            {/* Col 2 */}
             <div className="flex flex-col gap-4">
                 <FinancialSectionCard title="پارامترهای مالی" icon={CalculatorIcon}>
                     <div className="grid grid-cols-2 gap-3">
@@ -144,7 +135,7 @@ const Step4_Financial = () => {
                 </FinancialSectionCard>
             </div>
 
-            {/* Col 3: OPEX */}
+            {/* Col 3 */}
             <div className="flex flex-col gap-4">
                 <FinancialSectionCard title="هزینه‌های عملیاتی: پرسنل" icon={UserGroupIcon}>
                     <div className="grid grid-cols-2 gap-3">
@@ -184,7 +175,7 @@ const Step4_Financial = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
             <div className="text-xs text-gray-500 font-medium">پروژه: <strong className="text-gray-900">{projectDetails.name}</strong></div>
             <button 
-                onClick={() => goToStep(5)} 
+                onClick={() => goToStep(6)} // Moves to Review (Step 6)
                 className="w-full sm:w-auto px-6 py-2.5 bg-primary-blue text-white rounded-lg text-sm font-semibold hover:bg-primary-blue/90 transition-all shadow-md flex items-center justify-center gap-2"
             >
                 بررسی نهایی ورودی‌ها
@@ -196,4 +187,4 @@ const Step4_Financial = () => {
   );
 };
 
-export default Step4_Financial;
+export default Step5_Financial;

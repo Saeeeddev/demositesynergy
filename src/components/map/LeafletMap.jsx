@@ -40,27 +40,18 @@ function formatLayerToJson(layer) {
 
   let coordinates = geoJSON.geometry.coordinates[0];
   
-  // Flatten deep nested arrays if necessary (handling MultiPolygon vs Polygon edge cases)
+  // Flatten deep nested arrays if necessary
   while (coordinates.length > 0 && Array.isArray(coordinates[0]) && Array.isArray(coordinates[0][0])) {
       coordinates = coordinates[0];
   }
 
-  // Sanity check: ensure valid numbers
+  // Sanity check
   if (!coordinates || coordinates.some(c => isNaN(c[0]) || isNaN(c[1]))) {
       console.error("Invalid coordinates detected");
       return null;
   }
 
-  // Close the polygon loop for formatting logic if needed, but keeping points unique is usually better
-  if (coordinates.length > 1) {
-    const firstPoint = coordinates[0];
-    const lastPoint = coordinates[coordinates.length - 1];
-    // Compare approximate values
-    if (Math.abs(firstPoint[0] - lastPoint[0]) < 1e-9 && Math.abs(firstPoint[1] - lastPoint[1]) < 1e-9) {
-      coordinates = coordinates.slice(0, -1);
-    }
-  }
-
+  // Formatting points
   const formattedPoints = coordinates.map(coord => ({
     lat: coord[1],
     lon: coord[0]
@@ -130,7 +121,8 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
     drawnItems.current = new L.FeatureGroup().addTo(map);
     boundaryLayer.current = new L.FeatureGroup().addTo(map);
 
-    // Initialize Draw Control
+    // Initialize Draw Control (Polygon)
+    // We create it but don't add the Toolbar to the UI (we trigger it programmatically)
     drawControl.current = new L.Draw.Polygon(map, {
       allowIntersection: false,
       showArea: true,
@@ -139,6 +131,7 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
           clickable: true,
           fillOpacity: 0.3 
       },
+      // Localized error message
       drawError: { color: '#e11d48', message: '<strong>خطا:</strong> اضلاع نباید متقاطع باشند' }
     });
 
@@ -148,9 +141,8 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
       const area = getLayerAreaSqKm(layer);
 
       if (area > MAX_AREA_SQ_KM) {
-        // Prevent adding large layers
         if (onError) onError(`مساحت انتخاب شده (${area.toFixed(0)} km²) بیش از حد مجاز است.`);
-        return; // Do not add layer
+        return; 
       }
 
       // Clear previous and add new
@@ -163,7 +155,6 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
       if (onCreated && customJson) onCreated(customJson);
     });
 
-    // Handle Delete Event (Toolbar not used but good for programmatic deletes)
     map.on(L.Draw.Event.DELETED, () => {
         if(onCreated) onCreated(null);
     });
@@ -191,9 +182,6 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
     const points = initialData.data.coordinates?.points;
     if (points && points.length > 0) {
         const latLngs = points.map(p => [p.lat, p.lon]);
-        
-        // Prevent re-drawing if map state matches data to save unnecessary render cycles
-        // (Simple check length)
         
         drawnItems.current.clearLayers();
         boundaryLayer.current.clearLayers();
@@ -229,14 +217,22 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
   // --- Expose Methods via Ref ---
   useImperativeHandle(ref, () => ({
     startDrawing: () => {
-        if (!drawControl.current) return;
+        // Safety check: ensure map and controls are ready
+        if (!mapInstance.current || !drawControl.current) {
+            console.warn("Map not ready for drawing yet.");
+            return;
+        }
+        
+        // Clear existing shapes before starting new draw
         drawnItems.current.clearLayers();
         boundaryLayer.current.clearLayers();
+        
+        // Enable polygon draw handler
         drawControl.current.enable();
     },
     deleteSelection: () => {
-        drawnItems.current.clearLayers();
-        boundaryLayer.current.clearLayers();
+        if (drawnItems.current) drawnItems.current.clearLayers();
+        if (boundaryLayer.current) boundaryLayer.current.clearLayers();
         if (drawControl.current) drawControl.current.disable();
     },
     flyToLocation: (lat, lon, zoom) => {
@@ -247,7 +243,6 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
     loadCountyBoundary: (geojsonFeature) => {
         if (!mapInstance.current) return null;
         
-        // Reset layers
         boundaryLayer.current.clearLayers();
         drawnItems.current.clearLayers(); 
 
@@ -259,11 +254,8 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
         boundaryLayer.current.addLayer(countyLayer);
         mapInstance.current.fitBounds(countyLayer.getBounds(), { padding: [20, 20] });
 
-        // Convert first polygon found to our JSON format
-        // Nominatim GeoJSON is often MultiPolygon, simple parser handles it if L.geoJSON flattened it to layers
         let formattedData = null;
         countyLayer.eachLayer((layer) => {
-             // Take the first valid polygon
              if (!formattedData && layer instanceof L.Polygon) {
                  formattedData = formatLayerToJson(layer);
              }
@@ -273,7 +265,7 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
     }
   }));
 
-  return <div ref={mapContainerRef} className="w-full h-full z-0 outline-none" />;
+  return <div ref={mapContainerRef} className="w-full h-full z-0 outline-none bg-gray-100" />;
 });
 
 export default LeafletMap;
