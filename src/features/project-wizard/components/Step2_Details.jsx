@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useWizardStore } from '../../../stores/useWizardStore';
 import { 
   BoltIcon, 
@@ -7,19 +7,14 @@ import {
   MapPinIcon, 
   AdjustmentsHorizontalIcon, 
   PencilSquareIcon,
-  ArrowRightIcon // Will use ChevronLeft or ArrowLeft for "Next" in RTL context if needed, usually ArrowRight flipped
+  ArrowRightIcon,
+  LockClosedIcon // Added Lock Icon
 } from '@heroicons/react/24/outline';
 
 const FormInput = ({ label, icon: Icon, type = "text", ...props }) => (
   <div className="group">
     <label className="block text-xs font-semibold text-gray-500 mb-1.5 ms-1 uppercase tracking-wide">{label}</label>
     <div className="relative">
-      {/* 
-         RTL Change: 
-         - inset-y-0 left-0 -> inset-y-0 start-0 (places icon on the right in RTL)
-         - pl-10 -> ps-10 (padding-start)
-         - pr-3 -> pe-3 (padding-end)
-      */}
       <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none">
         <Icon className="h-5 w-5 text-gray-400 group-focus-within:text-primary-blue transition-colors" />
       </div>
@@ -34,6 +29,15 @@ const FormInput = ({ label, icon: Icon, type = "text", ...props }) => (
 
 const Step2_Details = () => {
   const { projectDetails, updateProjectDetails, handleAnalysisModeSelection, nextStep } = useWizardStore();
+
+  const isReportOnly = projectDetails.serviceType === 'report';
+
+  // Auto-set Analysis Mode to 'standard' if Report Only is active
+  useEffect(() => {
+    if (isReportOnly && projectDetails.analysisMode !== 'standard') {
+      handleAnalysisModeSelection('standard');
+    }
+  }, [isReportOnly, projectDetails.analysisMode, handleAnalysisModeSelection]);
 
   const isFormValid = projectDetails.name && projectDetails.company && projectDetails.owner && projectDetails.capacity && projectDetails.location && projectDetails.analysisMode;
 
@@ -103,40 +107,72 @@ const Step2_Details = () => {
 
           {/* Row 3: Analysis Mode */}
           <div className="md:col-span-2 mt-2">
-            <label className="block text-xs font-semibold text-gray-500 mb-1.5 ms-1 uppercase tracking-wide">حالت تحلیل</label>
-            <div className="grid grid-cols-2 gap-3 h-[72px]">
-              
-              <button 
-                onClick={() => handleAnalysisModeSelection('standard')} 
-                className={`relative flex flex-col items-start p-3 rounded-xl border transition-all duration-200 w-full text-right h-full ${
-                    projectDetails.analysisMode === 'standard' 
-                    ? 'bg-primary-blue/5 border-primary-blue ring-1 ring-primary-blue/20' 
-                    : 'bg-gray-50 border-gray-200 hover:border-gray-300 hover:bg-white'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <AdjustmentsHorizontalIcon className={`h-5 w-5 ${projectDetails.analysisMode === 'standard' ? 'text-primary-blue' : 'text-gray-400'}`} />
-                  <span className={`text-sm font-semibold ${projectDetails.analysisMode === 'standard' ? 'text-gray-900' : 'text-gray-700'}`}>استاندارد</span>
-                </div>
-                <span className="text-xs text-gray-500 leading-tight">استفاده از وزن‌دهی پیش‌فرض</span>
-              </button>
+            <label className="block text-xs font-semibold text-gray-500 mb-1.5 ms-1 uppercase tracking-wide">
+              حالت تحلیل
+            </label>
+            
+            {isReportOnly ? (
+              // --- LOCKED STATE DESIGN (Report Only) ---
+              <div className="w-full h-[72px] rounded-xl border border-gray-200 bg-gray-50/80 flex items-center px-4 relative overflow-hidden select-none">
+                 {/* Right Accent Line */}
+                 <div className="absolute inset-y-0 right-0 w-1 bg-gray-300"></div>
 
-              <button 
-                onClick={() => handleAnalysisModeSelection('custom')} 
-                className={`relative flex flex-col items-start p-3 rounded-xl border transition-all duration-200 w-full text-right h-full ${
-                    projectDetails.analysisMode === 'custom' 
-                    ? 'bg-primary-blue/5 border-primary-blue ring-1 ring-primary-blue/20' 
-                    : 'bg-gray-50 border-gray-200 hover:border-gray-300 hover:bg-white'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <PencilSquareIcon className={`h-5 w-5 ${projectDetails.analysisMode === 'custom' ? 'text-primary-blue' : 'text-gray-400'}`} />
-                  <span className={`text-sm font-semibold ${projectDetails.analysisMode === 'custom' ? 'text-gray-900' : 'text-gray-700'}`}>سفارشی</span>
-                </div>
-                <span className="text-xs text-gray-500 leading-tight">تعریف پارامترها توسط کاربر</span>
-              </button>
+                 <div className="flex items-center gap-3 w-full">
+                   {/* Lock Icon Box */}
+                   <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center shadow-sm">
+                      <LockClosedIcon className="w-5 h-5 text-gray-400" />
+                   </div>
+                   
+                   {/* Text Content */}
+                   <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-0.5">
+                         <span className="text-sm font-bold text-gray-700">تحلیل استاندارد</span>
+                         <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100 font-medium tracking-tight">
+                           خودکار
+                         </span>
+                      </div>
+                      <p className="text-[11px] text-gray-500 leading-tight">
+                         در حالت «فقط گزارش»، مکان پابی صورت نمیگیرد     .
+                      </p>
+                   </div>
+                 </div>
+              </div>
+            ) : (
+              // --- NORMAL STATE (Standard / Custom Buttons) ---
+              <div className="grid grid-cols-2 gap-3 h-[72px]">
+                
+                <button 
+                  onClick={() => handleAnalysisModeSelection('standard')} 
+                  className={`relative flex flex-col items-start p-3 rounded-xl border transition-all duration-200 w-full text-right h-full group ${
+                      projectDetails.analysisMode === 'standard' 
+                      ? 'bg-primary-blue/5 border-primary-blue ring-1 ring-primary-blue/20' 
+                      : 'bg-gray-50 border-gray-200 hover:border-gray-300 hover:bg-white'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <AdjustmentsHorizontalIcon className={`h-5 w-5 transition-colors ${projectDetails.analysisMode === 'standard' ? 'text-primary-blue' : 'text-gray-400 group-hover:text-gray-500'}`} />
+                    <span className={`text-sm font-semibold ${projectDetails.analysisMode === 'standard' ? 'text-gray-900' : 'text-gray-700'}`}>استاندارد</span>
+                  </div>
+                  <span className="text-xs text-gray-500 leading-tight">استفاده از وزن‌دهی پیش‌فرض</span>
+                </button>
 
-            </div>
+                <button 
+                  onClick={() => handleAnalysisModeSelection('custom')} 
+                  className={`relative flex flex-col items-start p-3 rounded-xl border transition-all duration-200 w-full text-right h-full group ${
+                      projectDetails.analysisMode === 'custom' 
+                      ? 'bg-primary-blue/5 border-primary-blue ring-1 ring-primary-blue/20' 
+                      : 'bg-gray-50 border-gray-200 hover:border-gray-300 hover:bg-white'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <PencilSquareIcon className={`h-5 w-5 transition-colors ${projectDetails.analysisMode === 'custom' ? 'text-primary-blue' : 'text-gray-400 group-hover:text-gray-500'}`} />
+                    <span className={`text-sm font-semibold ${projectDetails.analysisMode === 'custom' ? 'text-gray-900' : 'text-gray-700'}`}>سفارشی</span>
+                  </div>
+                  <span className="text-xs text-gray-500 leading-tight">تعریف پارامترها توسط کاربر</span>
+                </button>
+
+              </div>
+            )}
           </div>
 
         </div>
@@ -153,8 +189,7 @@ const Step2_Details = () => {
             disabled={!isFormValid}
             className="w-full sm:w-auto px-6 py-2.5 bg-primary-blue text-white rounded-lg text-sm font-semibold hover:bg-primary-blue/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md flex items-center justify-center gap-2"
           >
-            ادامه به معیارها
-            {/* Flip ArrowRight to point Left for "Next" in RTL */}
+            {isReportOnly ? 'ادامه به اطلاعات مالی' : 'ادامه به معیارها'}
             <ArrowRightIcon className="w-4 h-4 transform scale-x-[-1]" />
           </button>
         </div>
@@ -164,3 +199,5 @@ const Step2_Details = () => {
 };
 
 export default Step2_Details;
+
+

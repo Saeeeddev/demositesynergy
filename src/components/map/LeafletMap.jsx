@@ -16,6 +16,18 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
+// --- FIX START: Leaflet 1.8+ / 1.9+ Compatibility Patch for Leaflet.Draw ---
+// This prevents the drawing from freezing (often after a few points) due to touch event conflicts.
+if (L.Draw && L.Draw.Polyline) {
+    const originalOnTouch = L.Draw.Polyline.prototype._onTouch;
+    L.Draw.Polyline.prototype._onTouch = function(e) {
+        if (e.originalEvent.pointerType !== 'mouse') {
+            return originalOnTouch.call(this, e);
+        }
+    };
+}
+// --- FIX END ---
+
 const MAX_AREA_SQ_KM = 52000;
 
 function getLayerAreaSqKm(layer) {
@@ -122,16 +134,14 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
     boundaryLayer.current = new L.FeatureGroup().addTo(map);
 
     // Initialize Draw Control (Polygon)
-    // We create it but don't add the Toolbar to the UI (we trigger it programmatically)
     drawControl.current = new L.Draw.Polygon(map, {
-      allowIntersection: false,
+      allowIntersection: false, // Keep false to prevent invalid shapes, assume patch fixes freezing
       showArea: true,
       shapeOptions: { 
           color: '#0ea5e9', 
           clickable: true,
           fillOpacity: 0.3 
       },
-      // Localized error message
       drawError: { color: '#e11d48', message: '<strong>خطا:</strong> اضلاع نباید متقاطع باشند' }
     });
 
@@ -142,6 +152,7 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
 
       if (area > MAX_AREA_SQ_KM) {
         if (onError) onError(`مساحت انتخاب شده (${area.toFixed(0)} km²) بیش از حد مجاز است.`);
+        // Remove layer immediately if invalid
         return; 
       }
 
@@ -217,17 +228,14 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
   // --- Expose Methods via Ref ---
   useImperativeHandle(ref, () => ({
     startDrawing: () => {
-        // Safety check: ensure map and controls are ready
         if (!mapInstance.current || !drawControl.current) {
             console.warn("Map not ready for drawing yet.");
             return;
         }
         
-        // Clear existing shapes before starting new draw
         drawnItems.current.clearLayers();
         boundaryLayer.current.clearLayers();
         
-        // Enable polygon draw handler
         drawControl.current.enable();
     },
     deleteSelection: () => {

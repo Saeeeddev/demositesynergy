@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useWizardStore } from '../../../stores/useWizardStore';
 import LeafletMap from '../../../components/map/LeafletMap';
-import countyList from '../../../assets/data/countyList.json'; 
+import countyListRaw from '../../../assets/data/countyList.json'; 
 import { 
   PencilSquareIcon, 
   GlobeAmericasIcon, 
@@ -61,8 +61,6 @@ const Step4_Location = () => {
     updateLocationData 
   } = useWizardStore();
 
-  const [provinces] = useState(() => Object.keys(countyList));
-  const [counties, setCounties] = useState([]);
   const [mapError, setMapError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -71,6 +69,11 @@ const Step4_Location = () => {
   const isCountyMode = projectDetails.scale === 'county';
   
   const MAX_AREA_SQ_KM = 52000;
+
+  // -- Derived Data for Dropdowns --
+  const provinceList = countyListRaw; // It is now an array
+  const selectedProvinceData = provinceList.find(p => p.province === projectDetails.province);
+  const countyOptions = selectedProvinceData ? selectedProvinceData.counties : [];
 
   // -- Effects --
 
@@ -86,43 +89,64 @@ const Step4_Location = () => {
       }
   }, [isDrawMode, locationData]);
 
-  // Update counties based on province
-  useEffect(() => {
-    if (projectDetails.province) {
-      setCounties(countyList[projectDetails.province]?.map(c => c.county) || []);
-    } else {
-      setCounties([]);
-    }
-  }, [projectDetails.province]);
-
   // Fetch Administrative Boundary for County Mode
   useEffect(() => {
     if (isCountyMode && projectDetails.county && projectDetails.province) {
-        if (locationData?.name === `${projectDetails.county}, ${projectDetails.province}`) return;
+        // Prevent refetch if data is already loaded for this location
+        const targetName = `${projectDetails.county}, ${projectDetails.province}`;
+        if (locationData?.name === targetName) return;
 
         const fetchBoundary = async () => {
             setIsLoading(true);
             setMapError(null);
             
             try {
-                const searchName = encodeURIComponent(projectDetails.county);
-                const searchProvince = encodeURIComponent(projectDetails.province);
-                // Note: Using &polygon_geojson=1 to get boundaries
-                const url = `https://nominatim.openstreetmap.org/search?county=${searchName}&state=${searchProvince}&country=Iran&format=json&polygon_geojson=1&limit=1`;
-                
-                const response = await fetch(url);
-                if (!response.ok) throw new Error("Network error");
-                
-                const data = await response.json();
-                
-                if (data && data.length > 0 && data[0].geojson) {
-                    const geoJson = data[0].geojson;
+                // 1. Identify OSM ID from the list
+                const countyObj = countyOptions.find(c => c.county === projectDetails.county);
+                const osmId = countyObj?.osm_id;
+
+                let geoJson = null;
+
+                // STRATEGY A: Try Search by Name (English)
+                try {
+                    const searchName = encodeURIComponent(projectDetails.county);
+                    const searchProvince = encodeURIComponent(projectDetails.province);
+                    const urlName = `https://nominatim.openstreetmap.org/search?county=${searchName}&state=${searchProvince}&country=Iran&format=json&polygon_geojson=1&limit=1`;
                     
+                    const resName = await fetch(urlName);
+                    if (resName.ok) {
+                        const dataName = await resName.json();
+                        if (dataName && dataName.length > 0 && dataName[0].geojson) {
+                            geoJson = dataName[0].geojson;
+                        }
+                    }
+                } catch (e) {
+                    console.warn("Name search failed, trying fallback...", e);
+                }
+
+                // STRATEGY B: Fallback to OSM ID Lookup if Name failed
+                if (!geoJson && osmId) {
+                    console.log(`Falling back to OSM ID lookup: ${osmId}`);
+                    // Note: 'osm_ids' parameter expects comma separated IDs. 
+                    // Our list has IDs like 'R6555226'. Nominatim /lookup handles this.
+                    const urlId = `https://nominatim.openstreetmap.org/lookup?osm_ids=${osmId}&polygon_geojson=1&format=json`;
+                    
+                    const resId = await fetch(urlId);
+                    if (resId.ok) {
+                        const dataId = await resId.json();
+                        if (dataId && dataId.length > 0 && dataId[0].geojson) {
+                            geoJson = dataId[0].geojson;
+                        }
+                    }
+                }
+
+                // Process Result
+                if (geoJson) {
                     const formattedData = mapRef.current?.loadCountyBoundary(geoJson);
                     
                     if (formattedData) {
                         updateLocationData({
-                            name: `${projectDetails.county}, ${projectDetails.province}`,
+                            name: targetName,
                             type: 'county',
                             data: formattedData
                         });
@@ -132,6 +156,7 @@ const Step4_Location = () => {
                 } else {
                     throw new Error("مرزی برای این شهرستان یافت نشد.");
                 }
+
             } catch (err) {
                 setMapError("دریافت مرز ناموفق بود. اتصال اینترنت را بررسی کنید یا از رسم دستی استفاده نمایید.");
                 console.error(err);
@@ -142,7 +167,7 @@ const Step4_Location = () => {
 
         fetchBoundary();
     }
-  }, [projectDetails.county, projectDetails.province, isCountyMode]);
+  }, [projectDetails.county, projectDetails.province, isCountyMode, countyOptions]); // Added countyOptions to dependency for safety
 
 
   // -- Handlers --
@@ -250,13 +275,18 @@ const Step4_Location = () => {
                                      value={projectDetails.province}
                                      onChange={(e) => {
                                          updateProjectDetails(e); 
+                                         // Reset county when province changes
                                          updateProjectDetails({ target: { name: 'county', value: '' }}); 
                                      }}
                                      name="province"
                                      className="w-full bg-white border border-gray-300 text-gray-800 text-sm rounded-lg p-2.5 focus:ring-1 focus:ring-primary-blue focus:border-primary-blue outline-none"
                                  >
                                     <option value="">انتخاب کنید...</option>
-                                    {provinces.map(p => <option key={p} value={p}>{p}</option>)}
+                                    {provinceList.map(p => (
+                                        <option key={p.province} value={p.province}>
+                                            {p.label_fa} ({p.province})
+                                        </option>
+                                    ))}
                                  </select>
                                  <ChevronDownIcon className="absolute left-2 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
                              </div>
@@ -273,7 +303,11 @@ const Step4_Location = () => {
                                      className="w-full bg-white border border-gray-300 text-gray-800 text-sm rounded-lg p-2.5 focus:ring-1 focus:ring-primary-blue focus:border-primary-blue outline-none disabled:bg-gray-100 disabled:text-gray-400"
                                  >
                                     <option value="">انتخاب کنید...</option>
-                                    {counties.map(c => <option key={c} value={c}>{c}</option>)}
+                                    {countyOptions.map(c => (
+                                        <option key={c.county} value={c.county}>
+                                            {c.label_fa}
+                                        </option>
+                                    ))}
                                  </select>
                                  <ChevronDownIcon className="absolute left-2 top-3 w-4 h-4 text-gray-400 pointer-events-none" />
                              </div>
@@ -345,7 +379,7 @@ const Step4_Location = () => {
              <div className="absolute inset-0 z-[1100] bg-white/50 backdrop-blur-sm flex items-center justify-center">
                  <div className="bg-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2">
                      <div className="w-4 h-4 border-2 border-primary-blue border-t-transparent rounded-full animate-spin"></div>
-                     <span className="text-xs font-bold text-gray-600">در حال پردازش...</span>
+                     <span className="text-xs font-bold text-gray-600">در حال دریافت مرز...</span>
                  </div>
              </div>
          )}

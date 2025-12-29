@@ -9,13 +9,13 @@ import {
   CheckCircleIcon 
 } from '@heroicons/react/24/outline';
 
-// Sub-Components (Note the new naming convention)
+// Sub-Components
 import ProjectTypeSelection from './components/ProjectTypeSelection';
-import Step1_ServiceType from './components/Step1_ServiceType'; // NEW
-import Step2_Details from './components/Step2_Details';         // RENAMED
-import Step3_Criteria from './components/Step3_Criteria';       // RENAMED
-import Step4_Location from './components/Step4_Location';       // RENAMED
-import Step5_Financial from './components/Step5_Financial';     // RENAMED
+import Step1_ServiceType from './components/Step1_ServiceType';
+import Step2_Details from './components/Step2_Details';
+import Step3_Criteria from './components/Step3_Criteria';
+import Step4_Location from './components/Step4_Location';
+import Step5_Financial from './components/Step5_Financial';
 import ReviewPage from './components/ReviewPage';
 
 const NewProjectPage = () => {
@@ -23,8 +23,9 @@ const NewProjectPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+  // Added reset to the destructured object
   const { 
-    currentStep, projectType, setProjectType, prevStep 
+    currentStep, projectType, setProjectType, prevStep, reset 
   } = useWizardStore();
 
   const handleBack = () => {
@@ -36,6 +37,7 @@ const NewProjectPage = () => {
   };
 
   const handleExit = () => {
+      reset(); // Optional: reset if they exit halfway
       navigate('/projects');
   };
 
@@ -57,6 +59,7 @@ const NewProjectPage = () => {
   };
 
   const handleSuccessRedirect = () => {
+    reset(); // Reset the wizard store
     navigate('/projects');
   };
 
@@ -96,7 +99,7 @@ const NewProjectPage = () => {
             </div>
         </div>
 
-        {/* Breadcrumb Steps (Updated for 5 Steps) */}
+        {/* Breadcrumb Steps */}
         <div className="hidden md:flex items-center text-xs gap-2 overflow-x-auto">
             
             {/* Step 1: Services */}

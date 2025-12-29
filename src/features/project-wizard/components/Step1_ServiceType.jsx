@@ -120,10 +120,7 @@ const Step1_ServiceType = () => {
       <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 rounded-b-xl flex-shrink-0">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
           <div className="text-xs text-gray-500">
-            {currentSelection === 'report' ? 
-              'تذکر: در این حالت مرحله "مکان‌یابی" ساده‌تر خواهد بود.' : 
-              'حالت استاندارد با تمام قابلیت‌ها.'
-            }
+            
           </div>
           <button 
             onClick={handleContinue} 

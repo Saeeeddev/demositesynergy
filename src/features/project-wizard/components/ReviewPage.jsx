@@ -43,12 +43,9 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
       projectDetails, 
       financialSettings, 
       locationData, 
-      criteriaSettings,
-      reset 
+      criteriaSettings
   } = useWizardStore(state => state);
   
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-
   const fs = financialSettings;
   const cs = criteriaSettings || { overallWeights: {}, opex_details: { personnel: {}, maintenance: {} } };
 
@@ -113,7 +110,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
     }
 
     return {
-        service_type: projectDetails.serviceType, // Added Service Type
+        service_type: projectDetails.serviceType, 
         project_info: {
             project_name: projectDetails.name,
             project_manager: projectDetails.manager,
@@ -161,15 +158,14 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
   const handleConfirmClick = async () => {
     try {
         const finalPayload = generatePayload();
-        console.log("Submission JSON:", JSON.stringify(finalPayload, null, 4));
+        
+        // --- ADDED: LOG JSON TO CONSOLE ---
+        console.log("FINAL NEW PROJECT JSON:", JSON.stringify(finalPayload, null, 2));
         
         if (onConfirm) {
             await onConfirm(finalPayload);
         }
         
-        // Modal is handled by parent NewProjectPage usually, 
-        // but if ReviewPage handles it:
-        // setShowSuccessModal(true); 
     } catch (error) {
         console.error("Payload generation error:", error);
         alert("خطا در ایجاد داده‌های نهایی.");
@@ -183,7 +179,6 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
       <div className="flex-1 overflow-y-auto p-5 lg:p-6 thin-scrollbar">
         <div className="max-w-7xl mx-auto space-y-8">
             
-            {/* New Service Section */}
             <ReviewSection title="نوع خدمات" icon={DocumentTextIcon}>
                 <ReviewItem label="سرویس انتخابی" value={getServiceLabel(projectDetails.serviceType)} />
             </ReviewSection>
@@ -265,4 +260,3 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
 };
 
 export default ReviewPage;
-

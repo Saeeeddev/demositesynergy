@@ -14,7 +14,7 @@ const initialProjectDetails = {
   county: '',
   shapeID: '',
   analysisMode: null,
-  serviceType: '', // NEW: 'full' (Site Selection + Report) or 'report' (Report Only)
+  serviceType: '', // 'full' (Site Selection + Report) or 'report' (Report Only)
 };
 
 const initialCriteriaSettings = {
@@ -64,18 +64,38 @@ export const useWizardStore = create((set, get) => ({
 
   // --- ACTIONS ---
 
-  setProjectType: (type) => set({ projectType: type, currentStep: 1 }), // Now goes to Step 1 (Service Type)
+  setProjectType: (type) => set({ projectType: type, currentStep: 1 }),
   
-  // NEW: Action to set service type
   setServiceType: (type) => set((state) => ({
     projectDetails: { ...state.projectDetails, serviceType: type }
   })),
 
   goToStep: (step) => set({ currentStep: step }),
   
-  // FIX: Increased max steps to 7 (6 content steps + final review)
-  nextStep: () => set((state) => ({ currentStep: Math.min(state.currentStep + 1, 7) })),
-  prevStep: () => set((state) => ({ currentStep: Math.max(state.currentStep - 1, 1) })),
+  nextStep: () => set((state) => {
+    const { serviceType } = state.projectDetails;
+    let next = state.currentStep + 1;
+    
+    // Logic for skipping steps 3 (Criteria) and 4 (Location) if serviceType is 'report'
+    // Current Step 2 (Details) -> Next should be 5 (Financial)
+    if (state.currentStep === 2 && serviceType === 'report') {
+      next = 5;
+    }
+
+    return { currentStep: Math.min(next, 7) };
+  }),
+
+  prevStep: () => set((state) => {
+    const { serviceType } = state.projectDetails;
+    let prev = state.currentStep - 1;
+
+    // Logic for going back from Step 5 (Financial) to Step 2 (Details) if 'report'
+    if (state.currentStep === 5 && serviceType === 'report') {
+      prev = 2;
+    }
+    
+    return { currentStep: Math.max(prev, 1) };
+  }),
   
   updateProjectDetails: (e) => {
     const { name, value } = e.target;
@@ -104,9 +124,6 @@ export const useWizardStore = create((set, get) => ({
     projectDetails: { ...state.projectDetails, analysisMode: mode }
   })),
 
-  // FIX: saveCriteria now moves to Step 4 (Location if full, Financial if report)
-  // This logic needs to be updated when we integrate Step4_Location and Step5_Financial
-  // For now, let's assume standard next step after criteria.
   saveCriteria: (settings) => set({ criteriaSettings: settings, currentStep: 4 }), // Moves to Location (Step 4)
 
   handleScaleSelection: (scale) => set((state) => ({
@@ -114,7 +131,6 @@ export const useWizardStore = create((set, get) => ({
     locationData: null
   })),
   
-  // FIX: saveLocation now moves to Step 5
   saveLocation: (data) => set({ locationData: data, currentStep: 5 }), // Moves to Financial (Step 5)
 
   updateLocationData: (data) => set({ locationData: data }),
