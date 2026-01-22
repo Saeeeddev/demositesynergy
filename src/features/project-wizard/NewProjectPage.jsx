@@ -23,9 +23,8 @@ const NewProjectPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  // Added reset to the destructured object
   const { 
-    currentStep, projectType, setProjectType, prevStep, reset 
+    currentStep, projectType, projectDetails, setProjectType, prevStep, reset 
   } = useWizardStore();
 
   const handleBack = () => {
@@ -37,19 +36,16 @@ const NewProjectPage = () => {
   };
 
   const handleExit = () => {
-      reset(); // Optional: reset if they exit halfway
+      reset(); 
       navigate('/projects');
   };
 
   const handleProjectSubmit = async (payload) => {
     setIsSubmitting(true);
     try {
-      // Simulate API Call
       console.log("Sending data to API...", payload);
       await new Promise(resolve => setTimeout(resolve, 2000)); 
-      
       setShowSuccessModal(true);
-
     } catch (error) {
       console.error("Submission failed", error);
       alert("خطا در ثبت پروژه");
@@ -59,7 +55,7 @@ const NewProjectPage = () => {
   };
 
   const handleSuccessRedirect = () => {
-    reset(); // Reset the wizard store
+    reset(); 
     navigate('/projects');
   };
 
@@ -67,15 +63,35 @@ const NewProjectPage = () => {
     return <ProjectTypeSelection onBack={handleExit} />;
   }
 
-  // Helper for step visual state
-  const getStepStyle = (stepNum) => {
-    if (currentStep > stepNum) return 'bg-primary-blue text-white';
-    if (currentStep === stepNum) return 'bg-primary-blue text-white';
+  // --- Dynamic Stepper Logic ---
+  const isReportOnly = projectDetails.serviceType === 'report';
+
+  const steps = isReportOnly 
+    ? [
+        { id: 1, label: 'خدمات', displayNum: '۱' },
+        { id: 2, label: 'مشخصات', displayNum: '۲' },
+        { id: 5, label: 'مالی', displayNum: '۳' } // Jump to Financial
+      ]
+    : [
+        { id: 1, label: 'خدمات', displayNum: '۱' },
+        { id: 2, label: 'مشخصات', displayNum: '۲' },
+        { id: 3, label: 'معیارها', displayNum: '۳' },
+        { id: 4, label: 'مکان‌یابی', displayNum: '۴' },
+        { id: 5, label: 'مالی', displayNum: '۵' }
+      ];
+
+  const getStepStyle = (stepId) => {
+    // If currentStep is 6 (Review), all steps are "done"
+    if (currentStep === 6) return 'bg-primary-blue text-white';
+    
+    if (currentStep > stepId) return 'bg-primary-blue text-white';
+    if (currentStep === stepId) return 'bg-primary-blue text-white';
     return 'bg-gray-100 text-gray-500';
   };
 
-  const getStepTextStyle = (stepNum) => {
-    if (currentStep >= stepNum) return 'text-primary-blue font-bold';
+  const getStepTextStyle = (stepId) => {
+    if (currentStep === 6) return 'text-primary-blue font-bold';
+    if (currentStep >= stepId) return 'text-primary-blue font-bold';
     return 'text-gray-400';
   };
 
@@ -95,60 +111,32 @@ const NewProjectPage = () => {
             <BuildingOfficeIcon className="h-6 w-6 text-primary-blue" />
             <div>
                 <h1 className="text-xl font-bold text-gray-900">پروژه جدید</h1>
-                <p className="text-xs text-gray-500">مرحله {currentStep} از ۵</p>
+                <p className="text-xs text-gray-500">
+                  {currentStep === 6 
+                    ? 'بررسی نهایی' 
+                    : `مرحله ${isReportOnly ? (currentStep === 5 ? 3 : currentStep) : currentStep} از ${steps.length}`
+                  }
+                </p>
             </div>
         </div>
 
-        {/* Breadcrumb Steps */}
+        {/* Dynamic Breadcrumb Steps */}
         <div className="hidden md:flex items-center text-xs gap-2 overflow-x-auto">
-            
-            {/* Step 1: Services */}
-            <div className={`flex items-center ${getStepTextStyle(1)}`}>
-                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(1)}`}>
-                    {currentStep > 1 ? <CheckIcon className="w-3 h-3" /> : '۱'}
+            {steps.map((step, index) => (
+              <React.Fragment key={step.id}>
+                <div className={`flex items-center ${getStepTextStyle(step.id)}`}>
+                    <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(step.id)}`}>
+                        {currentStep > step.id || currentStep === 6 ? <CheckIcon className="w-3 h-3" /> : step.displayNum}
+                    </div>
+                    <span className={`ms-1.5 whitespace-nowrap ${currentStep === step.id ? 'text-gray-900' : ''}`}>
+                      {step.label}
+                    </span>
                 </div>
-                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 1 ? 'text-gray-900' : ''}`}>خدمات</span>
-            </div>
-            
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
-
-            {/* Step 2: Details */}
-            <div className={`flex items-center ${getStepTextStyle(2)}`}>
-                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(2)}`}>
-                    {currentStep > 2 ? <CheckIcon className="w-3 h-3" /> : '۲'}
-                </div>
-                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 2 ? 'text-gray-900' : ''}`}>مشخصات</span>
-            </div>
-
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
-
-            {/* Step 3: Criteria */}
-            <div className={`flex items-center ${getStepTextStyle(3)}`}>
-                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(3)}`}>
-                    {currentStep > 3 ? <CheckIcon className="w-3 h-3" /> : '۳'}
-                </div>
-                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 3 ? 'text-gray-900' : ''}`}>معیارها</span>
-            </div>
-
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
-
-            {/* Step 4: Location */}
-            <div className={`flex items-center ${getStepTextStyle(4)}`}>
-                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(4)}`}>
-                    {currentStep > 4 ? <CheckIcon className="w-3 h-3" /> : '۴'}
-                </div>
-                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 4 ? 'text-gray-900' : ''}`}>مکان‌یابی</span>
-            </div>
-
-            <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
-
-            {/* Step 5: Financial */}
-            <div className={`flex items-center ${getStepTextStyle(5)}`}>
-                <div className={`flex items-center justify-center w-6 h-6 rounded-full font-medium shadow-sm transition-colors ${getStepStyle(5)}`}>
-                    {currentStep > 5 ? <CheckIcon className="w-3 h-3" /> : '۵'}
-                </div>
-                <span className={`ms-1.5 whitespace-nowrap ${currentStep === 5 ? 'text-gray-900' : ''}`}>مالی</span>
-            </div>
+                {index < steps.length - 1 && (
+                   <ArrowRightIcon className="w-3 h-3 text-gray-400 transform scale-x-[-1] flex-shrink-0" />
+                )}
+              </React.Fragment>
+            ))}
         </div>
       </div>
 
