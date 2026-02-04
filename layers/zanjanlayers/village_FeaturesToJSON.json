@@ -1,0 +1,2266 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [
+    {
+      "type" : "Feature",
+      "id" : 0,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.499929600000002,
+          36.656772599999996
+        ]
+      },
+      "properties" : {
+        "FID" : 0,
+        "Id" : 0,
+        "osm_id" : "3083400718",
+        "tags" : "name:en=Kuy Vahdat;place=neighbourhood;name=شهرک کوی وحدت;population=150"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 1,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.557743000000002,
+          36.67272839999999
+        ]
+      },
+      "properties" : {
+        "FID" : 1,
+        "Id" : 0,
+        "osm_id" : "3085821572",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۴"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 2,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.461970700000002,
+          36.701831599999998
+        ]
+      },
+      "properties" : {
+        "FID" : 2,
+        "Id" : 0,
+        "osm_id" : "3879927424",
+        "tags" : "name:en=Elahiyeh faze 3;place=neighbourhood;name=الهیه فاز سه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 3,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.370145800000003,
+          36.759402100000003
+        ]
+      },
+      "properties" : {
+        "FID" : 3,
+        "Id" : 0,
+        "osm_id" : "4115247786",
+        "tags" : "place=village;name=سارمساقلو;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 4,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.503825499999998,
+          36.733141000000003
+        ]
+      },
+      "properties" : {
+        "FID" : 4,
+        "Id" : 0,
+        "osm_id" : "4124687377",
+        "tags" : "place=village;name=جارچی;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 5,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.558151299999999,
+          36.702236800000001
+        ]
+      },
+      "properties" : {
+        "FID" : 5,
+        "Id" : 0,
+        "osm_id" : "4124687609",
+        "tags" : "place=village;name=باغ شهر دو اسب;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 6,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5657414,
+          36.708755900000007
+        ]
+      },
+      "properties" : {
+        "FID" : 6,
+        "Id" : 0,
+        "osm_id" : "4124687621",
+        "tags" : "place=village;name=دواسب;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 7,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.523303499999997,
+          36.755580299999998
+        ]
+      },
+      "properties" : {
+        "FID" : 7,
+        "Id" : 0,
+        "osm_id" : "4124687978",
+        "tags" : "place=village;name=امند;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 8,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.487231999999999,
+          36.752699300000003
+        ]
+      },
+      "properties" : {
+        "FID" : 8,
+        "Id" : 0,
+        "osm_id" : "4124687979",
+        "tags" : "name:en=Homayun;name=همایون;is_in:country=Iran;wikipedia=fa:همایون (زنجان);wikidata=Q5835739;place=village;population=794"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 9,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.445434400000003,
+          36.599548300000002
+        ]
+      },
+      "properties" : {
+        "FID" : 9,
+        "Id" : 0,
+        "osm_id" : "4127284311",
+        "tags" : "name=دیزج بالا;is_in:country=Iran;is_in:state=Zanjan;wikidata=Q5834687;place=village;population=566"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 10,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.409700899999997,
+          36.601854000000003
+        ]
+      },
+      "properties" : {
+        "FID" : 10,
+        "Id" : 0,
+        "osm_id" : "4127284497",
+        "tags" : "is_in:state=Zanjan;population=1173;place=village;name=اژدهاتو;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 11,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.332110499999999,
+          36.63882490000001
+        ]
+      },
+      "properties" : {
+        "FID" : 11,
+        "Id" : 0,
+        "osm_id" : "4127284572",
+        "tags" : "is_in:state=Zanjan;population=289;place=village;name=مهتر;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 12,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.3671504,
+          36.707910499999997
+        ]
+      },
+      "properties" : {
+        "FID" : 12,
+        "Id" : 0,
+        "osm_id" : "4127299613",
+        "tags" : "place=village;name=والارود / باری;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 13,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.308685199999999,
+          36.726533500000002
+        ]
+      },
+      "properties" : {
+        "FID" : 13,
+        "Id" : 0,
+        "osm_id" : "4127299667",
+        "tags" : "is_in:state=Zanjan;population=652;place=village;name=چیر;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 14,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.307283900000002,
+          36.672656799999999
+        ]
+      },
+      "properties" : {
+        "FID" : 14,
+        "Id" : 0,
+        "osm_id" : "4127299766",
+        "tags" : "is_in:state=Zanjan;population=96;place=village;name=باغلوجه بیات;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 15,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.449586199999999,
+          36.642724999999999
+        ]
+      },
+      "properties" : {
+        "FID" : 15,
+        "Id" : 0,
+        "osm_id" : "4433456621",
+        "tags" : "name:en=Panbeh Jough;place=village;name=پنبه جوق;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 16,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4735376,
+          36.621975999999997
+        ]
+      },
+      "properties" : {
+        "FID" : 16,
+        "Id" : 0,
+        "osm_id" : "4433456622",
+        "tags" : "name:en=Salmanlou;place=village;name=سلمان لو;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 17,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.536927300000002,
+          36.6227801
+        ]
+      },
+      "properties" : {
+        "FID" : 17,
+        "Id" : 0,
+        "osm_id" : "4433456624",
+        "tags" : "name:en=Hasan Abdal;place=village;name=حسن ابدال;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 18,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.554146699999997,
+          36.650661200000002
+        ]
+      },
+      "properties" : {
+        "FID" : 18,
+        "Id" : 0,
+        "osm_id" : "4443599479",
+        "tags" : "name:en=Iran Transfo;place=neighbourhood;name=ایران ترانسفو"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 19,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.506413799999997,
+          36.697859399999999
+        ]
+      },
+      "properties" : {
+        "FID" : 19,
+        "Id" : 0,
+        "osm_id" : "4443599487",
+        "tags" : "place=neighbourhood;name=مجتمع مسکونی بهار"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 20,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.500464600000001,
+          36.686370099999998
+        ]
+      },
+      "properties" : {
+        "FID" : 20,
+        "Id" : 0,
+        "osm_id" : "4443599789",
+        "tags" : "place=neighbourhood;name=مجتمع مسکونی فجر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 21,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.505638599999997,
+          36.685483499999997
+        ]
+      },
+      "properties" : {
+        "FID" : 21,
+        "Id" : 0,
+        "osm_id" : "4443599790",
+        "tags" : "place=neighbourhood;name=مجتمع مسکونی قائم ۱"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 22,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.543686000000001,
+          36.712255700000007
+        ]
+      },
+      "properties" : {
+        "FID" : 22,
+        "Id" : 0,
+        "osm_id" : "4443599799",
+        "tags" : "place=village;name=پایین کوه;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 23,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.515884700000001,
+          36.696517400000005
+        ]
+      },
+      "properties" : {
+        "FID" : 23,
+        "Id" : 0,
+        "osm_id" : "4443599800",
+        "tags" : "place=neighbourhood;name=پروژه مسکونی اطلس"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 24,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.520365300000002,
+          36.715033699999999
+        ]
+      },
+      "properties" : {
+        "FID" : 24,
+        "Id" : 0,
+        "osm_id" : "4443599805",
+        "tags" : "place=village;name=گاوازنگ;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 25,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.456452400000003,
+          36.6785529
+        ]
+      },
+      "properties" : {
+        "FID" : 25,
+        "Id" : 0,
+        "osm_id" : "4446818773",
+        "tags" : "place=neighbourhood;name=کوی ارغوان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 26,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.439608300000003,
+          36.685720099999998
+        ]
+      },
+      "properties" : {
+        "FID" : 26,
+        "Id" : 0,
+        "osm_id" : "4446819118",
+        "tags" : "place=neighbourhood;name=نانوایان فاز ۳"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 27,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.398168599999998,
+          36.698712299999997
+        ]
+      },
+      "properties" : {
+        "FID" : 27,
+        "Id" : 0,
+        "osm_id" : "4446819128",
+        "tags" : "place=village;name=کوشکن;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 28,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.404442299999999,
+          36.6885373
+        ]
+      },
+      "properties" : {
+        "FID" : 28,
+        "Id" : 0,
+        "osm_id" : "4446819129",
+        "tags" : "place=neighbourhood;name=کوی اساتید"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 29,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.406309999999998,
+          36.626263599999994
+        ]
+      },
+      "properties" : {
+        "FID" : 29,
+        "Id" : 0,
+        "osm_id" : "4496582037",
+        "tags" : "name:en=Razbin;name=رازبین;is_in:country=Iran;is_in:state=Zanjan;wikidata=Q5829217;place=village"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 30,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.374539800000001,
+          36.639409000000001
+        ]
+      },
+      "properties" : {
+        "FID" : 30,
+        "Id" : 0,
+        "osm_id" : "4496582038",
+        "tags" : "is_in:state=Zanjan;place=village;name=آقچه پیره;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 31,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.547912099999998,
+          36.642972299999997
+        ]
+      },
+      "properties" : {
+        "FID" : 31,
+        "Id" : 0,
+        "osm_id" : "4496582181",
+        "tags" : "is_in:state=Zanjan;name:en=Shahrak Sayan;place=neighbourhood;name=شهرک سایان;is_in:country=Iran"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 32,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.454143100000003,
+          36.686716999999994
+        ]
+      },
+      "properties" : {
+        "FID" : 32,
+        "Id" : 0,
+        "osm_id" : "4760760699",
+        "tags" : "place=neighbourhood;name=نانوایان فاز ۱"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 33,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.449987399999998,
+          36.687678699999999
+        ]
+      },
+      "properties" : {
+        "FID" : 33,
+        "Id" : 0,
+        "osm_id" : "4760760711",
+        "tags" : "place=neighbourhood;name=نانوایان فاز ۲"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 34,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.439735800000001,
+          36.682395999999997
+        ]
+      },
+      "properties" : {
+        "FID" : 34,
+        "Id" : 0,
+        "osm_id" : "4760760714",
+        "tags" : "name:en=ShahrAra;place=neighbourhood;name=شهر آرا"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 35,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.474412000000001,
+          36.702070599999999
+        ]
+      },
+      "properties" : {
+        "FID" : 35,
+        "Id" : 0,
+        "osm_id" : "4786443102",
+        "tags" : "name:en=Elahiyeh faze 2;place=neighbourhood;name=الهیه فاز دو"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 36,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.469912800000003,
+          36.686892799999995
+        ]
+      },
+      "properties" : {
+        "FID" : 36,
+        "Id" : 0,
+        "osm_id" : "5858074124",
+        "tags" : "place=neighbourhood;name=اسلام آباد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 37,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.480763500000002,
+          36.7012213
+        ]
+      },
+      "properties" : {
+        "FID" : 37,
+        "Id" : 0,
+        "osm_id" : "5898459957",
+        "tags" : "name:en=shahrak-e-gharb;place=neighbourhood;name=شهرک غرب"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 38,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.464475100000001,
+          36.6954262
+        ]
+      },
+      "properties" : {
+        "FID" : 38,
+        "Id" : 0,
+        "osm_id" : "5898516785",
+        "tags" : "name:en=Elahiyeh faze 1;place=neighbourhood;name=الهیه فاز یک"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 39,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.455185200000003,
+          36.696907800000005
+        ]
+      },
+      "properties" : {
+        "FID" : 39,
+        "Id" : 0,
+        "osm_id" : "5898556047",
+        "tags" : "name:en=kooy-e-farhang;place=neighbourhood;name=کوی فرهنگ"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 40,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4502855,
+          36.6862675
+        ]
+      },
+      "properties" : {
+        "FID" : 40,
+        "Id" : 0,
+        "osm_id" : "5898841806",
+        "tags" : "name:en=shahrak nanvayan;place=neighbourhood;name=شهرک نانوایان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 41,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.441641599999997,
+          36.691490600000002
+        ]
+      },
+      "properties" : {
+        "FID" : 41,
+        "Id" : 0,
+        "osm_id" : "5898917288",
+        "tags" : "name:en=shahrak-e-samin;place=neighbourhood;name=کوی ثمین"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 42,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.499140300000001,
+          36.6974771
+        ]
+      },
+      "properties" : {
+        "FID" : 42,
+        "Id" : 0,
+        "osm_id" : "5899070619",
+        "tags" : "name:en=shahrak-e-azadegan;place=neighbourhood;name=شهرک آزادگان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 43,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.491440799999999,
+          36.697683099999999
+        ]
+      },
+      "properties" : {
+        "FID" : 43,
+        "Id" : 0,
+        "osm_id" : "5899104743",
+        "tags" : "name:en=kooy-e-nasr;place=neighbourhood;name=کوی نصر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 44,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.509203999999997,
+          36.694085199999996
+        ]
+      },
+      "properties" : {
+        "FID" : 44,
+        "Id" : 0,
+        "osm_id" : "5899133353",
+        "tags" : "name:en=shahrak-e-karmandan;place=neighbourhood;name=شهرک کارمندان/فاز ۱"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 45,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.498727199999998,
+          36.6886309
+        ]
+      },
+      "properties" : {
+        "FID" : 45,
+        "Id" : 0,
+        "osm_id" : "5899187054",
+        "tags" : "name:en=kooy-e-oloompaye;place=neighbourhood;name=کوی علوم پایه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 46,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.505194099999997,
+          36.687874800000003
+        ]
+      },
+      "properties" : {
+        "FID" : 46,
+        "Id" : 0,
+        "osm_id" : "5899215689",
+        "tags" : "name:en=jadde shahrak;place=neighbourhood;name=جاده شهرک"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 47,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.536847000000002,
+          36.678900300000002
+        ]
+      },
+      "properties" : {
+        "FID" : 47,
+        "Id" : 0,
+        "osm_id" : "5901141307",
+        "tags" : "name:en=Shahrak Andisheh;place=neighbourhood;name=شهرک اندیشه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 48,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5317109,
+          36.684510899999999
+        ]
+      },
+      "properties" : {
+        "FID" : 48,
+        "Id" : 0,
+        "osm_id" : "5901154330",
+        "tags" : "name:en=Shahrak AmirKabir;place=neighbourhood;name=شهرک امیرکبیر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 49,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.527361399999997,
+          36.679192299999997
+        ]
+      },
+      "properties" : {
+        "FID" : 49,
+        "Id" : 0,
+        "osm_id" : "5901165634",
+        "tags" : "name:en=Shahrak ZibaShahr;place=neighbourhood;name=شهرک زیباشهر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 50,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.527536599999998,
+          36.687879299999999
+        ]
+      },
+      "properties" : {
+        "FID" : 50,
+        "Id" : 0,
+        "osm_id" : "5901181400",
+        "tags" : "name:en=shahrak-enegin;place=neighbourhood;name=شهرک نگین"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 51,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.523494399999997,
+          36.683468599999998
+        ]
+      },
+      "properties" : {
+        "FID" : 51,
+        "Id" : 0,
+        "osm_id" : "5901246563",
+        "tags" : "place=neighbourhood;name=کوی امید"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 52,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.520332699999997,
+          36.691117099999992
+        ]
+      },
+      "properties" : {
+        "FID" : 52,
+        "Id" : 0,
+        "osm_id" : "5901417423",
+        "tags" : "name:en=shahrak-e-payinkooh;place=neighbourhood;name=اراضی پایین کوه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 53,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.511484099999997,
+          36.686168099999996
+        ]
+      },
+      "properties" : {
+        "FID" : 53,
+        "Id" : 0,
+        "osm_id" : "5901465302",
+        "tags" : "name:en=kooy-e-ghaem;place=neighbourhood;name=کوی قائم"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 54,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.471375799999997,
+          36.691534300000001
+        ]
+      },
+      "properties" : {
+        "FID" : 54,
+        "Id" : 0,
+        "osm_id" : "5901534708",
+        "tags" : "name:en=Kuy-e-janbazan;place=neighbourhood;name=کوی جانبازان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 55,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.470786099999998,
+          36.689495600000001
+        ]
+      },
+      "properties" : {
+        "FID" : 55,
+        "Id" : 0,
+        "osm_id" : "5901589645",
+        "tags" : "place=neighbourhood;name=اسلام آباد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 56,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.465671399999998,
+          36.68573829999999
+        ]
+      },
+      "properties" : {
+        "FID" : 56,
+        "Id" : 0,
+        "osm_id" : "5901622423",
+        "tags" : "name:en=kooy-e-saeediye;place=neighbourhood;name=کوی سعیدیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 57,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5444733,
+          36.664403800000002
+        ]
+      },
+      "properties" : {
+        "FID" : 57,
+        "Id" : 0,
+        "osm_id" : "5901702899",
+        "tags" : "name:en=punak;place=neighbourhood;name=کوی پونک"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 58,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.538876199999997,
+          36.656045399999989
+        ]
+      },
+      "properties" : {
+        "FID" : 58,
+        "Id" : 0,
+        "osm_id" : "5901720102",
+        "tags" : "name:en=Site Kargahi;place=neighbourhood;name=سایت کارگاهی شرقی زنجان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 59,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.534448300000001,
+          36.6681533
+        ]
+      },
+      "properties" : {
+        "FID" : 59,
+        "Id" : 0,
+        "osm_id" : "5901735044",
+        "tags" : "name:en=shahrak-e-manzariyeh;place=neighbourhood;name=شهرک منظریه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 60,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.531237699999998,
+          36.664074499999998
+        ]
+      },
+      "properties" : {
+        "FID" : 60,
+        "Id" : 0,
+        "osm_id" : "5901799085",
+        "tags" : "name:en=Shahrak Laleh;place=neighbourhood;name=شهرک لاله"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 61,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.527135000000001,
+          36.6702479
+        ]
+      },
+      "properties" : {
+        "FID" : 61,
+        "Id" : 0,
+        "osm_id" : "5901825545",
+        "tags" : "name:en=shahrak-e-shahriyar;place=neighbourhood;name=کوی شهریار"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 62,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.520760199999998,
+          36.674587500000001
+        ]
+      },
+      "properties" : {
+        "FID" : 62,
+        "Id" : 0,
+        "osm_id" : "5901906391",
+        "tags" : "name:en=Nik Sazan;place=neighbourhood;name=کوی نیک سازان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 63,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5136957,
+          36.672030499999998
+        ]
+      },
+      "properties" : {
+        "FID" : 63,
+        "Id" : 0,
+        "osm_id" : "5901957293",
+        "tags" : "name:en=Shahrak-e-Ansariyeh;place=neighbourhood;name=شهرک انصاریه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 64,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.508656500000001,
+          36.664428000000001
+        ]
+      },
+      "properties" : {
+        "FID" : 64,
+        "Id" : 0,
+        "osm_id" : "5901977887",
+        "tags" : "name:en=shahrak-e-vahidiyeh;place=neighbourhood;name=کوی وحیدیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 65,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.502123699999999,
+          36.669914499999997
+        ]
+      },
+      "properties" : {
+        "FID" : 65,
+        "Id" : 0,
+        "osm_id" : "5903117704",
+        "tags" : "name:en=Etemadiyeh;place=neighbourhood;name=اعتمادیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 66,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.502089699999999,
+          36.675876299999999
+        ]
+      },
+      "properties" : {
+        "FID" : 66,
+        "Id" : 0,
+        "osm_id" : "5903153914",
+        "tags" : "name:en=Bisim (Jomhoori);place=neighbourhood;name=(بیسیم (جمهوری"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 67,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4937173,
+          36.681849200000002
+        ]
+      },
+      "properties" : {
+        "FID" : 67,
+        "Id" : 0,
+        "osm_id" : "5903184875",
+        "tags" : "name:en=Kooche Meshki;place=neighbourhood;name=کوچه مشکی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 68,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.491579299999998,
+          36.684730399999999
+        ]
+      },
+      "properties" : {
+        "FID" : 68,
+        "Id" : 0,
+        "osm_id" : "5903220178",
+        "tags" : "name:en=shahrak-e-qods;place=neighbourhood;name=شهرک قدس"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 69,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.514421900000002,
+          36.660012600000002
+        ]
+      },
+      "properties" : {
+        "FID" : 69,
+        "Id" : 0,
+        "osm_id" : "5903262514",
+        "tags" : "name:en=honarestan;place=neighbourhood;name=کوی هنرستان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 70,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.504522100000003,
+          36.661225999999999
+        ]
+      },
+      "properties" : {
+        "FID" : 70,
+        "Id" : 0,
+        "osm_id" : "5903285008",
+        "tags" : "name:en=Sar jangal dari;place=neighbourhood;name=کوی سرجنگلداری"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 71,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.488220599999998,
+          36.6801897
+        ]
+      },
+      "properties" : {
+        "FID" : 71,
+        "Id" : 0,
+        "osm_id" : "5903326695",
+        "tags" : "name:en=sadi shomali;place=neighbourhood;name=سعدی شمالی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 72,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.489739800000002,
+          36.676348300000001
+        ]
+      },
+      "properties" : {
+        "FID" : 72,
+        "Id" : 0,
+        "osm_id" : "5903349061",
+        "tags" : "name:en=safa;place=neighbourhood;name=صفا"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 73,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.480420299999999,
+          36.664743700000002
+        ]
+      },
+      "properties" : {
+        "FID" : 73,
+        "Id" : 0,
+        "osm_id" : "5903420012",
+        "tags" : "name:en=sadi jonoobi;place=neighbourhood;name=سعدی جنوبی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 74,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4694729,
+          36.667370899999995
+        ]
+      },
+      "properties" : {
+        "FID" : 74,
+        "Id" : 0,
+        "osm_id" : "5903482444",
+        "tags" : "name:en=Asghariyeh;place=neighbourhood;name=اصغریه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 75,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.457610299999999,
+          36.670028000000002
+        ]
+      },
+      "properties" : {
+        "FID" : 75,
+        "Id" : 0,
+        "osm_id" : "5903542233",
+        "tags" : "name:en=shahrak-e-shohada;place=neighbourhood;name=شهرک شهدا"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 76,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.460691599999997,
+          36.6766486
+        ]
+      },
+      "properties" : {
+        "FID" : 76,
+        "Id" : 0,
+        "osm_id" : "5903592854",
+        "tags" : "name:en=foroudgah (mofateh);place=neighbourhood;name=فرودگاه/مفتح"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 77,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.484271700000001,
+          36.696506700000008
+        ]
+      },
+      "properties" : {
+        "FID" : 77,
+        "Id" : 0,
+        "osm_id" : "5903615464",
+        "tags" : "name:en=arazi-e-artesh;place=neighbourhood;name=اراضی ارتش"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 78,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.468631700000003,
+          36.681628000000003
+        ]
+      },
+      "properties" : {
+        "FID" : 78,
+        "Id" : 0,
+        "osm_id" : "5903698436",
+        "tags" : "name:en=shahrak-e-rajaei;place=neighbourhood;name=شهرک شهید رجائی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 79,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.478338999999998,
+          36.672903999999996
+        ]
+      },
+      "properties" : {
+        "FID" : 79,
+        "Id" : 0,
+        "osm_id" : "5903783134",
+        "tags" : "name:en=darvaze ark;place=neighbourhood;name=دروازه ارک"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 80,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.473541300000001,
+          36.679390999999995
+        ]
+      },
+      "properties" : {
+        "FID" : 80,
+        "Id" : 0,
+        "osm_id" : "5903877256",
+        "tags" : "name:en=amjadiyeh;place=neighbourhood;name=امجدیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 81,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.469902500000003,
+          36.677491500000002
+        ]
+      },
+      "properties" : {
+        "FID" : 81,
+        "Id" : 0,
+        "osm_id" : "5903899772",
+        "tags" : "name:en=se rah amjadiyeh;place=neighbourhood;name=سه راه امجدیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 82,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5238978,
+          36.666935900000006
+        ]
+      },
+      "properties" : {
+        "FID" : 82,
+        "Id" : 0,
+        "osm_id" : "6175976493",
+        "tags" : "name:en=Shahrak Baharestan;place=neighbourhood;name=شهرک بهارستان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 83,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.472065899999997,
+          36.6742706
+        ]
+      },
+      "properties" : {
+        "FID" : 83,
+        "Id" : 0,
+        "osm_id" : "6175976494",
+        "tags" : "name:en=Jahad;place=neighbourhood;name=جهاد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 84,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.448090499999999,
+          36.680078799999997
+        ]
+      },
+      "properties" : {
+        "FID" : 84,
+        "Id" : 0,
+        "osm_id" : "6297211032",
+        "tags" : "name:en=Mehr Ara;place=neighbourhood;name=مهر آرا"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 85,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.493741100000001,
+          36.697999199999998
+        ]
+      },
+      "properties" : {
+        "FID" : 85,
+        "Id" : 0,
+        "osm_id" : "6297223146",
+        "tags" : "place=neighbourhood;name=شهرک فجر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 86,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.568163499999997,
+          36.671231499999998
+        ]
+      },
+      "properties" : {
+        "FID" : 86,
+        "Id" : 0,
+        "osm_id" : "6299377043",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۵"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 87,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.563141399999999,
+          36.667872799999998
+        ]
+      },
+      "properties" : {
+        "FID" : 87,
+        "Id" : 0,
+        "osm_id" : "6299377044",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۶"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 88,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.551595800000001,
+          36.6692988
+        ]
+      },
+      "properties" : {
+        "FID" : 88,
+        "Id" : 0,
+        "osm_id" : "6299377045",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۳"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 89,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5499917,
+          36.674356299999999
+        ]
+      },
+      "properties" : {
+        "FID" : 89,
+        "Id" : 0,
+        "osm_id" : "6299377046",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۲"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 90,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.542194700000003,
+          36.672774800000006
+        ]
+      },
+      "properties" : {
+        "FID" : 90,
+        "Id" : 0,
+        "osm_id" : "6299377047",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۱"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 91,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.538575799999997,
+          36.668369900000002
+        ]
+      },
+      "properties" : {
+        "FID" : 91,
+        "Id" : 0,
+        "osm_id" : "6299377048",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۱"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 92,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5801175,
+          36.66775830000001
+        ]
+      },
+      "properties" : {
+        "FID" : 92,
+        "Id" : 0,
+        "osm_id" : "6299521391",
+        "tags" : "place=neighbourhood;name=گلشهر فاز ۷"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 93,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.575136100000002,
+          36.659781500000001
+        ]
+      },
+      "properties" : {
+        "FID" : 93,
+        "Id" : 0,
+        "osm_id" : "6299521392",
+        "tags" : "place=neighbourhood;name=اراضی تعاونی فرهنگیان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 94,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.527724800000001,
+          36.673582199999998
+        ]
+      },
+      "properties" : {
+        "FID" : 94,
+        "Id" : 0,
+        "osm_id" : "6299585533",
+        "tags" : "place=neighbourhood;name=کوی زعفرانیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 95,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5297634,
+          36.671964199999998
+        ]
+      },
+      "properties" : {
+        "FID" : 95,
+        "Id" : 0,
+        "osm_id" : "6299585534",
+        "tags" : "place=neighbourhood;name=کوی اشراق"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 96,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.532389500000001,
+          36.669199300000002
+        ]
+      },
+      "properties" : {
+        "FID" : 96,
+        "Id" : 0,
+        "osm_id" : "6299585535",
+        "tags" : "place=neighbourhood;name=کوی میرداماد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 97,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.541893600000002,
+          36.67578009999999
+        ]
+      },
+      "properties" : {
+        "FID" : 97,
+        "Id" : 0,
+        "osm_id" : "6299585537",
+        "tags" : "place=neighbourhood;name=کوی نارون"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 98,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5150358,
+          36.684784899999997
+        ]
+      },
+      "properties" : {
+        "FID" : 98,
+        "Id" : 0,
+        "osm_id" : "6299585538",
+        "tags" : "place=neighbourhood;name=اراضی پایین کوه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 99,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.522035899999999,
+          36.679121600000002
+        ]
+      },
+      "properties" : {
+        "FID" : 99,
+        "Id" : 0,
+        "osm_id" : "6299585539",
+        "tags" : "place=neighbourhood;name=شهرک زیباشهر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 100,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5186098,
+          36.6806141
+        ]
+      },
+      "properties" : {
+        "FID" : 100,
+        "Id" : 0,
+        "osm_id" : "6299585540",
+        "tags" : "place=neighbourhood;name=اراضی پایین کوه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 101,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.522615199999997,
+          36.687779499999998
+        ]
+      },
+      "properties" : {
+        "FID" : 101,
+        "Id" : 0,
+        "osm_id" : "6299621977",
+        "tags" : "place=neighbourhood;name=اراضی پایین کوه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 102,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.519546400000003,
+          36.694568699999998
+        ]
+      },
+      "properties" : {
+        "FID" : 102,
+        "Id" : 0,
+        "osm_id" : "6299621978",
+        "tags" : "place=neighbourhood;name=اراضی ثبت"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 103,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.477545200000002,
+          36.6833387
+        ]
+      },
+      "properties" : {
+        "FID" : 103,
+        "Id" : 0,
+        "osm_id" : "6299621979",
+        "tags" : "place=neighbourhood;name=شهرک شهید رجایی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 104,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.552327900000002,
+          36.665529900000003
+        ]
+      },
+      "properties" : {
+        "FID" : 104,
+        "Id" : 0,
+        "osm_id" : "6304090953",
+        "tags" : "place=neighbourhood;name=کوی ساوالان گلشهر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 105,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5930301,
+          36.6974752
+        ]
+      },
+      "properties" : {
+        "FID" : 105,
+        "Id" : 0,
+        "osm_id" : "6305101680",
+        "tags" : "place=village;name=چوره ناب"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 106,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.449464200000001,
+          36.672008900000002
+        ]
+      },
+      "properties" : {
+        "FID" : 106,
+        "Id" : 0,
+        "osm_id" : "6305412135",
+        "tags" : "place=neighbourhood;name=کوی فاطمیه تپه الله اکبر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 107,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.474805699999997,
+          36.666094399999992
+        ]
+      },
+      "properties" : {
+        "FID" : 107,
+        "Id" : 0,
+        "osm_id" : "6305439354",
+        "tags" : "place=neighbourhood;name=تکییه نایب آقا"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 108,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.516240699999997,
+          36.686288099999999
+        ]
+      },
+      "properties" : {
+        "FID" : 108,
+        "Id" : 0,
+        "osm_id" : "6332794997",
+        "tags" : "place=neighbourhood;name=مجتمع مسکونی گل ها"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 109,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5395009,
+          36.646506799999997
+        ]
+      },
+      "properties" : {
+        "FID" : 109,
+        "Id" : 0,
+        "osm_id" : "6355986876",
+        "tags" : "place=neighbourhood;name=کوی مهدیه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 110,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.554409100000001,
+          36.643350399999996
+        ]
+      },
+      "properties" : {
+        "FID" : 110,
+        "Id" : 0,
+        "osm_id" : "6356000963",
+        "tags" : "place=neighbourhood;name=شهرک مسکونی ایران ترانسفو"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 111,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.460495000000002,
+          36.689595799999999
+        ]
+      },
+      "properties" : {
+        "FID" : 111,
+        "Id" : 0,
+        "osm_id" : "6383658755",
+        "tags" : "place=neighbourhood;name=کوی صدرا"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 112,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4892909,
+          36.663978000000007
+        ]
+      },
+      "properties" : {
+        "FID" : 112,
+        "Id" : 0,
+        "osm_id" : "6387417517",
+        "tags" : "place=neighbourhood;name=دباغها;population=0"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 113,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.445323199999997,
+          36.683959299999998
+        ]
+      },
+      "properties" : {
+        "FID" : 113,
+        "Id" : 0,
+        "osm_id" : "6388067897",
+        "tags" : "place=village;name=شورجه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 114,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4487624,
+          36.682735899999997
+        ]
+      },
+      "properties" : {
+        "FID" : 114,
+        "Id" : 0,
+        "osm_id" : "6388067898",
+        "tags" : "place=neighbourhood;name=شورجه"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 115,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.450121699999997,
+          36.687813400000003
+        ]
+      },
+      "properties" : {
+        "FID" : 115,
+        "Id" : 0,
+        "osm_id" : "6395503134",
+        "tags" : "place=neighbourhood;name=کوی خرداد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 116,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4550421,
+          36.686848700000006
+        ]
+      },
+      "properties" : {
+        "FID" : 116,
+        "Id" : 0,
+        "osm_id" : "6395503135",
+        "tags" : "place=neighbourhood;name=کوی خرداد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 117,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.438996799999998,
+          36.687314800000003
+        ]
+      },
+      "properties" : {
+        "FID" : 117,
+        "Id" : 0,
+        "osm_id" : "6395503136",
+        "tags" : "place=neighbourhood;name=کوی خرداد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 118,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.505682999999998,
+          36.691649599999998
+        ]
+      },
+      "properties" : {
+        "FID" : 118,
+        "Id" : 0,
+        "osm_id" : "6397812731",
+        "tags" : "place=neighbourhood;name=کارمندان/فاز ۲"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 119,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.514953499999997,
+          36.692561499999996
+        ]
+      },
+      "properties" : {
+        "FID" : 119,
+        "Id" : 0,
+        "osm_id" : "6397812732",
+        "tags" : "place=neighbourhood;name=کارمندان/فاز ۳"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 120,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.577271699999997,
+          36.663531599999999
+        ]
+      },
+      "properties" : {
+        "FID" : 120,
+        "Id" : 0,
+        "osm_id" : "6448525335",
+        "tags" : "place=neighbourhood;name=فاز ۸"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 121,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.601716400000001,
+          36.6917464
+        ]
+      },
+      "properties" : {
+        "FID" : 121,
+        "Id" : 0,
+        "osm_id" : "6483406851",
+        "tags" : "place=village;name=قیاس کندی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 122,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.532853699999997,
+          36.674708799999998
+        ]
+      },
+      "properties" : {
+        "FID" : 122,
+        "Id" : 0,
+        "osm_id" : "7334486015",
+        "tags" : "place=neighbourhood;name=زمین های شهرک دارایی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 123,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.366015900000001,
+          36.718111899999997
+        ]
+      },
+      "properties" : {
+        "FID" : 123,
+        "Id" : 0,
+        "osm_id" : "7334672996",
+        "tags" : "place=village;name=نظام آباد"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 124,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.454366999999998,
+          36.676177199999998
+        ]
+      },
+      "properties" : {
+        "FID" : 124,
+        "Id" : 0,
+        "osm_id" : "8189972583",
+        "tags" : "place=neighbourhood;name=کوی شهید چمران"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 125,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.464528100000003,
+          36.666619599999997
+        ]
+      },
+      "properties" : {
+        "FID" : 125,
+        "Id" : 0,
+        "osm_id" : "8621060391",
+        "tags" : "name:en=shahrak- e - Babaeyan;place=neighbourhood;name=شهرک بابائیان;population=300"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 126,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.536047199999999,
+          36.667786
+        ]
+      },
+      "properties" : {
+        "FID" : 126,
+        "Id" : 0,
+        "osm_id" : "11002755424",
+        "tags" : "place=neighbourhood;name=مجتمع مسکونی گلشهر پونک"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 127,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.491570899999999,
+          36.693887400000001
+        ]
+      },
+      "properties" : {
+        "FID" : 127,
+        "Id" : 0,
+        "osm_id" : "11449205124",
+        "tags" : "place=neighbourhood;name=کوی نیکان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 128,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.490007599999998,
+          36.6689297
+        ]
+      },
+      "properties" : {
+        "FID" : 128,
+        "Id" : 0,
+        "osm_id" : "11987519205",
+        "tags" : "place=neighbourhood;name=خواجه نصیر"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 129,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4901804,
+          36.665928600000001
+        ]
+      },
+      "properties" : {
+        "FID" : 129,
+        "Id" : 0,
+        "osm_id" : "12149655830",
+        "tags" : "place=neighbourhood;name=قیرباشی"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 130,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.5644037,
+          36.659378500000003
+        ]
+      },
+      "properties" : {
+        "FID" : 130,
+        "Id" : 0,
+        "osm_id" : "12157965940",
+        "tags" : "place=neighbourhood;name=باغ شهر سایان;population=160"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 131,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.4803803,
+          36.665875100000001
+        ]
+      },
+      "properties" : {
+        "FID" : 131,
+        "Id" : 0,
+        "osm_id" : "12456080764",
+        "tags" : "place=neighbourhood;name=بازار زنجان"
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 132,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          48.438554400000001,
+          36.692360399999991
+        ]
+      },
+      "properties" : {
+        "FID" : 132,
+        "Id" : 0,
+        "osm_id" : "12531312361",
+        "tags" : "place=neighbourhood;name=مسکن ملی ثمین۲"
+      }
+    }
+  ]
+}

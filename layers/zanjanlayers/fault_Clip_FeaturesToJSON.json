@@ -1,0 +1,86 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [
+    {
+      "type" : "Feature",
+      "id" : 0,
+      "geometry" : {
+        "type" : "LineString",
+        "coordinates" : [
+          [
+            48.366698494720019,
+            36.620830299412809
+          ],
+          [
+            48.373223064690649,
+            36.620011386420671
+          ]
+        ]
+      },
+      "properties" : {
+        "FID" : 0,
+        "OBJECTID" : 6157,
+        "DIS1500" : " ",
+        "GEOLOGY" : "QT",
+        "Length" : 590.83573849100003,
+        "City_per" : " ",
+        "City" : " ",
+        "Shape_Leng" : 591.04311729599999
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 1,
+      "geometry" : {
+        "type" : "LineString",
+        "coordinates" : [
+          [
+            48.51059516466583,
+            36.708503146712651
+          ],
+          [
+            48.515431961966712,
+            36.703489374432273
+          ]
+        ]
+      },
+      "properties" : {
+        "FID" : 1,
+        "OBJECTID" : 7727,
+        "DIS1500" : " ",
+        "GEOLOGY" : "QT",
+        "Length" : 704.66848797900002,
+        "City_per" : " ",
+        "City" : " ",
+        "Shape_Leng" : 705.035899632
+      }
+    },
+    {
+      "type" : "Feature",
+      "id" : 2,
+      "geometry" : {
+        "type" : "LineString",
+        "coordinates" : [
+          [
+            48.413007344755783,
+            36.766009380028777
+          ],
+          [
+            48.413753202394787,
+            36.766099168629303
+          ]
+        ]
+      },
+      "properties" : {
+        "FID" : 2,
+        "OBJECTID" : 7807,
+        "DIS1500" : " ",
+        "GEOLOGY" : "QT",
+        "Length" : 67.351472403299994,
+        "City_per" : " ",
+        "City" : " ",
+        "Shape_Leng" : 67.387996352100004
+      }
+    }
+  ]
+}
