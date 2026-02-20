@@ -19,7 +19,7 @@ function Hero({ t }) { // 👈 Already correctly accepts 't'
         <h1 className="text-hero-text text-4xl sm:text-5xl lg:text-[68px] font-bold leading-tight lg:leading-[68.8px] tracking-[-2px] lg:tracking-[-4.1px] mb-4 sm:mb-6 lg:mb-6">
           {t('hero.title')} {/* 👈 Already translated */}
         </h1>
-        <p className="text-base sm:text-lg lg:text-[17px] leading-relaxed lg:leading-[22.9px] text-hero-subtext max-w-[90%] sm:max-w-[600px]">
+        <p className="text-hero-text[50] sm:text-lg lg:text-[17px] leading-relaxed lg:leading-[22.9px] text-hero-subtext max-w-[90%] sm:max-w-[600px]">
           {t('hero.subtitle')} {/* 👈 Already translated */}
         </p>
         <button className="mt-4 w-[140px] h-[38px] py-2 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
