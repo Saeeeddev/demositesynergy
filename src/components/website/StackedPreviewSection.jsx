@@ -1,4 +1,5 @@
-import CardSwap, { Card } from './utils/CardSwap';
+import React from 'react';
+import CardSwap, { Card } from './utils/CardSwap'; // Ensure this path is correct
 
 const ShieldCheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-primary-dark">
@@ -17,52 +18,83 @@ const AdjustmentsHorizontalIcon = () => (
       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9-7.5h9.75" />
   </svg>
 );
-const StackedPreviewSection = ({ t }) => { // 👈 Already correctly accepts 't'
+
+const StackedPreviewSection = () => {
   return (
-    <section dir="ltr" className="flex flex-col lg:flex-row items-center justify-center w-full min-h-[500px] lg:h-[650px] py-8 sm:py-12 lg:py-16 bg-background-primary">
-      <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl px-4 sm:px-6 lg:px-8 gap-8 lg:gap-0">
-        <div className="w-full lg:w-1/3 text-center lg:text-start px-4 lg:px-0">
-          <h2 className="mb-4 text-3xl sm:text-4xl font-bold text-text-dark">
-            {t('stackedPreview.title')} {/* 👈 Already translated */}
+    <section  className="flex flex-col lg:flex-row items-center justify-center w-full min-h-[500px] lg:h-[750px] py-8 sm:py-12 lg:py-16 bg-background-primary overflow-hidden">
+      {/* 
+          Main Container:
+          Changed justify-between -> justify-center 
+          Added gap-12 lg:gap-20 to control the "padding from text"
+      */}
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl px-4 sm:px-6 lg:px-8 gap-12 lg:gap-20">
+        
+        {/* Text Section (Right Side in RTL) */}
+        <div className="w-full lg:w-5/12 text-center lg:text-start px-4 lg:px-0 z-10 order-1 lg:order-1">
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-text-dark leading-tight">
+            انتخاب هوشمندتر مکان پروژه
           </h2>
-          <p className="text-base sm:text-lg text-primary-dark max-w-md lg:max-w-none mx-auto lg:mx-0">
-            {t('stackedPreview.subtitle')} {/* 👈 Already translated */}
+          <p className="text-base sm:text-lg text-primary-dark leading-relaxed">
+            با دریافت گزارش‌های کامل تحلیل فنی و اقتصادی، پیچیدگی‌های ارزیابی را حذف کنید و سودآورترین مکان‌ها را با اطمینان نهایی کنید.
           </p>
         </div>
-        <div className="relative flex items-center justify-center w-full lg:w-2/3 h-[400px] sm:h-[450px] lg:h-full mt-8 lg:mt-0">
-            <div className="absolute transform scale-[0.45] sm:scale-[0.55] md:scale-[0.65] lg:scale-[0.70] origin-center"> 
-                <CardSwap width={1000} height={600} cardDistance={60} verticalDistance={25} delay={4000} pauseOnHover={false} skewAmount={6}>
-                    <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
-                        <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
+
+        {/* Animation Section (Left Side in RTL) */}
+        {/* Added lg:justify-end to pull content towards the text if needed, but center works best with the gap above */}
+        <div  dir="ltr" className="relative flex items-center justify-center w-full lg:w-7/12 h-[400px] sm:h-[500px] lg:h-full mt-8 lg:mt-0 order-2 lg:order-2">
+            
+            {/* 
+               Scale Adjustment:
+               Cards are 1481px wide.
+               lg:scale-[0.45] makes them ~666px wide.
+               We center this container.
+            */}
+            <div className="absolute transform scale-[0.25] sm:scale-[0.35] lg:scale-[0.45] origin-center ltr:lg:-translate-x-10 rtl:lg:translate-x-10"> 
+                <CardSwap 
+                    width={1491} 
+                    height={922} 
+                    cardDistance={60} 
+                    verticalDistance={30} 
+                    delay={4000} 
+                    pauseOnHover={false} 
+                    skewAmount={4}
+                >
+                    {/* CAPEX CARD */}
+                    <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-3xl border-divider-color">
+                        <div className="flex items-center flex-shrink-0 gap-3 px-6 py-4 bg-card-background border-b border-divider-color h-[100px]">
                             <ShieldCheckIcon />
-                            <h3 className="font-semibold text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.reliable')}</h3> {/* 👈 Already translated */}
+                            <h3 className="font-bold text-2xl text-text-dark">هزینه‌های سرمایه‌ای (CAPEX)</h3>
                         </div>
                         <img 
-                             src="src/assets/Solarresource.png" 
-                             alt="Solar Resource Map" 
-                             className="absolute top-0 start-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
+                             src="src/assets/DemoImage/Capex.png" 
+                             alt="Capital Expenditure Analysis" 
+                             className="absolute top-[100px] start-0 object-cover w-full h-[calc(100%-100px)] rounded-b-lg" 
                            />
                     </Card>
-                    <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
-                         <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
+
+                    {/* OPEX CARD */}
+                    <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-3xl border-divider-color">
+                         <div className="flex items-center flex-shrink-0 gap-3 px-6 py-4 bg-card-background border-b border-divider-color h-[100px]">
                             <BoltIcon />
-                            <h3 className="font-semibold text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.fast')}</h3> {/* 👈 Already translated */}
+                            <h3 className="font-bold text-2xl text-text-dark">هزینه‌های عملیاتی (OPEX)</h3>
                         </div>
                         <img 
-                             src="src/assets/Solarresource.png" 
-                             alt="Solar Resource Map" 
-                             className="absolute top-0 start-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
+                             src="src/assets/DemoImage/OpexImage.png" 
+                             alt="Operational Cost Analysis" 
+                             className="absolute top-[100px] start-0 object-cover w-full h-[calc(100%-100px)] rounded-b-lg" 
                            />
                     </Card>
-                    <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-2xl border-divider-color">
-                        <div className="flex items-center flex-shrink-0 gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-card-background border-b border-divider-color">
+
+                    {/* DASHBOARD CARD */}
+                    <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-3xl border-divider-color">
+                        <div className="flex items-center flex-shrink-0 gap-3 px-6 py-4 bg-card-background border-b border-divider-color h-[100px]">
                             <AdjustmentsHorizontalIcon />
-                            <h3 className="font-semibold text-sm sm:text-base text-text-dark">{t('stackedPreview.cards.customizable')}</h3> {/* 👈 Already translated */}
+                            <h3 className="font-bold text-2xl text-text-dark">داشبورد مدیریتی</h3>
                         </div>
                         <img 
-                             src="src/assets/Solarresource.png" 
-                             alt="Solar Resource Map" 
-                             className="absolute top-0 start-0 object-cover w-full h-full rounded-b-lg sm:rounded-b-xl lg:rounded-b-2xl" 
+                             src="src/assets/DemoImage/Dashboard.png" 
+                             alt="Management Dashboard" 
+                             className="absolute top-[100px] start-0 object-cover w-full h-[calc(100%-100px)] rounded-b-lg" 
                            />
                     </Card>
                 </CardSwap>

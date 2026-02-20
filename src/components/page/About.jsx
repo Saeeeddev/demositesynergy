@@ -145,17 +145,17 @@ const About = () => {
                 // Use a placeholder if image source is not available in JSON
                 let imgSrc = ""; 
                 if (memberKey === 'saeed') {
-                  imgSrc = "src/assets/saeedprofil.png";
+                  imgSrc = "src/assets/Profile/saeedprofil.png";
                 }
                 else if (memberKey === 'reza') {
-                  imgSrc = "src/assets/rezaprofile.png";
+                  imgSrc = "src/assets/Profile/rezaprofile.png";
                 }
                 else if (memberKey === 'amir') {
-                  imgSrc = "src/assets/amirprofile.png";
+                  imgSrc = "src/assets/Profile/amirprofile.png";
             
                 }
                 else if (memberKey === 'younes') {
-                  imgSrc = "src/assets/norolahi.jpg";
+                  imgSrc = "src/assets/Profile/norolahi.jpg";
                 }
 
                 return (
@@ -183,7 +183,7 @@ const About = () => {
               <div className="mb-8">
                 <div className="w-24 h-24 rounded-2xl shadow-2xl shadow-gray-400/30 mx-auto flex items-center justify-center border border-gray-200 p-2">
                   <img 
-                    src="/src/assets/sy_icon_transparent_background.png" 
+                    src="/src/assets/LogoIcon/sy_icon_transparent_background.png" 
                     alt={t('download.appIconAlt')}
                     className="w-full h-full object-contain"
                   />

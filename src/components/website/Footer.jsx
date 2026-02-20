@@ -30,7 +30,7 @@ const Footer = () => {
               <Link to="/">
                 <img 
                   className="h-12 sm:h-10 w-auto" 
-                  src="/src/assets/sitesynergy_logo_colored.png" 
+                  src="/src/assets/LogoIcon/sitesynergy_logo_colored.png" 
                   alt={t('logoAlt')} // 👈 Translated
                 />
               </Link>

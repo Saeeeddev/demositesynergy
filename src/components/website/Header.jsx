@@ -56,11 +56,11 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
             <Link to="/" className="header__logo-image">
               {useColoredLogo ? (
                 <img 
-                  src={windowWidth <= 1044 || isScrolled ? "/src/assets/sitesynergy_logo_white.png" : "/src/assets/sitesynergy_logo_colored.png"} 
+                  src={windowWidth <= 1044 || isScrolled ? "/src/assets/LogoIcon/sitesynergy_logo_white.png" : "/src/assets/LogoIcon/sitesynergy_logo_colored.png"} 
                   alt={t('logoAlt', { ns: 'Header' })}
                 />
               ) : (
-                <img src="/src/assets/sitesynergy_logo_white.png" alt={t('logoAlt', { ns: 'Header' })} />
+                <img src="/src/assets/LogoIcon/sitesynergy_logo_white.png" alt={t('logoAlt', { ns: 'Header' })} />
               )}
             </Link>
           </div>
