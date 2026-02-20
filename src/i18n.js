@@ -98,8 +98,9 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en',
-    lng: 'en',
+    // Default the site to Farsi for first-time visitors
+    fallbackLng: 'fa',
+    lng: 'fa',
     defaultNS: 'common',
     ns: [
       'common',
@@ -123,7 +124,9 @@ i18n
     },
     
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      // Respect a previously saved choice (localStorage) only.
+      // This makes `fa` the initial language for new visitors.
+      order: ['localStorage'],
       caches: ['localStorage'],
       lookupLocalStorage: 'i18nextLng',
     },
@@ -132,5 +135,18 @@ i18n
       useSuspense: false
     }
   });
+
+
+// Ensure HTML `lang` and `dir` reflect the active language on load and when it changes
+const setHtmlAttrs = (lng) => {
+  const dir = lng && lng.startsWith('fa') ? 'rtl' : 'ltr';
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = lng;
+    document.documentElement.dir = dir;
+  }
+};
+
+setHtmlAttrs(i18n.language || 'fa');
+i18n.on('languageChanged', (lng) => setHtmlAttrs(lng));
 
 export default i18n;

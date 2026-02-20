@@ -4,26 +4,29 @@ import { HiOutlineGlobeAlt, HiX } from 'react-icons/hi';
 
 const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation('common');
+  // normalize language (handle values like "fa-IR")
+  const currentLang = i18n?.language?.split('-')[0] || i18n?.language || 'fa';
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const regions = [
-    {
-      name: 'North America',
-      countries: [
-        { 
-          name: 'United States', 
-          languages: [{ code: 'en', name: 'English', dir: 'ltr' }] 
-        },
-      ]
-    },
+    
     {
       name: 'Middle-East',
       countries: [
         { 
           name: 'Iran', 
           languages: [{ code: 'fa', name: 'فارسی', dir: 'rtl' }] 
+        },
+      ]
+    },
+    {
+      name: 'North America',
+      countries: [
+        { 
+          name: 'United States', 
+          languages: [{ code: 'en', name: 'English', dir: 'ltr' }] 
         },
       ]
     }
@@ -85,7 +88,7 @@ const LanguageSwitcher = () => {
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code, lang.dir)}
-                      className={`text-sm hover:underline ${lang.code === i18n.language ? 'text-blue-600 font-semibold' : 'text-gray-500'}`}
+                      className={`text-sm hover:underline ${lang.code === currentLang ? 'text-blue-600 font-semibold' : 'text-gray-500'}`}
                     >
                       {lang.name}
                     </button>
