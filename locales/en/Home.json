@@ -56,12 +56,12 @@
     }
   },
   "stackedPreview": {
-    "title": "Smarter Site Selection.",
-    "subtitle": "Optimize solar sites, cut complexity, and secure profitable locations.",
+    "title": "Smarter Project Site Selection",
+    "subtitle": "Get comprehensive technical and economic analysis reports, eliminate assessment complexities, and confidently secure your most profitable locations.",
     "cards": {
-      "reliable": "Reliable",
-      "fast": "Fast",
-      "customizable": "Customizable"
+      "capex": "Capital Expenditure (CAPEX)",
+      "opex": "Operational Expenditure (OPEX)",
+      "dashboard": "Management Dashboard"
     }
   },
   "ctaSection": {

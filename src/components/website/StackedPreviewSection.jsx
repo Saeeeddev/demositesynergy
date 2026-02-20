@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import CardSwap, { Card } from './utils/CardSwap'; // Ensure this path is correct
 
 const ShieldCheckIcon = () => (
@@ -20,6 +21,7 @@ const AdjustmentsHorizontalIcon = () => (
 );
 
 const StackedPreviewSection = () => {
+  const { t } = useTranslation('Home');
   return (
     <section  className="flex flex-col lg:flex-row items-center justify-center w-full min-h-[500px] lg:h-[750px] py-8 sm:py-12 lg:py-16 bg-background-primary overflow-hidden">
       {/* 
@@ -32,10 +34,10 @@ const StackedPreviewSection = () => {
         {/* Text Section (Right Side in RTL) */}
         <div className="w-full lg:w-5/12 text-center lg:text-start px-4 lg:px-0 z-10 order-1 lg:order-1">
           <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-text-dark leading-tight">
-            انتخاب هوشمندتر مکان پروژه
+            {t('stackedPreview.title')}
           </h2>
           <p className="text-base sm:text-lg text-primary-dark leading-relaxed">
-            با دریافت گزارش‌های کامل تحلیل فنی و اقتصادی، پیچیدگی‌های ارزیابی را حذف کنید و سودآورترین مکان‌ها را با اطمینان نهایی کنید.
+            {t('stackedPreview.subtitle')}
           </p>
         </div>
 
@@ -51,8 +53,8 @@ const StackedPreviewSection = () => {
             */}
             <div className="absolute transform scale-[0.25] sm:scale-[0.35] lg:scale-[0.45] origin-center ltr:lg:-translate-x-10 rtl:lg:translate-x-10"> 
                 <CardSwap 
-                    width={1491} 
-                    height={922} 
+                    width={1501} 
+                    height={935} 
                     cardDistance={60} 
                     verticalDistance={30} 
                     delay={4000} 
@@ -63,7 +65,7 @@ const StackedPreviewSection = () => {
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-3xl border-divider-color">
                         <div className="flex items-center flex-shrink-0 gap-3 px-6 py-4 bg-card-background border-b border-divider-color h-[100px]">
                             <ShieldCheckIcon />
-                            <h3 className="font-bold text-2xl text-text-dark">هزینه‌های سرمایه‌ای (CAPEX)</h3>
+                            <h3 className="font-bold text-2xl text-text-dark">{t('stackedPreview.cards.capex')}</h3>
                         </div>
                         <img 
                              src="src/assets/DemoImage/Capex.png" 
@@ -76,7 +78,7 @@ const StackedPreviewSection = () => {
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-3xl border-divider-color">
                          <div className="flex items-center flex-shrink-0 gap-3 px-6 py-4 bg-card-background border-b border-divider-color h-[100px]">
                             <BoltIcon />
-                            <h3 className="font-bold text-2xl text-text-dark">هزینه‌های عملیاتی (OPEX)</h3>
+                            <h3 className="font-bold text-2xl text-text-dark">{t('stackedPreview.cards.opex')}</h3>
                         </div>
                         <img 
                              src="src/assets/DemoImage/OpexImage.png" 
@@ -89,7 +91,7 @@ const StackedPreviewSection = () => {
                     <Card className="flex flex-col overflow-hidden border shadow-custom-lg bg-background-secondary rounded-lg sm:rounded-xl lg:rounded-3xl border-divider-color">
                         <div className="flex items-center flex-shrink-0 gap-3 px-6 py-4 bg-card-background border-b border-divider-color h-[100px]">
                             <AdjustmentsHorizontalIcon />
-                            <h3 className="font-bold text-2xl text-text-dark">داشبورد مدیریتی</h3>
+                            <h3 className="font-bold text-2xl text-text-dark">{t('stackedPreview.cards.dashboard')}</h3>
                         </div>
                         <img 
                              src="src/assets/DemoImage/Dashboard.png" 
