@@ -18,7 +18,7 @@ function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
                 loop 
                 playsInline
               >
-                <source src="/src/assets/demos/hero-light-lg.webm" type="video/webm"/>
+                <source src="/src/assets/DemoVideos/NewProjectDemo.mp4" type="video/mp4"/>
                 {t('demoVideo.videoFallback', 'Your browser does not support the video tag.')} {/* 👈 Translated */}
               </video>
             </div>
