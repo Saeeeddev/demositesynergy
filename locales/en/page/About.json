@@ -8,7 +8,7 @@
     "badge": "HOW WE GOT TO THIS POINT",
     "title": "Progress towards the mission",
     "phase1": {
-      "badge": "2022/2023 — PHASE I",
+      "badge": " — PHASE I",
       "title": "Solved \"data overload\" in site selection",
       "content": {
         "problem1": "Traditional site analysis took months, scattered across reports, maps, and spreadsheets.",
@@ -21,7 +21,7 @@
       }
     },
     "phase2": {
-      "badge": "2024/2025 — PHASE II: ACCURACY & AUTOMATION",
+      "badge": " — PHASE II: ACCURACY & AUTOMATION",
       "title": "Solved \"proactive decision-making\" (Automation-1)",
       "content": {
         "problem1": "Raw site data wasn't enough — the system needed to identify which sites to prioritize, which to discard, and how to retrieve the right insights instantly.",
@@ -43,24 +43,24 @@
     "members": {
       "younes": {
         "name": "Dr. Younes Noorollahi",
-        "role": ""
+        "role": "Board Member & Co-Founder (Renewable Energy)"
       },
       "amir": {
-        "name": "Amir Naseri",
-        "role": ""
+        "name": " Amir Naseri",
+        "role": "Chairman of the Board & Co-Founder (Geography & Spatial Analysis)"
       },
       "saeed": {
         "name": "Saeed Dolati",
-        "role": ""
+        "role": "Co-Founder (Computer Engineering & Intelligent Systems)"
       },
       "reza": {
         "name": "Reza Dolati",
-        "role": ""
+        "role": "CEO & Co-Founder (Electrical Engineering & Renewable Energy)"
       }
     }
   },
   "download": {
-    "badge": "AVAILABLE NOW",
+    "badge": "Developer Access",
     "title": "Transform site selection\nwith speed & precision",
     "cta": "🚀Get Started",
     "appIconAlt": "SiteSynergy App Icon"

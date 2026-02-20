@@ -12,12 +12,7 @@ const About = () => {
   // Define the order to maintain the layout from your original file
   const memberOrder = ['younes', 'amir', 'saeed', 'reza'];
 
-  // This handles the title with the blue span without changing your JSON file
-  const teamTitle = t('team.title');
-  const highlightedText = "developers & investors";
-  const titleParts = teamTitle.split(highlightedText);
-
-
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
       <Header useColoredLogo={true} />
@@ -139,9 +134,8 @@ const About = () => {
                 {t('team.badge')}
               </p>
               <h2 className="text-[42px] leading-[48px] font-bold text-gray-900 max-w-[800px] mx-auto">
-                {titleParts[0]}
-                <span className="text-blue-600">{highlightedText}</span>
-                {titleParts[1]}
+                
+{t('team.title')}
               </h2>
             </div>
             
