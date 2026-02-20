@@ -18,7 +18,7 @@ const LanguageSwitcher = () => {
   return (
     <span
       onClick={handleLanguageChange}
-      className="cursor-pointer text-m font-medium hover:underline px-2 py-2"
+      className="cursor-pointer text-m font-medium px-2 py-2"
       aria-label={`Switch to ${otherLang === 'fa' ? 'Farsi' : 'English'}`}
     >
       {label}

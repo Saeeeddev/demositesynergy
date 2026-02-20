@@ -3,7 +3,8 @@ import React from 'react';
 function HeroVideoDemo() {
   return (
     <div className="relative w-full flex justify-center -mt-[250px] xs:-mt-[240px] sm:-mt-[280px] md:-mt-[320px] lg:-mt-[375px]">
-      <div className="w-[98%] md:w-[92%] lg:w-[1035px] aspect-[16/9] bg-[#f7f7f7] relative z-10 rounded-xl sm:rounded-2xl lg:rounded-[30px] shadow-hero-video p-0.5 sm:p-1">
+      {/* container locked to 1280x574 (approx 2.23:1) but scales down responsively */}
+      <div className="w-[98%] md:w-[92%] lg:w-[1277px] max-w-full aspect-[1280/574] bg-[#f7f7f7] relative z-10 rounded-xl sm:rounded-2xl lg:rounded-[30px] shadow-hero-video p-0.5 sm:p-1">
         <div className="flex items-center gap-1.5 sm:gap-2 absolute top-[8px] sm:top-[12px] start-[8px] sm:start-[12px] h-3 sm:h-4 z-20">
           
         </div>
@@ -15,7 +16,7 @@ function HeroVideoDemo() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/src/assets/demos/ssd.webm" type="video/webm"/>
+            <source src="/src/assets/DemoVideos/HeroDemoVideo.mp4" type="video/mp4"/>
           </video>
         </div>
       </div>

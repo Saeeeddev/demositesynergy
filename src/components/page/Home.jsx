@@ -21,11 +21,12 @@ function Home() {
       {/* 👈 3. Pass the 't' function as a prop to each child */}
       <Hero t={t} />
       <HeroVideoDemo /> {/* This component has no text */}
-      <CompanyLogos t={t} />
+      
       <SuitabilityLayerSection t={t} />
       <DemoVideoSection t={t} />
       <DataToDecision t={t} />
       <StackedPreviewSection t={t} />
+      <CompanyLogos t={t} />
       <CtaSection t={t} />
     </main>
   );
