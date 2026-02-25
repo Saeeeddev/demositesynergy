@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../website/Header';
 import Footer from '../website/Footer';
+import DashboardImg from '../../assets/DemoImage/Dashboard.png'; 
+import syIcon from '../../assets/LogoIconImages/sy_icon_transparent_background.png';
 
 // Placeholder icons for feature cards
 const FeatureIcon = ({ children }) => (
@@ -61,7 +63,7 @@ const Product = () => {
                 <div className="bg-surface-light rounded-xl shadow-map-viz p-3">
                   <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
                     <img 
-                      src="src/assets/Solarresource.png" 
+                      src={DashboardImg} 
                       alt={t('mainFeature.imageAlt')}
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -119,7 +121,7 @@ const Product = () => {
               <div className="mb-8">
                 <div className="w-24 h-24 rounded-2xl shadow-2xl shadow-gray-400/30 mx-auto flex items-center justify-center border border-gray-200 p-2">
                   <img 
-                    src="/src/assets/sy_icon_transparent_background.png" 
+                    src={syIcon}
                     alt={t('cta.appIconAlt')} 
                     className="w-full h-full object-contain"
                   />

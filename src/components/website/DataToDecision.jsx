@@ -1,5 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import '../../style/DataToDecision.css';
+import decisionImg from '../../assets/desiion.png';
+import sdfsfImg from '../../assets/sdfsf.png';
+import trustImg from '../../assets/transparentTrust.png';
 
 const DataToDecision = ({ t }) => { // 👈 Accept 't' as a prop
   const glowBoxRef1 = useRef(null);
@@ -39,7 +42,7 @@ const DataToDecision = ({ t }) => { // 👈 Accept 't' as a prop
             </div>
             <div className="DataToDecision-section__left-image-box">
               <div className="DataToDecision-section__image-placeholder">
-               <img src="src/assets/desiion.png" alt={t('dataToDecision.smarterDecisions.title')} />
+               <img src={decisionImg} alt={t('dataToDecision.smarterDecisions.title')} />
               </div>
             </div>
           </div>
@@ -53,7 +56,7 @@ const DataToDecision = ({ t }) => { // 👈 Accept 't' as a prop
                   </p>
                 </div>
                 <div className="DataToDecision-section__image-placeholder DataToDecision-section__image-placeholder--small">
-                  <img src="src/assets/sdfsf.png" alt={t('dataToDecision.yourCriteria.title')}/>
+                  <img src={sdfsfImg} alt={t('dataToDecision.yourCriteria.title')}/>
                 </div>
             </div>
             <div className="DataToDecision-section__right-bottom-box glow-effect-box" ref={glowBoxRef3}>
@@ -64,7 +67,7 @@ const DataToDecision = ({ t }) => { // 👈 Accept 't' as a prop
                   </p>
                 </div>
                 <div className="DataToDecision-section__image-placeholder DataToDecision-section__image-placeholder--medium">
-                   <img src="src/assets/transparentTrust.png" alt={t('dataToDecision.transparentByDefault.title')} />
+                   <img src={trustImg} alt={t('dataToDecision.transparentByDefault.title')} />
                 </div>
             </div>
           </div>

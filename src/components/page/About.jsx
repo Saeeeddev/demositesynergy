@@ -2,6 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../website/Header';
 import Footer from '../website/Footer';
+import saeedImg from '../../assets/Profile/saeedprofil.png';
+import rezaImg from '../../assets/Profile/rezaprofile.png';
+import amirImg from '../../assets/Profile/amirprofile.png';
+import younesImg from '../../assets/Profile/norolahi.jpg';
+import syIcon from '../../assets/LogoIconImages/sy_icon_transparent_background.png';
 
 const About = () => {
   // Use the 'About' namespace to get the correct translations
@@ -145,18 +150,17 @@ const About = () => {
                 // Use a placeholder if image source is not available in JSON
                 let imgSrc = ""; 
                 if (memberKey === 'saeed') {
-                  imgSrc = "src/assets/Profile/saeedprofil.png";
-                }
-                else if (memberKey === 'reza') {
-                  imgSrc = "src/assets/Profile/rezaprofile.png";
-                }
-                else if (memberKey === 'amir') {
-                  imgSrc = "src/assets/Profile/amirprofile.png";
-            
-                }
-                else if (memberKey === 'younes') {
-                  imgSrc = "src/assets/Profile/norolahi.jpg";
-                }
+                    imgSrc = saeedImg;
+                  }
+                  else if (memberKey === 'reza') {
+                    imgSrc = rezaImg;
+                  }
+                  else if (memberKey === 'amir') {
+                    imgSrc = amirImg;
+                  }
+                  else if (memberKey === 'younes') {
+                    imgSrc = younesImg;
+                  }
 
                 return (
                   <div key={member.name} className="text-center">
@@ -183,7 +187,7 @@ const About = () => {
               <div className="mb-8">
                 <div className="w-24 h-24 rounded-2xl shadow-2xl shadow-gray-400/30 mx-auto flex items-center justify-center border border-gray-200 p-2">
                   <img 
-                    src="/src/assets/LogoIcon/sy_icon_transparent_background.png" 
+                    src={syIcon} 
                     alt={t('download.appIconAlt')}
                     className="w-full h-full object-contain"
                   />

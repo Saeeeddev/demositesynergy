@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import CardSwap, { Card } from './utils/CardSwap'; // Ensure this path is correct
+import capexImg from '../../assets/DemoImage/Capex.png';
+import opexImg from '../../assets/DemoImage/OpexImage.png';
+import dashboardImg from '../../assets/DemoImage/Dashboard.png';
 
 const ShieldCheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-primary-dark">
@@ -68,7 +71,7 @@ const StackedPreviewSection = () => {
                             <h3 className="font-bold text-2xl text-text-dark">{t('stackedPreview.cards.capex')}</h3>
                         </div>
                         <img 
-                             src="src/assets/DemoImage/Capex.png" 
+                             src={capexImg} 
                              alt="Capital Expenditure Analysis" 
                              className="absolute top-[100px] start-0 object-cover w-full h-[calc(100%-100px)] rounded-b-lg" 
                            />
@@ -81,7 +84,7 @@ const StackedPreviewSection = () => {
                             <h3 className="font-bold text-2xl text-text-dark">{t('stackedPreview.cards.opex')}</h3>
                         </div>
                         <img 
-                             src="src/assets/DemoImage/OpexImage.png" 
+                             src={opexImg} 
                              alt="Operational Cost Analysis" 
                              className="absolute top-[100px] start-0 object-cover w-full h-[calc(100%-100px)] rounded-b-lg" 
                            />
@@ -94,7 +97,7 @@ const StackedPreviewSection = () => {
                             <h3 className="font-bold text-2xl text-text-dark">{t('stackedPreview.cards.dashboard')}</h3>
                         </div>
                         <img 
-                             src="src/assets/DemoImage/Dashboard.png" 
+                             src={dashboardImg} 
                              alt="Management Dashboard" 
                              className="absolute top-[100px] start-0 object-cover w-full h-[calc(100%-100px)] rounded-b-lg" 
                            />

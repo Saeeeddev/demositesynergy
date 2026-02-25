@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../style/SuitabilityLayer.css';
-import syIcon from '../../assets/LogoIcon/sy_icon_transparent_background.png';
+import syIcon from '../../assets/LogoIconImages/sy_icon_transparent_background.png';
 
 // Icons (SolarIcon, TerrainIcon, etc.) remain the same...
 

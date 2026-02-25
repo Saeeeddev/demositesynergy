@@ -1,4 +1,5 @@
 import React from 'react';
+import heroVideo from '../../assets/heroBAckgroundVideo.mp4';
 
 function Hero({ t }) { // 👈 Already correctly accepts 't'
   return (
@@ -12,7 +13,7 @@ function Hero({ t }) { // 👈 Already correctly accepts 't'
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover"
         >
-          <source src="src\assets\heroBAckgroundVideo.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
       </div>
       <div className="w-full sm:w-[600px] lg:w-[700px] min-h-[280px] mt-[60px] flex flex-col items-center justify-center px-4">

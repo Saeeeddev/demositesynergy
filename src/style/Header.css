@@ -34,7 +34,7 @@
 /* Scrolled state for wrapper */
 .header__wrapper--scrolled {
   width: 740px;
-  height: 64px;
+  height: 54px;
   padding: 0 10px;
   background-color: #6d7f9f;
   border-radius: 9999px;

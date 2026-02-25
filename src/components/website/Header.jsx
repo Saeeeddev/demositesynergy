@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import '../../style/Header.css';
+import logoWhite from '../../assets/LogoIconImages/sitesynergy_logo_white.png';
+import logoColored from '../../assets/LogoIconImages/sitesynergy_logo_colored.png';
 
 function Header({ useColoredLogo = false, isHomePage = false }) {
   const { t } = useTranslation(['Header', 'common']);
@@ -56,11 +58,11 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
             <Link to="/" className="header__logo-image">
               {useColoredLogo ? (
                 <img 
-                  src={windowWidth <= 1044 || isScrolled ? "/src/assets/LogoIcon/sitesynergy_logo_white.png" : "/src/assets/LogoIcon/sitesynergy_logo_colored.png"} 
-                  alt={t('logoAlt', { ns: 'Header' })}
+               src={windowWidth <= 1044 || isScrolled ? logoWhite : logoColored} 
+                alt={t('logoAlt', { ns: 'Header' })}
                 />
               ) : (
-                <img src="/src/assets/LogoIcon/sitesynergy_logo_white.png" alt={t('logoAlt', { ns: 'Header' })} />
+                <img src={logoWhite} alt={t('logoAlt', { ns: 'Header' })} />
               )}
             </Link>
           </div>

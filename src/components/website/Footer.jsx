@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next'; // 👈 Import useTranslation
 
+
+import logoColored from '../../assets/LogoIconImages/sitesynergy_logo_colored.png';
+
 // Helper to map JSON keys to URL paths
 const linkPaths = {
   about: '/about',
@@ -30,7 +33,7 @@ const Footer = () => {
               <Link to="/">
                 <img 
                   className="h-12 sm:h-10 w-auto" 
-                  src="/src/assets/LogoIcon/sitesynergy_logo_colored.png" 
+                  src={logoColored} 
                   alt={t('logoAlt')} // 👈 Translated
                 />
               </Link>

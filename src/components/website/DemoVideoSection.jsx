@@ -1,4 +1,5 @@
 import React from 'react';
+import NewProjectVideo from '../../assets/DemoVideos/NewProjectDemo.mp4'; // Ensure this path is correct
 
 function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
   return (
@@ -18,7 +19,7 @@ function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
                 loop 
                 playsInline
               >
-                <source src="/src/assets/DemoVideos/NewProjectDemo.mp4" type="video/mp4"/>
+                <source src={NewProjectVideo} type="video/mp4"/>
                 {t('demoVideo.videoFallback', 'Your browser does not support the video tag.')} {/* 👈 Translated */}
               </video>
             </div>

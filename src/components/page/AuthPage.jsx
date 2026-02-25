@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { EnvelopeIcon, CheckCircleIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import logoColored from '../../assets/LogoIconImages/sitesynergy_logo_colored.png';
+import loginBg from '../../assets/loginbackground1.png';
+
 
 const AuthPage = () => {
     const { t, i18n } = useTranslation('Auth');
@@ -43,7 +46,7 @@ const AuthPage = () => {
             <div className="flex items-center justify-center p-6 sm:p-12 h-full bg-white">
                 <div className="w-full max-w-sm">
                     <Link to="/" className="inline-block mb-12">
-                        <img src="/src/assets/sitesynergy_logo_colored.png" alt={t('logoAlt')} className="h-20 w-auto" />
+                        <img src={logoColored} alt={t('logoAlt')} className="h-20 w-auto" />
                     </Link>
 
                     <h1 className="text-3xl font-bold text-gray-900">{isSignUp ? t('welcomeNew') : t('welcomeBack')}</h1>
@@ -153,7 +156,7 @@ const AuthPage = () => {
             <div className="hidden lg:block bg-white relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                     <img
-                        src="/src/assets/loginbackground1.png"
+                        src={loginBg}
                         alt="Layered data map visualization"
                         className="max-w w-full"
                     />
