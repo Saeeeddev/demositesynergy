@@ -1,0 +1,28 @@
+{
+  "type" : "FeatureCollection",
+  "crs" : {
+    "type" : "name",
+    "properties" : {
+      "name" : "EPSG:32639"
+    }
+  },
+  "features" : [
+    {
+      "type" : "Feature",
+      "id" : 0,
+      "geometry" : {
+        "type" : "Point",
+        "coordinates" : [
+          265010.71919390012,
+          4072598.7560567111
+        ]
+      },
+      "properties" : {
+        "FID" : 0,
+        "Id" : 0,
+        "osm_id" : "6259582332",
+        "tags" : "holding_position:type=runway;aeroway=holding_position"
+      }
+    }
+  ]
+}

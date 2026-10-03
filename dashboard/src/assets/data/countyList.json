@@ -1,0 +1,587 @@
+[
+  {
+    "province": "East Azerbaijan",
+    "label_fa": "آذربایجان شرقی",
+    "counties": [
+      { "county": "Mianeh", "label_fa": "میانه", "osm_id": "R6555226" },
+      { "county": "Kaleybar", "label_fa": "کلیبر", "osm_id": "R6555172" },
+      { "county": "Sarab", "label_fa": "سراب", "osm_id": "R6555068" },
+      { "county": "Marand", "label_fa": "مرند", "osm_id": "R6555204" },
+      { "county": "Ahar", "label_fa": "اهر", "osm_id": "R6554897" },
+      { "county": "Charuymaq", "label_fa": "چاراویماق", "osm_id": "R6555271" },
+      { "county": "Bostanabad", "label_fa": "بستان‌آباد", "osm_id": "R6554929" },
+      { "county": "Shabestar", "label_fa": "شبستر", "osm_id": "R6555102" },
+      { "county": "Varzaqan", "label_fa": "ورزقان", "osm_id": "R6555258" },
+      { "county": "Heris", "label_fa": "هریس", "osm_id": "R6555250" },
+      { "county": "Hashtrud", "label_fa": "هشترود", "osm_id": "R6555251" },
+      { "county": "Tabriz", "label_fa": "تبریز", "osm_id": "R6554961" },
+      { "county": "Maragheh", "label_fa": "مراغه", "osm_id": "R6555202" },
+      { "county": "Jolfa", "label_fa": "جلفا", "osm_id": "R6554977" },
+      { "county": "Osku", "label_fa": "اسکو", "osm_id": "R6554882" },
+      { "county": "Azarshahr", "label_fa": "آذرشهر", "osm_id": "R6554856" },
+      { "county": "Malekan", "label_fa": "ملکان", "osm_id": "R6555212" },
+      { "county": "Bonab", "label_fa": "بناب", "osm_id": "R6554936" },
+      { "county": "Ajabshir", "label_fa": "عجب‌شیر", "osm_id": "R6555122" }
+    ]
+  },
+  {
+    "province": "West Azerbaijan",
+    "label_fa": "آذربایجان غربی",
+    "counties": [
+      { "county": "Urumia", "label_fa": "ارومیه", "osm_id": "R6554877" },
+      { "county": "Khoy", "label_fa": "خوی", "osm_id": "R6555007" },
+      { "county": "Mahabad", "label_fa": "مهاباد", "osm_id": "R6555217" },
+      { "county": "Salmas", "label_fa": "سلماس", "osm_id": "R6555083" },
+      { "county": "Bukan", "label_fa": "بوکان", "osm_id": "R6554953" },
+      { "county": "Shahindezh", "label_fa": "شاهین‌دژ", "osm_id": "R6555101" },
+      { "county": "Piranshahr", "label_fa": "پیرانشهر", "osm_id": "R6555052" },
+      { "county": "Takab", "label_fa": "تکاب", "osm_id": "R6554967" },
+      { "county": "Miandoab", "label_fa": "میاندوآب", "osm_id": "R6555224" },
+      { "county": "Chaldoran", "label_fa": "چالدران", "osm_id": "R2390404" },
+      { "county": "Maku", "label_fa": "ماکو", "osm_id": "R6555194" },
+      { "county": "Poldasht", "label_fa": "پلدشت", "osm_id": "R6555176" },
+      { "county": "Sardasht", "label_fa": "سردشت", "osm_id": "R6555075" },
+      { "county": "Ashnavieh", "label_fa": "اشنویه", "osm_id": "R6555240" },
+      { "county": "Naghadeh", "label_fa": "نقده", "osm_id": "R6555236" },
+      { "county": "Chaypareh", "label_fa": "چایپاره", "osm_id": "R6555090" },
+      { "county": "Showt", "label_fa": "شوط", "osm_id": "R6555115" }
+    ]
+  },
+  {
+    "province": "Ardabil",
+    "label_fa": "اردبیل",
+    "counties": [
+      { "county": "Meshginshahr", "label_fa": "مشگین‌شهر", "osm_id": "R6555209" },
+      { "county": "Khalkhal", "label_fa": "خلخال", "osm_id": "R6554995" },
+      { "county": "Ardabil", "label_fa": "اردبیل", "osm_id": "R6554871" },
+      { "county": "Garmi", "label_fa": "گرمی", "osm_id": "R6555285" },
+      { "county": "Bilehsavar", "label_fa": "بیله‌سوار", "osm_id": "R6554957" },
+      { "county": "Parsabad", "label_fa": "پارس‌آباد", "osm_id": "R6555260" },
+      { "county": "Kosar", "label_fa": "کوثر", "osm_id": "R6555180" },
+      { "county": "Nir", "label_fa": "نیر", "osm_id": "R6555244" },
+      { "county": "Namin", "label_fa": "نمین", "osm_id": "R6555238" },
+      { "county": "Sareyn", "label_fa": "سرعین", "osm_id": "R6555076" }
+    ]
+  },
+  {
+    "province": "Isfahan",
+    "label_fa": "اصفهان",
+    "counties": [
+      { "county": "Nain", "label_fa": "نائین", "osm_id": "R6555231" },
+      { "county": "Isfahan", "label_fa": "اصفهان", "osm_id": "R6556135" },
+      { "county": "Ardestan", "label_fa": "اردستان", "osm_id": "R6556061" },
+      { "county": "Khur and Biabanak", "label_fa": "خور و بیابانک", "osm_id": "R6556184" },
+      { "county": "Aran and Bidgol", "label_fa": "آران و بیدگل", "osm_id": "R6556037" },
+      { "county": "Shahin Shahr and Meymeh", "label_fa": "شاهین‌شهر و میمه", "osm_id": "R6556289" },
+      { "county": "Semirom", "label_fa": "سمیرم", "osm_id": "R6556253" },
+      { "county": "Kashan", "label_fa": "کاشان", "osm_id": "R6556169" },
+      { "county": "Natanz", "label_fa": "نطنز", "osm_id": "R6556223" },
+      { "county": "Shahreza", "label_fa": "شهرضا", "osm_id": "R6556277" },
+      { "county": "Najafabad", "label_fa": "نجف‌آباد", "osm_id": "R6556217" },
+      { "county": "Fereydunshahr", "label_fa": "فریدون‌شهر", "osm_id": "R6556093" },
+      { "county": "Fereydan", "label_fa": "فریدن", "osm_id": "R6556085" },
+      { "county": "Barkhar", "label_fa": "برخوار", "osm_id": "R6556029" },
+      { "county": "Dehaqan", "label_fa": "دهاقان", "osm_id": "R6556077" },
+      { "county": "Tiran and Karvan", "label_fa": "تیران و کرون", "osm_id": "R6556297" },
+      { "county": "Golpayegan", "label_fa": "گلپایگان", "osm_id": "R6556117" },
+      { "county": "Chadegan", "label_fa": "چادگان", "osm_id": "R6556053" },
+      { "county": "Lenjan", "label_fa": "لنجان", "osm_id": "R6556192" },
+      { "county": "Mobarakeh", "label_fa": "مبارکه", "osm_id": "R6556231" },
+      { "county": "Khansar", "label_fa": "خوانسار", "osm_id": "R6556177" },
+      { "county": "Falavarjan", "label_fa": "فلاورجان", "osm_id": "R6556109" },
+      { "county": "Khomeini Shahr", "label_fa": "خمینی‌شهر", "osm_id": "R6556153" }
+    ]
+  },
+  {
+    "province": "Ilam",
+    "label_fa": "ایلام",
+    "counties": [
+      { "county": "Dehloran", "label_fa": "دهلران", "osm_id": "R6555470" },
+      { "county": "Mehran", "label_fa": "مهران", "osm_id": "R6555523" },
+      { "county": "Abdanan", "label_fa": "آبدانان", "osm_id": "R6555434" },
+      { "county": "Chardavol", "label_fa": "چرداول", "osm_id": "R6555460" },
+      { "county": "Ilam", "label_fa": "ایلام", "osm_id": "R6555496" },
+      { "county": "Malekshahi", "label_fa": "ملکشاهی", "osm_id": "R6555514" },
+      { "county": "Darreh Shahr", "label_fa": "دره‌شهر", "osm_id": "R6555478" },
+      { "county": "Eyvan", "label_fa": "ایوان", "osm_id": "R6555485" }
+    ]
+  },
+  {
+    "province": "Bushehr",
+    "label_fa": "بوشهر",
+    "counties": [
+      { "county": "Dashtestan", "label_fa": "دشتستان", "osm_id": "R6555618" },
+      { "county": "Dashti", "label_fa": "دشتی", "osm_id": "R6555627" },
+      { "county": "Deyr", "label_fa": "دیر", "osm_id": "R6555635" },
+      { "county": "Tangestan", "label_fa": "تنگستان", "osm_id": "R6555651" },
+      { "county": "Genaveh", "label_fa": "گناوه", "osm_id": "R6555643" },
+      { "county": "Deylam", "label_fa": "دیلم", "osm_id": "R6555631" },
+      { "county": "Jam", "label_fa": "جم", "osm_id": "R6555660" },
+      { "county": "Bushehr", "label_fa": "بوشهر", "osm_id": "R6555609" },
+      { "county": "Kangan", "label_fa": "کنگان", "osm_id": "R6555657" }
+    ]
+  },
+  {
+    "province": "Tehran",
+    "label_fa": "تهران",
+    "counties": [
+      { "county": "Firuzkuh", "label_fa": "فیروزکوه", "osm_id": "R6555144" },
+      { "county": "Rey", "label_fa": "ری", "osm_id": "R6555053" },
+      { "county": "Varamin", "label_fa": "ورامین", "osm_id": "R6555257" },
+      { "county": "Damavand", "label_fa": "دماوند", "osm_id": "R6555022" },
+      { "county": "Tehran", "label_fa": "تهران", "osm_id": "R6554970" },
+      { "county": "Shemiranat", "label_fa": "شمیرانات", "osm_id": "R6555104" },
+      { "county": "Malard", "label_fa": "ملارد", "osm_id": "R6555271" },
+      { "county": "Pakdasht", "label_fa": "پاکدشت", "osm_id": "R6555263" },
+      { "county": "Shahriar", "label_fa": "شهریار", "osm_id": "R6555249" },
+      { "county": "Robatkarim", "label_fa": "رباط‌کریم", "osm_id": "R6555281" },
+      { "county": "Islamshahr", "label_fa": "اسلام‌شهر", "osm_id": "R6555229" },
+      { "county": "Qods", "label_fa": "قدس", "osm_id": "R11520737" }
+    ]
+  },
+  {
+    "province": "Chaharmahal and Bakhtiari",
+    "label_fa": "چهارمحال و بختیاری",
+    "counties": [
+      { "county": "Kuhrang", "label_fa": "کوهرنگ", "osm_id": "R6556313" },
+      { "county": "Lordegan", "label_fa": "لردگان", "osm_id": "R6556291" },
+      { "county": "Shahrekord", "label_fa": "شهرکرد", "osm_id": "R6556305" },
+      { "county": "Borujen", "label_fa": "بروجن", "osm_id": "R6556265" },
+      { "county": "Ardal", "label_fa": "اردل", "osm_id": "R6556249" },
+      { "county": "Kiar", "label_fa": "کیار", "osm_id": "R6556281" },
+      { "county": "Farsan", "label_fa": "فارسان", "osm_id": "R6556321" }
+    ]
+  },
+  {
+    "province": "South Khorasan",
+    "label_fa": "خراسان جنوبی",
+    "counties": [
+      { "county": "Nehbandan", "label_fa": "نهبندان", "osm_id": "R6555348" },
+      { "county": "Birjand", "label_fa": "بیرجند", "osm_id": "R6555320" },
+      { "county": "Ghaenat", "label_fa": "قائنات", "osm_id": "R6555356" },
+      { "county": "Sarayan", "label_fa": "سرایان", "osm_id": "R6555392" },
+      { "county": "Sarbisheh", "label_fa": "سربیشه", "osm_id": "R6555364" },
+      { "county": "Boshruyeh", "label_fa": "بشرویه", "osm_id": "R6555372" },
+      { "county": "Darmian", "label_fa": "درمیان", "osm_id": "R6555336" },
+      { "county": "Ferdows", "label_fa": "فردوس", "osm_id": "R6555380" }
+    ]
+  },
+  {
+    "province": "Razavi Khorasan",
+    "label_fa": "خراسان رضوی",
+    "counties": [
+      { "county": "Sabzevar", "label_fa": "سبزوار", "osm_id": "R6555328" },
+      { "county": "Khaf", "label_fa": "خواف", "osm_id": "R6555412" },
+      { "county": "Mashhad", "label_fa": "مشهد", "osm_id": "R6555304" },
+      { "county": "Torbat-e-jam", "label_fa": "تربت جام", "osm_id": "R6555448" },
+      { "county": "Bardaskan", "label_fa": "بردسکن", "osm_id": "R6555296" },
+      { "county": "Neyshabur", "label_fa": "نیشابور", "osm_id": "R6555408" },
+      { "county": "Gonabad", "label_fa": "گناباد", "osm_id": "R6555388" },
+      { "county": "Sarakhs", "label_fa": "سرخس", "osm_id": "R6555432" },
+      { "county": "Bajestan", "label_fa": "بجستان", "osm_id": "R6555280" },
+      { "county": "Roshtkhar", "label_fa": "رشتخوار", "osm_id": "R6555424" },
+      { "county": "Dargaz", "label_fa": "درگز", "osm_id": "R6555312" },
+      { "county": "Quchan", "label_fa": "قوچان", "osm_id": "R6555416" },
+      { "county": "Torbat-e-Heydarieh", "label_fa": "تربت حیدریه", "osm_id": "R6555456" },
+      { "county": "Chenaran", "label_fa": "چناران", "osm_id": "R6555300" },
+      { "county": "Fariman", "label_fa": "فریمان", "osm_id": "R6555376" },
+      { "county": "Kalat", "label_fa": "کلات", "osm_id": "R6555396" },
+      { "county": "Mahvelat", "label_fa": "مه ولات", "osm_id": "R6555420" },
+      { "county": "Taybad", "label_fa": "تایباد", "osm_id": "R6555440" },
+      { "county": "Kashmar", "label_fa": "کاشمر", "osm_id": "R6555368" },
+      { "county": "Zaveh", "label_fa": "زاوه", "osm_id": "R6555464" },
+      { "county": "Khoshab", "label_fa": "خوشاب", "osm_id": "R6555352" },
+      { "county": "Bakharz", "label_fa": "باخرز", "osm_id": "R6555272" },
+      { "county": "Jowayin", "label_fa": "جوین", "osm_id": "R6555340" },
+      { "county": "Joghatai", "label_fa": "جغتای", "osm_id": "R6555332" },
+      { "county": "Khalilabad", "label_fa": "خلیل‌آباد", "osm_id": "R6555360" },
+      { "county": "Firuzeh", "label_fa": "فیروزه", "osm_id": "R6555316" },
+      { "county": "Binalud", "label_fa": "بینالود", "osm_id": "R11520738" }
+    ]
+  },
+  {
+    "province": "North Khorasan",
+    "label_fa": "خراسان شمالی",
+    "counties": [
+      { "county": "Bojnurd", "label_fa": "بجنورد", "osm_id": "R6554914" },
+      { "county": "Maneh and Samalqan", "label_fa": "مانه و سملقان", "osm_id": "R6555195" },
+      { "county": "Esfarayen", "label_fa": "اسفراین", "osm_id": "R269912" },
+      { "county": "Shirvan", "label_fa": "شیروان", "osm_id": "R6555072" },
+      { "county": "Jajrom", "label_fa": "جاجرم", "osm_id": "R6554974" },
+      { "county": "Garmeh", "label_fa": "گرمه", "osm_id": "R6554960" },
+      { "county": "Faruj", "label_fa": "فاروج", "osm_id": "R6554948" }
+    ]
+  },
+  {
+    "province": "Khuzestan",
+    "label_fa": "خوزستان",
+    "counties": [
+      { "county": "Ahvaz", "label_fa": "اهواز", "osm_id": "R6554898" },
+      { "county": "Dezful", "label_fa": "دزفول", "osm_id": "R6555015" },
+      { "county": "Izeh", "label_fa": "ایذه", "osm_id": "R6554900" },
+      { "county": "Hendijan", "label_fa": "هندیجان", "osm_id": "R6554982" },
+      { "county": "Shush", "label_fa": "شوش", "osm_id": "R6555110" },
+      { "county": "Shadegan", "label_fa": "شادگان", "osm_id": "R6555097" },
+      { "county": "Andimeshk", "label_fa": "اندیمشک", "osm_id": "R6554896" },
+      { "county": "Hoveyzeh", "label_fa": "هویزه", "osm_id": "R6555255" },
+      { "county": "Behbahan", "label_fa": "بهبهان", "osm_id": "R6554946" },
+      { "county": "Abadan", "label_fa": "آبادان", "osm_id": "R6554852" },
+      { "county": "Shushtar", "label_fa": "شوشتر", "osm_id": "R6555111" },
+      { "county": "Andika", "label_fa": "اندیکا", "osm_id": "R6554876" },
+      { "county": "Omidieh", "label_fa": "امیدیه", "osm_id": "R6555021" },
+      { "county": "Baghmalek", "label_fa": "باغ‌ملک", "osm_id": "R6554908" },
+      { "county": "Masjedsoleyman", "label_fa": "مسجدسلیمان", "osm_id": "R6555027" },
+      { "county": "Dasht-e-Azadegan", "label_fa": "دشت آزادگان", "osm_id": "R6555016" },
+      { "county": "Bandar-e-Mahshahr", "label_fa": "بندر ماهشهر", "osm_id": "R6554940" },
+      { "county": "Ramhormoz", "label_fa": "رامهرمز", "osm_id": "R6555036" },
+      { "county": "Khoramshahr", "label_fa": "خرمشهر", "osm_id": "R6554994" },
+      { "county": "Ramshir", "label_fa": "رامشیر", "osm_id": "R6555044" },
+      { "county": "Haftgol", "label_fa": "هفتکل", "osm_id": "R6554978" },
+      { "county": "Bavi", "label_fa": "باوی", "osm_id": "R6554882" },
+      { "county": "Lali", "label_fa": "لالی", "osm_id": "R6555001" },
+      { "county": "Gotvand", "label_fa": "گتوند", "osm_id": "R6554990" }
+    ]
+  },
+  {
+    "province": "Zanjan",
+    "label_fa": "زنجان",
+    "counties": [
+      { "county": "Zanjan", "label_fa": "زنجان", "osm_id": "R6555048" },
+      { "county": "Khodabandeh", "label_fa": "خدابنده", "osm_id": "R6554989" },
+      { "county": "Mahneshan", "label_fa": "ماهنشان", "osm_id": "R6555196" },
+      { "county": "Abhar", "label_fa": "ابهر", "osm_id": "R6554868" },
+      { "county": "Tarom", "label_fa": "طارم", "osm_id": "R6555117" },
+      { "county": "Ijrud", "label_fa": "ایجرود", "osm_id": "R6554899" },
+      { "county": "Khoramdareh", "label_fa": "خرمدره", "osm_id": "R6554996" }
+    ]
+  },
+  {
+    "province": "Semnan",
+    "label_fa": "سمنان",
+    "counties": [
+      { "county": "Shahrud", "label_fa": "شاهرود", "osm_id": "R6555099" },
+      { "county": "Semnan", "label_fa": "سمنان", "osm_id": "R6555100" },
+      { "county": "Damghan", "label_fa": "دامغان", "osm_id": "R6555010" },
+      { "county": "Garmsar", "label_fa": "گرمسار", "osm_id": "R6555283" },
+      { "county": "Mehdishahr", "label_fa": "مهدی‌شهر", "osm_id": "R6555218" }
+    ]
+  },
+  {
+    "province": "Sistan and Baluchestan",
+    "label_fa": "سیستان و بلوچستان",
+    "counties": [
+      { "county": "Zahedan", "label_fa": "زاهدان", "osm_id": "R6555269" },
+      { "county": "Nikshahr", "label_fa": "نیک‌شهر", "osm_id": "R6555002" },
+      { "county": "Khash", "label_fa": "خاش", "osm_id": "R6554987" },
+      { "county": "Iranshahr", "label_fa": "ایرانشهر", "osm_id": "R6554901" },
+      { "county": "Zabol", "label_fa": "زابل", "osm_id": "R6555054" },
+      { "county": "Saravan", "label_fa": "سراوان", "osm_id": "R6555062" },
+      { "county": "Dalgan", "label_fa": "دلگان", "osm_id": "R6554869" },
+      { "county": "Sarbaz", "label_fa": "سرباز", "osm_id": "R6555071" },
+      { "county": "Chabahar", "label_fa": "چابهار", "osm_id": "R6555275" },
+      { "county": "Konarak", "label_fa": "کنارک", "osm_id": "R6554991" },
+      { "county": "Sib and Suran", "label_fa": "سیب و سوران", "osm_id": "R6555079" },
+      { "county": "Hirmand", "label_fa": "هیرمند", "osm_id": "R6554893" },
+      { "county": "Zahak", "label_fa": "زهک", "osm_id": "R6555279" },
+      { "county": "Mehrestan", "label_fa": "مهرستان", "osm_id": "R6555204" }
+    ]
+  },
+  {
+    "province": "Fars",
+    "label_fa": "فارس",
+    "counties": [
+      { "county": "Larestan", "label_fa": "لارستان", "osm_id": "R6556365" },
+      { "county": "Neyriz", "label_fa": "نی‌ریز", "osm_id": "R6556349" },
+      { "county": "Shiraz", "label_fa": "شیراز", "osm_id": "R6556337" },
+      { "county": "Abadeh", "label_fa": "آباده", "osm_id": "R6556257" },
+      { "county": "Darab", "label_fa": "داراب", "osm_id": "R6556273" },
+      { "county": "Eqlid", "label_fa": "اقلید", "osm_id": "R6556299" },
+      { "county": "Jahrom", "label_fa": "جهرم", "osm_id": "R6556319" },
+      { "county": "Mamasani", "label_fa": "ممسنی", "osm_id": "R6556327" },
+      { "county": "Farashband", "label_fa": "فراشبند", "osm_id": "R6556287" },
+      { "county": "Bavanat", "label_fa": "بوانات", "osm_id": "R6556261" },
+      { "county": "Zarindasht", "label_fa": "زرین‌دشت", "osm_id": "R6556373" },
+      { "county": "Khonj", "label_fa": "خنج", "osm_id": "R6556311" },
+      { "county": "Fasa", "label_fa": "فسا", "osm_id": "R6556283" },
+      { "county": "Kazerun", "label_fa": "کازرون", "osm_id": "R6556307" },
+      { "county": "Lamerd", "label_fa": "لامرد", "osm_id": "R6556357" },
+      { "county": "Marvdasht", "label_fa": "مرودشت", "osm_id": "R6556331" },
+      { "county": "Firuzabad", "label_fa": "فیروزآباد", "osm_id": "R6556295" },
+      { "county": "Qir and Karzin", "label_fa": "قیروکارزین", "osm_id": "R6556351" },
+      { "county": "Sepidan", "label_fa": "سپیدان", "osm_id": "R6556341" },
+      { "county": "Estahban", "label_fa": "استهبان", "osm_id": "R6556279" },
+      { "county": "Gerash", "label_fa": "گراش", "osm_id": "R6556303" },
+      { "county": "Mehr", "label_fa": "مهر", "osm_id": "R6556361" },
+      { "county": "Sarvestan", "label_fa": "سروستان", "osm_id": "R6556345" },
+      { "county": "Pasargad", "label_fa": "پاسارگاد", "osm_id": "R6556323" },
+      { "county": "Arsanjan", "label_fa": "ارسنجان", "osm_id": "R6556267" },
+      { "county": "Rostam", "label_fa": "رستم", "osm_id": "R6556353" },
+      { "county": "Khorrambid", "label_fa": "خرم‌بید", "osm_id": "R6556377" },
+      { "county": "Kuhchenar", "label_fa": "کوه‌چنار", "osm_id": "R6556381" }
+    ]
+  },
+  {
+    "province": "Qazvin",
+    "label_fa": "قزوین",
+    "counties": [
+      { "county": "Buin Zahra", "label_fa": "بوئین‌زهرا", "osm_id": "R6554873" },
+      { "county": "Qazvin", "label_fa": "قزوین", "osm_id": "R6555039" },
+      { "county": "Takestan", "label_fa": "تاکستان", "osm_id": "R6555113" },
+      { "county": "Abyek", "label_fa": "آبیک", "osm_id": "R6554860" },
+      { "county": "Alborz", "label_fa": "البرز", "osm_id": "R6554859" },
+      { "county": "Avaj", "label_fa": "آوج", "osm_id": "R6554864" }
+    ]
+  },
+  {
+    "province": "Qom",
+    "label_fa": "قم",
+    "counties": [
+      { "county": "Qom", "label_fa": "قم", "osm_id": "R6555208" }
+    ]
+  },
+  {
+    "province": "Kurdistan",
+    "label_fa": "کردستان",
+    "counties": [
+      { "county": "Bijar", "label_fa": "بیجار", "osm_id": "R6554939" },
+      { "county": "Saqqez", "label_fa": "سقز", "osm_id": "R6555074" },
+      { "county": "Divandareh", "label_fa": "دیواندره", "osm_id": "R6555034" },
+      { "county": "Sanandaj", "label_fa": "سنندج", "osm_id": "R6555085" },
+      { "county": "Ghorveh", "label_fa": "قروه", "osm_id": "R6554962" },
+      { "county": "Marivan", "label_fa": "مریوان", "osm_id": "R6555028" },
+      { "county": "Kamyaran", "label_fa": "کامیاران", "osm_id": "R6554983" },
+      { "county": "Dehgolan", "label_fa": "دهگلان", "osm_id": "R6555024" },
+      { "county": "Baneh", "label_fa": "بانه", "osm_id": "R6554921" },
+      { "county": "Sarvabad", "label_fa": "سروآباد", "osm_id": "R6555091" }
+    ]
+  },
+  {
+    "province": "Kerman",
+    "label_fa": "کرمان",
+    "counties": [
+      { "county": "Kerman", "label_fa": "کرمان", "osm_id": "R6555003" },
+      { "county": "Ravar", "label_fa": "راور", "osm_id": "R6555035" },
+      { "county": "Shahr-e-Babak", "label_fa": "شهربابک", "osm_id": "R6555050" },
+      { "county": "Sirjan", "label_fa": "سیرجان", "osm_id": "R6555056" },
+      { "county": "Baft", "label_fa": "بافت", "osm_id": "R6554894" },
+      { "county": "Ghalehganj", "label_fa": "قلعه‌گنج", "osm_id": "R6554964" },
+      { "county": "Bam", "label_fa": "بم", "osm_id": "R6554888" },
+      { "county": "Jiroft", "label_fa": "جیرفت", "osm_id": "R6554998" },
+      { "county": "Rafsanjan", "label_fa": "رفسنجان", "osm_id": "R6555040" },
+      { "county": "Rudbar-e-Jonub", "label_fa": "رودبار جنوب", "osm_id": "R6555046" },
+      { "county": "Bardsir", "label_fa": "بردسیر", "osm_id": "R6554890" },
+      { "county": "Rigan", "label_fa": "ریگان", "osm_id": "R6555037" },
+      { "county": "Fahraj", "label_fa": "فهرج", "osm_id": "R6554937" },
+      { "county": "Kahnuj", "label_fa": "کهنوج", "osm_id": "R6554980" },
+      { "county": "Anbarabad", "label_fa": "عنبرآباد", "osm_id": "R6554879" },
+      { "county": "Zarand", "label_fa": "زرند", "osm_id": "R6555259" },
+      { "county": "Kuhbanan", "label_fa": "کوهبنان", "osm_id": "R6555009" },
+      { "county": "Manujan", "label_fa": "منوجان", "osm_id": "R6555025" },
+      { "county": "Anar", "label_fa": "انار", "osm_id": "R6554875" },
+      { "county": "Rabor", "label_fa": "رابر", "osm_id": "R6555033" },
+      { "county": "Arzuiyeh", "label_fa": "ارزوئیه", "osm_id": "R6554812" },
+      { "county": "Faryab", "label_fa": "فاریاب", "osm_id": "R6554820" }
+    ]
+  },
+  {
+    "province": "Kermanshah",
+    "label_fa": "کرمانشاه",
+    "counties": [
+      { "county": "Kermanshah", "label_fa": "کرمانشاه", "osm_id": "R6555011" },
+      { "county": "Sonqor", "label_fa": "سنقر", "osm_id": "R6555075" },
+      { "county": "Gilan-e-Gharb", "label_fa": "گیلانغرب", "osm_id": "R6554966" },
+      { "county": "Eslamabad-e Gharb", "label_fa": "اسلام‌آباد غرب", "osm_id": "R6554892" },
+      { "county": "Qasr-e-Shirin", "label_fa": "قصر شیرین", "osm_id": "R6555006" },
+      { "county": "Dalahu", "label_fa": "دالاهو", "osm_id": "R6555017" },
+      { "county": "Salas-e Babajani", "label_fa": "ثلاث باباجانی", "osm_id": "R6555064" },
+      { "county": "Sahneh", "label_fa": "صحنه", "osm_id": "R6555058" },
+      { "county": "Ravansar", "label_fa": "روانسر", "osm_id": "R6555042" },
+      { "county": "Harsin", "label_fa": "هرسین", "osm_id": "R6554981" },
+      { "county": "Sarpol-e-Zahab", "label_fa": "سرپل ذهاب", "osm_id": "R6555060" },
+      { "county": "Kangavar", "label_fa": "کنگاور", "osm_id": "R6554985" },
+      { "county": "Paveh", "label_fa": "پاوه", "osm_id": "R6555031" },
+      { "county": "Javanrud", "label_fa": "جوانرود", "osm_id": "R6554992" }
+    ]
+  },
+  {
+    "province": "Kohgiluyeh and Boyer-Ahmad",
+    "label_fa": "کهگیلویه و بویراحمد",
+    "counties": [
+      { "county": "Buyerahmad", "label_fa": "بویراحمد", "osm_id": "R6556401" },
+      { "county": "Kohkiluyeh", "label_fa": "کهگیلویه", "osm_id": "R6556417" },
+      { "county": "Gachsaran", "label_fa": "گچساران", "osm_id": "R6556393" },
+      { "county": "Dena", "label_fa": "دنا", "osm_id": "R6556389" },
+      { "county": "Charam", "label_fa": "چرام", "osm_id": "R6556379" },
+      { "county": "Bahmai", "label_fa": "بهمئی", "osm_id": "R6556369" },
+      { "county": "Basht", "label_fa": "باشت", "osm_id": "R6556385" }
+    ]
+  },
+  {
+    "province": "Golestan",
+    "label_fa": "گلستان",
+    "counties": [
+      { "county": "Gonbad-e-Kavus", "label_fa": "گنبد کاووس", "osm_id": "R6554832" },
+      { "county": "Maraveh Tapeh", "label_fa": "مراوه‌تپه", "osm_id": "R6554848" },
+      { "county": "Kalaleh", "label_fa": "کلاله", "osm_id": "R6554828" },
+      { "county": "Aqqala", "label_fa": "آق‌قلا", "osm_id": "R6554816" },
+      { "county": "Gorgan", "label_fa": "گرگان", "osm_id": "R6554836" },
+      { "county": "Gomishan", "label_fa": "گمیشان", "osm_id": "R6554840" },
+      { "county": "Aliabad", "label_fa": "علی‌آباد", "osm_id": "R6554812" },
+      { "county": "Galikash", "label_fa": "گالیکش", "osm_id": "R6554824" },
+      { "county": "Kordkuy", "label_fa": "کردکوی", "osm_id": "R6554844" },
+      { "county": "Azadshahr", "label_fa": "آزادشهر", "osm_id": "R6554820" },
+      { "county": "Ramian", "label_fa": "رامیان", "osm_id": "R6554852" },
+      { "county": "Minudasht", "label_fa": "مینودشت", "osm_id": "R6554846" },
+      { "county": "Turkman", "label_fa": "ترکمن", "osm_id": "R6554856" },
+      { "county": "Bandar-e-Gaz", "label_fa": "بندر گز", "osm_id": "R6554818" }
+    ]
+  },
+  {
+    "province": "Gilan",
+    "label_fa": "گیلان",
+    "counties": [
+      { "county": "Rudbar", "label_fa": "رودبار", "osm_id": "R6554568" },
+      { "county": "Talesh", "label_fa": "تالش", "osm_id": "R6554510" },
+      { "county": "Rudsar", "label_fa": "رودسر", "osm_id": "R6554580" },
+      { "county": "Rasht", "label_fa": "رشت", "osm_id": "R6554502" },
+      { "county": "Fuman", "label_fa": "فومن", "osm_id": "R6554550" },
+      { "county": "Siahkal", "label_fa": "سیاهکل", "osm_id": "R6554592" },
+      { "county": "Rezvanshahr", "label_fa": "رضوانشهر", "osm_id": "R6554576" },
+      { "county": "Shaft", "label_fa": "شفت", "osm_id": "R6554588" },
+      { "county": "Sowme'eh Sara", "label_fa": "صومعه‌سرا", "osm_id": "R6554562" },
+      { "county": "Masal", "label_fa": "ماسال", "osm_id": "R6554556" },
+      { "county": "Langerud", "label_fa": "لنگرود", "osm_id": "R6554572" },
+      { "county": "Astara", "label_fa": "آستارا", "osm_id": "R6554508" },
+      { "county": "Astan-e-Ashrafieh", "label_fa": "آستانه اشرفیه", "osm_id": "R6554528" },
+      { "county": "Lahijan", "label_fa": "لاهیجان", "osm_id": "R6554564" },
+      { "county": "Amlash", "label_fa": "املش", "osm_id": "R6554524" },
+      { "county": "Bandar-e-Anzali", "label_fa": "بندر انزلی", "osm_id": "R6554516" }
+    ]
+  },
+  {
+    "province": "Lorestan",
+    "label_fa": "لرستان",
+    "counties": [
+      { "county": "Aligudarz", "label_fa": "الیگودرز", "osm_id": "R6554712" },
+      { "county": "Khoramabad", "label_fa": "خرم‌آباد", "osm_id": "R6554706" },
+      { "county": "Kuhdasht", "label_fa": "کوهدشت", "osm_id": "R6554730" },
+      { "county": "Pol-e-Dokhtar", "label_fa": "پلدختر", "osm_id": "R6554720" },
+      { "county": "Delfan", "label_fa": "دلفان", "osm_id": "R6554718" },
+      { "county": "Borujerd", "label_fa": "بروجرد", "osm_id": "R6554708" },
+      { "county": "Selseleh", "label_fa": "سلسله", "osm_id": "R6554732" },
+      { "county": "Doreh", "label_fa": "دوره", "osm_id": "R6554722" },
+      { "county": "Azna", "label_fa": "ازنا", "osm_id": "R6554714" },
+      { "county": "Dorud", "label_fa": "دورود", "osm_id": "R6554724" },
+      { "county": "Kuhdasht-e Jonubi", "label_fa": "کوهدشت جنوبی", "osm_id": "R6554736" }
+    ]
+  },
+  {
+    "province": "Mazandaran",
+    "label_fa": "مازندران",
+    "counties": [
+      { "county": "Sari", "label_fa": "ساری", "osm_id": "R6554856" },
+      { "county": "Amol", "label_fa": "آمل", "osm_id": "R6554538" },
+      { "county": "Nur", "label_fa": "نور", "osm_id": "R6554548" },
+      { "county": "Savdkuh", "label_fa": "سوادکوه", "osm_id": "R6554604" },
+      { "county": "Tonekabon", "label_fa": "تنکابن", "osm_id": "R6554520" },
+      { "county": "Noshahr", "label_fa": "نوشهر", "osm_id": "R6554512" },
+      { "county": "Chalus", "label_fa": "چالوس", "osm_id": "R6554504" },
+      { "county": "Babol", "label_fa": "بابل", "osm_id": "R6554616" },
+      { "county": "Behshahr", "label_fa": "بهشهر", "osm_id": "R6554624" },
+      { "county": "Neka", "label_fa": "نکا", "osm_id": "R6554632" },
+      { "county": "Ramsar", "label_fa": "رامسر", "osm_id": "R6554496" },
+      { "county": "Ghaemshahr", "label_fa": "قائم‌شهر", "osm_id": "R6554608" },
+      { "county": "Galugah", "label_fa": "گلوگاه", "osm_id": "R6554862" },
+      { "county": "Abbasabad", "label_fa": "عباس‌آباد", "osm_id": "R6554492" },
+      { "county": "Juybar", "label_fa": "جویبار", "osm_id": "R6554612" },
+      { "county": "Mahmudabad", "label_fa": "محمودآباد", "osm_id": "R6554596" },
+      { "county": "Babolsar", "label_fa": "بابلسر", "osm_id": "R6554620" },
+      { "county": "Fereydunkenar", "label_fa": "فریدونکنار", "osm_id": "R6554636" },
+      { "county": "Miandorud", "label_fa": "میاندورود", "osm_id": "R6554860" },
+      { "county": "Sorkhrud", "label_fa": "سرخرود", "osm_id": "R6554865" }
+    ]
+  },
+  {
+    "province": "Markazi",
+    "label_fa": "مرکزی",
+    "counties": [
+      { "county": "Saveh", "label_fa": "ساوه", "osm_id": "R6555057" },
+      { "county": "Zarandieh", "label_fa": "زرندیه", "osm_id": "R6555066" },
+      { "county": "Arak", "label_fa": "اراک", "osm_id": "R6555042" },
+      { "county": "Tafresh", "label_fa": "تفرش", "osm_id": "R6555094" },
+      { "county": "Shazand", "label_fa": "شازند", "osm_id": "R6555080" },
+      { "county": "Khomein", "label_fa": "خمین", "osm_id": "R6555070" },
+      { "county": "Delijan", "label_fa": "دلیجان", "osm_id": "R6555051" },
+      { "county": "Mahallat", "label_fa": "محلات", "osm_id": "R6555062" },
+      { "county": "Komijan", "label_fa": "کمیجان", "osm_id": "R6555049" },
+      { "county": "Khondab", "label_fa": "خنداب", "osm_id": "R6555055" },
+      { "county": "Ashtian", "label_fa": "آشتیان", "osm_id": "R6555037" },
+      { "county": "Farahan", "label_fa": "فراهان", "osm_id": "R6554840" }
+    ]
+  },
+  {
+    "province": "Hamedan",
+    "label_fa": "همدان",
+    "counties": [
+      { "county": "Kabutarahang", "label_fa": "کبودرآهنگ", "osm_id": "R6555132" },
+      { "county": "Malayer", "label_fa": "ملایر", "osm_id": "R6555120" },
+      { "county": "Hamedan", "label_fa": "همدان", "osm_id": "R6555253" },
+      { "county": "Razan", "label_fa": "رزن", "osm_id": "R6555148" },
+      { "county": "Nahavand", "label_fa": "نهاوند", "osm_id": "R6555156" },
+      { "county": "Tuyserkan", "label_fa": "تویسرکان", "osm_id": "R6555164" },
+      { "county": "Famenin", "label_fa": "فامنین", "osm_id": "R6555172" },
+      { "county": "Bahar", "label_fa": "بهار", "osm_id": "R6555180" },
+      { "county": "Asadabad", "label_fa": "اسدآباد", "osm_id": "R6555188" }
+    ]
+  },
+  {
+    "province": "Hormozgan",
+    "label_fa": "هرمزگان",
+    "counties": [
+      { "county": "Jask", "label_fa": "جاسک", "osm_id": "R6555565" },
+      { "county": "Bandar-e-Abbas", "label_fa": "بندرعباس", "osm_id": "R6555603" },
+      { "county": "Hajiabad", "label_fa": "حاجی‌آباد", "osm_id": "R6555589" },
+      { "county": "Bashagard", "label_fa": "بشاگرد", "osm_id": "R6555541" },
+      { "county": "Bandar-e-Lengeh", "label_fa": "بندرلنگه", "osm_id": "R6555621" },
+      { "county": "Bastak", "label_fa": "بستک", "osm_id": "R6555577" },
+      { "county": "Minab", "label_fa": "میناب", "osm_id": "R6555597" },
+      { "county": "Khamir", "label_fa": "خمیر", "osm_id": "R6555553" },
+      { "county": "Rudan", "label_fa": "رودان", "osm_id": "R6555613" },
+      { "county": "Sirik", "label_fa": "سیریک", "osm_id": "R6555569" },
+      { "county": "Parsian", "label_fa": "پارسیان", "osm_id": "R6555581" },
+      { "county": "Qeshm", "label_fa": "قشم", "osm_id": "R6555573" },
+      { "county": "Abumusa", "label_fa": "ابوموسی", "osm_id": "R6555537" }
+    ]
+  },
+  {
+    "province": "Yazd",
+    "label_fa": "یزد",
+    "counties": [
+      { "county": "Ardekan", "label_fa": "اردکان", "osm_id": "R6556200" },
+      { "county": "Bafq", "label_fa": "بافق", "osm_id": "R6556192" },
+      { "county": "Khatam", "label_fa": "خاتم", "osm_id": "R6556188" },
+      { "county": "Mehriz", "label_fa": "مهریز", "osm_id": "R6556212" },
+      { "county": "Bahabad", "label_fa": "بهاباد", "osm_id": "R6556176" },
+      { "county": "Taft", "label_fa": "تفت", "osm_id": "R6556228" },
+      { "county": "Yazd", "label_fa": "یزد", "osm_id": "R6555259" },
+      { "county": "Abarkuh", "label_fa": "ابرکوه", "osm_id": "R6556164" },
+      { "county": "Meybod", "label_fa": "میبد", "osm_id": "R6556236" },
+      { "county": "Ashkezar", "label_fa": "اشکذر", "osm_id": "R6556244" },
+      { "county": "Tabas", "label_fa": "طبس", "osm_id": "R6556152" },
+      { "county": "Behabad", "label_fa": "بهاباد", "osm_id": "R6556180" }
+    ]
+  },
+  {
+    "province": "Alborz",
+    "label_fa": "البرز",
+    "counties": [
+      { "county": "Karaj", "label_fa": "کرج", "osm_id": "R6554972" },
+      { "county": "Savojbolagh", "label_fa": "ساوجبلاغ", "osm_id": "R6554984" },
+      { "county": "Taleghan", "label_fa": "طالقان", "osm_id": "R6554992" },
+      { "county": "Nazarabad", "label_fa": "نظرآباد", "osm_id": "R6555000" },
+      { "county": "Chaharbagh", "label_fa": "چهارباغ", "osm_id": "R6554868" },
+      { "county": "Eshtehard", "label_fa": "اشتهارد", "osm_id": "R6554872" },
+      { "county": "Fardis", "label_fa": "فردیس", "osm_id": "R6554854" }
+    ]
+  }
+]

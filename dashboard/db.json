@@ -1,0 +1,302 @@
+{
+  "projects": [
+    {
+      "id": "proj-001",
+      "name": "مزرعه خورشیدی انرژی سبز",
+      "status": "in-progress",
+      "location": { "region": "اصفهان، ایران" },
+      "clientName": "شرکت اکوپاور",
+      "capacity": 150,
+      "area": 300,
+      "createdDate": "2023-01-15T09:30:00Z",
+      "projectManager": { "name": "آزاده جعفری" },
+      "metrics": { "co2Reduction": 1200, "irr": 15.5, "ghiAvg": 1950, "npv": 1.8, "paybackPeriod": 5.2, "roi": 14.8 }
+    },
+    {
+      "id": "proj-002",
+      "name": "نیروگاه خورشیدی اهواز فاز ۲",
+      "status": "completed",
+      "location": { "region": "خوزستان، ایران" },
+      "clientName": "انرژی پاک جنوب",
+      "capacity": 250,
+      "area": 500,
+      "createdDate": "2022-07-20T14:00:00Z",
+      "projectManager": { "name": "بابک ولی‌پور" },
+      "metrics": { "co2Reduction": 2500, "irr": 12, "ghiAvg": 2100, "npv": 3.5, "paybackPeriod": 6, "roi": 11.5 }
+    },
+    {
+      "id": "proj-003",
+      "name": "طرح خورشیدی کرمان",
+      "status": "pending",
+      "location": { "region": "کرمان، ایران" },
+      "clientName": "توسعه نیروی کویر",
+      "capacity": 80,
+      "area": 100,
+      "createdDate": "2024-03-01T11:45:00Z",
+      "projectManager": null,
+      "metrics": { "co2Reduction": 800, "irr": 10.1, "ghiAvg": 2050, "npv": 0.9, "paybackPeriod": 7.5, "roi": 9 }
+    },
+    {
+      "id": "proj-004",
+      "name": "پروژه خورشیدی کویر مرکزی",
+      "status": "in-progress",
+      "location": { "region": "یزد، ایران" },
+      "clientName": "نیروی سان‌رایز",
+      "capacity": 180,
+      "area": 350,
+      "createdDate": "2023-09-10T16:00:00Z",
+      "projectManager": { "name": "کارن وحدتی" },
+      "metrics": { "co2Reduction": 1600, "irr": 16.8, "ghiAvg": 2200, "npv": 2.1, "paybackPeriod": 4.8, "roi": 15.5 }
+    },
+    {
+      "id": "proj-005",
+      "name": "فتوولتائیک بام شهری تهران",
+      "status": "completed",
+      "location": { "region": "تهران، ایران" },
+      "clientName": "راهکارهای سیتی‌گرین",
+      "capacity": 20,
+      "area": 10,
+      "createdDate": "2022-05-01T10:00:00Z",
+      "projectManager": { "name": "داوود گرامی" },
+      "metrics": { "co2Reduction": 200, "irr": 11.2, "ghiAvg": 1600, "npv": 0.2, "paybackPeriod": 8, "roi": 10 }
+    }
+  ],
+  "recentProjects": [
+    { "id": "proj-001", "name": "مزرعه خورشیدی انرژی سبز", "createdDate": "2023-01-15T09:30:00Z" },
+    { "id": "proj-002", "name": "پروژه خورشیدی کویر مرکزی", "createdDate": "2023-09-10T16:00:00Z" },
+    { "id": "proj-003", "name": "طرح خورشیدی کرمان", "createdDate": "2024-03-01T11:45:00Z" },
+    { "id": "proj-004", "name": "نیروگاه خورشیدی اهواز فاز ۲", "createdDate": "2022-07-20T14:00:00Z" },
+    { "id": "proj-005", "name": "فتوولتائیک بام شهری تهران", "createdDate": "2022-05-01T10:00:00Z" }
+  ],
+  "projectResults": [
+    {
+      "id": "proj-001",
+      "basicInfo": {
+        "ProjectId": "PROJ-SOL-2024-001",
+        "coordinates": "34.0522° N, 118.2437° W",
+        "landArea": "3 هکتار",
+        "ownership": "عمومی",
+        "landUse": "بایر",
+        "nearestCity": "کرمان، ایران",
+        "accessibility": "خوب"
+      },
+      "solarResource": {
+        "annualGHI": "2,100 kWh/m²",
+        "dateSource": "Global Solar Atlas",
+        "dni": "2,400 kWh/m²"
+      },
+      "summaryData": {
+        "overallSuitability": {
+          "rating": "خوب",
+          "score": 8.2
+        },
+        "feasibilitySummary": "این سایت پتانسیل بالایی برای تولید انرژی خورشیدی نشان می‌دهد. مقادیر بالای تابش افقی جهانی (GHI) و تابش مستقیم نرمال (DNI) در کنار دسترسی عالی به زیرساخت‌های جاده‌ای، این مکان را به گزینه‌ای ایده‌آل برای احداث نیروگاه تبدیل کرده است.",
+        "keyMetrics": {
+          "npv": "1,250,000",
+          "roi": "12.5",
+          "paybackPeriod": "8.2",
+          "lcoe": "0.045",
+          "irr": "14.8"
+        }
+      },
+      "kpi": {
+        "irrProject": 33.36,
+        "irrEquity": 35.76,
+        "lcoe": 29137,
+        "workingCapital": 8878,
+        "totalInvestment": 687478,
+        "npv": 940249,
+        "pbp": "7 Years, 9 Months",
+        "dscr": 7.78
+      },
+      "capex": {
+        "detailed": {
+          "total": 687478,
+          "components": [
+            { "name": "Main Equipment (PV & Inverters)", "value": 412486, "percentage": 60.00 },
+            { "name": "Civil, Structure & Fencing", "value": 103121, "percentage": 15.00 },
+            { "name": "Engineering & Pre-operation", "value": 103121, "percentage": 15.00 },
+            { "name": "Grid Connection & Substation", "value": 34373, "percentage": 5.00 },
+            { "name": "Contingency", "value": 20624, "percentage": 3.00 },
+            { "name": "Equipment Rental (Construction)", "value": 13749, "percentage": 2.00 }
+          ]
+        },
+        "structure": {
+          "total": 687478,
+          "components": [
+            { "name": "Equipment", "value": 412486, "percentage": 60.0 },
+            { "name": "Civil Works", "value": 103121, "percentage": 15.0 },
+            { "name": "Grid", "value": 34373, "percentage": 5.0 },
+            { "name": "Other", "value": 116870, "percentage": 17.0 },
+            { "name": "Unforeseen", "value": 20624, "percentage": 3.0 }
+          ]
+        }
+      },
+      "opex": {
+        "total": 13049,
+        "items": [
+          { "category": "Labor (14 months)", "value": 6097, "note": "Engineers & Technicians", "percentage": 46.7 },
+          { "category": "Maintenance (Civil & Grid)", "value": 6152, "note": "Main equipment under warranty", "percentage": 47.1 },
+          { "category": "General & Admin", "value": 800, "note": "Insurance & Management", "percentage": 6.1 },
+          { "category": "Spare Parts", "value": 615, "note": "Est. 10% of maintenance", "percentage": 4.7 }
+        ]
+      },
+      "charts": {
+        "cashFlow": [
+            { "year": 0, "value": -687478 }, 
+            { "year": 1, "value": -600000 }, 
+            { "year": 5, "value": 1200000 }, 
+            { "year": 10, "value": 8500000 }, 
+            { "year": 15, "value": 25000000 }, 
+            { "year": 20, "value": 60000000 }, 
+            { "year": 25, "value": 121000000 }
+        ],
+        "revenueVsOpex": [
+  { "year": 1, "revenue": 72017, "opex": 13049, "ebitda": 58967, "netProfit": -86090, "fcf": -62482, "dscr": 0.53 },
+      { "year": 2, "revenue": 90925, "opex": 17617, "ebitda": 73308, "netProfit": -71749, "fcf": -101080, "dscr": 0.43 },
+      { "year": 3, "revenue": 120553, "opex": 23783, "ebitda": 96769, "netProfit": -34264, "fcf": -79250, "dscr": 0.56 },
+      { "year": 4, "revenue": 159833, "opex": 32107, "ebitda": 127725, "netProfit": 13940, "fcf": -49703, "dscr": 0.74 },
+      { "year": 5, "revenue": 211913, "opex": 43345, "ebitda": 168568, "netProfit": 75999, "fcf": -10725, "dscr": 0.98 },
+      { "year": 6, "revenue": 280962, "opex": 69613, "ebitda": 211348, "netProfit": 144876, "fcf": 30500, "dscr": 1.23 },
+      { "year": 7, "revenue": 372511, "opex": 93978, "ebitda": 278532, "netProfit": 244158, "fcf": 265485, "dscr": 10.00 },
+      { "year": 8, "revenue": 493889, "opex": 126871, "ebitda": 367017, "netProfit": 249482, "fcf": 266607, "dscr": 10.00 },
+      { "year": 9, "revenue": 654816, "opex": 171276, "ebitda": 483540, "netProfit": 336874, "fcf": 348444, "dscr": 10.00 },
+      { "year": 10, "revenue": 868180, "opex": 231223, "ebitda": 636957, "netProfit": 451937, "fcf": 456165, "dscr": 10.00 },
+      { "year": 15, "revenue": 3556818, "opex": 1036812, "ebitda": 2520005, "netProfit": 1864223, "fcf": 1776999, "dscr": 10.00 },
+      { "year": 20, "revenue": 14571798, "opex": 4649101, "ebitda": 9922697, "netProfit": 7416242, "fcf": 6960999, "dscr": 10.00 },
+      { "year": 25, "revenue": 59698668, "opex": 20846724, "ebitda": 38851943, "netProfit": 29138957, "fcf": 35276472, "dscr": 10.00 } ],
+        "sensitivity": [
+          { "name": "Base Case", "irr": 33.4 },
+          { "name": "Revenue -10%", "irr": 28.4 },
+          { "name": "Const. Cost +10%", "irr": 30.7 },
+          { "name": "OPEX +10%", "irr": 32.7 }
+        ],
+        "breakeven": [
+          { "x": 0, "revenue": 0, "cost": 10000 }, 
+          { "x": 100, "revenue": 72017, "cost": 13049 }
+        ]
+      },
+      "swot": {
+        "strengths": ["Attractive IRR (33.4%)", "Modern PV Technology", "Good Payback Period"],
+        "weaknesses": ["High Initial Liquidity Requirement"],
+        "opportunities": ["Electricity Export (Art. 12)", "Green Stock Market"],
+        "threats": ["Currency Fluctuations", "Regulatory Changes"]
+      },
+      "risks": [
+        { "name": "Currency Fluctuation", "zone": "Critical (Red)", "severity": "High", "probability": "High" },
+        { "name": "Financing Delay", "zone": "Serious (Orange)", "severity": "High", "probability": "Medium" }
+      ],
+      "timeline": [
+        { "stage": "Permits & Finance", "start": 0, "duration": 3 },
+        { "stage": "Engineering & Proc.", "start": 2, "duration": 4 },
+        { "stage": "Civil & Structure", "start": 5, "duration": 4 },
+        { "stage": "Installation", "start": 8, "duration": 3 },
+        { "stage": "Commissioning", "start": 10, "duration": 2 }
+      ],
+      "gridInfo": {
+          "distance": "12 km",
+          "substation": "پست مرکزی یزد",
+          "capacity": "50 MW",
+          "impact": "کم",
+          "voltage": "230 kV",
+          "potential": "زیاد",
+          "availability": "موجود"
+      }
+    },
+     {
+      "id": "proj-002",
+      "basicInfo": {
+        "ProjectId": "PROJ-SOL-2022-085",
+        "coordinates": "31.025° N, 48.650° E",
+        "landArea": "1500 هکتار",
+        "ownership": "دولتی",
+        "landUse": "مرتع",
+        "nearestCity": "اهواز، خوزستان",
+        "accessibility": "عالی"
+      },
+      "summaryData": {
+        "overallSuitability": {
+          "rating": "متوسط",
+          "score": 6.8
+        },
+        "feasibilitySummary": "دسترسی عالی به خطوط انتقال نیرو و جاده‌ها.",
+        "keyMetrics": {
+          "npv": "2,400,000",
+          "roi": "11.2",
+          "paybackPeriod": "7.2",
+          "lcoe": "0.052",
+          "irr": "12.0"
+        }
+      },
+      "solarResource": {
+         "annualGHI": "2,150 kWh/m²",
+         "dni": "2,300 kWh/m²"
+      },
+      "gridInfo": {
+         "distance": "5 km"
+      }
+    }
+  ],
+  "reports": [
+    { "id": "r001", "title": "ارزیابی منابع خورشیدی", "date": "2023-12-15", "author": "سارا جوادی", "type": "technical" },
+    { "id": "r002", "title": "تحلیل مالی - پروژه خورشیدی شیراز", "date": "2023-11-28", "author": "ماهان کریمی", "type": "financial" },
+    { "id": "r003", "title": "بررسی اجمالی اثرات زیست‌محیطی (سایت یزد)", "date": "2023-12-02", "author": "اِما رضایی", "type": "environmental" },
+    { "id": "r004", "title": "پکیج ارزیابی بایسته (نیروگاه اصفهان)", "date": "2023-12-10", "author": "جمشید ولدانی", "type": "comprehensive" },
+    { "id": "r005", "title": "امکان‌سنجی اتصال به شبکه (سایت کرمان)", "date": "2023-11-15", "author": "سارا جوادی", "type": "technical" },
+    { "id": "r006", "title": "پیش‌بینی‌های مالی سه‌ماهه چهارم", "date": "2024-01-05", "author": "ماهان کریمی", "type": "financial" }
+  ],
+  "recentReports": [
+    { "id": "r006", "title": "پیش‌بینی‌های مالی سه‌ماهه چهارم" },
+    { "id": "r001", "title": "ارزیابی منابع خورشیدی" },
+    { "id": "r004", "title": "پکیج ارزیابی بایسته (نیروگاه اصفهان)" },
+    { "id": "r003", "title": "بررسی اجمالی اثرات زیست‌محیطی (سایت یزد)" },
+    { "id": "r002", "title": "تحلیل مالی - پروژه خورشیدی شیراز" }
+  ],
+  "payments": [
+    { "id": "proj_01", "name": "مزرعه خورشیدی اصفهان", "cost": 499, "purchaseDate": "Sep 5, 2025", "status": "Paid" },
+    { "id": "proj_02", "name": "پروژه خورشیدی خوزستان", "cost": 850, "purchaseDate": "Aug 21, 2025", "status": "Paid" },
+    { "id": "proj_04", "name": "طرح خورشیدی کرمان", "cost": 1200, "purchaseDate": "Sep 1, 2025", "status": "Failed" },
+    { "id": "proj_03", "name": "خورشیدی محلی یزد", "cost": 250, "purchaseDate": "July 15, 2025", "status": "Paid" },
+    { "id": "proj_05", "name": "نیروگاه خورشیدی سمنان", "cost": 750, "purchaseDate": "Sep 10, 2025", "status": "Paid" }
+  ],
+  "recentPayments": [
+    { "id": "proj_04", "name": "طرح خورشیدی کرمان", "cost": 1200, "status": "Failed" },
+    { "id": "proj_05", "name": "نیروگاه خورشیدی سمنان", "cost": 750, "status": "Paid" },
+    { "id": "proj_01", "name": "مزرعه خورشیدی اصفهان", "cost": 499, "status": "Paid" },
+    { "id": "proj_02", "name": "پروژه خورشیدی خوزستان", "cost": 850, "status": "Paid" },
+    { "id": "proj_03", "name": "خورشیدی محلی یزد", "cost": 250, "status": "Paid" }
+  ],
+  "notifications": [
+    { "id": 1, "type": "mention", "status": "unread", "userName": "محمد احمدی", "action": "شما را منشن کرد در", "target": "مزرعه خورشیدی X", "time": "۵ دقیقه پیش", "read": false },
+    { "id": 2, "type": "success", "status": "success", "userName": "سیستم", "action": "پروژه «پنل‌های خورشیدی فاز ۲» با موفقیت تکمیل شد.", "time": "۱ ساعت پیش", "read": false },
+    { "id": 3, "type": "failed", "status": "failed", "userName": "پرداخت‌ها", "action": "پرداخت فاکتور #INV-002 ناموفق بود.", "time": "۳ ساعت پیش", "read": false },
+    { "id": 4, "type": "success", "status": "success", "userName": "سیستم", "action": "گزارش «مالی سه‌ماهه چهارم» با موفقیت ایجاد شد.", "time": "۵ ساعت پیش", "read": true }
+  ],
+  "dashboardStats": {
+    "activeProjects": 12,
+    "activeProjectsChange": "+2",
+    "reportsGenerated": 8,
+    "reportsChange": "+5%",
+    "completedProjects": 5,
+    "actionNeededAmount": 1200
+  },
+  "projectStats": {
+    "total": 5,
+    "pending": 1,
+    "inProgress": 2,
+    "completed": 2,
+    "totalCapacity": 680,
+    "estimatedGeneration": 2860000,
+    "totalArea": 1260,
+    "avgROI": 12.16
+  },
+  "user": {
+    "fullName": "سعید دولتی",
+    "email": "dolatisaeed6@gmail.com",
+    "phone": "+1 (555) 123-4567",
+    "organization": "شرکت سایت‌سینرژی",
+    "jobTitle": "مدیر پروژه خورشیدی",
+    "bio": "متخصص باتجربه انرژی‌های تجدیدپذیر.",
+    "avatarUrl": "https://placehold.co/40x40/a78bfa/ffffff?text=S"
+  }
+}
