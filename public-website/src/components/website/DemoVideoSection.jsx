@@ -3,30 +3,34 @@ import NewProjectVideo from '../../assets/DemoVideos/NewProjectDemo.mp4'; // Ens
 
 function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
   return (
-    <div className="w-full lg:w-[1350px] min-h-[800px] lg:h-[1162px] mx-auto bg-white px-4 sm:px-8 md:px-12 lg:px-20 py-10 sm:py-12 md:py-16 lg:py-20 box-border">
-      <div className="w-full h-full flex flex-col items-center">
-        <h1 className="text-black text-3xl sm:text-4xl md:text-5xl lg:text-[47px] leading-normal lg:leading-[51px] tracking-[-1.2px] lg:tracking-[-1.7px] text-center font-bold mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4">
+    <section className="w-full max-w-[1350px] mx-auto bg-white px-4 sm:px-8 md:px-12 lg:px-20 py-12 sm:py-16 lg:py-20 box-border">
+      <div className="w-full flex flex-col items-center">
+        <h2 className="text-black text-2xl sm:text-3xl lg:text-[47px] leading-tight lg:leading-[51px] text-center font-bold mb-8 sm:mb-12 lg:mb-16 px-2">
           {t('demoVideo.title')} {/* 👈 Translated */}
-        </h1>
+        </h2>
         
-        <div className="w-[98%] lg:w-[1280px] lg:h-[580px] px-4 sm:px-8 md:px-12 lg:px-[75px] py-6 lg:py-[45px] mb-8 lg:mb-[15px] box-border">
-          <div className="w-full h-full shadow-demo-video p-1 border border-[#e5e7eb] bg-[#fafafa] rounded-2xl lg:rounded-[32px] box-border">
-            <div className="w-full h-full rounded-2xl lg:rounded-[32px] border border-[#e5e7eb] overflow-hidden">
+        <div className="w-full max-w-[1280px] px-0 sm:px-6 lg:px-10 py-4 lg:py-8 mb-8 box-border">
+          <div className="w-full shadow-demo-video p-1 border border-[#e5e7eb] bg-white rounded-2xl lg:rounded-[32px] box-border">
+            <div className="relative w-full rounded-2xl lg:rounded-[32px] border border-[#e5e7eb] overflow-hidden">
               <video 
-                className="w-full h-full object-cover rounded-2xl lg:rounded-[32px]"
+                className="block w-full aspect-[1280/580] object-contain pointer-events-none select-none"
                 autoPlay 
                 muted 
                 loop 
                 playsInline
+                preload="metadata"
+                disablePictureInPicture
               >
                 <source src={NewProjectVideo} type="video/mp4"/>
                 {t('demoVideo.videoFallback', 'Your browser does not support the video tag.')} {/* 👈 Translated */}
               </video>
+              <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 right-0 h-[5px] bg-white" />
+              <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 right-0 h-[5px] bg-white" />
             </div>
           </div>
         </div>
 
-        <div className="w-full lg:w-[1040px] flex flex-col md:flex-row justify-between items-start gap-8 lg:gap-[70px] px-4 sm:px-6">
+        <div className="w-full max-w-[1040px] flex flex-col md:flex-row justify-between items-start gap-8 lg:gap-12 px-2 sm:px-6">
           <div className="w-full md:w-[320px] flex flex-col items-start">
             <div className="w-6 h-6 mb-3">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +75,7 @@ function DemoVideoSection({ t }) { // 👈 Accept 't' as a prop
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

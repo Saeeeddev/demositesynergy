@@ -1,23 +1,23 @@
 import React from 'react';
+import HeroDemoVideo from '../../assets/DemoVideos/HeroDemoVideo.mp4';
 
 function HeroVideoDemo() {
   return (
-    <div className="relative w-full flex justify-center -mt-[250px] xs:-mt-[240px] sm:-mt-[280px] md:-mt-[320px] lg:-mt-[375px]">
-      {/* container locked to 1280x574 (approx 2.23:1) but scales down responsively */}
-      <div className="w-[98%] md:w-[92%] lg:w-[1277px] max-w-full aspect-[1280/574] bg-[#f7f7f7] relative z-10 rounded-xl sm:rounded-2xl lg:rounded-[30px] shadow-hero-video p-0.5 sm:p-1">
-        <div className="flex items-center gap-1.5 sm:gap-2 absolute top-[8px] sm:top-[12px] start-[8px] sm:start-[12px] h-3 sm:h-4 z-20">
-          
-        </div>
-        <div className="w-full h-full border border-[rgba(121,126,138,0.18)] rounded-lg sm:rounded-xl lg:rounded-[28px] overflow-hidden">
+    <div className="relative w-full flex justify-center -mt-[180px] sm:-mt-[240px] md:-mt-[320px] lg:-mt-[375px]">
+      <div className="w-[98%] md:w-[92%] lg:w-[1277px] max-w-full bg-white relative z-10 rounded-xl sm:rounded-2xl lg:rounded-[30px] shadow-hero-video p-0.5 sm:p-1">
+        <div className="relative w-full border border-[rgba(121,126,138,0.18)] rounded-lg sm:rounded-xl lg:rounded-[28px] overflow-hidden">
           <video 
             autoPlay 
             loop 
             muted 
             playsInline
-            className="w-full h-full object-cover"
+            preload="metadata"
+            disablePictureInPicture
+            className="block w-full aspect-[1280/574] object-contain pointer-events-none select-none"
           >
-            <source src="/src/assets/DemoVideos/HeroDemoVideo.mp4" type="video/mp4"/>
+            <source src={HeroDemoVideo} type="video/mp4" />
           </video>
+          <div aria-hidden="true" className="pointer-events-none absolute top-0 bottom-0 right-0 w-[3px] bg-white" />
         </div>
       </div>
     </div>

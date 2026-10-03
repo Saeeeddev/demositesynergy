@@ -1,79 +1,38 @@
 {
-  "title": "Privacy",
-  "lastUpdated": "Last updated on September 18, 2025",
-  "intro": {
-    "paragraph1": "Sitesynergy (\"Sitesynergy\", \"we\", \"us\") builds site-selection and potential-assessment tools that combine geospatial data, analytics, and visualization to help organizations evaluate locations efficiently. We know you care about how your data is collected, used, and protected — this Privacy Policy explains what we collect, how we use it, and the controls available to you when using our web apps, maps, services, and integrations (together, the \"Services\").",
-    "paragraph2": "If you need to contact us about privacy matters, email privacy@sitesynergy.com or use the contact form in the app."
-  },
-  "dataCollection": {
-    "title": "Types of Information We Collect",
-    "description": "We collect information necessary to provide, secure, and improve the Services. Below is a summary of the categories of data we may collect.",
-    "types": {
-      "account": {
-        "title": "Account & Profile Information",
-        "description": "When you create an account or sign up for paid features, we collect information you provide (name, business name, email, role, billing details) and associate it with your account."
-      },
-      "project": {
-        "title": "Project & Geodata",
-        "description": "To evaluate sites we may store project metadata you create (site boundaries, feature selections, scenario settings) and any geospatial files or layers you upload to the platform."
-      },
-      "usage": {
-        "title": "Usage & Interaction Data",
-        "description": "We log actions you take in the app (map interactions, layer toggles, analyses run) to help improve the product, reproduce issues, and provide collaborative features."
-      },
-      "device": {
-        "title": "Device & Connection Information",
-        "description": "We collect technical data such as IP address, browser and device type, and performance metrics to secure the Services and deliver a reliable experience."
-      }
+  "title": "Privacy Policy",
+  "lastUpdated": "Updated: October 3, 2026",
+  "intro": "This page explains what the SiteSynergy website stores in your browser and how we use information you send us to get in touch.",
+  "sections": [
+    {
+      "title": "Information you provide",
+      "paragraphs": [
+        "If you open your email app from the contact page and send a message, we receive your name, email address, and message to respond to your request. The website form itself does not submit or store the message on a server."
+      ]
     },
-    "note": "This document also describes our security posture, optional cloud interactions, and how we treat customer data used with modelling or export features."
-  },
-  "architecture": {
-    "localFirst": {
-      "title": "Local-first & Minimum-data Design",
-      "description": "Sitesynergy is designed to limit data exposure by default. Project files, intermediate analysis, and local settings remain on the user's device or tenancy unless you explicitly choose cloud features that require transfer."
+    {
+      "title": "Browser storage and cookies",
+      "paragraphs": [
+        "Your selected language is stored in browser localStorage under i18nextLng. Your response to the storage notice is kept in the necessary sitesynergy-cookie-choice cookie for one year so the notice does not repeat on every visit. The current website does not set advertising or analytics cookies.",
+        "You can remove these values in your browser settings. After removal, the site returns to Persian by default and displays the storage notice again."
+      ]
     },
-    "enterprise": {
-      "title": "Enterprise-grade infrastructure",
-      "description": "When you opt into hosted or collaborative features we operate on industry-standard infrastructure and controls to protect customer data. For customers with specific compliance needs we offer enterprise deployment options and contractual safeguards."
+    {
+      "title": "Use and retention of messages",
+      "paragraphs": [
+        "We use the emails you send to answer questions and follow up on your request or proposed collaboration. Retention depends on the correspondence and practical requirements. Contact us to request deletion of your correspondence."
+      ]
     },
-    "security": {
-      "title": "Continuous security testing",
-      "description": "We perform regular security reviews and vulnerability assessments to identify and remediate issues proactively, and we keep dependencies and infrastructure up-to-date with best practices."
+    {
+      "title": "Sharing and external links",
+      "paragraphs": [
+        "We do not sell your messages for advertising. Your email app is governed by its provider’s privacy policy. External websites linked from this site have their own policies."
+      ]
     },
-    "authentication": {
-      "title": "Secure authentication",
-      "description": "Authentication uses industry-standard providers and supports single sign-on (SSO) and multi-factor authentication (MFA) for accounts that require stronger protections."
+    {
+      "title": "Requests and contact",
+      "paragraphs": [
+        "To ask about your data or request access to, correction of, or deletion of information you sent us, email hello@sitesynergy.com. We may verify your identity to protect the information."
+      ]
     }
-  },
-  "privacyByDesign": {
-    "title": "Privacy by design",
-    "description": "Privacy considerations are built into Sitesynergy from the ground up:",
-    "features": {
-      "localControl": {
-        "title": "Local control:",
-        "description": "Project files, user-generated layers, and cached analysis remain under your control. Cloud transfers only occur when you explicitly enable sharing, backups, or cloud analysis."
-      },
-      "scopedUploads": {
-        "title": "Scoped uploads:",
-        "description": "When cloud processing is used (for example, large-scale modelling or third-party model calls), only the minimal, relevant data required for that operation is transmitted — unrelated project data is not included."
-      },
-      "permissionedSharing": {
-        "title": "Permissioned sharing:",
-        "description": "Collaboration and sharing are opt-in and permissioned: you decide what to share, who can access it, and for how long."
-      }
-    },
-    "conclusion": "These design choices reduce risk and give teams flexible deployment patterns ranging from local-only desktop use to fully managed cloud collaboration."
-  },
-  "cloudFeatures": {
-    "title": "Cloud features & data transfers",
-    "paragraph1": "Optional cloud features (collaboration, hosted analytics, backup/restore) require data transfer. When you enable these features we take steps to limit what is sent and to protect it in transit and at rest.",
-    "paragraph2": "For cloud modelling or third-party model calls, Sitesynergy pre-filters and scopes the payload to the prompt or analytic task — we do not send full user databases or unrelated project histories.",
-    "paragraph3": "Backups are encrypted and can be created on-demand by users. There is no automatic, persistent sync unless you explicitly opt into a synchronization feature."
-  },
-  "dataOwnership": {
-    "title": "Data ownership & model training",
-    "paragraph1": "You retain ownership of your project data and uploaded content. Sitesynergy does not use customer project data to train general-purpose models. Any model improvements derived from synthetic datasets or anonymized, consented telemetry are described in our product documentation and release notes.",
-    "paragraph2": "If you choose to participate in customer-feedback or opt-in improvement programs, we will obtain explicit consent and describe precisely what data will be used and for what purpose."
-  }
+  ]
 }

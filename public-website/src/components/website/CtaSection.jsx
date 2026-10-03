@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CtaSection = ({ t }) => { // 👈 Already correctly accepts 't'
   return (
@@ -8,9 +9,12 @@ const CtaSection = ({ t }) => { // 👈 Already correctly accepts 't'
           <h2 className="text-white text-2xl sm:text-3xl md:text-[42px] leading-normal md:leading-[51px] tracking-[-1px] md:tracking-[-1.4px] text-center font-bold m-0 mb-5 md:mb-[30px] max-w-[90%] md:max-w-[800px]">
             {t('ctaSection.quote')} {/* 👈 Already translated */}
           </h2>
-          <button className="mt-5 w-[140px] h-[38px] py-3 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-sm md:text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
+          <Link
+            to="/contact"
+            className="mt-5 min-h-[42px] py-2.5 px-5 bg-white text-[#6d7f9f] border-none rounded-full text-sm md:text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px] inline-flex items-center justify-center no-underline whitespace-nowrap"
+          >
             {t('ctaSection.button')} {/* 👈 Already translated */}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

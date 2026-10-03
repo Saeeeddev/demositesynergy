@@ -2,8 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserIcon, LockClosedIcon } from '@heroicons/react/24/outline'; // Using Heroicons for consistency
 
-const SettingSecondarySidebar = () => {
-  const NavItem = ({ to, icon: Icon, label }) => (
+const NavItem = ({ to, icon: Icon, label }) => (
     <NavLink 
       to={to}
       className={({ isActive }) => 
@@ -16,8 +15,9 @@ const SettingSecondarySidebar = () => {
       {/* RTL: Changed ml-3 to mr-3 */}
       <span className="mr-3 text-sm font-medium">{label}</span>
     </NavLink>
-  );
+);
 
+const SettingSecondarySidebar = () => {
   return (
     <div className="w-full h-full text-gray-800 pt-3 text-right" dir="rtl">
       <nav>

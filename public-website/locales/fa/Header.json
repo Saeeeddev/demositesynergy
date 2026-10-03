@@ -1,14 +1,14 @@
 {
-    "logoAlt": "سایت‌سینرژی",
-    "menu": {
-      "product": "محصول",
-      "about": "درباره",
-      "contact": "تماس"
-    },
-    "actions": {
-      "getStarted": "ورود / ثبت‌نام"
-    },
-    "mobileMenu": {
-      "toggleLabel": "تغییر منو"
-    }
+  "logoAlt": "سایت‌سینرژی",
+  "menu": {
+    "product": "محصول",
+    "about": "درباره",
+    "contact": "تماس"
+  },
+  "actions": {
+    "getStarted": "ورود / ثبت‌نام"
+  },
+  "mobileMenu": {
+    "toggleLabel": "تغییر منو"
   }
+}

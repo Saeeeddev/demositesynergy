@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useWizardStore } from '../../../stores/useWizardStore';
 import {
   CheckCircleIcon, 
@@ -40,7 +39,6 @@ const ReviewSection = ({ title, icon: Icon, children, className = "" }) => (
 );
 
 const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
-  const navigate = useNavigate();
   const { 
       projectDetails, 
       financialSettings, 
@@ -234,7 +232,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
               <div className="flex items-start gap-2 max-w-xl">
                   <ShieldCheckIcon className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-gray-500 text-justify">
-                      با تایید این فرم، صحت اطلاعات وارد شده را تایید می‌کنید و فرآیند {isReportOnly ? 'تولید گزارش' : 'تحلیل مکان‌یابی'} آغاز می‌شود.
+                      با تایید، اطلاعات پروژه در همین مرورگر ذخیره می‌شود. نتیجه {isReportOnly ? 'گزارش' : 'تحلیل مکان‌یابی'} بعداً قابل افزودن است.
                   </p>
               </div>
               <div className="flex gap-3 w-full sm:w-auto">
@@ -253,7 +251,7 @@ const ReviewPage = ({ onBack, onConfirm, isSubmitting }) => {
                         {isSubmitting ? 'در حال پردازش...' : (
                             <>
                                 <CheckCircleIcon className="w-5 h-5" />
-                                تایید و اجرای تحلیل
+                                ثبت پروژه
                             </>
                         )}
                   </button>

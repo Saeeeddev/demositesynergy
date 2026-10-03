@@ -6,9 +6,7 @@ const HighchartsReact = HighchartsReactOriginal.default || HighchartsReactOrigin
 
 const SensitivityTab = ({ data }) => {
   // Safety check: ensure chart data exists
-  if (!data || !data.charts) return null;
-
-  const { sensitivity, breakeven } = data.charts;
+  const { sensitivity, breakeven } = data?.charts || {};
 
   // Keep the exact logic for data generation
   const chartData = useMemo(() => {
@@ -32,6 +30,8 @@ const SensitivityTab = ({ data }) => {
     }
     return data;
   }, [breakeven]);
+
+  if (!data?.charts) return null;
 
   // --- Chart 1 Configuration: Break-even (Line) ---
   const breakEvenOptions = {

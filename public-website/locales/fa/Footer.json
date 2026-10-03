@@ -1,47 +1,39 @@
 {
-    "sections": {
-      "app": {
-        "title": "اپلیکیشن",
-        "links": {
-          "webApp": "اپلیکیشن وب",
-          "loginSignup": "ورود / ثبت‌نام"
-        }
-      },
-      "product": {
-        "title": "محصول",
-        "links": {
-          "about": "درباره",
-          "product": "محصول",
-          "pricing": "قیمت‌گذاری",
-          "contact": "تماس"
-        }
-      },
-      "resources": {
-        "title": "منابع",
-        "links": {
-          "caseStudies": "مطالعات موردی",
-          "support": "پشتیبانی"
-        }
-      },
-      
-      "connect": {
-        "title": "ارتباط",
-        "links": {
-          "linkedIn": "لینکدین",
-          "xTwitter": "اکس / توییتر",
-          "instagram": "اینستاگرام",
-          "youtube": "یوتیوب"
-        }
-      },
-      "legal": {
-        "title": "حقوقی",
-        "links": {
-          "privacyPolicy": "سیاست حفظ حریم خصوصی",
-          "termsConditions": "شرایط و ضوابط",
-          "security": "امنیت"
-        }
+  "sections": {
+    "app": {
+      "title": "اپلیکیشن",
+      "links": {
+        "webApp": "اپلیکیشن وب",
+        "loginSignup": "ورود / ثبت‌نام"
       }
     },
-     "copyright": "© ۱۴۰۴ تمامی حقوق مادی و معنوی سایت‌سینرژی متعلق به شرکت توسعه منابع هم‌افزا می‌باشد.",
-    "logoAlt": "سایت‌سینرژی"
-  }
+    "product": {
+      "title": "محصول",
+      "links": {
+        "about": "درباره",
+        "product": "محصول",
+        "pricing": "قیمت‌گذاری",
+        "contact": "تماس"
+      }
+    },
+    "connect": {
+      "title": "ارتباط",
+      "links": {
+        "linkedIn": "لینکدین",
+        "xTwitter": "اکس / توییتر",
+        "instagram": "اینستاگرام",
+        "youtube": "یوتیوب"
+      }
+    },
+    "legal": {
+      "title": "حقوقی",
+      "links": {
+        "privacyPolicy": "سیاست حفظ حریم خصوصی",
+        "termsConditions": "شرایط و ضوابط",
+        "security": "امنیت"
+      }
+    }
+  },
+  "copyright": "© ۱۴۰۵ تمامی حقوق مادی و معنوی این وب‌سایت متعلق به شرکت توسعه منابع هم‌افزا است.",
+  "logoAlt": "سایت‌سینرژی"
+}

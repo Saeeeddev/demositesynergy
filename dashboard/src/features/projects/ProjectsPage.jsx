@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../../lib/axios';
+import { api } from '../../lib/localData';
 import ProjectsHeader from './components/ProjectsHeader';
 import ProjectCard from './components/ProjectCard';
 import Pagination from '../../components/common/Pagination';

@@ -1,59 +1,45 @@
 {
   "hero": {
-    "badge": "OUR PRICING MODEL",
-    "title": "Fair, Transparent, Project-Based",
-    "description": "You shouldn't pay for software sitting idle. Our pricing is tied directly to your project's success, delivering comprehensive analysis in days, not months."
+    "badge": "PRICING",
+    "title": "A proposal tailored to each project",
+    "description": "Assessment costs depend on the area, available data, and required deliverables. We prepare a clear proposal after reviewing your needs."
   },
   "comparison": {
     "oldWay": {
-      "title": "The Hidden Costs of Traditional Methods",
+      "title": "Challenges of fragmented methods",
       "subscription": {
-        "title": "Expensive Monthly Subscriptions",
-        "description": "Traditional software charges you every month, whether you're actively analyzing a site or not. Costs stack up quickly with no guaranteed results. Furthermore, critical economic and environmental data often requires expensive add-on packages."
+        "title": "Costs of separate tools",
+        "description": "Using several tools and data sources can add coordination time and cost."
       },
       "consulting": {
-        "title": "Lengthy Consulting Engagements",
-        "description": "Hiring consultants means paying for hundreds of billable hours over several months, often for a single site analysis, with slow and scattered deliverables. This fragmented process delays a comprehensive risk assessment and muddles the true economic outlook."
+        "title": "Coordinating separate workstreams",
+        "description": "When data and reviews are handled separately, bringing findings together can be harder."
       },
       "experts": {
-        "title": "Requires Risk Assessment Experts",
-        "description": "Assessing project viability requires specialized risk management reports. Traditionally, this means hiring separate consultants for environmental compliance, economic forecasting, and technical risk assessment."
+        "title": "Need for specialist review",
+        "description": "Site selection requires technical, environmental, and economic review, with a clear scope for each."
       }
     },
     "newWay": {
-      "title": "The SiteSynergy Advantage: Pay for Results",
+      "title": "The SiteSynergy approach",
       "project": {
-        "title": "One-Off Project Pricing",
-        "description": "Pay only for the specific analysis you need, when you need it. No subscriptions, no recurring fees. It's the most capital-efficient way to qualify a site, with a full economic and environmental assessment included."
+        "title": "Clear scope for each project",
+        "description": "Required data, work, and deliverables are defined in the project proposal before work begins."
       },
       "speed": {
-        "title": "Analysis Delivered in Hours",
-        "description": "Our platform collapses months of work into hours of analysis, with delivery in a day at the worst. This speed is your competitive advantage, giving you a unified risk, economic, and environmental picture faster than any other method."
+        "title": "Data in one workflow",
+        "description": "Relevant information is reviewed together so site comparisons stay organized."
       },
       "integrated": {
-        "title": "Integrated Risk & Management Reports",
-        "description": "Expert-level risk assessment and management reports are built directly into our deliverables. We provide the critical insights you need—including economic modeling and environmental impact—without the cost of external experts."
+        "title": "Outputs for your decision",
+        "description": "Reports are shaped around the project’s key questions and agreed level of review."
       }
     }
   },
-  "included": {
-    "title": "One Project, One Price, Every Insight",
-    "subtitle": "Each SiteSynergy project analysis is a complete, decision-ready package.",
-    "features": {
-      "suitability": "Full Site Suitability Score",
-      "maps": "High-Resolution Geospatial Maps",
-      "grid": "Grid & Interconnection Analysis",
-      "solar": "Solar Yield & Performance Models",
-      "land": "Land Use & Zoning Constraints",
-      "financial": "Preliminary Financial Projections (LCOE, IRR)",
-      "environmental": "Environmental & Permitting Risk Assessment",
-      "export": "Exportable PDF Reports & CSV Data"
-    }
-  },
   "cta": {
-    "badge": "READY TO ACCELERATE YOUR PROJECT?",
-    "title": "Get a Custom Quote Today",
-    "description": "Because every project is unique, we provide a tailored quote based on your site's acreage, complexity, and specific data requirements.",
-    "button": "Request a Project Quote"
+    "badge": "REQUEST A PROJECT ESTIMATE",
+    "title": "Request a project estimate",
+    "description": "Share your location, area, and project goals so we can discuss scope and proposed costs.",
+    "button": "Contact us for an estimate"
   }
 }

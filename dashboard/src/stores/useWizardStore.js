@@ -53,7 +53,7 @@ const initialFinancialSettings = {
   financing: { debt_ratio: 0.70, interest_rate: 0.23, repayment_period_years: 7, grace_period_years: 1 }
 };
 
-export const useWizardStore = create((set, get) => ({
+export const useWizardStore = create((set) => ({
   // --- STATE ---
   currentStep: 1, // Will start at 1 for Service Type Selection
   projectType: null, // 'solar', 'wind'

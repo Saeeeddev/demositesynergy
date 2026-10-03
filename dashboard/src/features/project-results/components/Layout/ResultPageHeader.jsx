@@ -9,11 +9,10 @@ import {
 import { useProjectData } from '../../hooks/useResultQueries';
 import ExportPopup from './../ExportPopup'; 
 
-const ResultPageHeader = ({ projectId, onBack }) => {
+const ResultPageHeader = ({ projectId, projectData, onBack }) => {
   const [showExportPopup, setShowExportPopup] = useState(false);
 
-  // Fetch Project Data based on ID
-  const { data: projectData, isLoading } = useProjectData(projectId);
+  const { isLoading } = useProjectData(projectId);
 
   // Default Fallback
   const projectInfo = projectData ? {

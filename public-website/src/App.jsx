@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx'; // A small library for conditional classes
 import { useTranslation } from 'react-i18next'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -13,11 +13,9 @@ import About from './components/page/About'
 import Product from './components/page/Product'
 import Contact from './components/page/Contact'
 import Pricing from './components/page/Pricing'
-import Support from './components/page/Support'
-import CaseStudies from './components/page/CaseStudies'
+import CookieNotice from './components/website/CookieNotice'
 import NotFound from './components/page/NotFound'
 import ErrorPage from './components/page/ErrorPage'
-import AuthPage from './components/page/AuthPage';
 
 import ScrollToTop from './components/utils/ScrollToTop'
 
@@ -29,6 +27,7 @@ function App() {
   useEffect(() => {
     document.documentElement.dir = isFarsi ? 'rtl' : 'ltr';
     document.documentElement.lang = i18n.language;
+    document.title = isFarsi ? 'سایت‌سینرژی' : 'SiteSynergy';
   }, [isFarsi, i18n.language]);
 
   // NEW: Conditionally set the font class for the entire app
@@ -56,16 +55,16 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<TermsAndCondition />} />
           <Route path="/about" element={<About />} />
-          <Route path="/auth" element={<AuthPage />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/support" element={<NotFound />} />
+          <Route path="/case-studies" element={<NotFound />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/error-page" element={<ErrorPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieNotice />
       </div>
     </Router>
   );

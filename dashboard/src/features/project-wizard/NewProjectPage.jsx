@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWizardStore } from '../../stores/useWizardStore';
+import { useQueryClient } from '@tanstack/react-query';
+import { api } from '../../lib/localData';
 import { 
   ArrowLeftIcon, 
   BuildingOfficeIcon, 
@@ -20,6 +22,7 @@ import ReviewPage from './components/ReviewPage';
 
 const NewProjectPage = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
@@ -43,8 +46,29 @@ const NewProjectPage = () => {
   const handleProjectSubmit = async (payload) => {
     setIsSubmitting(true);
     try {
-      console.log("Sending data to API...", payload);
-      await new Promise(resolve => setTimeout(resolve, 2000)); 
+      const id = `proj-${Date.now()}`;
+      const info = payload.project_info;
+      const project = {
+        id,
+        name: info.project_name || 'پروژه جدید',
+        status: 'pending',
+        location: { region: info.location || 'نامشخص' },
+        clientName: info.client || info.company || 'نامشخص',
+        capacity: Number(info.capacity_mw) || 0,
+        area: 0,
+        createdDate: new Date().toISOString(),
+        projectManager: { name: info.project_manager || 'تعیین نشده' },
+        metrics: {},
+      };
+      const result = {
+        id,
+        status: 'pending',
+        projectInfo: info,
+        inputs: payload,
+      };
+      await api.createProject(project, result);
+      await queryClient.invalidateQueries({ queryKey: ['projects'] });
+      await queryClient.invalidateQueries({ queryKey: ['projectStats'] });
       setShowSuccessModal(true);
     } catch (error) {
       console.error("Submission failed", error);
@@ -171,7 +195,7 @@ const NewProjectPage = () => {
               </h3>
               
               <p className="text-sm text-gray-500 mb-6">
-                اطلاعات پروژه شما با موفقیت در سیستم ذخیره گردید و هم‌اکنون در لیست پروژه‌ها قابل مشاهده است.
+                اطلاعات پروژه در این مرورگر ذخیره شد و در لیست پروژه‌ها قابل مشاهده است. نتیجه تحلیل هنوز تولید نشده است.
               </p>
               
               <button

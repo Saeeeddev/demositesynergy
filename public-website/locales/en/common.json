@@ -3,7 +3,6 @@
     "getStarted": "Get Started",
     "getInTouch": "Get in Touch",
     "bookCall": "Book a Call",
-    "viewCaseStudies": "View Case Studies",
     "watchVideos": "Watch Videos",
     "sendMessage": "Send Message",
     "requestQuote": "Request a Project Quote"
@@ -12,14 +11,30 @@
     "product": "Product",
     "about": "About",
     "contact": "Contact",
-    "pricing": "Pricing",
-    "support": "Support",
-    "caseStudies": "Case Studies"
+    "pricing": "Pricing"
   },
   "language": {
     "en": "English",
     "ar": "العربية",
     "fa": "فارسی"
   },
-  "copyright": "© 2025 SiteSynergy Technologies. All rights reserved."
+  "copyright": "© 2026 All rights to this website belong to Hamafza Resource Development Company.",
+  "cookies": {
+    "title": "Storage preferences",
+    "description": "We use browser storage to remember your language and this notice choice. This website currently does not set advertising or analytics cookies.",
+    "privacy": "Privacy policy",
+    "accept": "Got it",
+    "necessary": "Necessary only"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page is unavailable or has moved.",
+    "home": "Back to home"
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "We could not display this page. Please try again or contact us.",
+    "home": "Back to home",
+    "contact": "Contact us"
+  }
 }

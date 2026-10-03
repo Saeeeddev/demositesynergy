@@ -1,33 +1,77 @@
 {
   "hero": {
-    "badge": "OUR PRODUCTS",
-    "title": "The SiteSynergy Products",
-    "description": "An end-to-end solution for renewable energy project development, from initial assessment to final reporting."
+    "badge": "PRODUCT",
+    "title": "SiteSynergy assessment and reporting tools",
+    "description": "From screening candidate sites to preparing reports for the next project stage."
   },
-  "mainFeature": {
-    "badge": "UNIFIED WORKFLOW",
-    "title": "Analyze Thousands of Sites in Hours",
-    "description": "Our proprietary engine unifies geospatial, grid, land, and financial data into one intuitive dashboard. Instantly filter, score, and compare opportunities to find the perfect site without juggling spreadsheets and disconnected tools.",
-    "imageAlt": "SiteSynergy App Interface"
+  "siteSelection": {
+    "badge": "SITE SELECTION",
+    "title": "Site Selection",
+    "description": "Compare potential solar sites using relevant land, grid, and resource data in one workflow. Structured screening can help teams identify constraints earlier and focus fieldwork on promising locations. Results still need local verification and project-specific review.",
+    "features": {
+      "f1": {
+        "title": "Screen land constraints",
+        "desc": "Identify unsuitable locations earlier in the evaluation process."
+      },
+      "f2": {
+        "title": "Compare generation potential",
+        "desc": "Review solar resource information alongside other site factors."
+      },
+      "f3": {
+        "title": "Organize the workflow",
+        "desc": "Reduce manual comparison across disconnected data sources."
+      }
+    }
   },
-  "features": {
-    "adaptive": {
-      "title": "Adaptive Scoring",
-      "description": "Customize and weigh factors like solar yield, grid capacity, and land cost to align with your unique investment strategy."
-    },
-    "multiLayer": {
-      "title": "Multi-Layer Data",
-      "description": "Access comprehensive datasets including transmission lines, substations, protected lands, and permitting constraints."
-    },
-    "endToEnd": {
-      "title": "End-to-End Evaluation",
-      "description": "Gain a cohesive, 360-degree view of every project with interconnected technical, financial, and regulatory insights."
+  "reports": {
+    "badge": "REPORTING",
+    "title": "Project Reports",
+    "description": "Prepare project-specific technical, environmental, and economic reports based on the available site information and agreed scope. Reports can support planning and permit preparation; regulatory acceptance depends on the relevant authority and project requirements.",
+    "features": {
+      "f1": {
+        "title": "Technical and economic view",
+        "desc": "Bring key site findings and assumptions into a structured report."
+      },
+      "f2": {
+        "title": "Environmental considerations",
+        "desc": "Document relevant constraints for further review."
+      },
+      "f3": {
+        "title": "Planning support",
+        "desc": "Use findings to prepare the next stage of project assessment."
+      }
     }
   },
   "cta": {
-    "badge": "READY TO GET STARTED?",
-    "title": "Experience the Future of\nSite Selection Today",
-    "button": "Get start",
-    "appIconAlt": "SiteSynergy App Icon"
+    "badge": "NEXT STEP",
+    "title": "Discuss your project location with us",
+    "button": "Request a project review",
+    "appIconAlt": "SiteSynergy app icon"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "",
+    "items": {
+      "pricing": {
+        "question": "How is pricing determined?",
+        "answer": "We prepare a project-specific proposal after reviewing the scope, required data, and expected deliverables."
+      },
+      "dataSources": {
+        "question": "What data is used in an assessment?",
+        "answer": "Sources depend on the region and project type. We discuss available data and its limitations before work begins."
+      },
+      "turnaround": {
+        "question": "How long does an assessment take?",
+        "answer": "Delivery depends on the area, data quality, and type of report. The project proposal sets out the expected timeline."
+      },
+      "security": {
+        "question": "How should I share sensitive project information?",
+        "answer": "Do not send confidential material through the public form or ordinary email. Contact us first to arrange a suitable exchange method."
+      },
+      "geographic": {
+        "question": "Is my project area covered?",
+        "answer": "Data coverage varies by region. Send us the location and project requirements so we can assess feasibility."
+      }
+    }
   }
 }

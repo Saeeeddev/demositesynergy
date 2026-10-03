@@ -3,13 +3,6 @@ import { useTranslation } from 'react-i18next';
 import Header from '../website/Header';
 import Footer from '../website/Footer';
 
-// Placeholder image URLs for each case study
-const imageUrls = {
-  pioneer: "https://placehold.co/800x600/A8C6E8/2E2E2E?text=Project+Helios+Map",
-  veridian: "https://placehold.co/800x600/8FDCB8/2E2E2E?text=Project+Northwind+Map",
-  empire: "https://placehold.co/800x600/F0D16D/2E2E2E?text=Community+Solar+Map"
-};
-
 const CaseStudies = () => {
   // Use the 'CaseStudies' namespace
   const { t } = useTranslation('CaseStudies');
@@ -21,7 +14,7 @@ const CaseStudies = () => {
   // Fetch comparison data
   const traditionalData = t('comparison.traditional', { returnObjects: true });
   const sitesynergyData = t('comparison.sitesynergy', { returnObjects: true });
-  const comparisonKeys = ['timeline', 'data', 'risk', 'economic', 'cost'];
+  const comparisonKeys =['timeline', 'data', 'risk', 'economic', 'cost'];
 
   return (
     <div className="min-h-screen bg-background-secondary">
@@ -60,10 +53,19 @@ const CaseStudies = () => {
                         <p><strong>{t('labels.theSolution')}</strong> {study.solution}</p>
                       </div>
                     </div>
+                    
                     <div className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                       <img src={imageUrls[key]} alt={`${study.title} map visualization`} className="rounded-xl shadow-map-viz w-full h-auto object-cover"/>
+                       {/* HTML/CSS Placeholder instead of an <img> tag */}
+                       <div className="rounded-xl shadow-map-viz w-full aspect-[4/3] bg-gray-100 border-2 border-dashed border-gray-300 flex flex-col items-center justify-center p-6 text-center">
+                         <svg className="w-12 h-12 mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                         </svg>
+                         <span className="text-lg font-semibold text-gray-600">{study.title}</span>
+                         <span className="text-sm mt-2 text-gray-500">Map Visualization Placeholder</span>
+                       </div>
                     </div>
                   </div>
+                  
                   <div className="mt-12 border-t border-gray-200 pt-8">
                      <h3 className="font-display text-2xl font-bold text-text-dark mb-6 text-center">{t('labels.keyResults')}</h3>
                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">

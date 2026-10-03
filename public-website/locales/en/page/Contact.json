@@ -1,8 +1,8 @@
 {
   "hero": {
     "badge": "CONTACT US",
-    "title": "Let's Start a Conversation",
-    "description": "We're here to help and answer any question you might have. We look forward to hearing from you."
+    "title": "Contact us about your project",
+    "description": "For product questions, assessment requests, or partnerships, reach us by email or phone."
   },
   "info": {
     "email": {
@@ -12,7 +12,7 @@
     },
     "location": {
       "title": "Our Location",
-      "address": "123 Innovation Drive",
+      "address": "Ground floor, Niroo Research Institute, Shahid Dadman Street, Yadegar-e Emam Highway, Shahrak-e Gharb, Tehran, Iran",
       "suite": "Suite 456, San Francisco, CA 94105"
     },
     "social": {
@@ -20,16 +20,20 @@
       "twitter": "X / Twitter",
       "linkedIn": "LinkedIn",
       "discord": "Discord"
+    },
+    "phone": {
+      "title": "Phone"
     }
   },
   "form": {
-    "title": "Send us a Message",
+    "title": "Prepare your message",
     "fields": {
       "fullName": "Full Name",
       "email": "Email Address",
       "subject": "Subject",
       "message": "Message"
     },
-    "submit": "Send Message"
+    "submit": "Open email app",
+    "note": "The button below opens your email app with a prepared message. Send it from your email app to complete your request."
   }
 }

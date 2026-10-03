@@ -1,5 +1,6 @@
 .SuitabilityLayer-section__container {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   background-color: #ffffff;
   padding: 80px;
@@ -25,7 +26,7 @@
 
 .SuitabilityLayer-section__main-box {
   background-color: white;
-  width: 1040px;
+  width: 100%;
   /* height: 800px; /* Adjusted to fit content */
   padding: 0;
   margin-top: 80px;
@@ -36,8 +37,8 @@
 }
 
 .SuitabilityLayer-section__inner-box {
-  width: 500px;
-  height: 500px;
+  width: min(500px, 100%);
+  min-height: 500px;
   background-color: #f9f9f9;
   border-radius: 32px;
   padding: 40px;
@@ -45,8 +46,8 @@
 }
 
 .SuitabilityLayer-box__top-content {
-  width: 420px;
-  height: 101px;
+  width: 100%;
+  min-height: 101px;
 }
 
 .SuitabilityLayer-box__header {
@@ -68,12 +69,19 @@
 /* --- UPDATED & NEW STYLES --- */
 
 .SuitabilityLayer-box__bottom-content {
-  width: 416px;
+  width: 100%;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Anchor for the lines */
+  position: relative;
+}
+
+.SuitabilityLayer-box__bottom-content--diagram {
+  display: grid;
+  grid-template-rows: 24px 150px 45px;
+  justify-items: stretch;
+  align-items: start;
 }
 
 .SuitabilityLayer-box__bottom-top-box {
@@ -85,20 +93,27 @@
 }
 
 .SuitabilityLayer-box__image-placeholder img {
-  margin-top: 160px;
   width: 45px;
-  height: 45px;   /* or height: auto; */
+  height: 45px;
   display: block;
+}
+
+.SuitabilityLayer-box__bottom-content--diagram .SuitabilityLayer-box__image-placeholder {
+  justify-self: center;
+  transform: translateY(-8px);
 }
 
 /* Container for the animated lines */
 .SuitabilityLayer-box__bottom-lines-svg-container {
-  position: absolute;
-  top: 25px; /* Position below the top icons */
-  left: 0;
   width: 100%;
   height: 150px;
   pointer-events: none;
+}
+
+.SuitabilityLayer-box__bottom-lines-svg-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* Gray background line */
@@ -234,9 +249,12 @@
     margin-top: 80px;
   }
 
-  .SuitabilityLayer-box__image-placeholder img {
-    margin-top: 140px;
-    
+  .SuitabilityLayer-box__bottom-content--diagram {
+    grid-template-rows: 24px 140px 45px;
+  }
+
+  .SuitabilityLayer-box__bottom-lines-svg-container {
+    height: 140px;
   }
 }
 
@@ -290,6 +308,10 @@
     margin-top: 60px;
   }
 
+  .SuitabilityLayer-box__bottom-content--diagram {
+    grid-template-rows: 20px 120px 40px;
+  }
+
   .SuitabilityLayer-box__bottom-top-box {
     padding: 0 5px;
   }
@@ -300,7 +322,6 @@
   }
 
   .SuitabilityLayer-box__image-placeholder img {
-    margin-top: 120px;
     width: 40px;
     height: 40px;
   }
@@ -370,13 +391,16 @@
     margin-top: 50px;
   }
 
+  .SuitabilityLayer-box__bottom-content--diagram {
+    grid-template-rows: 18px 100px 36px;
+  }
+
   .SuitabilityLayer-box__bottom-top-box svg {
     width: 18px;
     height: 18px;
   }
 
   .SuitabilityLayer-box__image-placeholder img {
-    margin-top: 100px;
     width: 36px;
     height: 36px;
   }

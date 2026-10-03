@@ -1,0 +1,347 @@
+{
+  "demoEstimate": true,
+  "kpi": {
+    "irrProject": 12.0,
+    "irrEquity": 13.5,
+    "lcoe": 5200,
+    "workingCapital": 14800,
+    "totalInvestment": 1145797,
+    "npv": 2400000,
+    "pbp": "7 Years, 2 Months",
+    "dscr": 1.45
+  },
+  "capex": {
+    "detailed": {
+      "total": 1145797,
+      "components": [
+        {
+          "name": "Main Equipment (PV & Inverters)",
+          "value": 687478,
+          "percentage": 60.0
+        },
+        {
+          "name": "Civil, Structure & Fencing",
+          "value": 171870,
+          "percentage": 15.0
+        },
+        {
+          "name": "Engineering & Pre-operation",
+          "value": 171870,
+          "percentage": 15.0
+        },
+        {
+          "name": "Grid Connection & Substation",
+          "value": 57290,
+          "percentage": 5.0
+        },
+        {
+          "name": "Contingency",
+          "value": 34374,
+          "percentage": 3.0
+        },
+        {
+          "name": "Equipment Rental (Construction)",
+          "value": 22916,
+          "percentage": 2.0
+        }
+      ]
+    },
+    "structure": {
+      "total": 1145797,
+      "components": [
+        {
+          "name": "Equipment",
+          "value": 687478,
+          "percentage": 60.0
+        },
+        {
+          "name": "Civil Works",
+          "value": 171870,
+          "percentage": 15.0
+        },
+        {
+          "name": "Grid",
+          "value": 57290,
+          "percentage": 5.0
+        },
+        {
+          "name": "Other",
+          "value": 194785,
+          "percentage": 17.0
+        },
+        {
+          "name": "Unforeseen",
+          "value": 34374,
+          "percentage": 3.0
+        }
+      ]
+    }
+  },
+  "opex": {
+    "total": 21000,
+    "items": [
+      {
+        "category": "Labor (14 months)",
+        "value": 9000,
+        "note": "Engineers & Technicians",
+        "percentage": 42.9
+      },
+      {
+        "category": "Maintenance (Civil & Grid)",
+        "value": 8000,
+        "note": "Main equipment under warranty",
+        "percentage": 38.1
+      },
+      {
+        "category": "General & Admin",
+        "value": 3000,
+        "note": "Insurance & Management",
+        "percentage": 14.3
+      },
+      {
+        "category": "Spare Parts",
+        "value": 1000,
+        "note": "Est. 10% of maintenance",
+        "percentage": 4.7
+      }
+    ]
+  },
+  "charts": {
+    "cashFlow": [
+      {
+        "year": 0,
+        "value": -1145797
+      },
+      {
+        "year": 1,
+        "value": -1000000
+      },
+      {
+        "year": 5,
+        "value": 2000000
+      },
+      {
+        "year": 10,
+        "value": 14166667
+      },
+      {
+        "year": 15,
+        "value": 41666667
+      },
+      {
+        "year": 20,
+        "value": 100000000
+      },
+      {
+        "year": 25,
+        "value": 201666667
+      }
+    ],
+    "revenueVsOpex": [
+      {
+        "year": 1,
+        "revenue": 120028,
+        "opex": 21748,
+        "ebitda": 98278,
+        "netProfit": -143483,
+        "fcf": -104137,
+        "dscr": 0.53
+      },
+      {
+        "year": 2,
+        "revenue": 151542,
+        "opex": 29362,
+        "ebitda": 122180,
+        "netProfit": -119582,
+        "fcf": -168467,
+        "dscr": 0.43
+      },
+      {
+        "year": 3,
+        "revenue": 200922,
+        "opex": 39638,
+        "ebitda": 161282,
+        "netProfit": -57107,
+        "fcf": -132083,
+        "dscr": 0.56
+      },
+      {
+        "year": 4,
+        "revenue": 266388,
+        "opex": 53512,
+        "ebitda": 212875,
+        "netProfit": 23233,
+        "fcf": -82838,
+        "dscr": 0.74
+      },
+      {
+        "year": 5,
+        "revenue": 353188,
+        "opex": 72242,
+        "ebitda": 280947,
+        "netProfit": 126665,
+        "fcf": -17875,
+        "dscr": 0.98
+      },
+      {
+        "year": 6,
+        "revenue": 468270,
+        "opex": 116022,
+        "ebitda": 352247,
+        "netProfit": 241460,
+        "fcf": 50833,
+        "dscr": 1.23
+      },
+      {
+        "year": 7,
+        "revenue": 620852,
+        "opex": 156630,
+        "ebitda": 464220,
+        "netProfit": 406930,
+        "fcf": 442475,
+        "dscr": 10.0
+      },
+      {
+        "year": 8,
+        "revenue": 823148,
+        "opex": 211452,
+        "ebitda": 611695,
+        "netProfit": 415803,
+        "fcf": 444345,
+        "dscr": 10.0
+      },
+      {
+        "year": 9,
+        "revenue": 1091360,
+        "opex": 285460,
+        "ebitda": 805900,
+        "netProfit": 561457,
+        "fcf": 580740,
+        "dscr": 10.0
+      },
+      {
+        "year": 10,
+        "revenue": 1446967,
+        "opex": 385372,
+        "ebitda": 1061595,
+        "netProfit": 753228,
+        "fcf": 760275,
+        "dscr": 10.0
+      },
+      {
+        "year": 15,
+        "revenue": 5928030,
+        "opex": 1728020,
+        "ebitda": 4200008,
+        "netProfit": 3107038,
+        "fcf": 2961665,
+        "dscr": 10.0
+      },
+      {
+        "year": 20,
+        "revenue": 24286330,
+        "opex": 7748502,
+        "ebitda": 16537828,
+        "netProfit": 12360403,
+        "fcf": 11601665,
+        "dscr": 10.0
+      },
+      {
+        "year": 25,
+        "revenue": 99497780,
+        "opex": 34744540,
+        "ebitda": 64753238,
+        "netProfit": 48564928,
+        "fcf": 58794120,
+        "dscr": 10.0
+      }
+    ],
+    "sensitivity": [
+      {
+        "name": "Base Case",
+        "irr": 12.0
+      },
+      {
+        "name": "Revenue -10%",
+        "irr": 9.5
+      },
+      {
+        "name": "Const. Cost +10%",
+        "irr": 10.8
+      },
+      {
+        "name": "OPEX +10%",
+        "irr": 11.2
+      }
+    ],
+    "breakeven": [
+      {
+        "x": 0,
+        "revenue": 0,
+        "cost": 16667
+      },
+      {
+        "x": 100,
+        "revenue": 120028,
+        "cost": 21748
+      }
+    ]
+  },
+  "swot": {
+    "strengths": [
+      "دسترسی نزدیک به زیرساخت انتقال",
+      "ظرفیت نامی ۲۵۰ مگاوات"
+    ],
+    "weaknesses": [
+      "نیاز به سرمایه‌گذاری اولیه بالا"
+    ],
+    "opportunities": [
+      "گسترش تقاضا برای برق تجدیدپذیر"
+    ],
+    "threats": [
+      "تغییر نرخ ارز",
+      "تاخیر در تامین مالی"
+    ]
+  },
+  "risks": [
+    {
+      "name": "نوسان نرخ ارز",
+      "zone": "Serious (Orange)",
+      "severity": "High",
+      "probability": "Medium"
+    },
+    {
+      "name": "تاخیر تامین مالی",
+      "zone": "Serious (Orange)",
+      "severity": "Medium",
+      "probability": "Medium"
+    }
+  ],
+  "timeline": [
+    {
+      "stage": "Permits & Finance",
+      "start": 0,
+      "duration": 3
+    },
+    {
+      "stage": "Engineering & Proc.",
+      "start": 2,
+      "duration": 4
+    },
+    {
+      "stage": "Civil & Structure",
+      "start": 5,
+      "duration": 4
+    },
+    {
+      "stage": "Installation",
+      "start": 8,
+      "duration": 3
+    },
+    {
+      "stage": "Commissioning",
+      "start": 10,
+      "duration": 2
+    }
+  ]
+}

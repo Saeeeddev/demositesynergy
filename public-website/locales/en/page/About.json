@@ -1,68 +1,46 @@
 {
   "hero": {
     "badge": "ABOUT US",
-    "title": "Site selection redefined:\nFaster. Smarter. More accurate.",
-    "description": "With SiteSynergy, months of analysis collapse into a single day — providing faster, smarter, and more accurate site decisions powered by advanced data and analytics."
+    "title": "Better data for better site choices",
+    "description": "SiteSynergy brings land, solar, grid, and infrastructure data into one assessment workflow to make site comparisons clearer."
   },
   "progress": {
-    "badge": "HOW WE GOT TO THIS POINT",
-    "title": "Progress towards the mission",
+    "badge": "OUR APPROACH",
+    "title": "How we make site assessment simpler",
     "phase1": {
-      "badge": " — PHASE I",
-      "title": "Solved \"data overload\" in site selection",
+      "badge": "STEP ONE",
+      "title": "Bring scattered data together",
       "content": {
-        "problem1": "Traditional site analysis took months, scattered across reports, maps, and spreadsheets.",
-        "solution1": "We built the SiteSynergy Engine to unify solar, grid, land, and infrastructure data into one workflow — without slowing down decision-making.",
-        "problem2": "Site selection needed structured insight, not just raw data",
-        "solution2": "Raw datasets weren't enough. We developed models to automatically classify, filter, and preserve only meaningful context across diverse geospatial and technical sources.",
-        "problem3": "Making this work at scale was a massive challenge",
-        "solution3": "We engineered real-time, offline-capable pipelines for geospatial ingestion and analysis — enabling instant site scoring and risk assessment without reliance on cloud-heavy processes.",
-        "breakthrough": "Key Breakthrough: First real-time, privacy-preserving site selection engine that could capture, structure, and process multi-layer geospatial data without manual effort — cutting timelines from months to less than a day."
+        "problem1": "Data for site selection often sits in separate maps, reports, and files.",
+        "solution1": "We bring those sources into one workflow to simplify early site review.",
+        "problem2": "Raw data alone is not enough to compare options.",
+        "solution2": "We organize and filter relevant information to make each site’s opportunities and constraints clearer.",
+        "problem3": "Reviewing multiple locations should be repeatable and traceable.",
+        "solution3": "We designed geospatial data workflows to reduce manual steps.",
+        "breakthrough": "This step provides more structured inputs for initial site screening."
       }
     },
     "phase2": {
-      "badge": " — PHASE II: ACCURACY & AUTOMATION",
-      "title": "Solved \"proactive decision-making\" (Automation-1)",
+      "badge": "STEP TWO",
+      "title": "Compare options against clear criteria",
       "content": {
-        "problem1": "Raw site data wasn't enough — the system needed to identify which sites to prioritize, which to discard, and how to retrieve the right insights instantly.",
-        "solution1": "We built adaptive scoring and filtering models to surface the most promising sites while removing noise — a challenge no other site selection tool had solved at scale."
+        "problem1": "Once data is gathered, teams need to understand what affects each option.",
+        "solution1": "We developed scoring and filtering models to show promising options and their constraints."
       },
       "subPhase": {
-        "title": "Balanced quality & quantity (Automation-2)",
-        "problem2": "Individual site scores lacked context — site evaluation needed to \"connect the dots\" across multiple factors.",
-        "solution2": "At scale, insights became fragmented. Inspired by layered analysis, we built continuous linking across solar yield, grid capacity, land use, and permitting constraints — giving developers cohesive, end-to-end evaluations.",
-        "problem3": "Efficiency was a massive barrier — real-time & long-term analysis had to be lightweight.",
-        "solution3": "We achieved dramatic efficiency gains, boosting accuracy and granularity while cutting compute needs — enabling nation-scale analysis in a fraction of the time and cost.",
-        "breakthrough": "Key Breakthrough: First real-time, privacy-preserving site selection engine that could deliver automated, highly accurate, and scalable analysis — turning months of fragmented work into a single-day, data-driven decision."
-      }
-    }
-  },
-  "team": {
-    "badge": "THE TEAM BEHIND IT",
-    "title": "A dedicated team crafting the ultimate site selection platform for developers & investors",
-    "members": {
-      "younes": {
-        "name": "Dr. Younes Noorollahi",
-        "role": "Board Member & Co-Founder (Renewable Energy)"
-      },
-      "amir": {
-        "name": " Amir Naseri",
-        "role": "Chairman of the Board & Co-Founder (Geography & Spatial Analysis)"
-      },
-      "saeed": {
-        "name": "Saeed Dolati",
-        "role": "Co-Founder (Computer Engineering & Intelligent Systems)"
-      },
-      "reza": {
-        "name": "Reza Dolati",
-        "role": "CEO & Co-Founder (Electrical Engineering & Renewable Energy)"
+        "title": "Connect technical and location factors",
+        "problem2": "A single score without its underlying factors is not enough for a decision.",
+        "solution2": "We show solar yield, grid access, land use, and permitting constraints together.",
+        "problem3": "Result quality depends on input data and expert review.",
+        "solution3": "We present results so assumptions and limitations can be examined.",
+        "breakthrough": "Our goal is to help teams compare options transparently before detailed studies."
       }
     }
   },
   "download": {
-    "badge": "Developer Access",
-    "title": "Transform site selection\nwith speed & precision",
-    "cta": "🚀Get Started",
+    "badge": "NEXT STEP",
+    "title": "Contact us about your project location",
+    "cta": "Contact us",
     "appIconAlt": "SiteSynergy App Icon"
   }
 }

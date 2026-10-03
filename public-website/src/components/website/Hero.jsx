@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import heroVideo from '../../assets/heroBAckgroundVideo.mp4';
 
 function Hero({ t }) { // 👈 Already correctly accepts 't'
   return (
-    <div className="relative pt-[60px] h-[835px] md:h-[835px] flex flex-col items-center justify-start text-center max-w-[1905px] mx-auto px-4 sm:px-6 md:px-8 lg:px-20 rounded-bl-[70px] rounded-br-[70px] overflow-hidden">
+    <div className="relative pt-[60px] h-[700px] sm:h-[760px] md:h-[835px] flex flex-col items-center justify-start text-center max-w-[1905px] mx-auto px-4 sm:px-6 md:px-8 lg:px-20 rounded-b-[36px] sm:rounded-b-[70px] overflow-hidden">
       <div className="absolute top-0 start-0 w-full h-full -z-10 bg-hero-bg overflow-hidden">
-        <div className="absolute top-0 start-0 w-full h-full bg-[url('/src/assets/noise_texture_blue.png')] bg-repeat opacity-80 pointer-events-none z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#e8edf7]/35 to-transparent pointer-events-none z-10"></div>
         <video
           autoPlay
           loop
@@ -20,12 +21,15 @@ function Hero({ t }) { // 👈 Already correctly accepts 't'
         <h1 className="text-hero-text text-4xl sm:text-5xl lg:text-[58px] font-bold leading-tight lg:leading-[68.8px] tracking-[-2px] lg:tracking-[-4.1px] mb-4 sm:mb-6 lg:mb-6">
           {t('hero.title')} {/* 👈 Already translated */}
         </h1>
-        <p className="text-hero-text[900] text-sm sm:text-lg lg:text-[17px] leading-relaxed lg:leading-[22.9px] text-hero-subtext max-w-[90%] sm:max-w-[600px]">
+        <p className="text-hero-text text-sm sm:text-lg lg:text-[17px] leading-relaxed lg:leading-[22.9px] text-hero-subtext max-w-[90%] sm:max-w-[600px]">
           {t('hero.subtitle')} {/* 👈 Already translated */}
         </p>
-        <button className="mt-4 w-[140px] h-[38px] py-2 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
+        <Link
+          to="/contact"
+          className="mt-4 min-w-[160px] min-h-[42px] py-2 px-5 bg-white text-[#6d7f9f] border-none rounded-full text-sm sm:text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px] inline-flex items-center justify-center no-underline whitespace-nowrap"
+        >
           {t('hero.cta')} {/* 👈 Already translated */}
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,16 +1,9 @@
-# React + Vite
+# Site Synergy dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Run `npm install` and `npm run dev`, then open the Vite URL. No JSON Server is needed.
 
-Currently, two official plugins are available:
+The app opens at `/login`. During the update, only the demo login is available: phone `09123456789` and password `demo1234`. Registration is paused. The checked-in `db.json` supplies initial dashboard data. Profile edits and locally created records are saved in this browser's local storage. The login session is saved in session storage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a browser-only demo, not secure authentication or shared storage. Local data are available only in the browser where they were created. Clearing site storage resets them. Password reset by SMS is unavailable without a backend. Map tiles and location search still require internet access. The project detail pages display the satellite base map and list the available layers; selecting a layer shows a notice because analytic overlays are disabled in this demo. Financial pages identify their figures as sample data. The Ahvaz project's financial figures in `src/assets/data/ahvazFinancial.json` are illustrative sample values, not validated estimates. New projects save their inputs locally and remain pending until analysis results are supplied.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Use `npm run build` to verify the production bundle.

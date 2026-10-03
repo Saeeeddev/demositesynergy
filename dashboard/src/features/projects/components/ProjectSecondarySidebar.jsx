@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../../lib/axios';
+import { api } from '../../../lib/localData';
 import { IoChevronDown, IoChevronUp, IoEyeOutline } from 'react-icons/io5';
 
 const ProjectSecondarySidebar = () => {

@@ -60,15 +60,24 @@ const ResultPageLayout = () => {
     );
   }
 
+  if (projectData.status === 'pending') {
+    return <div className="flex h-full items-center justify-center bg-gray-50 p-6" dir="rtl">
+      <div className="max-w-lg rounded-xl border bg-white p-8 text-center shadow-sm">
+        <h1 className="text-xl font-bold">{projectData.projectInfo?.project_name}</h1>
+        <p className="mt-4 text-gray-600">پروژه در این مرورگر ذخیره شد. نتیجه تحلیل هنوز تولید نشده است.</p>
+        <button onClick={handleBack} className="mt-6 rounded-lg bg-primary-blue px-5 py-2 text-white">بازگشت به پروژه‌ها</button>
+      </div>
+    </div>;
+  }
+
   // 3. Success State - Render the Interface
   return (
     <div className="flex flex-col h-full w-full bg-gray-100 overflow-hidden relative" dir="rtl">
-      
       {/* Pass cached projectData to header to avoid refetching */}
       <ResultPageHeader projectId={id} projectData={projectData} onBack={handleBack} />
       
       <div className="flex flex-1 overflow-hidden relative">
-        <ResultPageSidebar />
+        <ResultPageSidebar projectData={projectData} />
         
         <div className="flex flex-1 min-w-0 relative h-full bg-gray-50/80">
            {/* Pass context to children */}

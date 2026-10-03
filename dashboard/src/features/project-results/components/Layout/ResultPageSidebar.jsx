@@ -10,17 +10,18 @@ import {
 import ProjectOverviewSidebarPanel from '../ProjectOverview/ProjectOverviewSidebarPanel';
 import LayersSidebarPanel from '../Layers/LayersSidebarPanel';
 import FinancialSidebarPanel from '../Financial/FinancialSidebarPanel';
+import { getProjectLocation } from '../../lib/projectLocation';
 
-export default function ResultPageSidebar() {
+export default function ResultPageSidebar({ projectData }) {
   const location = useLocation();
 
   // Determine which panel content to show based on current URL path
   const renderPanelContent = () => {
     const path = location.pathname;
-    if (path.includes('/map')) return <LayersSidebarPanel />;
+    if (path.includes('/map')) return <LayersSidebarPanel hasSelectedLocation={!!getProjectLocation(projectData, projectData?.id)} />;
     if (path.includes('/overview')) return <ProjectOverviewSidebarPanel />;
     if (path.includes('/financial')) return <FinancialSidebarPanel />;
-    return <LayersSidebarPanel />; // Default
+    return <LayersSidebarPanel hasSelectedLocation={!!getProjectLocation(projectData, projectData?.id)} />;
   };
 
   const tabs = [
@@ -59,4 +60,3 @@ export default function ResultPageSidebar() {
     </div>
   );
 }
-

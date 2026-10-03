@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useWizardStore } from '../../../stores/useWizardStore';
 import LeafletMap from '../../../components/map/LeafletMap';
 import countyListRaw from '../../../assets/data/countyList.json'; 
+const EMPTY_COUNTIES = [];
 import { 
   PencilSquareIcon, 
   GlobeAmericasIcon, 
@@ -73,7 +74,7 @@ const Step4_Location = () => {
   // -- Derived Data for Dropdowns --
   const provinceList = countyListRaw; // It is now an array
   const selectedProvinceData = provinceList.find(p => p.province === projectDetails.province);
-  const countyOptions = selectedProvinceData ? selectedProvinceData.counties : [];
+  const countyOptions = selectedProvinceData ? selectedProvinceData.counties : EMPTY_COUNTIES;
 
   // -- Effects --
 
@@ -167,7 +168,7 @@ const Step4_Location = () => {
 
         fetchBoundary();
     }
-  }, [projectDetails.county, projectDetails.province, isCountyMode, countyOptions]); // Added countyOptions to dependency for safety
+  }, [projectDetails.county, projectDetails.province, isCountyMode, countyOptions, locationData?.name, updateLocationData]);
 
 
   // -- Handlers --

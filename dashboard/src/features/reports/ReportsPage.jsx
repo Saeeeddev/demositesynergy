@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../../lib/axios';
+import { api } from '../../lib/localData';
 import Pagination from '../../components/common/Pagination';
 import { 
   DocumentTextIcon, 

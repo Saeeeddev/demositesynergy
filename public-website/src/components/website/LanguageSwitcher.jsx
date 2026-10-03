@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Languages } from 'lucide-react';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation('common');
@@ -7,25 +8,23 @@ const LanguageSwitcher = () => {
   const otherLang = currentLang === 'fa' ? 'en' : 'fa';
 
   const handleLanguageChange = () => {
-    const dir = otherLang === 'fa' ? 'rtl' : 'ltr';
     i18n.changeLanguage(otherLang);
-    document.documentElement.dir = dir;
-    document.documentElement.lang = otherLang;
   };
 
-  const label = otherLang === 'fa' ? 'فارسی' : 'EN';
+  const label = otherLang === 'fa' ? 'فارسی' : 'English';
 
   return (
-    <span
+    <button
+      type="button"
       onClick={handleLanguageChange}
-      className="cursor-pointer text-m font-medium px-2 py-2"
+      className="header__language-btn"
       aria-label={`Switch to ${otherLang === 'fa' ? 'Farsi' : 'English'}`}
     >
+      <Languages size={18} aria-hidden="true" />
       {label}
-    </span>
+    </button>
   );
 };
 
 export default LanguageSwitcher;
-
 

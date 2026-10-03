@@ -1,63 +1,63 @@
 {
   "hero": {
-    "title": "The most reliable way to select the optimal site",
-    "subtitle": "AI-driven analysis of location, solar potential, costs, and risks — empowering you to make faster, smarter, and more profitable site decisions.",
-    "cta": "Get Started"
+    "title": "Make informed renewable energy site decisions",
+    "subtitle": "See land, solar, grid, and cost data together to compare potential locations for your project.",
+    "cta": "Discuss my project"
   },
   "companyLogos": {
-    "title": "Companies choosing SiteSynergy"
+    "title": "SiteSynergy partners and collaborators"
   },
   "suitabilityLayer": {
-    "header": "It starts with data—\nat the site level",
+    "header": "Key site-selection data at a glance",
     "leftBox": {
-      "title": "We layer every factor that matters",
-      "description": "Automatically combines key site factors—land, solar, grid, environment, and more—for a complete view."
+      "title": "See the important layers together",
+      "description": "Review land conditions, solar resources, grid access, and environmental constraints in one view."
     },
     "rightBox": {
-      "title": "Decisions you can trust",
-      "description": "Every recommendation comes with clear reasoning. Understand exactly why each site ranks where it does.",
-      "bubble": "Why is this site ranked #1 in the region?",
+      "title": "Understand each site score",
+      "description": "Each assessment shows the factors behind its result, helping you compare options with more context.",
+      "bubble": "Why does this site score higher?",
       "siteLabel": "Site A-47",
-      "scoreText": "scored 94/100",
-      "details": "Grid proximity (0.2mi) and optimal solar conditions drove the high ranking.",
-      "viewLink": "📊 Full analysis"
+      "scoreText": "Sample score: 94 of 100",
+      "details": "Grid access and solar conditions contributed to this sample score.",
+      "viewLink": "View assessment details"
     }
   },
   "demoVideo": {
-    "title": "Results That Drive Confident Decisions",
+    "title": "From scattered data to clearer decisions",
     "features": {
       "comprehensive": {
-        "title": "Comprehensive site analysis",
-        "description": "Layer multiple data sources to quickly identify the most suitable solar sites."
+        "title": "Identify constraints early",
+        "description": "Review land, environmental, and infrastructure constraints in the early stages."
       },
       "instant": {
-        "title": "Instant recommendations",
-        "description": "Receive ranked site options with detailed scoring in hours, not months."
+        "title": "Compare options more clearly",
+        "description": "Consider generation potential and economic factors alongside each location."
       },
       "riskOptimized": {
-        "title": "Risk-optimized decisions",
-        "description": "Make confident investments backed by transparent risk assessment and mitigation strategies."
+        "title": "Keep work organized",
+        "description": "Bring together the information needed for technical review and project planning."
       }
     }
   },
   "dataToDecision": {
-    "title": "Designed for accuracy, delivered with speed",
+    "title": "Clearer data for more precise site selection",
     "smarterDecisions": {
-      "title": "Smarter decisions",
-      "description": "Solar, grid, land, and infrastructure — all in one place."
+      "title": "Informed comparisons",
+      "description": "Review solar, land, grid, and infrastructure data together."
     },
     "yourCriteria": {
-      "title": "Your criteria",
-      "description": "Set weights, choose factors, and review results on completion."
+      "title": "Project-specific criteria",
+      "description": "Choose relevant factors and review the results against your needs."
     },
     "transparentByDefault": {
-      "title": "Transparent by default",
-      "description": "Every score is backed by trusted data."
+      "title": "Traceable results",
+      "description": "See the factors behind each score in the assessment report."
     }
   },
   "stackedPreview": {
-    "title": "Smarter Project Site Selection",
-    "subtitle": "Get comprehensive technical and economic analysis reports, eliminate assessment complexities, and confidently secure your most profitable locations.",
+    "title": "Reports for the next project stage",
+    "subtitle": "Review technical and economic findings in a structured format and identify what needs further study.",
     "cards": {
       "capex": "Capital Expenditure (CAPEX)",
       "opex": "Operational Expenditure (OPEX)",
@@ -65,7 +65,21 @@
     }
   },
   "ctaSection": {
-    "quote": "\"It's like I'm discovering the perfect site — with just a click\"",
-    "button": "Get Started"
+    "quote": "Request an assessment of your project site",
+    "button": "Request a project review"
+  },
+  "included": {
+    "title": "What a project assessment can cover",
+    "subtitle": "The exact data and deliverables depend on the region, available information, and each project’s needs.",
+    "features": {
+      "suitability": "Site fit against project criteria",
+      "maps": "Available maps and geospatial layers",
+      "grid": "Initial grid-access review",
+      "solar": "Solar generation potential estimate",
+      "land": "Land-use and site constraints",
+      "financial": "Preliminary financial indicators",
+      "environmental": "Environmental and permitting considerations",
+      "export": "Report and data outputs as agreed for the project"
+    }
   }
 }

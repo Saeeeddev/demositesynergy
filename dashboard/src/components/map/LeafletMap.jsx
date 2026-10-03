@@ -9,6 +9,21 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
+// leaflet-draw 1.0.4 assigns to an undeclared `type` in readableArea.
+// Vite runs the package as a strict module, so drawing a polygon throws.
+L.GeometryUtil.readableArea = (area, metric = true, precision = {}) => {
+  const units = typeof metric === 'string' ? [metric] : Array.isArray(metric) ? metric : ['ha', 'm'];
+  if (metric) {
+    if (area >= 1e6 && units.includes('km')) return `${L.GeometryUtil.formattedNumber(area / 1e6, precision.km ?? 2)} km²`;
+    if (area >= 1e4 && units.includes('ha')) return `${L.GeometryUtil.formattedNumber(area / 1e4, precision.ha ?? 2)} ha`;
+    return `${L.GeometryUtil.formattedNumber(area, precision.m ?? 0)} m²`;
+  }
+  const yards = area / 0.836127;
+  if (yards >= 3097600) return `${L.GeometryUtil.formattedNumber(yards / 3097600, precision.mi ?? 2)} mi²`;
+  if (yards >= 4840) return `${L.GeometryUtil.formattedNumber(yards / 4840, precision.ac ?? 2)} acres`;
+  return `${L.GeometryUtil.formattedNumber(yards, precision.yd ?? 0)} yd²`;
+};
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
@@ -83,6 +98,8 @@ function formatLayerToJson(layer) {
 }
 
 const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
+  const callbacks = useRef({ onCreated, onError });
+  useEffect(() => { callbacks.current = { onCreated, onError }; }, [onCreated, onError]);
   const mapContainerRef = useRef(null);
   const mapInstance = useRef(null);
   const drawnItems = useRef(null);
@@ -151,7 +168,7 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
       const area = getLayerAreaSqKm(layer);
 
       if (area > MAX_AREA_SQ_KM) {
-        if (onError) onError(`مساحت انتخاب شده (${area.toFixed(0)} km²) بیش از حد مجاز است.`);
+        callbacks.current.onError?.(`مساحت انتخاب شده (${area.toFixed(0)} km²) بیش از حد مجاز است.`);
         // Remove layer immediately if invalid
         return; 
       }
@@ -163,11 +180,11 @@ const LeafletMap = forwardRef(({ initialData, onCreated, onError }, ref) => {
       drawnItems.current.addLayer(layer);
       
       const customJson = formatLayerToJson(layer);
-      if (onCreated && customJson) onCreated(customJson);
+      if (customJson) callbacks.current.onCreated?.(customJson);
     });
 
     map.on(L.Draw.Event.DELETED, () => {
-        if(onCreated) onCreated(null);
+        callbacks.current.onCreated?.(null);
     });
 
     return () => {

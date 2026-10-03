@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'; // 👈 1. Import the hook
 // Import all the sections of your home page
 import Hero from '../website/Hero';
 import HeroVideoDemo from '../website/HeroVideoDemo';
-import CompanyLogos from '../website/CompanyLogos';
 import SuitabilityLayerSection from '../website/SuitabilityLayer';
 import DemoVideoSection from '../website/DemoVideoSection';
 import CtaSection from '../website/CtaSection';
 import DataToDecision from '../website/DataToDecision';
+import IncludedInsights from '../website/IncludedInsights';
 import StackedPreviewSection from '../website/StackedPreviewSection';
 import '../../../src/assets/fonts/fonts.css'
 
@@ -24,9 +24,10 @@ function Home() {
       
       <SuitabilityLayerSection t={t} />
       <DemoVideoSection t={t} />
+      <IncludedInsights />
       <DataToDecision t={t} />
       <StackedPreviewSection t={t} />
-      <CompanyLogos t={t} />
+    
       <CtaSection t={t} />
     </main>
   );

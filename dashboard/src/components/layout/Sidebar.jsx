@@ -49,7 +49,7 @@ const NavItem = ({ to, icon, label }) => (
 );
 
 const Sidebar = () => {
-  const { isNavOpen, toggleNav, isNotificationOpen, toggleNotifications, isProfileOpen, toggleProfile } = useUIStore();
+  const { isNavOpen, toggleNav, isNotificationOpen, toggleNotifications, toggleProfile } = useUIStore();
   const location = useLocation();
 
   const navItems = [
@@ -144,4 +144,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-

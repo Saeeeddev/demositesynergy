@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './LanguageSwitcher';
 import '../../style/Header.css';
+import LanguageSwitcher from './LanguageSwitcher';
 import logoWhite from '../../assets/LogoIconImages/sitesynergy_logo_white.png';
 import logoColored from '../../assets/LogoIconImages/sitesynergy_logo_colored.png';
 
@@ -14,10 +14,6 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  // Placeholder for authentication status.
-  // This will be updated later with your actual authentication logic (e.g., from a context).
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,16 +73,9 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
 
           <div className="header__actions">
             <LanguageSwitcher />
-            {/* --- CORRECTED: Button now uses Link and checks login state --- */}
-            {isLoggedIn ? (
-              <Link to="/dashboard" className="header__get-started-btn">
-                {t('actions.dashboard', { ns: 'Header', defaultValue: 'Dashboard' })}
-              </Link>
-            ) : (
-              <Link to="/auth" className="header__get-started-btn">
-                {t('actions.getStarted', { ns: 'Header' })}
-              </Link>
-            )}
+            <a href="https://d.sitesynergy.ir/login" className="header__get-started-btn">
+              {t('actions.getStarted', { ns: 'Header' })}
+            </a>
           </div>
 
           <button 
@@ -110,16 +99,13 @@ function Header({ useColoredLogo = false, isHomePage = false }) {
           </ul>
           <div className="header__mobile-actions">
             <LanguageSwitcher />
-            {/* --- CORRECTED: Mobile button also uses Link and checks login state --- */}
-            <Link 
-              to={isLoggedIn ? "/dashboard" : "/auth"} 
-              className="header__mobile-get-started-btn" 
+            <a
+              href="https://d.sitesynergy.ir/login"
+              className="header__mobile-get-started-btn"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {isLoggedIn 
-                ? t('actions.dashboard', { ns: 'Header', defaultValue: 'Dashboard' })
-                : t('actions.getStarted', { ns: 'Header' })}
-            </Link>
+              {t('actions.getStarted', { ns: 'Header' })}
+            </a>
           </div>
         </nav>
       </div>

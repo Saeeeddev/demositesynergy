@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../../lib/axios';
-import { motion } from 'framer-motion';
+import { api } from '../../lib/localData';
+import { motion } from 'motion/react';
 import { CheckCircleIcon, ExclamationTriangleIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline';
 
 const getNotificationIcon = (type) => {

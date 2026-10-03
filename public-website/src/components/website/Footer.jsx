@@ -7,12 +7,12 @@ import logoColored from '../../assets/LogoIconImages/sitesynergy_logo_colored.pn
 
 // Helper to map JSON keys to URL paths
 const linkPaths = {
+  loginSignup: 'https://d.sitesynergy.ir/login',
+  webApp: 'https://d.sitesynergy.ir/login',
   about: '/about',
   product: '/product',
   pricing: '/pricing',
   contact: '/contact',
-  caseStudies: '/case-studies',
-  support: '/support',
   privacyPolicy: '/privacy',
   termsConditions: '/terms',
   security: '/security'
@@ -39,11 +39,11 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 sm:gap-12 md:gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             {/* 👈 Loop through the translated sections */}
-            {Object.keys(footerSections).map((sectionKey) => (
+            {Object.keys(footerSections).filter(key => key !== 'resources').map((sectionKey) => (
               <div key={sectionKey} className="min-w-[120px]">
-                <h3 className="text-gray-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+                <h3 className="text-gray-700 text-sm font-semibold mb-3 sm:mb-4">
                   {footerSections[sectionKey].title}
                 </h3>
                 <ul className="list-none p-0">
@@ -54,10 +54,14 @@ const Footer = () => {
                     return (
                       <li 
                         key={linkKey} 
-                        className="text-gray-500 text-xs sm:text-sm mb-2 cursor-pointer hover:text-gray-700 transition-colors duration-200"
+                        className="text-gray-500 text-sm mb-2 cursor-pointer hover:text-gray-700 transition-colors duration-200"
                       >
                         {path ? (
-                          <Link to={path} className="text-inherit no-underline">{linkText}</Link>
+                          path.startsWith('https://') ? (
+                            <a href={path} className="text-inherit no-underline">{linkText}</a>
+                          ) : (
+                            <Link to={path} className="text-inherit no-underline">{linkText}</Link>
+                          )
                         ) : (
                           linkText
                         )}
@@ -71,7 +75,7 @@ const Footer = () => {
         </div>
         <div className="border-t border-gray-200 pt-4 sm:pt-5 text-center">
           <div>
-            <span className="text-gray-500 text-xs sm:text-sm">
+            <span className="text-gray-500 text-sm leading-relaxed">
               {t('copyright')} {/* 👈 Translated */}
             </span>
           </div>

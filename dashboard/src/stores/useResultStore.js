@@ -17,6 +17,7 @@ const useResultStore = create((set) => ({
     allocatedLand: false,
     powerLines: false,
     ghi: false,
+    slope: false,
     roads: false,
     railways: false,
     airports: false,

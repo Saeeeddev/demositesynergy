@@ -4,22 +4,30 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 // ... existing imports ...
 import MainLayout from '../layouts/MainLayout';
 import AuthLayout from '../layouts/AuthLayout';
+import { useAuthStore } from '../stores/useAuthStore';
 
 // Lazy Load Pages
 const LoginPage = React.lazy(() => import('../features/auth/pages/LoginPage'));
 const RegisterPage = React.lazy(() => import('../features/auth/pages/RegisterPage'));
+const ForgotPasswordPage = React.lazy(() => import('../features/auth/pages/ForgotPasswordPage'));
 const HomePage = React.lazy(() => import('../features/dashboard/HomePage'));
 const ProjectsPage = React.lazy(() => import('../features/projects/ProjectsPage'));
 const NewProjectPage = React.lazy(() => import('../features/project-wizard/NewProjectPage'));
 const ReportsPage = React.lazy(() => import('../features/reports/ReportsPage'));
 const PaymentsPage = React.lazy(() => import('../features/payments/PaymentsPage'));
 const ProfilePage = React.lazy(() => import('../features/settings/ProfilePage'));
+const SecurityPage = React.lazy(() => import('../features/settings/SecurityPage'));
 
 // Lazy Load Result Pages
 const ResultPageLayout = React.lazy(() => import('../features/project-results/components/Layout/ResultPageLayout'));
 const LayersPage = React.lazy(() => import('../features/project-results/pages/LayersPage'));
 const ProjectOverviewPage = React.lazy(() => import('../features/project-results/pages/ProjectOverviewPage'));
 const FinancialPage = React.lazy(() => import('../features/project-results/pages/FinancialPage'));
+
+const ProtectedLayout = () => {
+  const user = useAuthStore((state) => state.user);
+  return user ? <MainLayout /> : <Navigate to="/login" replace />;
+};
 
 // --- NEW APPEALING LOADING COMPONENT ---
 const Loading = () => (
@@ -58,7 +66,7 @@ const Loading = () => (
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/dashboard" replace />,
+    element: <Navigate to="/login" replace />,
   },
   
   // --- AUTH ROUTES ---
@@ -73,13 +81,17 @@ export const router = createBrowserRouter([
         path: '/register', 
         element: <Suspense fallback={<Loading />}><RegisterPage /></Suspense> 
       },
+      {
+        path: '/forgot-password',
+        element: <Suspense fallback={<Loading />}><ForgotPasswordPage /></Suspense>
+      },
     ]
   },
 
   // --- DASHBOARD ROUTES ---
   {
     path: '/',
-    element: <MainLayout />,
+    element: <ProtectedLayout />,
     children: [
       { path: 'dashboard', element: <Suspense fallback={<Loading />}><HomePage /></Suspense> },
       { 
@@ -107,7 +119,7 @@ export const router = createBrowserRouter([
       { path: 'reports', element: <Suspense fallback={<Loading />}><ReportsPage /></Suspense> },
       { path: 'payments', element: <Suspense fallback={<Loading />}><PaymentsPage /></Suspense> },
       { path: 'settings', element: <Suspense fallback={<Loading />}><ProfilePage /></Suspense> },
+      { path: 'settings/security', element: <Suspense fallback={<Loading />}><SecurityPage /></Suspense> },
     ]
   }
 ]);
-

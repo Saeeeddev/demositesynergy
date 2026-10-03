@@ -1,101 +1,78 @@
-import React from 'react';
-import {MapIcon,
-  Cog6ToothIcon,
-  SunIcon,
-  ChartBarIcon,
-  GlobeAltIcon,
-  BoltIcon,
-  TruckIcon,
-  TicketIcon,
-  PaperAirplaneIcon,
-  BuildingOffice2Icon,
-  CloudIcon,
-  HomeIcon,
-  ShieldCheckIcon,
-  ExclamationTriangleIcon,
-  MapPinIcon } from '@heroicons/react/24/outline';
-import useResultStore from '../../../../stores/useResultStore';
+import { useState } from 'react';
 
+const layerGroups = [
+  {
+    title: 'مرزهای سایت',
+    layers: [
+      { key: 'selectedLocation', label: 'موقعیت انتخابی', needsLocation: true },
+      { key: 'allocatedLand', label: 'زمین تخصیص‌یافته' },
+    ],
+  },
+  {
+    title: 'لایه‌های تحلیلی',
+    layers: [{ key: 'technical', label: 'پتانسیل عملیاتی' }],
+  },
+  {
+    title: 'منابع و عوارض زمین',
+    layers: [
+      { key: 'ghi', label: 'تابش خورشیدی (GHI)' },
+      { key: 'slope', label: 'شیب' },
+      { key: 'dem', label: 'مدل ارتفاعی (DEM)' },
+    ],
+  },
+  {
+    title: 'عوارض جغرافیایی',
+    layers: [
+      { key: 'powerLines', label: 'خطوط انتقال برق' },
+      { key: 'roads', label: 'جاده‌ها' },
+      { key: 'railways', label: 'راه‌آهن' },
+      { key: 'cities', label: 'شهرها و آبادی‌ها' },
+      { key: 'waterAreas', label: 'منابع آبی' },
+      { key: 'landuse', label: 'کاربری اراضی' },
+      { key: 'protectedAreas', label: 'مناطق حفاظت‌شده' },
+      { key: 'fault', label: 'گسل‌ها' },
+    ],
+  },
+];
 
+function LayerItem({ label, onLockedClick }) {
+  return <div className="flex min-h-11 items-center justify-between gap-3 rounded-lg px-2 py-1.5">
+    <span className="text-sm text-gray-700">{label}</span>
+    <button
+      type="button"
+      role="switch"
+      aria-checked="false"
+      aria-disabled="true"
+      aria-label={label}
+      aria-describedby="demo-layers-notice"
+      title="نمایش این لایه در نسخهٔ آزمایشی غیرفعال است"
+      onClick={() => onLockedClick(label)}
+      className="relative shrink-0 cursor-not-allowed rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue"
+    >
+      <span aria-hidden="true" className="block h-6 w-11 rounded-full border border-gray-300 bg-gray-200 opacity-75">
+        <span className="mt-[2px] mr-[2px] block h-[18px] w-[18px] rounded-full border border-gray-300 bg-white shadow-sm" />
+      </span>
+    </button>
+  </div>;
+}
 
-const LayerItem = ({ icon, label, iconBgColor, iconColor, layerKey }) => {
-  const isChecked = useResultStore(state => state.layers[layerKey]);
-  const toggleLayer = useResultStore(state => state.toggleLayer);
-
-  return (
-    <div className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-gray-50 transition-all duration-200 group">
-      <div className="flex items-center gap-3">
-        <div className={`w-8 h-8 ${iconBgColor} rounded-lg flex items-center justify-center flex-shrink-0`}>
-          {React.cloneElement(icon, { className: `w-5 h-5 ${iconColor}` })}
-        </div>
-        <p className="text-sm font-medium text-gray-800">{label}</p>
-      </div>
-      
-      <label className="relative inline-flex items-center cursor-pointer">
-        <input 
-          type="checkbox" 
-          checked={!!isChecked} 
-          onChange={() => toggleLayer(layerKey)} 
-          className="sr-only peer" 
-        />
-        <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-offset-2 peer-focus:ring-primary-blue peer-checked:bg-primary-blue peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
-      </label>
+export default function LayersSidebarPanel({ hasSelectedLocation = false }) {
+  const [requestedLayer, setRequestedLayer] = useState('');
+  return <div className="space-y-5 pb-8" dir="rtl">
+    <div id="demo-layers-notice" className="rounded-xl border border-blue-100 bg-blue-50 p-3 text-right text-xs leading-6 text-blue-900">
+      لایه‌های موجود در این پروژه در پایین فهرست شده‌اند. نمایش آن‌ها در نسخهٔ آزمایشی توسط سازنده غیرفعال شده است.
     </div>
-  );
-};
-
-const SectionHeader = ({ title }) => (
-  <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2.5">{title}</h4>
-);
-export default function LayersSidebarPanel() {
-  // REMOVE THIS:
-  // const setContentView = useResultStore(state => state.setContentView);
-  // useEffect(() => { setContentView('layers-page'); }, [setContentView]);
-
-  return (
-    <div className="space-y-6 pb-[80px]">
-       <div className="space-y-3">
-        <SectionHeader title="مرزهای سایت" />
-        <div className="space-y-1">
-          <LayerItem label="موقعیت انتخابی" layerKey="selectedLocation" icon={<MapPinIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />
-          <LayerItem label="زمین تخصیص‌یافته" layerKey="allocatedLand" icon={<MapIcon />} iconBgColor="bg-emerald-50" iconColor="text-emerald-600" />
+    {requestedLayer && <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs leading-6 text-amber-900">
+      نمایش لایهٔ «{requestedLayer}» در نسخهٔ آزمایشی توسط سازنده غیرفعال شده است.
+    </div>}
+    {layerGroups.map(({ title, layers }) => {
+      const availableLayers = layers.filter((layer) => !layer.needsLocation || hasSelectedLocation);
+      return <section key={title} aria-label={title}>
+        <p className="mb-2 px-2 text-xs font-semibold text-gray-500">{title}</p>
+        <div className="divide-y divide-gray-100 rounded-xl border border-gray-100 bg-white">
+          {availableLayers.map(({ key, label }) => <LayerItem key={key} label={label} onLockedClick={setRequestedLayer} />)}
         </div>
-      </div>
-
-      <div className="space-y-3">
-        <SectionHeader title="لایه‌های تحلیلی" />
-        <div className="space-y-1">
-          <LayerItem label=" پتانسیل عملیاتی" layerKey="technical" icon={<Cog6ToothIcon />} iconBgColor="bg-violet-50" iconColor="text-violet-600" />
-        </div>
-      </div>
-      
-      <div className="space-y-3">
-        <SectionHeader title="منابع و عوارض زمین" />
-        <div className="space-y-1">
-          {/* Removed/Disabled Layers as requested */}
-         <LayerItem label="تابش خورشیدی (GHI)" layerKey="ghi" icon={<SunIcon />} iconBgColor="bg-amber-50" iconColor="text-amber-600" />
-          <LayerItem label="شیب" layerKey="slope" icon={<ChartBarIcon />} iconBgColor="bg-emerald-50" iconColor="text-emerald-600" />
-          {/* <LayerItem label="مدل ارتفاعی (DEM)" layerKey="dem" icon={<GlobeAltIcon />} iconBgColor="bg-blue-50" iconColor="text-blue-600" /> */}
-        </div>
-      </div>
-
-      <div className="space-y-3">
-        <SectionHeader title="عوارض جغرافیایی" />
-        <div className="space-y-1">
-          <LayerItem label="خطوط انتقال برق" layerKey="powerLines" icon={<BoltIcon />} iconBgColor="bg-purple-50" iconColor="text-purple-600" />
-          <LayerItem label="جاده‌ها" layerKey="roads" icon={<TruckIcon />} iconBgColor="bg-orange-50" iconColor="text-orange-600" />
-          <LayerItem label="راه‌آهن" layerKey="railways" icon={<TicketIcon />} iconBgColor="bg-yellow-50" iconColor="text-yellow-600" />
-          <LayerItem label="فرودگاه‌ها" layerKey="airports" icon={<PaperAirplaneIcon />} iconBgColor="bg-blue-50" iconColor="text-blue-600" />
-          <LayerItem label="شهرها و آبادی‌ها" layerKey="cities" icon={<BuildingOffice2Icon />} iconBgColor="bg-gray-100" iconColor="text-gray-600" />
-          <LayerItem label="منابع آبی" layerKey="waterAreas" icon={<CloudIcon />} iconBgColor="bg-teal-50" iconColor="text-teal-600" />
-          
-          {/* Commented out Protected Areas and Landuse */}
-          <LayerItem label="کاربری اراضی" layerKey="landuse" icon={<HomeIcon />} iconBgColor="bg-indigo-50" iconColor="text-indigo-600" />
-          <LayerItem label="مناطق حفاظت‌شده" layerKey="protectedAreas" icon={<ShieldCheckIcon />} iconBgColor="bg-green-50" iconColor="text-green-600" />
-          
-          <LayerItem label="گسل‌ها" layerKey="fault" icon={<ExclamationTriangleIcon />} iconBgColor="bg-rose-50" iconColor="text-rose-600" />
-        </div>
-      </div>
-    </div>
-  );
+      </section>;
+    })}
+  </div>;
 }

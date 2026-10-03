@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../../../lib/axios';
+import { api } from '../../../lib/localData';
 import { IoChevronDown, IoChevronUp, IoDownloadOutline } from 'react-icons/io5';
 
 const ReportSecondarySidebar = () => {

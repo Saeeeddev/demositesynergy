@@ -127,11 +127,11 @@ const ProjectCard = ({ project }) => {
           </div>
           <div className="bg-gray-50 rounded-md p-2">
             <div className="text-xs text-gray-500">مساحت</div>
-            <div className="font-medium text-gray-800">{project.area} هکتار</div>
+            <div className="font-medium text-gray-800">{project.area ? `${project.area} هکتار` : 'ثبت نشده'}</div>
           </div>
         </div>
         
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-gray-100 pt-4 text-xs">
+        {project.status === 'pending' ? <p className="mt-4 border-t border-gray-100 pt-4 text-sm text-amber-700">اطلاعات پروژه ذخیره شده است؛ نتایج تحلیل هنوز موجود نیست.</p> : <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-gray-100 pt-4 text-xs">
           <div>
             <div className="text-gray-500">کاهش CO2</div>
             <div className="font-medium text-gray-800">{metrics.co2Reduction || 0} تن/سال</div>
@@ -156,7 +156,7 @@ const ProjectCard = ({ project }) => {
             <div className="text-gray-500">بازگشت سرمایه</div>
             <div className="font-medium text-gray-800">{metrics.paybackPeriod || '-'} سال</div>
           </div>
-        </div>
+        </div>}
         
         <div className="mt-auto pt-4 border-t border-gray-100">
           <div className="flex items-center justify-between text-xs text-gray-500">

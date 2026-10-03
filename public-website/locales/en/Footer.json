@@ -16,14 +16,6 @@
         "contact": "Contact"
       }
     },
-    "resources": {
-      "title": "RESOURCES",
-      "links": {
-        "caseStudies": "Case Studies",
-        "support": "Support"
-      }
-    },
-   
     "connect": {
       "title": "CONNECT",
       "links": {
@@ -42,6 +34,6 @@
       }
     }
   },
-  "copyright": "© 2025 SiteSynergy Technologies. All rights reserved.",
+  "copyright": "© 2026 All rights to this website belong to Hamafza Resource Development Company.",
   "logoAlt": "SiteSynergy"
 }

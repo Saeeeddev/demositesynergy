@@ -1,21 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../website/Header';
 import Footer from '../website/Footer';
-import saeedImg from '../../assets/Profile/saeedprofil.png';
-import rezaImg from '../../assets/Profile/rezaprofile.png';
-import amirImg from '../../assets/Profile/amirprofile.png';
-import younesImg from '../../assets/Profile/norolahi.jpg';
 import syIcon from '../../assets/LogoIconImages/sy_icon_transparent_background.png';
 
 const About = () => {
   // Use the 'About' namespace to get the correct translations
   const { t } = useTranslation('About');
 
-  // Get the team members object from the JSON to map over it dynamically
-  const teamMembers = t('team.members', { returnObjects: true });
-  // Define the order to maintain the layout from your original file
-  const memberOrder = ['younes', 'amir', 'saeed', 'reza'];
 
   
   return (
@@ -38,7 +31,7 @@ const About = () => {
               {/* Main headline */}
               <div className="mb-8">
                 {/* The "whitespace-pre-line" class handles the '\n' from the JSON for line breaks */}
-                <h1 className="text-[56px] leading-[64px] font-bold text-gray-900 mb-6 max-w-[800px] mx-auto whitespace-pre-line">
+                <h1 className="text-3xl sm:text-4xl lg:text-[56px] leading-tight lg:leading-[64px] font-bold text-gray-900 mb-6 max-w-[800px] mx-auto whitespace-pre-line">
                   {t('hero.title')}
                 </h1>
               </div>
@@ -63,7 +56,7 @@ const About = () => {
                     <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-6">
                       {t('progress.badge')}
                     </p>
-                    <h2 className="text-[42px] leading-[48px] font-bold text-gray-900">
+                    <h2 className="text-2xl sm:text-3xl lg:text-[42px] leading-tight lg:leading-[48px] font-bold text-gray-900">
                       {t('progress.title')}
                     </h2>
                   </div>
@@ -92,7 +85,7 @@ const About = () => {
                       <p>{t('progress.phase1.content.solution2')}</p>
                       <p><strong>{t('progress.phase1.content.problem3')}</strong></p>
                       <p>{t('progress.phase1.content.solution3')}</p>
-                      <p><strong>{t('common:buttons.breakthrough', 'Key Breakthrough:')}</strong> {t('progress.phase1.content.breakthrough')}</p>
+                      <p>{t('progress.phase1.content.breakthrough')}</p>
                     </div>
                   </div>
                   
@@ -121,7 +114,7 @@ const About = () => {
                         <p>{t('progress.phase2.subPhase.solution2')}</p>
                         <p><strong>{t('progress.phase2.subPhase.problem3')}</strong></p>
                         <p>{t('progress.phase2.subPhase.solution3')}</p>
-                        <p><strong>{t('common:buttons.breakthrough', 'Key Breakthrough:')}</strong> {t('progress.phase2.subPhase.breakthrough')}</p>
+                        <p>{t('progress.phase2.subPhase.breakthrough')}</p>
                       </div>
                     </div>
                   </div>
@@ -129,53 +122,6 @@ const About = () => {
                 </div>
               </div>
               
-            </div>
-          </div>
-
-          {/* Team Section */}
-          <div className="w-full max-w-[1200px] mb-24">
-            <div className="text-center mb-16">
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-6">
-                {t('team.badge')}
-              </p>
-              <h2 className="text-[42px] leading-[48px] font-bold text-gray-900 max-w-[800px] mx-auto">
-                
-{t('team.title')}
-              </h2>
-            </div>
-            
-            <div className="flex flex-col md:flex-row justify-center items-center gap-12">
-              {memberOrder.map(memberKey => {
-                const member = teamMembers[memberKey];
-                // Use a placeholder if image source is not available in JSON
-                let imgSrc = ""; 
-                if (memberKey === 'saeed') {
-                    imgSrc = saeedImg;
-                  }
-                  else if (memberKey === 'reza') {
-                    imgSrc = rezaImg;
-                  }
-                  else if (memberKey === 'amir') {
-                    imgSrc = amirImg;
-                  }
-                  else if (memberKey === 'younes') {
-                    imgSrc = younesImg;
-                  }
-
-                return (
-                  <div key={member.name} className="text-center">
-                    <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
-                      <img 
-                        src={imgSrc} 
-                        alt={`${member.name} profile`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 text-lg">{member.name}</h3>
-                    <p className="text-gray-600 text-sm">{member.role}</p>
-                  </div>
-                );
-              })}
             </div>
           </div>
 
@@ -199,16 +145,19 @@ const About = () => {
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.1em] mb-4">
                   {t('download.badge')}
                 </p>
-                <h2 className="text-[42px] leading-[48px] font-bold text-gray-900 mb-8 whitespace-pre-line">
+                <h2 className="text-2xl sm:text-3xl lg:text-[42px] leading-tight lg:leading-[48px] font-bold text-gray-900 mb-8 whitespace-pre-line">
                   {t('download.title')}
                 </h2>
               </div>
 
               {/* Get Started Button */}
               <div>
-                <button className="mt-4 w-[140px] h-[38px] py-2 px-3 bg-white text-[#6d7f9f] border-none rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px]">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center mt-4 min-h-[42px] py-2 px-6 bg-[#6d7f9f] text-white rounded-full text-base font-semibold cursor-pointer transition-transform duration-200 hover:-translate-y-[1px] no-underline text-center"
+                >
                   {t('download.cta')}
-                </button>
+                </Link>
               </div>
               
             </div>

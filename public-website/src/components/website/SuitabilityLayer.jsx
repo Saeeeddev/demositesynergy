@@ -75,7 +75,7 @@ function SuitabilityLayerSection({ t }) { // 👈 Accept 't' as a prop
                 {t('suitabilityLayer.leftBox.description')} {/* 👈 Translated */}
               </p>
             </div>
-            <div className="SuitabilityLayer-box__bottom-content">
+            <div className="SuitabilityLayer-box__bottom-content SuitabilityLayer-box__bottom-content--diagram">
               <div className="SuitabilityLayer-box__bottom-top-box">
                   <SolarIcon />
                   <TerrainIcon />

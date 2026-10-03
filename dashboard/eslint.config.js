@@ -23,7 +23,10 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Core ESLint does not count JSX tags such as <Icon /> and <motion.div>.
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]|^motion$', argsIgnorePattern: '^Icon$' }],
+      // Several wizard modules export shared constants alongside their components.
+      'react-refresh/only-export-components': 'off',
     },
   },
 ])
